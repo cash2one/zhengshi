@@ -1,0 +1,142 @@
+# coding=utf-8
+
+import json
+import os
+
+from django.core.paginator import Paginator, EmptyPage, InvalidPage
+from django.core.urlresolvers import reverse
+from PIL import Image
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.mail import send_mail
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django.template.loader import get_template
+from django.core.files.storage import FileSystemStorage
+
+from inner_views import user_auth, fil_yield, fil_time, fil_lz, fil_capital, fil_online, fil_type, combination_bid
+from searcher.forms import ContactForm, SearchForm, LoginForm, UserInformationForm, QQRegForm
+from searcher.models import Bid, UserFavorite, Platform, UserInformation, DimensionChoice, UserFilter, UserReminder,platform_info_daily, ThirdLogin
+from searcher.forms import ContactForm, SearchForm, LoginForm, UserInformationForm, UserReminderForm
+from searcher.models import Bid, UserFavorite, Platform, UserInformation, DimensionChoice, UserFilter, UserReminder
+from ddbid import conf
+
+
+__author__ = 'pony'
+
+storage = FileSystemStorage(
+    location=conf.UPLOAD_PATH,
+    base_url='/static/upload/'
+)
+
+
+
+
+
+def qq_is_first(request):
+    resp = 0
+    if request.method == 'POST':
+        response = HttpResponse()
+        response['Content-Type'] = "text/javascript"
+        openid = request.POST.get('openid', '')
+        accesstoken = request.POST.get('accessToken', '')
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        email = request.POST.get('email', '')
+        print "received argument:openid", openid, " accessToken:", accesstoken, " username:", username, " password:", password, " email:", email
+        if openid != "" and accesstoken != "" and username == "" and email == "":
+            #first request
+            print " first request"
+            tl = ThirdLogin.objects.filter(openId=openid)
+            if tl.exists():
+                if tl[0].qqFlag == "1":
+                    u = User.objects.filter(id=(UserInformation.objects.filter(id=tl[0].userInfo_id)[0].user_id))
+                    username = u[0].username
+                    password = "openid"
+                    print "nickname:", username, " password:", password
+                    resp = 1
+                else:
+                    resp = 0
+            else:
+                resp = 0
+        elif username != "" and email != "":
+            #second request
+            print "second request"
+            u = User.objects.filter(username=username)
+            if u.exists():
+                response.write(3)
+                print "aready registed this username!"
+                resp = 0
+            else:
+                new_user = User.objects.create_user(username=username, password="openid")
+                new_user.save()
+                u = UserInformation(user=new_user, photo_url='/static/upload/default.png')
+                u.save()
+                tl = ThirdLogin(openId=openid, accessToken=accesstoken, qqFlag=0)
+                tl.userInfo = u
+                tl.qqFlag = 1
+                tl.save()
+                resp = 1
+        else:
+            print "something unhopeful happend!"
+
+        if resp == 1:
+
+            user = User.objects.get(username=username)
+            user.is_active = True
+            user.backend = 'django.contrib.auth.backends.ModelBackend'
+            print user.is_active
+            auth.login(request, user)
+            # user = auth.authenticate(username=username, password="d")
+            # print "auth::::", user, " ", user.is_active, " ",
+            # if user is not None:
+            #     if user.is_active:
+            #         auth.login(request, user)
+            #         result = {"status": True, "data":"OK"}
+            #     else:
+            #         result = {"status": False, "data":"["+username+"]已被暂时禁用"}
+            # else:
+            #     result = {"status": False, "data":"用户名或密码不正确，请重试"}
+
+
+            # user = auth.authenticate(username=username, password=password)
+            print "userauth:", user, user.is_active
+            if user is not None and user.is_active:
+                auth.login(request, user)
+            return HttpResponseRedirect('/')
+        else:
+            #add openid accesstoken arguments to next request
+            form = QQRegForm()
+            return render_to_response("register.html", {'form': form, 'openid': openid, 'accesstoken': accesstoken}, context_instance=RequestContext(request))
+
+    else:
+        openid = "temporally2"
+        accesstoken = "temporally2"
+        form = QQRegForm()
+        return render_to_response("register.html", {'form': form, 'openid': openid, 'accesstoken': accesstoken}, context_instance=RequestContext(request))
+    # if request.method == 'GET':
+    #     form = LoginForm()
+    #     return render_to_response('login.html', {'form': form, },
+    #                               context_instance=RequestContext(request))
+    # else:
+    #     form = LoginForm(request.POST)
+    #     if form.is_valid():
+    #         username = request.POST.get('username', '')
+    #         password = request.POST.get('password', '')
+    #         user = auth.authenticate(username=username, password=password)
+    #         if user is not None and user.is_active:
+    #             auth.login(request, user)
+    #             # return HttpResponse('1')
+    #             return HttpResponseRedirect('/search')
+    #         else:
+    #             return render_to_response('login.html',
+    #                                       {'form': form, 'password_is_wrong': True},
+    #                                       context_instance=RequestContext(request))
+    #     else:
+    #         return render_to_response('login.html', {'form': form, },
+    #                                   context_instance=RequestContext(request))
+

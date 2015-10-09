@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>安全中心</title>
+    <script type="text/javascript" src="/static/js/timeplus.js"></script>
+<!--安全中心-->
+    <form id="formPH" class="modifyPWform" action="" method="post" >
+    <ul class="pwdpadding">
+        <li>
+            <label>新手机号</label>
+            <label style="margin-left:15px; line-height:50px;">{{form.username}}</label>
+        </li>
+       
+        <li style="float:left">
+            <label>短信验证&nbsp;&nbsp;</label>
+            <label>{{form.smscode}}</label>
+        </li>
+		<li  style="float:left; margin-left:20px;">
+               		                
+         <input type="button" id="rulesubmit" style="float:left;color:#FFFFFF; background-color:#4a3c70;border:1px solid #4a3c70; border-radius:3px;-webkit-border-radius:3px;z-index:1;width:94px;height:50px;margin-left:10px;" value="发送验证码" />
+          <label style="float:left"><div style="border:0px solid #000;width:90px;height:52px;"></div></label>
+        </li>
+		
+		 
+		
+        <li style="margin-left:70px; clear:both">
+            <label><input id ="submit_username" type="button" class="resetpwd-btn" value="确认修改"/></label>
+        </li>
+    </ul>
+        </form>
+
+<!---安全中心 end-->
+
+<script type="text/javascript">
+$(function(){
+	$("#rulesubmit").click(function(){
+        var username = $("input[name=username]").val();
+        var reg = /^13[0-9]{9}$|14[0-9]{9}$|15[0-9]{9}$|17[0-9]{9}$|18[0-9]{9}$/;
+            if(username.match(reg)!=null){
+                if (username == {{user.username}}){
+                   alert("请输入未注册的手机号码！");
+                }
+                else{
+                   $.post("/send_smscode_modify/", {"phoneNum":username}, function(){});
+                };
+            }
+            else{alert("请输入正确的手机号！");};
+    });
+    $('#submit_username').click(function(){
+         var formdata = $("#formPH").serialize();
+         $.post("{% url 'change_phone_number' %}",
+                 formdata,
+                 function(data){ $('#safe_center').html(data.content_html);}
+                 );
+	});
+
+});
+</script>
+
+</html>

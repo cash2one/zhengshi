@@ -1,0 +1,26 @@
+function search() {
+    var keyword = $('#search').val();
+    var dst = "search/" + keyword + "/";
+
+    if (keyword != '') {
+        alert(window.location)
+        window.location = dst;
+    } else {
+        return false;
+    };
+}
+
+function searchbbs(){
+    if (event.keyCode ==13)
+     {
+        search();
+     }
+}
+
+$(document).ready(function(){
+    $('#search-btn').click(
+        function(){
+          search();
+        }
+    );
+});

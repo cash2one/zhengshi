@@ -1,0 +1,112 @@
+{% load staticfiles %}
+{% load settingsvalue %}
+{% load url from future %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>天天搜贷</title>
+    <link href="/static/css/user.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/base.css" rel="stylesheet" type="text/css"/>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet"
+          type="text/css"/>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <!--[if gte IE 8]>
+<script src="js/placeholder.min.js"></script>
+<![endif]-->
+    <script>
+        function show() {
+            code.style.display = "block";
+        }
+        function hide() {
+            code.style.display = "none";
+        }
+    </script>
+
+</head>
+
+<body>
+{% include "header.html" %}
+<div id="mid">
+    <div class="user_con">
+        {% include "little_search.html" %}
+        <div class="user_conter mt10">
+            {% include "user_config_nav.html" %}
+            <div class="user_right fr">
+                <div class="user_set user_box">
+                        {% regroup reminders by bid.name  as reminder_list %}
+                    {% for reminder in reminder_list %}
+                        <dl class="user_set_lsist">
+                            <dt>{{ reminder.grouper }}</dt>
+                            <ul>
+                                <span><input name="" type="checkbox" {% for r in reminder.list %}{% ifequal r.reminder.id 1 %}{% ifequal r.status 1 %}checked{% endifequal %}{% endifequal %}{% endfor %}
+                                             class="user_checkbox"/>开标提醒</span>
+                                <span><input name="" type="checkbox" {% for r in reminder.list %}{% ifequal r.reminder.id 2 %}{% ifequal r.status 1 %}checked{% endifequal %}{% endifequal %}{% endfor %}
+                                             class="user_checkbox"/>满标提醒</span>
+                                <span><input name="" type="checkbox" {% for r in reminder.list %}{% ifequal r.reminder.id 3 %}{% ifequal r.status 1 %}checked{% endifequal %}{% endifequal %}{% endfor %}
+                                             class="user_checkbox"/>还款提醒</span>
+                            <span>
+                            	<input name="" type="checkbox" {% for r in reminder.list %}{% ifequal r.reminder.id 4 %}{% ifnotequal r.status 0 %}checked{% endifnotequal %}{% endifequal %}{% endfor %}
+                                       class="user_checkbox"/>进度提醒
+                                <select name="">
+                                    <option value="20%">20%</option>
+                                    <option value="40%">40%</option>
+                                    <option value="60%">60%</option>
+                                    <option value="80%">80%</option>
+                                </select>
+                            </span>
+                            <span>
+                            	<input name="" type="checkbox" {% for r in reminder.list %}{% ifequal r.reminder.id 5 %}{% ifnotequal r.status 0 %}checked{% endifnotequal %}{% endifequal %}{% endfor %}
+                                       class="user_checkbox"/>可投金额提醒＜
+                                <input name="" type="text" class="user_txt"/>
+                            </span>
+
+                                <div class="button-group radio"><label class="button active"><input name="pintuer"
+                                                                                                    value="yes"
+                                                                                                    checked="checked"
+                                                                                                    type="radio">是</label>
+                                    <label class="button"><input name="pintuer" value="no" type="radio">否</label>
+                                </div>
+                            </ul>
+                        </dl>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% include "footer.html" %}
+</body>
+<script type="text/javascript">
+    $('.radio label').each(function () {
+        var e = $(this);
+        e.click(function () {
+            e.closest('.radio').find("label").removeClass("active");
+            e.addClass("active");
+        });
+    });
+    $(document).ready(function () {
+        $('#top_r li').hover(function () {
+            $('ul', this).slideDown(200);
+            $(this).children('a:first').addClass("hov");
+        }, function () {
+            $('ul', this).slideUp(100);
+            $(this).children('a:first').removeClass("hov");
+        });
+    });
+    $(function () {
+        $('.checkbutton').click(function () {
+            alert($(this).siblings().children('.rmstatus').val());
+            /*var json_obj = {datas: [
+             { game_id: $('#datas1').val(), level: $('#level1').val() },
+             { game_id: $('#datas2').val(), level: $('#level2').val() }
+             ] }; //JSON对象
+             */
+        })
+    })
+</script>
+</html>

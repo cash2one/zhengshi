@@ -1,0 +1,45 @@
+{% load staticfiles %}
+{% load settingsvalue %}
+{% load url from future %}
+{% load i18n %}
+<!DOCTYPE html>
+<head></head>
+<body>
+<style type="text/css">
+#img{
+display: block;
+width: 200px;
+padding: 10px;
+border: 1px solid #EEE;
+box-shadow: 0px 0px 2px #DDD;
+background: none repeat scroll 0% 0% #FFF;
+z-index: 999;
+position: absolute;
+right: -100px;
+bottom: 30px;
+}
+</style>
+<div class="img" id="img" style="display:none;">
+    <img src="/static/images/erweima_100px.png">
+</div>
+<div id="footer">
+    <div class="footer">
+        <a href="#" class="ico1 fr" id="erweima" onmouseover="show()" onmouseout="hide()" ></a>
+        <a href="http://www.weibo.com" class="ico fr"></a>
+        <a href="{% url 'about_us' %}" class="fl">关于我们</a>
+        <a href="{% url 'contact_us' %}" class="fl">联系我们</a>&nbsp;&nbsp;©2014 Cida 上海辞达金融信息服务有限公司&nbsp;&nbsp;&nbsp;&nbsp;沪ICP证0000001号
+        <p id="code" style="display:none;">
+            <img src="/static/image/code.png"/>
+        </p>
+    </div>
+</div>
+<script type="text/javascript">
+    function show() {
+        document.getElementById("img").style.display = '';
+    };
+    function hide() {
+        document.getElementById("img").style.display = 'none';
+    };
+</script>
+
+</body>

@@ -1,0 +1,25 @@
+.user,.user_conter,.user_box,.user_list,.user_detail,.user_detail dd,.user_detail dd p{ overflow:hidden;}
+.user{ width:1024px; margin:0 auto;}
+.user_left{ width:150px;}
+.user_box{ border:2px solid #ddd; border-radius:5px;}
+.user_list{ padding:20px 0;}
+.user_list li{ height:30px; line-height:30px;}
+.user_list li a{ font-size:14px; font-weight:bold; padding-left:20px; height:30px; line-height:30px; display:block;}
+.user_list li a.active,.user_list li a:hover{ background:#ffb2b2; color:#c95124;}
+.user_right{ width:846px;}
+.user_message{ padding:20px;}
+.user_title{ font-size:18px; font-weight:bold; margin-bottom:20px;}
+.user_detail dt,.user_detail dd{ float:left;}
+.user_detail dt{ width:80px; margin-right:40px;}
+.user_detail dt p,.user_detail dt p img{ width:80px; height:80px;}
+.user_detail dt a{ display:inline-block; border:1px solid #ddd; padding:5px 10px; margin:10px 0 0 5px; border-radius:5px;}
+.user_detail dd{ width:680px; }
+.user_detail dd p{ padding-bottom:20px; height:30px; line-height:30px;}
+.user_detail dd p label{ font-size:14px; font-weight:bold; display:inline-block; width:100px; text-align:left; float:left;}
+.user_text{ width:200px; border:1px solid #ddd; padding:5px; height:18px; line-height:18px; color:#666; float:left;}
+.user_check{ margin-right:25px; font-size:14px;}
+.user_radio{ margin-right:5px;}
+.user_select{ width:210px; height:30px; border:1px solid #ddd; line-height:30px; color:#666; font-size:14px; }
+.user_btn{ color:#fff; background:#0099cc; padding:5px 10px; border-radius:5px; margin-left:100px;}
+.user_btn:hover{ background:#0cafe5; color:#fff;}
+

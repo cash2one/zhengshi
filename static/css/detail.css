@@ -1,0 +1,51 @@
+.detail,.detail_box,.detail_hd,.detail_bd,.detail_con{ overflow:hidden;}
+.detail{margin:0 auto; background:#FFFFFF;border-radius:5px;width:820px;margin-left:145px;float:left;margin-bottom:30px;}
+.deta_right{margin-left:1000px;width:251px;margin-top:70px;}
+.detail_img{width:1110px;height:90px; background:#FFFFFF;border-radius:5px;margin-left:145px;}
+.detail_img img{padding-top: 20px;
+padding-left: 15px;width:200px; height:50px;}
+.detail_tit{margin-left:145px;}
+.detail_tit h3{ font-size:20px; font-weight:bold; line-height:70px; width:650px; height:70px; padding-left:20px; overflow:hidden;}
+.detail_bd{ padding:20px 0;margin-top:23px;}
+.detail_con{ padding-bottom:20px;width:251px;height:100px;background:#FFFFFF;border-radius:5px;}
+.detail_type{float:left;padding:30px 0px;font-size:14px;width:80px; text-align:center;}
+.detail_last{ border:none;}
+.detail_type span{ font-size:16px; color:#999;}
+.det_tab{height:340px;width:251px; background:#FFFFFF;border-radius:5px;margin-top:20px;}
+.det_tabb{padding-top:10px;}
+.detail_tab tr td{height:24px;color:#999; font-size:14px; font-weight:bold; text-align:center;}
+.detail_tab tr {width:100px;}
+.detail_tab tr td.detail_double{color:#333;}
+.detail_date{ display:inline-block; padding:3px 10px; font-weight:normal; color:#ff0000; border:1px solid #666; background:#f2f2f2;}
+.detail_percent{ display:inline-block; width:60px;px;height:20px; padding-top:13px;}
+.detail_percent em{ background:#ff0000; display:block; height:10px;}
+.detail_deal,.detail_num{ width:730px; height:196px; margin:0 auto;}
+.detail_list{ border-bottom:2px solid #ddd;}
+
+#detail_a{padding-left:20px;padding-bottom:20px;}
+#detail_a dd{ display:inline-block; float:left; position:relative;padding-top:15px;padding-left:15px;}
+#detail_a dd a {display:block;cursor:pointer;}
+#detail_a dd ul{ overflow:hidden; background:#ddd;width:120px; position:absolute; margin-bottom:300px; left:0; display:none;}
+#detail_a dd ul.active{ display:block;}
+#detail_a dd ul li{ line-height:30px;height:30px;border-bottom:1px solid #f2f2f2;text-align:center; }
+#detail_a dd ul li a{ border:none;}
+.bgclor{ background:#EEEEF0;}
+.stt_img{ background:#FFFFFF; width:251px;height:100px;border-radius:5px;margin-top:20px;}
+stt_img img{width:65px;height:65px; padding-bottom:20px;}
+
+/***********************************/
+.detail1{width:100%;height:100%;margin-left:165px;}
+.detail_border{width:545px; height:360px; background:#FFFFFF;float:right;margin-right:40px;margin-top:50px;margin-bottom:80px;}
+.detail_hdimg{height:70px;}
+.detail_hdimg img{ width:200px; height:65px;margin-left:170px;padding-top:20px;}
+.bidname{margin-top:20px;}
+
+.detail_conn{padding-left:60px;height:120px;width:460px;}
+.detail_btn{margin-top:20px;}
+.detail_ty{font-size:18px;float:left;padding:15px 40px;text-align:center;}
+.detail_btnn{margin-top:20px;margin:0 auto;}
+.seach_cheek{ display:block; background:#c50512; color:#fff; text-align:center; line-height:30px; height:30px; font-size:14px; width:110px;border-radius:5px;}
+.seach_cheek:hover{ background:#d23c46; color:#fff;}
+.btn_xq{padding-left:160px;float:left;}
+.btn_tz{padding-left:280px;}
+.container23{width:100%;height:100%;margin:0px; padding:0px;}

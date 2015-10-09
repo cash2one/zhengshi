@@ -1,0 +1,229 @@
+{% load staticfiles %}
+{% load settingsvalue %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=360, initial-scale=0.75 user-scalable=no">
+        {% block header_ext%}
+        {% endblock %}
+        <title>
+            {% spaceless %}
+            {% block title %}
+            {{title}}-
+            {% if pager %}
+            {% blocktrans %}page {{ pager }}{% endblocktrans %}
+            -
+            {% endif %}
+            {% conf_value "sitename" %}
+            {% endblock %}
+            {% endspaceless %}
+        </title>
+
+        <!-- Bootstrap -->
+        <!--link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/base.css' %}" rel="stylesheet">
+        <link href="{% static 'css/codehilite.css' %}" rel="stylesheet"-->
+        <link href="{% static 'css/bbs.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'css/base_new.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="{% static 'js/html5shiv.js' %}"></script>
+        <script src="{% static 'js/respond.min.js' %}"></script>
+        <![endif]-->
+    </head>
+    <body>
+    <div id="header">
+    <div class="top">
+        <ul class="nav">
+            <li><a href="{% url 'searchindex' %}">首页</a></li>
+            <li><a href="{% url 'do_reminder' %}">提醒</a></li>
+            <li><a href="{% url 'myfavorite' 1%}">收藏</a></li>
+            <li><a href="{% url 'bbsindex' %}">社区</a></li>
+        </ul>
+        <div class="top_right">
+            {% if request.user.is_authenticated %}
+                 <ul id="top_r" class="top_name">
+                    <div id="logged">
+                        <li><a href="#"><img src="{{request.user.userinformation.photo_url}}"/></a>{{ user.username }}
+                            <ul>
+                                <li><a href="{% url 'userinformation' %}">我的资料</a></li>
+                                <li><a href="{% url 'logout' %}">退出</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                </ul>
+            {% else %}
+                <ul id="top_r">
+                    <li><a class="signin" href="#">登录</a>
+
+                            <form action="">
+                                <ul class="login" id="login-li">
+                                    <li class="user">
+                                        <input name="log_un" type="text" placeholder="用户名"/>
+                                    </li>
+                                    <li class="pwd">
+                                        <input name="log_pwd" type="text" placeholder="密码"/>
+                                    </li>
+                                    <li><a href="#" id="btn_login" class="btn_login">登录</a></li>
+                                    <li><a href="#" class="forget fl">忘记密码</a><a href="#" class="reg fr">立即注册</a></li>
+                                    <li class="quick">快捷注册：</li>
+                                    <li><span id="qqLoginBtn"><a href="#" class="qq"></a></span>
+                                        <a href="#" class="wx"></a>
+                                        <a href="#" class="web"></a>
+                                    </li>
+                                </ul>
+                            </form>
+                        </li>
+                        <li>/</li>
+                        <li><a class="register_li" href="#">注册</a>
+
+                        <form action="">
+                            <ul class="login reg" id="reg-li">
+                                <li><input name="reg_un" type="text" placeholder="用户名"/></li>
+                                <li><input name="reg_pwd" type="text" placeholder="密码"/></li>
+                                <li><input name="reg_pwd2" type="text" placeholder="再输一次密码"/></li>
+                                <li><input name="reg_email" type="text" placeholder="邮箱"/></li>
+                                <li><a href="#" id="btn_reg" class="btn_login">注册</a></li>
+                            </ul>
+                        </form>
+                    </li>
+                </ul>
+
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+    <div id="mid">
+        <div class="bbs">
+            {% block inside_row %}{% endblock %}
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="footer">
+               <a href="#" class="ico1 fr" onmouseover="show()" onmouseout="hide()"></a><a href="#" class="ico fr"></a><a href="#" class="fl">关于我们</a><a href="#" class="fl">联系我们</a>&nbsp;&nbsp;©2014 Cida 上海辞达金融信息服务有限公司&nbsp;&nbsp;&nbsp;&nbsp;沪ICP证0000001号
+               <p id="code" style="display:none;"><img src="images/code.png" /></p>
+        </div>
+    </div>
+
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/search.js' %}"></script>
+        <script type="text/javascript">
+
+ QC.Login({
+  btnId : "qqLoginBtn",//插入按钮的html标签id
+  size : "C_S",//按钮尺寸
+  scope : "get_user_info",//展示授权，全部可用授权可填 all
+  display : "pc"//应用场景，可选
+ }, function(reqData, opts){
+     alert("login success：" + QC.Login.check());
+     //判断登陆是否成功
+     if (QC.Login.check()){
+         //拿取平台openid
+         QC.Login.getMe(function(openId, accessToken){
+             alert("拿到的openid：" + openId + " accessToken:" + accessToken);
+             //判断是否为首次登陆
+             $.post("{% url 'qq_is_first' %}",
+                {
+                    openid: openId,
+                    accessToken: accessToken
+                },
+                function (data) {
+                    alert(data);
+                    //location.reload();
+                }
+        );
+         });
+     }else{
+         alert("login failed! please try again!");
+     }
+   }, function(opts){//注销成功
+         alert('QQ登录 注销成功');
+   });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#logged li').hover(function () {
+            $('ul', this).slideDown(200);
+            $(this).children('a:first').addClass("hov");
+        }, function () {
+            $('ul', this).slideUp(100);
+            $(this).children('a:first').removeClass("hov");
+        });
+    });
+    $(".signin").click(function (e) {
+        e.preventDefault();
+        $("#login-li").toggle();
+        $("#login-li").toggleClass("hov");
+    });
+
+    $("#login-li").mouseup(function () {
+        return false
+    });
+    $(document).mouseup(function (e) {
+        if ($(e.target).parent("a.signin").length == 0) {
+            $(".signin").removeClass("hov");
+            $("#login-li").hide();
+        }
+    });
+
+    $(".register_li").click(function (e) {
+        e.preventDefault();
+        $("#reg-li").toggle();
+        $("#reg-li").toggleClass("hov");
+    });
+
+    $("#reg-li").mouseup(function () {
+        return false
+    });
+    $(document).mouseup(function (e) {
+        if ($(e.target).parent("a.register_li").length == 0) {
+            $(".register_li").removeClass("hov");
+            $("#reg-li").hide();
+        }
+    });
+
+    $('#btn_reg').on("click", function () {
+        var username = $("input[name=reg_un]").val();
+        var pwd = $("input[name=reg_pwd]").val();
+        var pwd2 = $("input[name=reg_pwd2]").val();
+        var email = $("input[name=reg_email]").val();
+        $.post("{% url 'register' %}",
+                {
+                    un: username,
+                    pwd: pwd,
+                    pwd2: pwd2,
+                    em: email
+                },
+                function (data) {
+                    alert(data);
+                    location.reload()
+                }
+        );
+    });
+    $('#btn_login').on("click", function () {
+        var username = $("input[name=log_un]").val();
+        var pwd = $("input[name=log_pwd]").val();
+        $.post("{% url 'login' %}",
+                {
+                    un: username,
+                    pwd: pwd
+                },
+                function (data) {
+                    location.reload();
+                }
+        );
+    });
+</script>
+        {% block footer_ext %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+{% block title %}Thrid way Create an account{% endblock %}
+
+{% block content %}
+
+  {% if wbid|length <= 0 and openid|length >= 0 %}
+      <h1>welcome use qq to login this website!</h1>
+   <form action="/qq_is_first/" method="post">
+      {{ form.as_p }}
+      <input type="text" value={{ wbid }} name="wbid">
+      <input type="text" value={{ openid }} name="openid">
+      <input type="text" value={{ accesstoken }} name="accessToken">
+      <input type="text" value={{ url }} name="url">
+      <input type="submit" value="Create the account">
+    </form>
+{% else %}
+    <h1>welcome use qq to login this website!</h1>
+      <form action="/wb_is_first/" method="post">
+      {{ form.as_p }}
+      <input type="text" value={{ wbid }} name="wbid">
+      <input type="text" value={{ openid }} name="openid">
+      <input type="text" value={{ accesstoken }} name="accessToken">
+      <input type="text" value={{ url }} name="url">
+      <input type="submit" value="Create the account">
+  </form>
+{% endif %}
+
+
+
+{% endblock %}
+</body>
+</html>

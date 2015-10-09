@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="/static/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+    {% regroup reminders by bid.name  as reminder_list %}
+    <ul>
+        {% for reminder in reminder_list %}
+            <li>{{ reminder.grouper }}
+                <ul>
+                <a>{{ reminder.list }}</a>
+                    {% for r in reminder.list %}
+                        <li class="rmname">{{ r.reminder.name }}</li>
+                        <li class="rmstatus">{{ r.status }}</li>
+                    {% endfor %}
+                <a class="checkbutton" href="#">check</a>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('.checkbutton').click(function () {
+            alert( $(this).siblings('.rmstatus').text());
+            /*var json_obj = {datas: [
+                { game_id: $('#datas1').val(), level: $('#level1').val() },
+                { game_id: $('#datas2').val(), level: $('#level2').val() }
+            ] }; //JSON对象
+            */
+        })
+    })
+</script>
+</body>
+</html>

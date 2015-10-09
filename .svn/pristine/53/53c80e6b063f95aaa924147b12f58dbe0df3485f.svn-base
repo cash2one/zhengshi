@@ -1,0 +1,151 @@
+# coding=utf-8
+import datetime
+import random
+from django.contrib import auth
+from searcher.models import Bid
+
+__author__ = 'py'
+
+
+def user_auth(request, username, password):
+    user = auth.authenticate(username=username, password=password)
+    if user is not None and user.is_active:
+        auth.login(request, user)
+        return 1
+    else:
+        return 2
+
+
+def combination_bid(amount, ctype):
+
+    date1 = datetime.datetime.now()
+
+    if None == amount:
+        a = Bid.objects.filter(comb_type=ctype)
+    else:
+        a = Bid.objects.filter(amount__lte=amount, comb_type=ctype)
+    if len(a) >= 2:
+        aa = random.sample(a, 2)
+        cid = []
+        for t in aa:
+            cid.append(t.id)
+        c = {'ids': cid}
+        c.update({'term': str(aa[0].term) +'/'+ str(aa[1].term)})
+        c.update({'income_rate': (aa[0].income_rate + aa[1].income_rate) / 2})
+        if ctype == 1:
+            c.update({'name': '益起贷 上选 保守型'})
+        elif ctype == 2:
+            c.update({'name': '益起贷 优选 稳健型'})
+        elif ctype == 3:
+            c.update({'name': '益起贷 精选 激进型'})
+        c.update({'amount': (aa[0].amount + aa[1].amount)})
+        c.update({'thousandincome': (aa[0].thousandincome + aa[1].thousandincome)})
+    else:
+        c = None
+    print(c)
+
+    date2 = datetime.datetime.now()
+    print(u'组合耗时' + str(ctype) +str((date2 - date1).seconds) + u'秒')
+    return c
+
+
+def fil_yield(results, cal_type, value1, value2):
+    if cal_type == 1:
+        return results.filter(income_rate__lte=value1)
+    elif cal_type == 2:
+        return results.filter(income_rate=value1)
+    elif cal_type == 3:
+        return results.filter(income_rate__gte=value1)
+    elif cal_type == 4:
+        return results.filter(income_rate__gte=value1, income_rate__lte=value2)
+    elif cal_type == 0:
+        return results
+
+
+def fil_time(results, cal_type, value1, value2):
+    if cal_type == 1:
+        return results.filter(term__lte=value1)
+    elif cal_type == 2:
+        return results.filter(term=value1)
+    elif cal_type == 3:
+        return results.filter(term__gte=value1)
+    elif cal_type == 4:
+        return results.filter(term__gte=value1, term__lte=value2)
+    elif cal_type == 0:
+        return results
+
+
+def fil_lz(results, cal_type, value1, value2):
+    if cal_type == 0:
+        return results
+    elif cal_type == 2:
+        if value1 == 1:
+            return results.filter(transfer_claim='Y')
+        else:
+            return results.filter(transfer_claim='N')
+
+
+def fil_capital(results, cal_type, value1, value2):
+    if cal_type == 0:
+        return results
+    elif cal_type == 1:
+        return results.filter(platform__capital__lte=value1)
+    elif cal_type == 3:
+        return results.filter(platform__capital__gte=value1)
+    elif cal_type == 4:
+        return results.filter(platform__capital__gte=value1, platform__capital__lte=value2)
+
+
+def fil_online(results, cal_type, value1, value2):
+    print(datetime_offset_by_month(datetime.date.today(), -value1))
+    if cal_type == 0:
+        return results
+    elif cal_type == 1:
+        return results.filter(platform__online_time__gte=datetime_offset_by_month(datetime.date.today(), -value1))
+    elif cal_type == 3:
+        return results.filter(platform__online_time__lte=datetime_offset_by_month(datetime.date.today(), -value1))
+    elif cal_type == 4:
+        return results.filter(platform__online_time__lte=datetime_offset_by_month(datetime.date.today(), -value1),
+                              platform__online_time__gte=datetime_offset_by_month(datetime.date.today(), -value2))
+
+
+def fil_type(results, cal_type, choice_name):
+    if cal_type == 0:
+        return results
+    elif cal_type == 2:
+        return results.filter(type=choice_name)
+
+
+def datetime_offset_by_month(datetime1, n=1):
+    # create a shortcut object for one day
+    one_day = datetime.timedelta(days=1)
+
+    # first use div and mod to determine year cycle
+    q, r = divmod(datetime1.month + n, 12)
+
+    # create a datetime2
+    # to be the last day of the target month
+    datetime2 = datetime.datetime(
+        datetime1.year + q, r + 1, 1) - one_day
+
+    # if input date is the last day of this month
+    # then the output date should also be the last
+    # day of the target month, although the day
+    # may be different.
+    # for example:
+    # datetime1 = 8.31
+    # datetime2 = 9.30
+    if datetime1.month != (datetime1 + one_day).month:
+        return datetime2
+
+    # if datetime1 day is bigger than last day of
+    # target month, then, use datetime2
+    # for example:
+    # datetime1 = 10.31
+    # datetime2 = 11.30
+    if datetime1.day >= datetime2.day:
+        return datetime2
+
+    # then, here, we just replace datetime2's day
+    # with the same of datetime1, that's ok.
+    return datetime2.replace(day=datetime1.day)
