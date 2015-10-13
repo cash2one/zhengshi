@@ -39,7 +39,7 @@ $(function () {
         title: {
             text: '<b>平台每天交易额度</b>',
              style: {
-                fontSize: '24px',
+                fontSize: '24px'
 
             }
         },
@@ -92,7 +92,7 @@ $(function () {
         title: {
             text: '<b>平台每天交易人数</b>',
             style: {
-                fontSize: '24px',
+                fontSize: '24px'
 
             }
         },

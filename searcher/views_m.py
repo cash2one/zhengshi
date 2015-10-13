@@ -25,7 +25,7 @@ from django.core.files.storage import FileSystemStorage
 from ddbid.settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
 from searcher.forms import ContactForm, SearchForm, LoginForm, UserInformationForm, RegisterForm, ForgetPWForm,ModfiyPWForm,ModfiyPForm
-from searcher.inner_views import index_loading, data_filter, result_sort, get_pageset, get_user_filter, user_auth, \
+from searcher.inner_views import index_loading, index_loading_m,data_filter, result_sort, get_pageset, get_user_filter, user_auth, \
     refresh_header
 from searcher.models import Bid, UserFavorite, Platform, UserInformation, DimensionChoice, UserFilter, UserReminder, \
     WeekHotSpot, BidHis, ReminderUnit
@@ -42,11 +42,6 @@ storage = FileSystemStorage(
 
 
 def index(request):
-    hotspots = WeekHotSpot.objects.filter(status=1).order_by('?')
-    if hotspots.exists():
-        hs = random.sample(hotspots, 4)
-    else:
-        hs = []
     if request.method == 'POST':
         # print(request.POST.get('params', None))
         form = SearchForm(request.POST)
@@ -54,17 +49,17 @@ def index(request):
             cd = form.cleaned_data
             amount = cd['searchWord']
         else:
-            return render_to_response('index.html', {'form': form, 'hs': hs}, context_instance=RequestContext(request))
+            return render_to_response('index.html', {'form': form}, context_instance=RequestContext(request))
 
         try:
             page = int(request.GET.get('page', '1'))
         except ValueError:
             page = 1
         index_parts = index_loading(amount, None, page)
-        return render_to_response('search_result.html',
+        return render_to_response('search_result_m.html',
                                   {'results': index_parts.get('results'), 'dimensions': index_parts.get('dimensions'),
                                    'c_results': index_parts.get('c_result'), 'last_page': index_parts.get('last_page'),
-                                   'page_set': index_parts.get('page_set'), 'form': form},
+                                   'page_set': index_parts.get('page_set')},
                                   context_instance=RequestContext(request))
     elif request.GET.get('params[]', None) is not None:
         params = ','.join(request.GET.getlist('params[]'))
@@ -91,7 +86,7 @@ def index(request):
             results = ppp.page(ppp.num_pages)
         last_page = ppp.page_range[len(ppp.page_range) - 1]
         page_set = get_pageset(last_page, page)
-        t = get_template('search_result_single.html')
+        t = get_template('search_result_single_m.html')
         content_html = t.render(
             RequestContext(request, {'results': results, 'last_page': last_page, 'page_set': page_set}))
         payload = {
@@ -127,31 +122,8 @@ def contact(request):
     return render_to_response('contact_form.html', {'form': form}, context_instance=RequestContext(request))
 
 
-# def login(request):
-# if request.method == 'GET':
-# form = LoginForm()
-# return render_to_response('login.html', {'form': form, },
-# context_instance=RequestContext(request))
-# else:
-# form = LoginForm(request.POST)
-# if form.is_valid():
-#             username = request.POST.get('username', '')
-#             password = request.POST.get('password', '')
-#             user = auth.authenticate(username=username, password=password)
-#             if user is not None and user.is_active:
-#                 auth.login(request, user)
-#                 return HttpResponse('1')
-#
-#             else:
-#                 return render_to_response('login.html',
-#                                           {'form': form, 'password_is_wrong': True},
-#                                           context_instance=RequestContext(request))
-#         else:
-#             return render_to_response('login.html', {'form': form, },
-#                                       context_instance=RequestContext(request))
-
-
 def login(request):
+    print "this is test"
     if request.method == 'POST':
         username = request.REQUEST.get('log_un', None)
         pwd = request.REQUEST.get('log_pwd', None)
@@ -169,24 +141,24 @@ def login(request):
                     if a:
                         return HttpResponseRedirect(a)
                     else:
-                        return HttpResponseRedirect(reverse('searchindex'))
+                        return HttpResponseRedirect(reverse('search_result_m'))
                 else:
                     form.valiatetype(i)
-                    return render_to_response('login.html', {'form': form, },
+                    return render_to_response('login_m.html', {'form': form, },
                                               context_instance=RequestContext(request))
             else:
-                return render_to_response('login.html', {'form': form, },
+                return render_to_response('login_m.html', {'form': form, },
                                           context_instance=RequestContext(request))
 
         return refresh_header(request, user_auth(request, username, pwd, code))
     else:
         form = LoginForm()
         next = request.GET.get('next', None)
-        return render_to_response('login.html', {'form': form, 'next': next},
+        return render_to_response('login_m.html', {'form': form, 'next': next},
                                   context_instance=RequestContext(request))
 
 def forgetpw(request):
-    print "this views forgetpw"
+    print "forgetpw xxxxxxx"
     if request.method == 'POST':
         form = ForgetPWForm(request.POST)
         if form.is_valid():
@@ -203,7 +175,7 @@ def forgetpw(request):
                 if user is not None and user.is_active:
                     auth.login(request, user)
                     #return HttpResponse(u'登录成功')
-                    return HttpResponseRedirect(reverse('searchindex'))
+                    return HttpResponseRedirect(reverse('search_result_m'))
                 else:
                     return HttpResponse(u'输入错误')
                     #return render_to_response('forgetpwd.html',{"form":form},
@@ -211,14 +183,14 @@ def forgetpw(request):
 
             else:
                 form.valiatetype(2)
-                return render_to_response('forget_password.html',{"form":form},
+                return render_to_response('forget_password_m.html',{"form":form},
                                       context_instance=RequestContext(request))
 
         else:
-            return render_to_response('forget_password.html', {'form': form}, context_instance=RequestContext(request))
+            return render_to_response('forget_password_m.html', {'form': form}, context_instance=RequestContext(request))
     else:
         form = ForgetPWForm()
-        return render_to_response('forget_password.html', {'form': form}, context_instance=RequestContext(request))
+        return render_to_response('forget_password_m.html', {'form': form}, context_instance=RequestContext(request))
 
 
 def verifycode(request):
@@ -337,7 +309,7 @@ def register(request):
                 form.valiatetype(4)
                 flag = 1
             if flag == 1:
-                return render_to_response("reg.html", {'form': form}, context_instance=RequestContext(request))
+                return render_to_response("reg_m.html", {'form': form}, context_instance=RequestContext(request))
             elif pwd1 == pwd2 and f:
                 new_user = User.objects.create_user(username=username, password=pwd1)
                 new_user.save()
@@ -348,12 +320,12 @@ def register(request):
                 auth.login(request, user)
                 # return refresh_header(request, user_auth(request, username, pwd1, None))
                 #直接定向到首页
-                return HttpResponseRedirect(reverse('searchindex'))
+                return HttpResponseRedirect(reverse('search_result_m'))
         else:
-            return render_to_response("reg.html", {'form': form}, context_instance=RequestContext(request))
+            return render_to_response("reg_m.html", {'form': form}, context_instance=RequestContext(request))
     else:
         form = RegisterForm()
-        return render_to_response("reg.html", {'form': form}, context_instance=RequestContext(request))
+        return render_to_response("reg_m.html", {'form': form}, context_instance=RequestContext(request))
 
 
 @login_required
@@ -655,13 +627,7 @@ def bid_detail(request, objectid):
     try:
         b = Bid.objects.get(id=objectid)
     except ObjectDoesNotExist:
-        try:
-            b = BidHis.objects.get(id=objectid)
-        except:
-            return HttpResponse()
-            #return render_to_response("bid_detail_error.html",
-            #                 {"msg":u"该标的被撤销，无法显示，敬请谅解！"},
-            #                  context_instance=RequestContext(request))
+        b = BidHis.objects.get(id=objectid)
     now_date = datetime.datetime.now()
     yes_time_1 = now_date + datetime.timedelta(days=-1)
     connection = MySQLdb.connect(host="ddbid2015.mysql.rds.aliyuncs.com", user="django", passwd="ddbid_django1243", db="ddbid_db")
@@ -690,13 +656,13 @@ def bid_detail(request, objectid):
     json_mount = json.dumps(arr_mount, cls=DjangoJSONEncoder)
     json_day = json.dumps(arr_day, cls=DjangoJSONEncoder)
     cursor.close()
-    return render_to_response("bid_detail.html",
+    return render_to_response("bid_detail_m.html",
                               {'bid': b, 'json_money': json_money, 'json_mount': json_mount, 'json_day': json_day},
                               context_instance=RequestContext(request))
 
+
 def bid_detail_p(request):
     objectid = request.POST.get('object_id')
-
     try:
         b = Bid.objects.get(id=objectid)
     except ObjectDoesNotExist:
@@ -705,7 +671,6 @@ def bid_detail_p(request):
         except:
             return HttpResponse()
     return HttpResponse(u'1')
-
 
 def comb_detail(request, ids):
     if ids is None:
@@ -726,9 +691,6 @@ def shortcut_request(request, objectid):
                                'page_set': index_parts.get('page_set')},
                               context_instance=RequestContext(request))
 
-
-def activearea(request):
-    return render_to_response('activearea.html', context_instance=RequestContext(request))
 
 def contact_us(request):
     return render_to_response('contact_us.html', context_instance=RequestContext(request))
@@ -754,7 +716,7 @@ def send_smscode(request):
     m.update('shcdjr2')
     random_code = random.randint(1000, 9999)
     request.session["sms_code"] = random_code
-    content = "您的验证码是：%s，有效期为五分钟。如非本人操作，可以不用理会!"%random_code
+    content = "您的验证码是：%s，有效期为五分钟。如非本人操作，可以不用理会"%random_code
     print content
     data = """
               <Group Login_Name ="%s" Login_Pwd="%s" OpKind="0" InterFaceID="" SerType="xxxx">
@@ -789,7 +751,7 @@ def send_smscode_modify(request):
         m.update('shcdjr2')
         random_code = random.randint(1000, 9999)
         request.session["sms_code"] = random_code
-        content = "您的验证码是：%s，有效期为五分钟。如非本人操作，可以不用理会!"%random_code
+        content = "您的验证码是：%s，有效期为五分钟。如非本人操作，可以不用理会"%random_code
         print content
         data = """
                   <Group Login_Name ="%s" Login_Pwd="%s" OpKind="0" InterFaceID="" SerType="xxxx">
@@ -949,3 +911,89 @@ def change_phone_number(request):
                 'success': True,
             }
         return HttpResponse(json.dumps(payload), content_type="application/json")
+
+def search_result(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            amount = cd['searchWord']
+            if amount is not None and not str(amount).isdigit():
+                return render_to_response('searchResult_m.html',{'msg':u'请输入投资金额'}, context_instance=RequestContext(request))
+
+        try:
+            page = int(request.GET.get('page', '1'))
+
+        except ValueError:
+            page = 1
+        print 'page is',page
+        index_parts = index_loading_m(amount, None, page)
+        return render_to_response('search_result_m.html',
+                                  {'results': index_parts.get('results'), 'dimensions': index_parts.get('dimensions'),
+                                   'c_results': index_parts.get('c_result'), 'last_page': index_parts.get('last_page'),
+                                   'page_set': index_parts.get('page_set'), 'form': form},
+                                  context_instance=RequestContext(request))
+    elif request.GET.get('params[]', None) is not None:
+        params = ','.join(request.GET.getlist('params[]'))
+        a = params.split(',')
+        sorttype = request.REQUEST.get('sorttype', None)
+        sortorder = request.REQUEST.get('sortorder', None)
+        amount = request.REQUEST.get('amount', None)
+        if amount:
+            results = Bid.objects.filter(amount__gte=amount).order_by("random_rank")
+        else:
+            results = Bid.objects.all().order_by("random_rank")
+        filters = DimensionChoice.objects.filter(id__in=a)
+        results = data_filter(results, filters)
+        if sorttype is not None and sortorder is not None:
+            results = result_sort(results, sorttype, sortorder)
+        ppp = Paginator(results, 3)
+        try:
+            page = int(request.GET.get('page', '1'))
+        except ValueError:
+            page = 1
+        try:
+            results = ppp.page(page)
+        except (EmptyPage, InvalidPage):
+            results = ppp.page(ppp.num_pages)
+        last_page = ppp.page_range[len(ppp.page_range) - 1]
+        page_set = get_pageset(last_page, page)
+        t = get_template('search_result_single_m.html')
+        content_html = t.render(
+            RequestContext(request, {'results': results, 'last_page': last_page, 'page_set': page_set}))
+        payload = {
+            'content_html': content_html,
+            'success': True
+        }
+        return HttpResponse(json.dumps(payload), content_type="application/json")
+    else:
+        try:
+            page = int(request.GET.get('page', '1'))
+        except ValueError:
+            page = 1
+        index_parts = index_loading_m(0, None, page)
+        print 'page isxxxxxxxxxxxxx',page
+        #return render_to_response('searchResult_m.html', context_instance=RequestContext(request))
+
+        return render_to_response('search_result_m.html',
+                                  {'results': index_parts.get('results'), 'dimensions': index_parts.get('dimensions'),
+                                   'c_results': index_parts.get('c_result'), 'last_page': index_parts.get('last_page'),
+                                   'page_set': index_parts.get('page_set')},
+                                  context_instance=RequestContext(request))
+
+def search(request):
+    form = SearchForm()
+    t = get_template('search_m.html')
+    content_html = t.render(
+            RequestContext(request,{'form':form}))
+
+    payload = {
+            'content_html': content_html,
+            'success': True,
+        }
+    return HttpResponse(json.dumps(payload), content_type="application/json")
+
+def result(request):
+    return render_to_response('searchResult_m.html',{}, context_instance=RequestContext(request))
+
+

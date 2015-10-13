@@ -1,0 +1,115 @@
+body,div,ol,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,p,form,fieldset,legend,input,button{ margin:0; padding:0; -webkit-tap-highlight-color:rgba(255,255,255,0); }
+html {  width: 100%; font-family: 'Heiti SC', 'Microsoft YaHei'; font-size: 100px; outline: 0; -webkit-text-size-adjust:none;}
+body {  width:100%; margin: 0; -webkit-user-select: none; position: relative; background-color:#fff;}
+ul {
+    list-style-type: none;
+}
+
+header {
+    width:5rem;
+    height:0.6rem;
+    background-color: #555555;
+}
+.nav_img img{
+    margin: -0.02rem 0 -0.1rem -0.8rem;
+    width: 2.85rem;
+    height: 0.6rem;
+    float: left;
+}
+
+.seacher_inp input[type="text"] {
+    height: 0.3rem;
+    margin: -0.35rem 0 -0.45rem 1.3rem;
+    width: 3.2rem;
+    -webkit-border-radius: 2%;
+    -moz-border-radius: 2%;
+    border-radius: 2%;
+    float: left;
+}
+
+.nav_btnimg img{
+    width: 0.28rem;
+    height: 0.31rem;
+    margin: -0.35rem 0 -0.45rem 4.51rem;
+    float: left;
+}
+/*content style*/
+.Validform_error{background-color: #ffe7e7;}
+.Validform_checktip{color: #999;font-size: 0.12rem; height: 0.2rem;line-height: 0.2rem;overflow: hidden; margin-left:0.23rem;}
+.Validform_wrong{color: red;padding-left: 0.25rem;white-space: nowrap; background:url(../images/error.png) no-repeat 0 center;}
+.Validform_right{color: #71b83d;padding-left: 0.2rem; background:url(../images/right.png) no-repeat 0 center;}
+.forgetpwd_content{
+    width: 5rem;
+    height: 8.25rem;
+    font-size: 0.3rem;
+    background-color: #eeeef0;
+}
+.forgetpwd_message{
+    position:absolute;
+    margin:0.6rem 0 0 1rem;
+}
+.fgetpwd_text{
+    margin-left:1rem;
+    font-size: 0.36rem;
+}
+.forgetpwd_content input[type="text"]{
+    width: 2rem;
+    height: 0.3rem;
+}
+.forgetpwd_content input[type="password"]{
+    width: 2rem;
+    height: 0.3rem;
+}
+.fpwdcall_text{
+    font-size: 0.2rem;
+    float:left;
+    margin:0.3rem 0 0 -0.1rem;
+}
+.fpwdcall_inp input[type="text"]{
+    float:left;
+    margin:0.25rem 0 0 0.25rem;
+}
+.fpwdcall_inp span{
+    position:absolute;
+    left:2.5rem;
+    top:0.88rem;
+    font-size: 0.1rem;
+    z-index: 999;
+}
+.message_text{
+    font-size: 0.2rem;
+    float:left;
+    margin:0.3rem 0 0 -0.5rem;
+}
+.message_inp input[type="text"]{
+    float:left;
+    margin:0.25rem 0 0 0.25rem;
+    width:1rem;
+}
+.message_inp span{
+    position:absolute;
+    left:2.5rem;
+    top:1.45rem;
+    font-size: 0.1rem;
+    z-index: 999;
+}
+.message_btn input[type="button"]{
+    float:left;
+    width:0.9rem;
+    font-size: 0.15rem;
+    color:#ffffff;
+    height: 0.3rem;
+    margin:0.25rem 0 0 0.05rem;
+    background-color:rgb(73,56,122);
+    -webkit-border-radius: 0.03rem;
+    -moz-border-radius: 0.03rem;
+    border-radius: 0.03rem;
+}
+.fgetpwd_sub input[type="submit"]{
+    width:4.5rem;
+    height:0.6rem;
+    background-color:rgb(240,52,89);
+    margin:0.3rem 0 0 -0.8rem;
+    font-size: 0.25rem;
+    color:#ffffff;
+}

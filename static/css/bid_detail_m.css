@@ -1,0 +1,173 @@
+body,div,ol,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,p,form,fieldset,legend,input,button{ margin:0; padding:0; -webkit-tap-highlight-color:rgba(255,255,255,0); }
+html {  width: 100%; font-family: 'Heiti SC', 'Microsoft YaHei'; font-size: 100px; outline: 0; -webkit-text-size-adjust:none;}
+body {  width:100%; margin: 0; -webkit-user-select: none; position: relative; background-color:#fff;}
+ul {
+    list-style-type: none;
+}
+
+header {
+    width:5rem;
+    height:0.6rem;
+    background-color: #555555;
+}
+.nav_img img{
+    margin: -0.02rem 0 -0.1rem -0.8rem;
+    width: 2.85rem;
+    height: 0.6rem;
+    float: left;
+}
+
+.seacher_inp input[type="text"] {
+    height: 0.3rem;
+    margin: -0.35rem 0 -0.45rem 1.3rem;
+    width: 3.2rem;
+    -webkit-border-radius: 2%;
+    -moz-border-radius: 2%;
+    border-radius: 2%;
+    float: left;
+}
+
+.nav_btnimg img{
+    width: 0.28rem;
+    height: 0.31rem;
+    margin: -0.35rem 0 -0.45rem 4.51rem;
+    float: left;
+}
+
+/*content style*/
+.detail_content{
+    width: 5rem;
+    height: 8.64rem;
+    font-size: 0.3rem;
+    background-color: #eeeef0;
+    position: absolute;
+}
+.detail_img{
+    margin:0.7rem 0 0 0.3rem;
+    background-color:white;
+    height: 1rem;
+    width: 4.5rem;
+    -webkit-border-radius: 0.04rem;
+    -moz-border-radius: 0.04rem;
+    border-radius: 0.04rem;
+}
+.detail_img img{
+    width: 2rem;
+    height: 0.6rem;
+    padding: 0.17rem 0 0 0.4rem;
+}
+.detail_info{
+    height: 4.4rem;
+    width: 4.5rem;
+    margin:0.2rem 0 0 0.3rem;
+    background-color:white;
+    -webkit-border-radius: 0.04rem;
+    -moz-border-radius: 0.04rem;
+    border-radius: 0.04rem;
+}
+.detail_date{
+    font-size: 0.25rem;
+    font-weight: bold;
+    padding: 0.3rem 0 0 0.3rem;
+}
+.detail_line{
+    margin-top: -0.1rem;
+    float:left;
+    padding:0.1rem 0 0.01rem 0.4rem;
+
+}
+.detail_money{
+    font-size: 0.2rem;
+    float:left;
+    padding:0.1rem 0 0.01rem 0.6rem;
+    margin-left: -0.3rem;
+}
+.detail_parities{
+    font-size: 0.2rem;
+    float:left;
+    padding:0.1rem 0 0.01rem 0.6rem;
+    margin-left: -0.1rem;
+}
+.detail_time{
+    font-size: 0.2rem;
+    float:left;
+    padding:0.1rem 0 0.01rem 0.6rem;
+    margin-left: -0.2rem;
+}
+.detail_number label{
+    font-size: 0.2rem;
+    float:left;
+    padding:0.1rem 0 0.01rem 1rem;
+    margin:-0.3rem 0 0 -0.6rem;
+    color:rgb(240,52,89);
+}
+.detail_col label{
+    font-size: 0.2rem;
+    float:left;
+    padding:0.1rem 0 0.01rem 1rem;
+    margin:-0.3rem 0 0 0.05rem;
+    color:rgb(240,52,89);
+}
+
+.detail_month label{
+    font-size: 0.2rem;
+    float:left;
+    padding:0.1rem 0 0.01rem 1rem;
+    margin:-0.4rem 0 0 2.6rem;
+    color:rgb(240,52,89);
+}
+.detail_list{
+    margin: 0.2rem 0 0 0.3rem;
+}
+.detail_list label{
+    font-size: 0.2rem;
+}
+.detail_list li{
+    padding: 0.05rem 0 0.05rem 0;
+}
+.detail_ifmoney{
+    float: left;
+}
+.detail_rate{
+    float:left;
+    position: absolute;
+    left: 3.3rem;
+}
+.detail_canmoney{
+    float: left;
+}
+.detail_return{
+    float:left;
+    position: absolute;
+    left: 3.15rem;
+}
+.detail_havemoney{
+    float: left;
+}
+.detail_avgmoney{
+    float: left;
+    position: absolute;
+    left: 3rem;
+}
+.footer_content{
+    margin:0.2rem 0 0 0.3rem;
+    background-color:white;
+    height: 1.4rem;
+    width: 4.5rem;
+    -webkit-border-radius: 0.04rem;
+    -moz-border-radius: 0.04rem;
+    border-radius: 0.04rem;
+}
+
+.invest_a img{
+    margin-left: 1.8rem;
+}
+#detail_a{padding-left:0.2rem;padding-bottom:0.2rem;}
+#detail_a dd{ display:inline-block; float:left; position:relative;padding-top:0.15rem;padding-left:0.15rem;}
+#detail_a dd a {display:block;cursor:pointer;}
+#detail_a dd ul{ overflow:hidden; background:#ddd;width:1.2rem; position:absolute; margin-bottom:0.3rem; left:0; display:none;}
+#detail_a dd ul.active{ display:block;}
+#detail_a dd ul li{ line-height:0.3rem;height:0.3rem;border-bottom:0.01rem solid #f2f2f2;text-align:center;}
+#detail_a dd ul li a{ border:none;font-size:0.1rem;text-decoration: none}
+
+

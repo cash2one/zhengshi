@@ -1,0 +1,115 @@
+body,div,ol,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,p,form,fieldset,legend,input,button{ margin:0; padding:0; -webkit-tap-highlight-color:rgba(255,255,255,0);}
+html {  width: 100%; font-family: 'Heiti SC', 'Microsoft YaHei'; font-size: 100px; outline: 0; -webkit-text-size-adjust:none;}
+body {  width:100%; margin: 0; -webkit-user-select: none; position: relative; background-color:#fff;}
+ul {
+    list-style-type: none;
+}
+
+header {
+    width:5rem;
+    height:0.6rem;
+    background-color: #555555;
+}
+.nav_img img{
+    margin: -0.02rem 0 -0.1rem -0.8rem;
+    width: 2.85rem;
+    height: 0.6rem;
+    float: left;
+}
+
+.seacher_inp input[type="text"] {
+    height: 0.3rem;
+    margin: -0.35rem 0 -0.45rem 1.3rem;
+    width: 3rem;
+    -webkit-border-radius: 2%;
+    -moz-border-radius: 2%;
+    border-radius: 2%;
+    float: left;
+}
+
+.nav_btnimg input[type="submit"]{
+    width: 0.28rem;
+    height: 0.31rem;
+    margin: -0.5rem 0 -0.45rem 4.51rem;
+    float: left;
+}
+
+/*content style*/
+.log_content{
+    width: 5rem;
+    height: 8.25rem;
+    font-size: 0.32rem;
+    background-color: #cccccc;
+	font-style:normal;
+}
+.log_message{
+	position:absolute;
+	margin:0.6rem 0 0 1rem;
+}
+.log_content input[type="text"]{
+    width: 2rem;
+    height: 0.3rem;
+}
+.log_content input[type="password"]{
+    width: 2rem;
+    height: 0.3rem;
+}
+.log_text{
+	margin-left:1.2rem;
+}
+.call_text{
+	float:left;
+	margin:0.3rem 0 0 -0.6rem;
+}
+.call_inp input[type="text"]{
+	float:left;
+	margin:0.3rem 0 0 1.37rem;
+}
+
+.pwd_text{
+	float:left;
+	margin:0.3rem 0 0 -0.6rem;
+}
+.pwd_inp input[type="password"]{
+	float:left;
+	margin:0.3rem 0 0 1.37rem;
+}
+
+.pic_code{
+	float:left;
+	margin:0.3rem 0 0 -0.6rem;
+}
+.pic_inp input[type="text"]{
+	width:1rem;
+	float:left;
+	margin:0.3rem 0 0 0.4rem;
+}
+.pic_number input{
+	width:0.9rem;
+	float:left;
+	height: 0.3rem;
+	margin:-0.32rem 0 0 1.5rem;
+}
+.confirm_sub input[type="submit"]{
+	width:4.5rem;
+	height:0.6rem;
+	background-color:rgb(240,52,89);
+	margin:0.5rem 0 0 -0.7rem;
+	font-size: 0.25rem;
+    color:#ffffff;
+}
+.footer_text{
+	font-size: 0.21rem;
+	margin:0.3rem 0 0 -0.4rem;
+}
+.footer_text .fgetpwd_text{
+	margin-left:-0.3rem;
+}
+
+.footer_text .sign_name{
+	margin-left:0.4rem;
+}
+
+.sign_name b{
+	color:rgb(240,52,89);
+}

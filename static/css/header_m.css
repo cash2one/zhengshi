@@ -1,0 +1,37 @@
+body,div,ol,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,p,form,fieldset,legend,input,button{ margin:0; padding:0; -webkit-tap-highlight-color:rgba(255,255,255,0); }
+html {  width: 100%; font-family: 'Heiti SC', 'Microsoft YaHei'; font-size: 100px; outline: 0; -webkit-text-size-adjust:none;}
+body {  width:100%; margin: 0; -webkit-user-select: none; position: relative; background-color:#fff;}
+ul {
+    list-style-type: none;
+}
+
+header {
+    width:5rem;
+    height:0.6rem;
+    background-color: #555555;
+}
+.header_img img{
+    margin: -0.02rem 0 -0.1rem -0.6rem;
+    width: 2.85rem;
+    height: 0.6rem;
+    float: left;
+}
+
+.txt_iframe input[type="text"] {
+    height: 0.3rem;
+    margin: -0.35rem 0 -0.45rem 1.5rem;
+    width: 2.75rem;
+    -webkit-border-radius: 2%;
+    -moz-border-radius: 2%;
+    border-radius: 2%;
+    float: left;
+}
+
+.hea_search input[type="submit"]{
+    width: 0.5rem;
+    height: 0.32rem;
+    margin: -0.35rem 0 -0.45rem 4.27rem;
+    float: left;
+    color: #000;
+    font-size: 0.2rem;
+}

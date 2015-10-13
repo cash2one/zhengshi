@@ -17,10 +17,12 @@ urlpatterns = patterns('searcher.views',
     url(r'^save_filter/$',  'save_filter', name='save_filter'),
     url(r'^del_filter/(?P<fid>\d+)/$',  'del_filter', name='del_filter'),
     url(r'^bid_detail/(?P<objectid>\d+)/$',  'bid_detail', name='bid_detail'),
+    url(r'^bid_detail_p/$',  'bid_detail_p', name='bid_detail_p'),
+
     url(r'^comb_detail/(?P<ids>[^/]+)/$',  'comb_detail', name='comb_detail'),
     url(r'^shortcut_request/(?P<objectid>\d+)/$',  'shortcut_request', name='shortcut_request'),
-    url(r'getverifycode/$', 'verifycode', name='verifycode'),
-    url(r'forgetpw/$', 'forgetpw', name='forgetpw'),
+    url(r'^getverifycode/$', 'verifycode', name='verifycode'),
+    url(r'^forgetpw/$', 'forgetpw', name='forgetpw'),
     # url(r'^other_page_reg/$',  'other_page_reg', name='other_page_reg'),
     # url(r'^other_reg/$',  'other_reg', name='other_reg'),
     url(r'^about_us/$',  'about_us', name='about_us'),
@@ -41,6 +43,7 @@ urlpatterns = patterns('searcher.views',
 
 )
 
+
 urlpatterns += patterns('searcher.viewss',
     url(r'^qq_is_first/$',  'qq_is_first', name='qq_is_first'),
     url(r'^wb_is_first/$',  'wb_is_first', name='wb_is_first'),
@@ -53,4 +56,18 @@ urlpatterns += patterns('searcher.viewss',
     url(r'^test_thread_on/$',  'test_thread_on', name='test_thread_on'),
     url(r'^send_message/$',  'send_message', name='send_message'),
     url(r'^wx_bid_detail/(?P<objectid>\d+)/$',  'wx_bid_detail', name='wx_bid_detail'),
+)
+
+urlpatterns += patterns('searcher.views_m',
+    url(r'^m/contact/$', 'contact', name='contact_m'),
+    url(r'^m/$', 'index', name='index_m'),
+    url(r'^m/search/$', 'search', name='search_m'),
+    url(r'^m/search_result/$', 'search_result', name='search_result_m'),
+    url(r'^m/result/$', 'result', name='result_m'),
+    url(r'^m/login/$',  'login', name='login_m'),
+    url(r'^m/logout/$',  'logout', name='logout_m'),
+    url(r'^m/register/$',  'register', name='register_m'),
+    url(r'^m/forgetpw/$',  'forgetpw', name='forgetpw_m'),
+    url(r'^m/bid_detail/(?P<objectid>\d+)/$',  'bid_detail', name='bid_detail_m'),
+    url(r'^m/bid_detail_p/$',  'bid_detail_p', name='bid_detail_p_m'),
 )

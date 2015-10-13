@@ -1,13 +1,13 @@
-﻿#content{ position:relative;height:67%;background:#eeeef0/*url(../images/activepic.jpg)*/}
+﻿#content{ position:relative;height:67%;background:url(../images/activepic.jpg);background-size: cover;background-repeat: repeat-x;}
 .middle_search{ padding-top:20px;}
-.middle{position:absolute;padding-bottom:30px;margin-left:15%;margin-top:50px; }
+.middle{position:absolute;padding-bottom:30px;margin-left:15%; }
 .search{ height:60px; line-height:60px;padding-left:20%; margin-top:30px; padding-bottom:25px;}
 .search input,.btn_search{ float:left;}
-.search input{ width:500px; height:30px; line-height:30px; border:1px solid #ddd; padding:5px; font-size:18px; color:#999;}
+.search input{ width:500px; line-height:30px; border:1px solid #ddd; padding:5px; font-size:18px; color:#999;}
 .search input:hover{ border:1px solid #c50512;}
 .search input.btn_search{ background:url(../images/search.png) no-repeat 0 0; display:inline-block; width:47px; height:42px; border:none; cursor:pointer;}
 .search input.btn_search:hover{ border:none;}
-.hot{overflow:hidden; height:30px; line-height:30px; font-size:14px;}
+.hot{height:30px; line-height:30px; font-size:14px;}
 .hot h3{ display:inline; font-size:16px;}
 .hot a{ color:#666; text-decoration:underline; margin:0 5px;}
 .hot a:hover{ color:#ff0000;}

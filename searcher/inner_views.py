@@ -243,6 +243,33 @@ def index_loading(amount, params, page):
     return index_parts
 
 
+def index_loading_m(amount, params, page):
+    c_bs = combination_bid(amount, 1)
+    c_wj = combination_bid(amount, 2)
+    c_jj = combination_bid(amount, 3)
+    c_result = [c_bs, c_wj, c_jj]
+    dimensions = DimensionChoice.objects.all()
+    if None == amount:
+        results = Bid.objects.all().order_by("random_rank")
+    else:
+        results = Bid.objects.filter(amount__gte=amount).order_by("random_rank")
+    if params is not None:
+        a = params.split(',')
+        filters = DimensionChoice.objects.filter(id__in=a)
+        results = data_filter(results, filters)
+    # random.shuffle(results)
+    # results = results.order_by('?')
+    ppp = Paginator(results, 3)
+    last_page = ppp.page_range[len(ppp.page_range) - 1]
+    try:
+        results = ppp.page(page)
+    except (EmptyPage, InvalidPage):
+        results = ppp.page(ppp.num_pages)
+    page_set = get_pageset(last_page, results.number)
+    index_parts = {'dimensions': dimensions, 'results': results, 'c_result': c_result, 'last_page': last_page,
+                   'page_set': page_set}
+    return index_parts
+
 def get_pageset(last_page, pagenum):
     page_set = []
     if pagenum <= 3:

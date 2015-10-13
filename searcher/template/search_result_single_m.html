@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<body>
+<div class="log_contentt" id="result_form">
+    {% if results %}
+        {% for result in results.object_list %}
+		
+		 <div id='content'>
+			<div style="padding-left:0.2rem;">
+				<div style="margin-bottom:0.2rem;margin-top:0.2rem;"><div style="width:4.2rem;height:0.02rem; background:#999999";></div></div>
+				<div style="overflow:hidden;width:100%;height:0.3rem;">
+					<div class="search_bd"><img src="{{ result.platform.logo }}"></div>
+					<div class="ckxq"><lable id="check_is_exist_{{result.id}}" name="{{result.id}}" target="_blank" class="seach_cheek">查看详情</lable></div>
+				</div>
+				<div style="margin-top:0.2rem"><span class="search_title" >{{ result.name }}</span></div>	
+				
+				<div style="overflow:hidden">
+					<div class="neirong">
+					   <ul>
+						  <li>借款金额：<font class="c_red">{{ result.amount|floatformat:"0" }}</font></li>
+						  <li>每万元总收益：<font class="c_red">{{ result.ten_thousand_revenue|floatformat:"-2" }}元</font></li>
+					   </ul>
+					</div>		
+					<div class="neirong1"><div style="width:0.02rem;height:0.5rem; background:#999999"></div></div>	
+					<div class="neirong">
+					   <ul>
+						  <li>期限:<font class="c_red">{{ result.term_name|floatformat:"-2" }}</font>{{ result.term_unit }}</li>
+						  <li>年化收益:<font class="c_red">{{ result.income_rate|floatformat:"-2" }}</font>%</li>
+					   </ul>
+					</div>	
+				</div>		
+			</div>
+		</div>
+		
+        {% endfor %}
+    {% else %}
+        <a>无符合查询条件的纪录</a>
+    {% endif %}
+   <div style="float:left;padding-left:0.1rem;width:4.7rem; margin-bottom:0.2rem;margin-top:0.3rem; overflow:hidden;">
+
+        {% if results.has_previous %}
+            <a href="javascript:void(0)" class="seach_cheek1"
+               onclick="takepage({{ results.previous_page_number }})">上一页</a>
+        {% endif %}
+        {% if results.has_next %}
+            &nbsp;<a href="javascript:void(0)" class="seach_cheekk"
+               onclick="takepage({{ results.next_page_number }})">下一页</a>
+        {% endif %}
+    </div>
+</div>
+</body>
+<script>
+    $(".rm a").on("click", function () {
+        var t = $(this).attr("remindertype");
+        var a = $(this).parent().attr("oid");
+        var value = 1;
+        $.post("{% url 'do_reminder' %}",
+                {
+                    objectid: a,
+                    method: 'add',
+                    type: t
+                },
+                function (data) {
+                    alert(data);
+                }
+        );
+    });
+</script>
+<script type="text/javascript">
+ $(document).ready(function () {
+    $("[id^='check_is_exist_']").each(function(){
+        $(this).click(function(){
+            var ob = $(this).attr('name');
+            $.post("/m/bid_detail_p/",{"object_id":ob},function(data)
+                {
+                  if(data==1){ location.href = "/m/bid_detail/"+ob;}else{alert("该标的已过期，无法显示，敬请谅解！")};});
+       });
+    });
+});
+</script>
+</html>
