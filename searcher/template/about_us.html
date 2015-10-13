@@ -29,7 +29,7 @@ td {
 	font-size: 9pt;
 	color: #666666;
 }
-a:link { color: #FFFFFF; text-decoration: none;}
+a:link {text-decoration: none;}
 a:visited { color: #666666; text-decoration: none;}
 a:active { color: #666666; text-decoration: none;}
 a:hover { color: #FF0000; text-decoration: underline;}
@@ -88,7 +88,7 @@ a:hover { color: #FF0000; text-decoration: underline;}
       <table width="100" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="31" height="35"></td>
-        <td width="157" align="left"><a href="{% url 'about_us' %}">公司简介</a></td>
+        <td width="157" align="left"><a href="{% url 'about_us' %}"><span class="hdzq">公司简介</span></a></td>
       </tr>
       <tr>
         <td colspan="2"><img src="/static/images/contact_about/nr_08.gif" width="188" height="3" /></td>
@@ -96,7 +96,7 @@ a:hover { color: #FF0000; text-decoration: underline;}
 
       <tr>
         <td height="35"></td>
-        <td height="35" align="left"><a href="{% url 'contact_us' %}">联系方式</a></td>
+        <td height="35" align="left"><a href="{% url 'contact_us' %}"><span class="hdzq">联系方式</span></a></td>
       </tr>
 
       <tr>
@@ -104,14 +104,14 @@ a:hover { color: #FF0000; text-decoration: underline;}
       </tr>
       <tr>
         <td height="35"></td>
-        <td height="35" align="left"><a href="{% url 'disclaimer' %}">免责条款</a></td>
+        <td height="35" align="left"><a href="{% url 'disclaimer' %}"><span class="hdzq">免责条款</span></a></td>
       </tr>
 	  <tr>
         <td colspan="2"><img src="/static/images/contact_about/nr_08.gif" width="188" height="3" /></td>
       </tr>
       <tr>
         <td height="35"></td>
-        <td height="35" align="left"><a href="{% url 'activearea' %}">活动专区</a></td>
+               <td height="35" align="left"><a href="{% url 'activearea' %}"><span class="hdzq">活动专区</span></a></td>
       </tr>
     </table>
     </td>

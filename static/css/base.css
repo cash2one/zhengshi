@@ -6,7 +6,8 @@ ul { list-style:none;}
 img { border:0px;}
 a { color:#4c4c4c; text-decoration:none;}
 a:hover { color:#ff0000;}
-
+.hdzq{display:block;color:#666666;}
+.hdzq:hover{color:#FF0000; text-decoration:inherit;}
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {margin:0;padding:0;}
 body, button, input, select, textarea {font:12px tahoma, arial, Verdana, sans-serif;}
 h1, h2, h3, h4, h5, h6 {font-size:12px;font-style:normal;}
