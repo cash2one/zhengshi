@@ -56,7 +56,6 @@ background: none repeat scroll 0% 0% #FFF; z-index:999; position:absolute; right
 .top_name ul{ background:rgba(0,0,0,0.6)!important; width:100px!important; right:-30px!important;}
 .user_con{ width:1024px; margin:0 auto;}
 
-.logo img{padding-left:27%;}
 #container {min-height:65%;height: auto; position: relative;background:#EEEEF0;}
 /*底部*/
 #footer{ width:100%; clear:both;text-algin:center;}
