@@ -156,7 +156,11 @@
                                 <li><a href="javascript:void(0)" class="rmbutton" rtype="5">可投金额提醒</a></li>
                             </ul>
                         </dd>-->
+                        {% if user.id %}
                         <dd><a href="{{ bid.link }}"><img src="/static/images/touzi.png" alt=""/></a></dd>
+                        {% else %}
+                        <dd><a href="#" onclick="alert_login()"><img src="/static/images/touzi.png" alt=""/></a></dd>
+                        {% endif %}
                     </dl>     
 			
 			</div>	
@@ -239,6 +243,12 @@
         {% endif %}
     });
 
+</script>
+<script type="application/javascript">
+    function alert_login(){
+        alert("请先登录");
+        location.href = "/login/?next=/bid_detail/{{ bid.id }}";
+    }
 </script>
 
 

@@ -21,11 +21,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'SECRET_KEY!!!!!!!!!!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['']
+ALLOWED_HOSTS = ['*']
 
 LOGIN_URL = "/login"
 # Application definition
@@ -143,4 +143,6 @@ logging.basicConfig(level=logging.INFO,
                 filename='/home/svn/Web/ddbid.log',
                 filemode='w')
 
+
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+#SESSION_COOKIE_AGE = 60 * 1 

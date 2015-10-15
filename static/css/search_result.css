@@ -1,6 +1,6 @@
 ﻿.mt3{ margin-top:3px;}
 .search_content,.search_list,.search_term,.search_term div,.search_outside{ overflow:hidden;}
-.search_content{ width:800px; margin-left:23%;}
+.search_content{ width:800px;margin:0px auto;}
 .search_result_box{padding:0 20px; border-radius:5px;background:#FFFFFF;}
 .search_list{ padding:5px 0; line-height:30px;}
 .search_list h3{ width:100px; text-align:left; font-size:14px;}

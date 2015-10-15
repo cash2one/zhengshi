@@ -85,9 +85,9 @@
             </ul>
             <ul class="detail_list">
                 <li class="detail_ifmoney">
-                    <label>最低可投金额:</label>
-                    <label>{% if bid.min_amount %} ￥{{ bid.min_amount }} {% else %}
-                        无 {% endif %}</label>
+                    <label>当前已融金额:</label>
+                    <label>￥{{ bid.finish_amount|floatformat:"0" }}</label>
+
                 </li>
                 <li class="detail_rate">
                         <label>月利率:</label>
@@ -99,25 +99,26 @@
                         <label>￥{{ bid.allow_amount|floatformat:"0" }}</label>
                 </li>
                 <li class="detail_return">
-                    <label>还款方式:</label>
-                    <label>{{ bid.repay_type }}</label>
+                    <label>最低可投金额:</label>
+                    <label>{% if bid.min_amount %} ￥{{ bid.min_amount }} {% else %}
+                        无 {% endif %}</label>
                 </li>
                 <li style="clear: both;"></li>
                 <li class="detail_havemoney">
-                    <label>当前已融金额:</label>
-                    <label>￥{{ bid.finish_amount|floatformat:"0" }}</label>
+                    <label>&nbsp;&nbsp;每万元收益:</label>
+                    <label>￥{{ bid.ten_thousand_revenue|floatformat:"-2" }}</label>
                         <!--<td>剩余时间 ：</td>-->
                         <!--<td class="detail_double"><span class="detail_date">无</span></td>-->
                 </li>
                 <li class="detail_avgmoney">
-                    <label>&nbsp;&nbsp;每万元收益:</label>
-                    <label>￥{{ bid.ten_thousand_revenue|floatformat:"-2" }}</label>
-                </li>
-                <li style="clear: both;"></li>
-                <li class="detail_ifmoney">
                     <label>投标进度:</label>
                     <label class="detail_percent"><em style="width:{{ bid.process }}%"></em></label>
                     <label class="detail_double"><span>{{ bid.process|floatformat:"0" }}%</span></label>
+                </li>
+                <li style="clear: both;"></li>
+                <li class="detail_ifmoney">
+                    <label>还款方式:</label>
+                    <label>{{ bid.repay_type }}</label>
                 </li>
           </ul>
         </div>
@@ -130,7 +131,11 @@
                         <li><a href="javascript:void(0)" style="font-size: 0.2rem;" class="addfavorite" ftype="platform">收藏该平台</a></li>
                     </ul>
                 </dd>
+                {% if user.id %}
                 <dd><a class="invest_a" href="{{ bid.link }}"><img src="/static/images/touzi.png" alt=""/></a></dd>
+                {% else %}
+                 <dd><a class="invest_a" href="#" onclick="alert_login()"><img src="/static/images/touzi.png" alt=""/></a></dd>
+                {% endif %}
             </dl>
 
 
@@ -202,6 +207,12 @@
                     $.get("/m/search/",function(data){ $('#head_m').html(data.content_html);});
                 });
             </script>
+ <script type="application/javascript">
+    function alert_login(){
+        alert("请先登录");
+        location.href = "/m/login/?next=/bid_detail/{{ bid.id }}";
+    }
+</script>
         </div>
         </div>
     </section>
