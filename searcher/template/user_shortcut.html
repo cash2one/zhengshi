@@ -39,7 +39,7 @@
                     {% regroup dimensions by dimension  as choices_list %}
                     {% for choices in choices_list %}
                         <div class="search_list">
-                            <h3 class="fl">{{ choices.grouper.dimensionname }}</h3>
+                            <div style="float:left;"><h3 class="fl">{{ choices.grouper.dimensionname }}</h3></div>
 
                             <div class="search_term">
                                 <lable class="fl choices">
