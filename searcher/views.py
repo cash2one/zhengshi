@@ -127,29 +127,6 @@ def contact(request):
     return render_to_response('contact_form.html', {'form': form}, context_instance=RequestContext(request))
 
 
-# def login(request):
-# if request.method == 'GET':
-# form = LoginForm()
-# return render_to_response('login.html', {'form': form, },
-# context_instance=RequestContext(request))
-# else:
-# form = LoginForm(request.POST)
-# if form.is_valid():
-#             username = request.POST.get('username', '')
-#             password = request.POST.get('password', '')
-#             user = auth.authenticate(username=username, password=password)
-#             if user is not None and user.is_active:
-#                 auth.login(request, user)
-#                 return HttpResponse('1')
-#
-#             else:
-#                 return render_to_response('login.html',
-#                                           {'form': form, 'password_is_wrong': True},
-#                                           context_instance=RequestContext(request))
-#         else:
-#             return render_to_response('login.html', {'form': form, },
-#                                       context_instance=RequestContext(request))
-
 
 def login(request):
     if request.method == 'POST':
@@ -238,7 +215,7 @@ def checkvcode(request):
         response = HttpResponse()
         response['Content-Type'] = "application/json"
         vcode = request.POST.get('param', None)
-        if _code.lower() == vcode.lower():
+        if _code.lower() == vcode.lower() :
             response.write('{"info": "","status": "y"}')
             return response
         else:
@@ -252,7 +229,7 @@ def checksmscode(request):
         response = HttpResponse()
         response['Content-Type'] = "application/json"
         smscode = request.POST.get('param', None)
-        if _code  == int(smscode):
+        if _code  == int(smscode) :
             response.write('{"info": "","status": "y"}')
             return response
         else:
@@ -269,12 +246,10 @@ def checkuser(request):
             response['Content-Type'] = "application/json"
             r_u = request.POST.get('param', None)
             u = User.objects.filter(username=r_u)
-            print "xxxxxxxxxxx"
             if u.exists():
                 response.write('{"info": "","status": "y"}')
                 return response
             else:
-                print "ddddddddd"
                 response.write('{"info": "用户不存在","status": "n"}')  # 用户不存在
                 return response
 
@@ -747,44 +722,14 @@ def user_updatepwd(request):
     form = ModfiyPWForm()
     return render_to_response('user_updatepwd.html',{'form':form}, context_instance=RequestContext(request))
 
-import urllib2, urllib, hashlib, random
+import urllib2, urllib, hashlib, random,re
 def send_smscode(request):
     phoneNum = request.POST.get('phoneNum', '')
-    m = hashlib.md5()
-    m.update('shcdjr2')
-    random_code = random.randint(1000, 9999)
-    request.session["sms_code"] = random_code
-    content = "您的验证码是：%s，有效期为五分钟。如非本人操作，可以不用理会!"%random_code
-    print content
-    data = """
-              <Group Login_Name ="%s" Login_Pwd="%s" OpKind="0" InterFaceID="" SerType="xxxx">
-              <E_Time></E_Time>
-              <Item>
-              <Task>
-              <Recive_Phone_Number>%d</Recive_Phone_Number>
-              <Content><![CDATA[%s]]></Content>
-              <Search_ID>111</Search_ID>
-              </Task>
-              </Item>
-              </Group>
-           """ % ("shcdjr", m.hexdigest().upper(), int(phoneNum), content.decode("utf-8").encode("GBK"))
-
-    cookies = urllib2.HTTPCookieProcessor()
-    opener = urllib2.build_opener(cookies)
-    request = urllib2.Request(
-                               url = r'http://userinterface.vcomcn.com/Opration.aspx',
-                               headers= {'Content-Type':'text/xml'},
-                               data = data
-                              )
-    print opener.open(request).read()
-    return HttpResponse()
-
-def send_smscode_modify(request):
-    phoneNum = request.POST.get('phoneNum', '')
-    user = User.objects.filter(username=int(phoneNum))
-    print user
-    if not len(user):
-        print "ceshi"
+    p=re.compile('^1200[0-9]{7}$')
+    a=p.match(phoneNum)
+    if a:
+        return HttpResponse()
+    else:
         m = hashlib.md5()
         m.update('shcdjr2')
         random_code = random.randint(1000, 9999)
@@ -811,11 +756,50 @@ def send_smscode_modify(request):
                                    headers= {'Content-Type':'text/xml'},
                                    data = data
                                   )
-        print "send phone"
         print opener.open(request).read()
+        return HttpResponse()
+
+
+def send_smscode_modify(request):
+    phoneNum = request.POST.get('phoneNum', '')
+    p=re.compile('^1200[0-9]{7}$')
+    a = p.match(phoneNum)
+    if a:
+        return HttpResponse()
     else:
-        print "xxxxxxxxxxxxxxxxx"
-    return HttpResponse()
+        user = User.objects.filter(username=int(phoneNum))
+        print user
+        if not len(user):
+            print "ceshi"
+            m = hashlib.md5()
+            m.update('shcdjr2')
+            random_code = random.randint(1000, 9999)
+            request.session["sms_code"] = random_code
+            content = "您的验证码是：%s，有效期为五分钟。如非本人操作，可以不用理会!"%random_code
+            print content
+            data = """
+                      <Group Login_Name ="%s" Login_Pwd="%s" OpKind="0" InterFaceID="" SerType="xxxx">
+                      <E_Time></E_Time>
+                      <Item>
+                      <Task>
+                      <Recive_Phone_Number>%d</Recive_Phone_Number>
+                      <Content><![CDATA[%s]]></Content>
+                      <Search_ID>111</Search_ID>
+                      </Task>
+                      </Item>
+                      </Group>
+                   """ % ("shcdjr", m.hexdigest().upper(), int(phoneNum), content.decode("utf-8").encode("GBK"))
+
+            cookies = urllib2.HTTPCookieProcessor()
+            opener = urllib2.build_opener(cookies)
+            request = urllib2.Request(
+                                       url = r'http://userinterface.vcomcn.com/Opration.aspx',
+                                       headers= {'Content-Type':'text/xml'},
+                                       data = data
+                                      )
+        return HttpResponse()
+
+
 
 def safecenter(request):
     #print "safecenter:", request
@@ -949,3 +933,5 @@ def change_phone_number(request):
                 'success': True,
             }
         return HttpResponse(json.dumps(payload), content_type="application/json")
+def agreement(request):
+    return render_to_response('agreement.html',{}, context_instance=RequestContext(request))

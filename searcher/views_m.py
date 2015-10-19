@@ -919,7 +919,7 @@ def search_result(request):
             cd = form.cleaned_data
             amount = cd['searchWord']
             if amount is not None and not str(amount).isdigit():
-                return render_to_response('searchResult_m.html',{'msg':u'请输入投资金额'}, context_instance=RequestContext(request))
+                return render_to_response('search_result_m.html',{'msg':u'请输入投资金额'}, context_instance=RequestContext(request))
 
         try:
             page = int(request.GET.get('page', '1'))
@@ -981,6 +981,54 @@ def search_result(request):
                                    'page_set': index_parts.get('page_set')},
                                   context_instance=RequestContext(request))
 
+def search_listresult(request):
+    print request.POST
+    print request.POST.get('params')
+    if request.POST.get('params', None) is not None:
+        params = ','.join(request.POST.getlist('params'))
+        a = params.split(',')
+        sorttype = request.POST.get('sorttype', None)
+        sortorder = request.POST.get('sortorder', None)
+        amount = request.POST.get('amount', None)
+        if amount:
+            results = Bid.objects.filter(amount__gte=amount).order_by("random_rank")
+        else:
+            results = Bid.objects.all().order_by("random_rank")
+        filters = DimensionChoice.objects.filter(id__in=a)
+        results = data_filter(results, filters)
+        if sorttype is not None and sortorder is not None:
+            results = result_sort(results, sorttype, sortorder)
+        ppp = Paginator(results, 3)
+        try:
+            page = int(request.GET.get('page', '1'))
+        except ValueError:
+            page = 1
+        try:
+            results = ppp.page(page)
+        except (EmptyPage, InvalidPage):
+            results = ppp.page(ppp.num_pages)
+        last_page = ppp.page_range[len(ppp.page_range) - 1]
+        page_set = get_pageset(last_page, page)
+
+        return render_to_response('listresult_m.html',{'results': results, 'last_page': last_page, 'page_set': page_set},
+                          context_instance=RequestContext(request))
+
+    else:
+        try:
+            page = int(request.GET.get('page', '1'))
+        except ValueError:
+            page = 1
+        index_parts = index_loading_m(0, None, page)
+        print 'page isxxxxxxxxxxxxx',page
+        #return render_to_response('searchResult_m.html', context_instance=RequestContext(request))
+
+        return render_to_response('listresult_m.html',
+                                  {'results': index_parts.get('results'), 'dimensions': index_parts.get('dimensions'),
+                                   'c_results': index_parts.get('c_result'), 'last_page': index_parts.get('last_page'),
+                                   'page_set': index_parts.get('page_set')},
+                                  context_instance=RequestContext(request))
+
+
 def search(request):
     form = SearchForm()
     t = get_template('search_m.html')
@@ -994,6 +1042,6 @@ def search(request):
     return HttpResponse(json.dumps(payload), content_type="application/json")
 
 def result(request):
-    return render_to_response('searchResult_m.html',{}, context_instance=RequestContext(request))
-
-
+    return render_to_response('search_listresult_m.html',{}, context_instance=RequestContext(request))
+def agreement(request):
+    return render_to_response('agreement_m.html',{}, context_instance=RequestContext(request))

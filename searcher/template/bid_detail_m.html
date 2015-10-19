@@ -125,16 +125,16 @@
         <div class="footer_content">
 
             <dl id="detail_a">
-                <dd><a class="collect_a" href="#"><img src="/static/images/shoucang.png" alt=""/></a>
+                <dd><a class="collect_a" href="#"><img src="/static/images/shoucang.png" style="height:0.8rem;" alt=""/></a>
                     <ul id="collect_li">
                         <li><a href="javascript:void(0)" style="font-size: 0.2rem;" class="addfavorite" ftype="bid">收藏该标的</a></li>
                         <li><a href="javascript:void(0)" style="font-size: 0.2rem;" class="addfavorite" ftype="platform">收藏该平台</a></li>
                     </ul>
                 </dd>
                 {% if user.id %}
-                <dd><a class="invest_a" href="{{ bid.link }}"><img src="/static/images/touzi.png" alt=""/></a></dd>
+                <dd><a class="invest_a" href="{{ bid.link }}"><img src="/static/images/touzi.png" style="height:0.8rem;" alt=""/></a></dd>
                 {% else %}
-                 <dd><a class="invest_a" href="#" onclick="alert_login()"><img src="/static/images/touzi.png" alt=""/></a></dd>
+                 <dd><a class="invest_a" href="#" onclick="alert_login()"><img src="/static/images/touzi.png" style="height:0.8rem;" alt=""/></a></dd>
                 {% endif %}
             </dl>
 
@@ -172,7 +172,7 @@
             );
         {% else %}
             alert('请先登录');
-            location.href = "/m/login/?next=/bid_detail/{{ bid.id }}";
+            location.href = "/m/login/?next=/m/bid_detail/{{ bid.id }}";
         {% endif %}
 
 
@@ -197,7 +197,7 @@
             }
         {% else %}
             alert('请先登录');
-            location.href = "/m/login/?next=/bid_detail/{{ bid.id }}";
+            location.href = "/m/login/?next=/m/bid_detail/{{ bid.id }}";
         {% endif %}
     });
 
@@ -210,7 +210,7 @@
  <script type="application/javascript">
     function alert_login(){
         alert("请先登录");
-        location.href = "/m/login/?next=/bid_detail/{{ bid.id }}";
+        location.href = "/m/login/?next=/m/bid_detail/{{ bid.id }}";
     }
 </script>
         </div>

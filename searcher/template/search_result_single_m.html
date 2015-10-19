@@ -8,12 +8,12 @@
 		
 		 <div id='content'>
 			<div style="padding-left:0.2rem;">
-				<div style="margin-bottom:0.2rem;margin-top:0.2rem;"><div style="width:4.2rem;height:0.02rem; background:#999999";></div></div>
-				<div style="overflow:hidden;width:100%;height:0.3rem;">
+				<div style="margin-bottom:0.2rem;margin-top:0.2rem;"><div style="width:4.4rem;height:0.02rem; background:#999999";></div></div>
+				<div style="overflow:hidden;width:100%;height:0.5rem;">
 					<div class="search_bd"><img src="{{ result.platform.logo }}"></div>
 					<div class="ckxq"><lable id="check_is_exist_{{result.id}}" name="{{result.id}}" target="_blank" class="seach_cheek">查看详情</lable></div>
 				</div>
-				<div style="margin-top:0.2rem"><span class="search_title" >{{ result.name }}</span></div>	
+				<div><span class="search_title" >{{ result.name }}</span></div>	
 				
 				<div style="overflow:hidden">
 					<div class="neirong">
@@ -23,7 +23,7 @@
 					   </ul>
 					</div>		
 					<div class="neirong1"><div style="width:0.02rem;height:0.5rem; background:#999999"></div></div>	
-					<div class="neirong">
+					<div class="neirong2">
 					   <ul>
 						  <li>期限:<font class="c_red">{{ result.term_name|floatformat:"-2" }}</font>{{ result.term_unit }}</li>
 						  <li>年化收益:<font class="c_red">{{ result.income_rate|floatformat:"-2" }}</font>%</li>
@@ -37,17 +37,26 @@
     {% else %}
         <a>无符合查询条件的纪录</a>
     {% endif %}
-   <div style="float:left;padding-left:0.1rem;width:4.7rem; margin-bottom:0.2rem;margin-top:0.3rem; overflow:hidden;">
+   <div id="divv1">
 
-        {% if results.has_previous %}
+        {% if results.has_previous and  results.has_next %}
             <a href="javascript:void(0)" class="seach_cheek1"
                onclick="takepage({{ results.previous_page_number }})">上一页</a>
-        {% endif %}
-        {% if results.has_next %}
+
             &nbsp;<a href="javascript:void(0)" class="seach_cheekk"
                onclick="takepage({{ results.next_page_number }})">下一页</a>
+         {% endif %}
+
+        {% if results.has_next and not results.has_previous %}
+            &nbsp;<a href="javascript:void(0)" class="seach_cheekk1"
+               onclick="takepage({{ results.next_page_number }})">下一页</a>
         {% endif %}
-    </div>
+
+        {% if not results.has_next and results.has_previous %}
+            &nbsp;<a href="javascript:void(0)" class="seach_cheekk1"
+               onclick="takepage({{ results.next_page_number }})">上一页</a>
+        {% endif %}
+
 </div>
 </body>
 <script>
@@ -78,5 +87,13 @@
        });
     });
 });
+</script>
+<script type="text/javascript">
+    $(function(){
+		$('#divv2').find('a').click(function(){
+			 $('#divv2').hide();
+			 $('#divv1').show()
+		});						
+    });
 </script>
 </html>

@@ -1,4 +1,4 @@
-﻿#content{ position:relative;height:67%;}
+﻿#content{ position:relative;height:67%;background:url(/static/images/activepic.jpg);background-size:cover;background-repeat: repeat-x}
 .middle_search{ padding-top:20px;}
 .middle{position:absolute;padding-bottom:30px;margin-left:15%; }
 .search{ height:60px; line-height:60px;padding-left:20%; margin-top:30px; padding-bottom:25px;}

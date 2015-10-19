@@ -1,11 +1,10 @@
 .detail,.detail_box,.detail_hd,.detail_bd,.detail_con{ overflow:hidden;}
-.detail{margin:0 auto; background:#FFFFFF;border-radius:5px;width:820px;margin-left:145px;float:left;margin-bottom:30px;}
-.deta_right{margin-left:1000px;width:251px;margin-top:70px;}
-.detail_img{width:1110px;height:90px; background:#FFFFFF;border-radius:5px;margin-left:145px;}
+.detail{margin:0 auto; background:#FFFFFF;border-radius:5px;float:left;margin-bottom:30px;width:748px;}
+.deta_right{float: right;}
+.detail_img{width: 72%;height:90px; background:#FFFFFF;border-radius:5px;margin-left:100px;margin: 0px auto;}
 .detail_img img{padding-top: 20px;
 padding-left: 15px;width:200px; height:50px;}
-.detail_tit{margin-left:145px;}
-.detail_tit h3{ font-size:20px; font-weight:bold; line-height:70px; width:650px; height:70px; padding-left:20px; overflow:hidden;}
+.detail_tit h3{ font-size:20px; font-weight:bold; line-height:70px; margin-left:200px;height:70px; width: 720px;overflow:hidden;}
 .detail_bd{ padding:20px 0;margin-top:23px;}
 .detail_con{ padding-bottom:20px;width:251px;height:100px;background:#FFFFFF;border-radius:5px;}
 .detail_type{float:left;padding:30px 0px;font-size:14px;width:80px; text-align:center;}
@@ -30,13 +29,13 @@ padding-left: 15px;width:200px; height:50px;}
 #detail_a dd ul li{ line-height:30px;height:30px;border-bottom:1px solid #f2f2f2;text-align:center; }
 #detail_a dd ul li a{ border:none;}
 .bgclor{ background:#EEEEF0;}
-.stt_img{ background:#FFFFFF; width:251px;height:100px;border-radius:5px;margin-top:20px;}
+.stt_img{ background:#FFFFFF; width:251px;height:100px;border-radius:5px;margin-top:20px;margin-bottom: 60px;}
 stt_img img{width:65px;height:65px; padding-bottom:20px;}
 
 /***********************************/
 .detail1{width:100%;height:100%;margin-left:165px;}
-.detail_border{width:545px; height:360px; background:#FFFFFF;float:right;margin-right:40px;margin-top:50px;margin-bottom:80px;}
-.detail_hdimg{height:70px;}
+.detail_border{width:540px; height:300px; background:#FFFFFF;float:right;margin: 40px 25px 20px -5px;}
+.detail_hdimg{height: 65px;}
 .detail_hdimg img{ width:200px; height:65px;margin-left:170px;padding-top:20px;}
 .bidname{margin-top:20px;}
 

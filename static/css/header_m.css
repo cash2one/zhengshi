@@ -20,18 +20,23 @@ header {
 .txt_iframe input[type="text"] {
     height: 0.3rem;
     margin: -0.35rem 0 -0.45rem 1.5rem;
-    width: 2.75rem;
+    width: 2.484rem;
     -webkit-border-radius: 2%;
     -moz-border-radius: 2%;
     border-radius: 2%;
     float: left;
+    font-size: 0.2rem;
 }
 
 .hea_search input[type="submit"]{
-    width: 0.5rem;
+    width: 0.75rem;
     height: 0.32rem;
-    margin: -0.35rem 0 -0.45rem 4.27rem;
+    margin: -0.35rem 0 -0.45rem 3.99rem;
     float: left;
     color: #000;
     font-size: 0.2rem;
+    text-align: center;
+    -webkit-border-radius: 0.03rem;
+    -moz-border-radius: 0.03rem;
+    border-radius: 0.03rem;
 }
