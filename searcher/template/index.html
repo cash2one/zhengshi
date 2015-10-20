@@ -12,12 +12,9 @@
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
     <script>
-        window.onload = function(){
+        function actions(){
             var obj = document.getElementById('ttt');
-            obj.onclick=function(){
-                alert(1111);
-                window.location.href="http://www.ddbid.com/activearea/";
-            }
+            window.open("http://www.ddbid.com/bbs/topic/21/");
         }
     </script>
 </head>
@@ -26,7 +23,7 @@
 {% include "header.html" %}
 <div id="content">
 
-    <div id="ttt" style="position: absolute;left:1100px;top:100px;border:1px solid red;width: 400px;height:390px;">
+    <div id="ttt" onclick="actions()" style="position: absolute;left:1050px;top:100px;border:0px solid red;width: 400px;height:390px;z-index: 1">
     </div>
     <div class="middle">
         <div class="middle_search">
