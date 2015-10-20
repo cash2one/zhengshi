@@ -7,14 +7,14 @@
 <head>
     <meta charset="UTF-8">
     <title>天天搜贷</title>
-    <script src="{% static 'js/jquery-1.8.3.min' %}"></script>
+    <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
     <script>
         function actions(){
             var obj = document.getElementById('ttt');
-            window.open("http://www.ddbid.com/bbs/topic/21/");
+            window.location.href="http://ddbid.com/bbs/topic/21/";
         }
     </script>
 </head>
@@ -23,7 +23,7 @@
 {% include "header.html" %}
 <div id="content">
 
-    <div id="ttt" onclick="actions()" style="position: absolute;left:1050px;top:100px;border:0px solid red;width: 400px;height:390px;z-index: 1">
+    <div id="ttt" onClick="actions()" style="position: absolute;left:1050px;top:100px;border:0px solid red;width:360px;height:390px;z-index: 1">
     </div>
     <div class="middle">
         <div class="middle_search">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
             {% endifnotequal %}
-            <div class="hot" style="padding-top: 1%;">
+            <div class="hot" style="padding-top: 1%;width: 700px;margin: 0px auto;">
                 <h3>本周热点：</h3>
                 {% for h in hs %}
                     <a href="{{ h.url }}" target="_blank">{{ h.title }} </a><wbr>
@@ -75,4 +75,5 @@
 </div>
 {% include "footer.html" %}
 </body>
+
 </html>
