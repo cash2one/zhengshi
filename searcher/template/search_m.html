@@ -14,7 +14,7 @@
                     {{ form.searchWord }}
             </li>
             <li class="hea_search">
-                <label><input id ="submit_searchWord" type="submit" value="搜索" /></label>
+                <label><input id ="submit_searchWord" type="button" value="搜索" /></label>
             </li>
             <li style="clear: both;">
             </li>
@@ -24,18 +24,13 @@
 
 <script type="text/javascript">
 $(function(){
-    $('#submit_searchWord1').click(function(){
+    $('#submit_searchWord').click(function(){
          var str = $("input[name=searchWord]").val();
          var reg = /^[1-9]\d{0,8}$/;
          var r = str.match(reg);
 
          if(r!=null){
-             var formdata = $("#formPW").serialize();
-             alert(formdata);
-             $.post("{% url 'search_m' %}",
-                     formdata,
-                     function(){}
-                     );
+         $("#formPW").submit()
          }else{alert("请输入1-9位数字！");};
 	});
 });

@@ -28,7 +28,7 @@ header {
     font-size: 0.2rem;
 }
 
-.hea_search input[type="submit"]{
+.hea_search input[type="button"]{
     width: 0.75rem;
     height: 0.32rem;
     margin: -0.35rem 0 -0.45rem 3.99rem;

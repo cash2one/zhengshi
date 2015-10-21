@@ -38,7 +38,11 @@ table a:hover { color: #FF0000; text-decoration: underline;}
     <script>
         function actions(){
             var obj = document.getElementById('inp_details');
-            window.open("http://www.ddbid.com/bbs/topic/21/");
+            window.location.href="http://ddbid.com/bbs/topic/21/";
+        }
+        function signactions(){
+            var obj = document.getElementById('inp_sign');
+            window.location.href="http://ddbid.com/register/";
         }
     </script>
 </head>
@@ -127,9 +131,12 @@ table a:hover { color: #FF0000; text-decoration: underline;}
       <tr>
         <td>
             <p><img src="/static/images/activeimg.jpg" width="640" height="900"/></p>    
-			  <div style="position: relative;top:-100px;left:200px;width: 100px;height:30px;z-index: 1;">
-          <input id="inp_details" onclick="actions()" type="button" value="活动详情" style="width: 100px;height:30px;-webkit-border-radius: 4px;;-moz-border-radius: 4px;;border-radius: 4px;;background:#FF7F50">
-      </div>
+			  <div style="position: relative;top:-320px;left:60px;width: 100px;height:30px;z-index: 1;">
+                  <input id="inp_sign" onclick="signactions()" type="button" value="立即注册" style="width: 100px;height:30px;-webkit-border-radius: 4px;;-moz-border-radius: 4px;;border-radius: 4px;;background:#FF7F50">
+            </div>
+            <div style="position: relative;top:-350px;left:200px;width: 100px;height:30px;z-index: 1;">
+                <input id="inp_details" onclick="actions()" type="button" value="活动详情" style="width: 100px;height:30px;-webkit-border-radius: 4px;;-moz-border-radius: 4px;;border-radius: 4px;;background:#FF7F50">
+            </div>
         </td>
       </tr>
       <tr>

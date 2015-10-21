@@ -5,21 +5,21 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-	   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1.0"/>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>搜索结果</title>
-    <script src="/static/js/jquery-1.8.3.min.js"></script>
+    <meta content="width=device-width, initial-scale=1.0,user-scalable=no" name="viewport" id="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <script src="/static/js/jquery.min.js"></script>
  	<link rel="stylesheet" href="/static/css/search_result_m.css">
- 
+    <link rel="stylesheet" href="/static/css/login_m.css">
     <script type="text/javascript" src="/static/js/public.js"></script>
 </head>
 <body>
-	<header>
-		<div id="head_m"></div>
-	</header>
 <div class="log_conten">
-<div id="head_m">
+<header>
+<div id="head_m"></div>
+</header>
 {% if params %}
     <script>
         $(document).ready(function () {
@@ -37,23 +37,19 @@
         });
     </script>
 {% endif %}
-    <div style="width:4.7rem;height:0.2rem; background:#cccccc;"></div>
+    <div style="width:4.7rem;height:0.4rem; background:#cccccc;"></div>
 	<div class="log_contenttt">
-		<div style="overflow:hidden;width:4.5rem;padding-top:0.2rem;padding-left:0.3rem;">
+		<div style="overflow:hidden;width:4.7rem;height:0.6rem;padding-top:0.2rem;padding-left:0.2rem;">
 			<div style="font-size:0.25rem;float:left;">
 			   标的搜索结果
 			</div>
 			<div class="search_reorder">
-			
-                   <a href="javascript:void(0)" sorttype="1">收益<i></i></a>
-                    <a href="javascript:void(0)" sorttype="2">投资期限<i></i></a>
-           
-					
+					<a href="javascript:void(0)" sorttype="1"><span style="color:#FF0000;">▼ </span>收益<i></i></a>
+					<a href="javascript:void(0)" sorttype="2">&nbsp;&nbsp;▲投资期限<i></i></a>
 			</div>	
 		 </div>
 		{% include "search_result_single_m.html" %}
 	</div>
-</div>
 </div>
 </body>
 <script>
@@ -169,10 +165,8 @@
 <script type="text/javascript">
     $(function(){
         $.get("/m/search/",function(data){ $('#head_m').html(data.content_html);});
-        {% if msg %}
-            alert('{{msg}}');
-        {% endif %}
     });
 </script>
+
 
 </html>
