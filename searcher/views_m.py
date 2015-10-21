@@ -918,21 +918,19 @@ def search_result(request):
         if form.is_valid():
             cd = form.cleaned_data
             amount = cd['searchWord']
-            if amount is not None and not str(amount).isdigit():
-                return render_to_response('search_result_m.html',{'msg':u'请输入投资金额'}, context_instance=RequestContext(request))
-
-        try:
-            page = int(request.GET.get('page', '1'))
-
-        except ValueError:
-            page = 1
-        print 'page is',page
-        index_parts = index_loading_m(amount, None, page)
-        return render_to_response('search_result_m.html',
-                                  {'results': index_parts.get('results'), 'dimensions': index_parts.get('dimensions'),
-                                   'c_results': index_parts.get('c_result'), 'last_page': index_parts.get('last_page'),
-                                   'page_set': index_parts.get('page_set'), 'form': form},
-                                  context_instance=RequestContext(request))
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+            index_parts = index_loading_m(amount, None, page)
+            return render_to_response('search_result_m.html',
+                                      {'results': index_parts.get('results'), 'dimensions': index_parts.get('dimensions'),
+                                       'c_results': index_parts.get('c_result'), 'last_page': index_parts.get('last_page'),
+                                       'page_set': index_parts.get('page_set'), 'form': form},
+                                      context_instance=RequestContext(request))
+        else:
+            return render_to_response('search_result_m.html',{'msg':u'请输入投资金额'}, context_instance=RequestContext(request))
+   
     elif request.GET.get('params[]', None) is not None:
         params = ','.join(request.GET.getlist('params[]'))
         a = params.split(',')
