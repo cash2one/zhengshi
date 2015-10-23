@@ -120,11 +120,11 @@
 .attention_att li ul li a:hover{color:#ff0000; text-decoration:underline;}
 .bbs_content{border-radius:5px;-moz-border-radius: 5px;-webkit-border-radius:5px;}
 /*bbs_post.html*/
-.bbs_post{ padding:10px 0;}
+.bbs_post{ padding-top:10px;padding-bottom:20px;}
 .bbs_post_add{ padding:10px;font-size:14px;}
 .bbs_post_add a{ font-size:14px;}
 .bbs_post_con,.bbs_post_title{ padding:10px;font-size:14px;}
-.bbs_post_txt,.bbs_post_textarea{width:650px;height:30px; padding:5px 10px; margin-bottom:10px;}
+.bbs_post_txt,.bbs_post_textarea{width:600px;height:30px; padding:5px 10px; margin-bottom:10px;}
 .bbs_post_txt{  font-size:14px;}
 .bbs_post_textarea{ height:300px;}
 .bbs_post_title dt{ font-size:14px; font-weight:bold;}
@@ -149,3 +149,9 @@ padding-right:10px;float: right;font-size:14px; width:110px;}
 .yzm {height:30px;}
  .bsearch{ display:block; background:#c50512; color:#fff; text-align:center; height:18px; width:40px;}
 .bsearch:hover{ background:#d23c46; color:#fff;}
+
+@media (min-width: 768px) and (max-width:1200px){
+.bbs {width: 1000px;margin: 0px auto;}
+.bbs_left{ width:756px;margin-bottom:0px;}
+.bbs_note dd {margin-left: 10px;width: 650px;height: 48px;float: left;position: relative;}
+.bbs_right {width: 220px;overflow: hidden;padding-top: 30px;margin-right: 10px;}}

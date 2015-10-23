@@ -25,7 +25,7 @@ class ContactForm(forms.Form):
 
 class SearchForm(forms.Form):
     searchWord = forms.IntegerField(required=False, widget=forms.TextInput(
-        attrs={'type': 'text', 'placeholder': '请输入投资金额'}))
+        attrs={'type': 'text', 'placeholder': '请输入投资金额或者直接搜索'}))
 
 
 class LoginForm(forms.Form):
