@@ -30,7 +30,11 @@
 .wx_tc{ position:relative;}
 #code_img{ position:absolute; right:30px; top:30px;}
 
-
+@media (min-width: 768px) and (max-width:1200px) {
+#content {position: relative;height: 67%;background: transparent url("../images/activepic1.jpg") repeat-x scroll 0% 0% / cover;min-width: 0px;min-height:500px;}
+.search {height: 60px;line-height: 60px;padding-bottom: 25px;margin: 0px auto;width: 460px;}
+.search input {width: 400px;line-height: 30px;border: 1px solid #DDD;padding: 5px;font-size: 18px;color: #999;
+}}
 
 
 

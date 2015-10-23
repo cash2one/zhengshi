@@ -11,7 +11,7 @@
 .search_more{ padding:0 15px; background:url(../images/arrow.png) no-repeat right center;}
 .search_more:hover{ color:#4c4c4c;}
 .search_term a.active{background:url(../images/arrow1.png) no-repeat right center;}
-.search_still{ text-align:center; position:absolute;top:163px;left:65%;}
+.search_still{ text-align:center; position:absolute;top:143px;left:65%;}
 .search_still a{ padding:3px 10px; color:#FF0000;border-radius:5px; display:inline-block;}
 .confirmDetail a{ background:url(../images/back_top.png) no-repeat 0 0; border:none; border-radius:none; height:20px;}
 /*登录弹出层*/

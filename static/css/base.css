@@ -60,7 +60,7 @@ background: none repeat scroll 0% 0% #FFF; z-index:999; position:absolute; right
 
 #container {min-height:65%;height: auto; position: relative;background:#EEEEF0;min-width: 1420px;min-height: 520px;}
 /*底部*/
-#footer{ width:100%; clear:both;text-algin:center;}
+#footer{ width:100%; clear:both;text-algin:center;min-width:1420px;}
 /*.footer {width:100%; color:#333; text-align:center;font-size:14px;}*/
 /*.footer a.ico,.footer a.ico1{ margin-top:5px; display:inline-block; width:32px; height:32px;}*/
 /*.footer a:hover{ color:#ff0000;}*/
@@ -70,7 +70,7 @@ background: none repeat scroll 0% 0% #FFF; z-index:999; position:absolute; right
 /*.footer a.ico1:hover{ background:url(../images/wx_1.png) no-repeat 0 0;}*/
 #code{ position:absolute; top:-168px; right:-50px;}
 #mid{ width:100%; overflow:hidden; padding-bottom:70px; background:#EEEEF0; margin:0;padding:0; position:absolute;} /*margin-bottom:70px; */
-#middd{ width:100%; overflow:hidden; padding-bottom:70px;min-width:1420px;background:#EEEEF0; margin:0;padding:0;} /*margin-bottom:70px; */
+#middd{ width:100%; padding-bottom:70px;min-width:1420px;background:#EEEEF0; margin:0;padding:0;min-height: 1080px;} /*margin-bottom:70px; */
 #midddt{width:100%; overflow:hidden; padding-bottom:70px; background:#EEEEF0; margin:0;padding:0;margin-bottom:-130px;min-width: 1420px;}
 .bbs_search{ padding:10px 0; overflow:hidden;}
 .bbs_logo{ width:226px; height:71px; float:left; display:none;}
@@ -121,7 +121,7 @@ background: none repeat scroll 0% 0% #FFF; z-index:999; position:absolute; right
 .ful12{position:absolute;left:70%; line-height:20px;margin-top:-40px;z-index: 1}
 .fuldy{margin-left:10%;color:#FFFFFF;}
 
-.footer_content{width:100%;background-color:#372C3A;height:180px;min-width: 1420px;}
+.footer_content{width:100%;background-color:#372C3A;height:180px;}
 .footer_main a{color: #FFFFFF;text-decoration: none;}
 .footer_main a:hover{color:#ff0000}
 .footer_main{width: 1200px;color: #FFFFFF;}
@@ -174,3 +174,28 @@ placeholder{
 .Validform_right{color: #71b83d;padding-left: 20px; background:url(../images/right.png) no-repeat 0 center;}
 #Validform_msg{ display:none;}
 .user_conter{height:100%;}
+#ttt{position: absolute; border: 0px solid rgb(255, 0, 0); width: 250px; height: 390px; z-index: 1; top: 15%; left: 75%;}
+.footer_boxImg{width:120px;height:120px;margin-left:100px;margin-top:20px;}
+.dyhImg{margin-left: 33px;}
+.activedetail{position: absolute;top:728px;left:550px;width: 100px;height:30px;z-index: 1;}
+.fastreq{position: absolute;top:728px;left:700px;width: 100px;height:30px;z-index: 1;}
+.fastreq input{width: 100px;height:30px;-webkit-border-radius: 4px;;-moz-border-radius: 4px;;border-radius: 4px;background:#FF7F50}
+.activedetail input{width: 100px;height:30px;-webkit-border-radius: 4px;;-moz-border-radius: 4px;;border-radius: 4px;background:#FF7F50}
+@media (min-width: 768px) and (max-width:1200px) {
+#footer{ width:100%; clear:both;text-algin:center;position:absolute;min-width:0px;}
+#header{height:60px; line-height:60px;min-width: 0px;}
+#container {min-height:65%;height:80%; position: relative;background:#EEEEF0;min-width: 0px;}
+#middd {width: 100%;background: #EEEEF0 none repeat scroll 0% 0%;margin: 0px;padding: 0px;min-width: 0px;}
+.logo img{margin-left:0px;}
+#ttt{position: absolute;top: 15%;border: 0px solid #F00;width: 250px;height: 390px;z-index: 1;left: 75%;}
+.footer_boxImg {width: 120px;height: 120px;margin-top: 20px;margin-left: 0px;}
+.dyhImg{margin-left:10px;}
+.footer_bottom {background: #EEEEF0 none repeat scroll 0% 0%;height: 30px;margin-bottom: 0px;min-width:0px;position: absolute;width: 100%;}
+.footer_bottom a {color: #000;width: 60px;padding-left: 20px;}
+.footer_main {color: #FFF;}
+.fastreq{position: absolute;top:750px;left:54%;width: 100px;height:30px;z-index: 1;}
+.activedetail{position: absolute;top:750px;left:35%;width: 100px;height:30px;z-index: 1;}
+.detail_border {width: 400px;height: 300px;background: #FFF none repeat scroll 0% 0%;float: left;margin: 70px 25px 20px -5px;}
+#container_detail {position: relative;background: #EEEEF0 none repeat scroll 0% 0%;min-width: 0px;min-height: 65%;height: 60%;}
+.xqtz {float: left;margin-left: 110px;}
+.gsjjcd{position:absolute;top:160px;left:300px; width:627px;}}
