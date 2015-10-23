@@ -43,7 +43,7 @@
     </div>
 </div>
 <div id="signup_content">
-
+     <div style="height:40px; background:#EEEEF0;"></div>
     <div class="signup_mid">
       <form class="registerform" action="{% url 'register' %}" method="post" name="form1">
           <ul id="signup_ul1">
@@ -95,18 +95,15 @@
                       <label style="float:left">{{ form.vcode }}</label>
                       <label style="float:left;margin-left:5px;"><img onclick="this.setAttribute('src',{% url 'verifycode' %} + '?nocache='+Math.random());"
                            src="{% url 'verifycode' %}"/></label>
-                      <label style="float:left"><div style="border:0px solid #000;width:90px;height:52px;"></div></label>                                                
+                      <label style="float:left"><div style="border:0px solid #000;width:90px;height:52px;"></div></label>
                   </li>
                   <li style="clear:both"></li>
-                  <li>
-                      
-                  </li>
                </ul>  		     
               <ul class="singup_smscode">
                     <li>
                         <label class="label">短信验证码：</label>
                     </li>
-                    <li id="yzcode_inp">        
+                    <li id="yzcode_inp">
                         <label style="float:left">{{ form.smscode }}</label>
                         <label><input type="button" id="rulesubmit" style="float:left;color:#FFFFFF; background-color:#4a3c70;border:1px solid #4a3c70; border-radius:10px;-webkit-border-radius:3px;z-index:1;width:94px;height:50px;left:100px;margin-left:5px;" value="发送验证码" /></label>
                         <label style="float:left"><div style="border:0px solid #000;width:90px;height:52px;"></div></label>                   
@@ -121,7 +118,7 @@
                         <hr />
                     </li>		
                     <li>
-                        <div style=" margin-left:160px;">注册即视为同意天天搜贷<a href="/agreement/"><<服务条款>></a></div>
+                        <div style=" margin-left:160px;">注册即视为同天天搜贷<a href="/agreement/"><<服务条款>></a></div>
                     </li>
                     <li>
                         <hr />
@@ -133,7 +130,7 @@
                         <div style="margin-top:5px; margin-left:368px;font-size:12px;">已有天天搜贷账号,<a href="{% url 'login' %}">登录</a></div>
                         
                     </li>
-                    <li style="position:absolute; top:605px; left:385px;">
+                    <li style="position:absolute;top: 703px;left: 789px;">
                         <img src="/static/images/smalllogo.png" />
                     </li>
                 </ul>

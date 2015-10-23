@@ -40,8 +40,8 @@
       
     </div>
 </div>
+<div style="height:50px; background:#EEEEF0;"></div>
 <div id="login_content">
-	<div style="height:50px;"></div>
     <div class="login_mid">  
         <form class="registerform" action="/login/" method="post">
             {% csrf_token %}
@@ -66,7 +66,7 @@
           		
                 <ul class="log_ucon">
                     <li>
-                        <label> 密码：</label>
+                        <label></br> 密码：</label>
                     </li>
                     <li id="user_pwd">
                         <label style="float:left;z-index:999">{{ form.password }}</label>
@@ -96,9 +96,9 @@
                     </li>
                     <li>
                     	<div style="font-size:12px;margin-top:8px;margin-left:25px;"><a href="{% url 'forgetpw' %}">忘记密码?</a></div>
-                        <div style="margin-top:-12px; margin-left:360px;font-size:12px;">没有天天搜贷账号,<a href="{% url 'register' %}">注册</a></div>
+                        <div style="margin-top:-18px; margin-left:360px;font-size:12px;">没有天天搜贷账号,<a href="{% url 'register' %}">注册</a></div>
                     </li>
-                    <li style="position:absolute; top:400px; left:377px;">
+                    <li style="position:absolute; top: 519px;left: 788px;">
                         <img src="/static/images/smalllogo.png" />
                     </li>
 				</ul>
@@ -106,7 +106,6 @@
             </ul>
         </form>    
     </div>
-
 </div>
 {% include "footer.html" %}
 <script type="text/javascript">
