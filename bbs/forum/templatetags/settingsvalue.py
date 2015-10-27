@@ -30,5 +30,8 @@ def phone_cut(name):
     return ''.join([name[0:3],'****',name[-4:]]).strip()
 register.filter(phone_cut)
 
+def multiplicative_page(page):
+    return (int(page)-1)*18
+register.filter(multiplicative_page)
 
 

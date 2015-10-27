@@ -98,15 +98,39 @@
                 <dd>
                  {% ifequal user.id None  %}
                     {% if r.user.userinformation.realname %}
-                   <p><span class="bbs_reply_number fr">{{ forloop.counter }}</span><a href="{% url 'login' %}" class="bbs_username">{{r.user.userinformation.realname }}</a>{{ r.time_created|date:"Y-m-j  H:i:s" }}
+                       <p><span class="bbs_reply_number fr">
+                                   {% if pager %}
+                                        {{pager|multiplicative_page|add:forloop.counter}}
+                                   {% else %}
+                                        {{forloop.counter}}
+                                   {% endif %}
+                       </span><a href="{% url 'login' %}" class="bbs_username">{{r.user.userinformation.realname }}</a>{{ r.time_created|date:"Y-m-j  H:i:s" }}
                     {% else %}
-                    <p><span class="bbs_reply_number fr">{{ forloop.counter }}</span><a href="{% url 'login' %}" class="bbs_username">{{r.user.username|phone_cut}}</a>{{ r.time_created|date:"Y-m-j  H:i:s" }}
+                        <p><span class="bbs_reply_number fr">
+                                   {% if pager %}
+                                        {{pager|multiplicative_page|add:forloop.counter}}
+                                   {% else %}
+                                        {{forloop.counter}}
+                                   {% endif %}
+                        </span><a href="{% url 'login' %}" class="bbs_username">{{r.user.username|phone_cut}}</a>{{ r.time_created|date:"Y-m-j  H:i:s" }}
                     {% endif %}
                  {% else %}
                     {% if r.user.userinformation.realname %}
-                   <p><span class="bbs_reply_number fr">{{ forloop.counter }}</span><a href="{% url 'user_info' r.user.id %}" class="bbs_username">{{r.user.userinformation.realname}}</a>{{ r.time_created|date:"Y-m-j  H:i:s" }}
+                       <p><span class="bbs_reply_number fr">
+                                   {% if pager %}
+                                        {{pager|multiplicative_page|add:forloop.counter}}
+                                   {% else %}
+                                        {{forloop.counter}}
+                                   {% endif %}
+                        </span><a href="{% url 'user_info' r.user.id %}" class="bbs_username">{{r.user.userinformation.realname}}</a>{{ r.time_created|date:"Y-m-j  H:i:s" }}
                     {% else %}
-                    <p><span class="bbs_reply_number fr">{{ forloop.counter }}</span><a href="{% url 'user_info' r.user.id %}" class="bbs_username">{{r.user.username|phone_cut}}</a>{{ r.time_created|date:"Y-m-j  H:i:s" }}
+                        <p><span class="bbs_reply_number fr">
+                                   {% if pager %}
+                                        {{pager|multiplicative_page|add:forloop.counter}}
+                                   {% else %}
+                                        {{forloop.counter}}
+                                   {% endif %}
+                        </span><a href="{% url 'user_info' r.user.id %}" class="bbs_username">{{r.user.username|phone_cut}}</a>{{ r.time_created|date:"Y-m-j  H:i:s" }}
                     {% endif %}
                  {% endifequal %}
                       {% if request.user.is_authenticated %}

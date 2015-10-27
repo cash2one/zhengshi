@@ -39,9 +39,8 @@
 @media (max-width: 767px) {
 #content {
     position: relative;
-    height: 106%;
     background: transparent url("../images/activepic1.jpg") repeat-x scroll 0% 0% / cover;
-    min-height: 500px;
+    min-height: 2270px;
     width: 113%;
 }
 .hot{width: 700px;margin: 0px auto;}}
