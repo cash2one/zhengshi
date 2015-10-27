@@ -125,3 +125,9 @@ input[type="checkbox"], input[type="radio"]{box-sizing:border-box; padding:0;}
 	filter: alpha(opacity=0);
 	cursor: pointer
 }
+@media (min-width: 768px) and (max-width:1200px) {
+.user_right {
+    width: 820px;
+    height: 100%;
+    margin-bottom: 35px;
+}}

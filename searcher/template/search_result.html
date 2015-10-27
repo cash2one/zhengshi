@@ -40,8 +40,8 @@
         <div id="search_norm" class="search_result_box">
             {% regroup dimensions by dimension  as choices_list %}
 			<div id="onlinepic">
-			<div style=" width:42%; height:1px; background:#eeeef0; position:absolute;top:131px; left:26%;"></div>
-			<div style="position:absolute;top:105px;left:70%;">
+			<div class="fgline"></div>
+			<div class="serchImg">
 			<img src="/static/images/star_chenck.png" width="60" height="60">
 			</div>
 			</div>
@@ -86,7 +86,7 @@
 {#                </label>#}
 {#            {% endifnotequal %}#}
             <div class="search_still showDetailInfo"><a href="#" onClick="ShowMore()">更多指标</a></div>
-            <div class="search_still search_outside" style="display: none;position:absolute;top:120px;left:70%;">
+            <div class="search_still2 search_outside">
                 <a href="#" onClick="CancelMore()">收起</a>
             </div>
         </div>
@@ -206,7 +206,7 @@
 {#        alert(sorttype);#}
 
 
-        $.get("{% url 'searchindex' %}",
+        $.get("{% url 'result' %}",
                 {
                     params: a,
                     amount: amount,

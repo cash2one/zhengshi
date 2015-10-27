@@ -7,7 +7,7 @@
 .search input:hover{ border:1px solid #c50512;}
 .search input.btn_search{ background:url(../images/search.png) no-repeat 0 0; display:inline-block; width:47px; height:42px; border:none; cursor:pointer;}
 .search input.btn_search:hover{ border:none;}
-.hot{height:30px; line-height:30px; font-size:14px;}
+.hot{height:30px; line-height:30px; font-size:14px;width:700px;margin:0px auto;}
 .hot h3{ display:inline; font-size:16px;}
 .hot a{ color:#666; text-decoration:underline; margin:0 5px;}
 .hot a:hover{ color:#ff0000;}
@@ -36,6 +36,12 @@
 .search input {width: 400px;line-height: 30px;border: 1px solid #DDD;padding: 5px;font-size: 18px;color: #999;
 }}
 
-
-
-
+@media (max-width: 767px) {
+#content {
+    position: relative;
+    height: 106%;
+    background: transparent url("../images/activepic1.jpg") repeat-x scroll 0% 0% / cover;
+    min-height: 500px;
+    width: 113%;
+}
+.hot{width: 700px;margin: 0px auto;}}

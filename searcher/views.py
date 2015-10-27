@@ -47,6 +47,17 @@ def index(request):
         hs = random.sample(hotspots, 4)
     else:
         hs = []
+
+    form = SearchForm()
+    user = auth.get_user(request)
+    if user.id is not None:
+        f_l = get_user_filter(user)
+        return render_to_response('index.html', {'form': form, 'f_ls': f_l, 'hs': hs},
+                                  context_instance=RequestContext(request))
+    else:
+        return render_to_response('index.html', {'form': form, 'hs': hs}, context_instance=RequestContext(request))
+
+def result(request):
     if request.method == 'POST':
         # print(request.POST.get('params', None))
         form = SearchForm(request.POST)
@@ -99,16 +110,6 @@ def index(request):
             'success': True
         }
         return HttpResponse(json.dumps(payload), content_type="application/json")
-    else:
-        form = SearchForm()
-        user = auth.get_user(request)
-        if user.id is not None:
-            f_l = get_user_filter(user)
-            return render_to_response('index.html', {'form': form, 'f_ls': f_l, 'hs': hs},
-                                      context_instance=RequestContext(request))
-        else:
-            return render_to_response('index.html', {'form': form, 'hs': hs}, context_instance=RequestContext(request))
-
 
 def contact(request):
     if request.method == 'POST':

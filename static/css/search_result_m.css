@@ -14,7 +14,7 @@
 .seach_cheek:hover{ background:#d23c46; color:#fff;}
 .seach_cheekk:hover{ background:#d23c46; color:#fff;}
 body{height:100%;overflow:hidden;min-width:5rem;width: expression_r( document.body.clientWidth < 5.1 ? "5rem" : "auto" );}
-.search_reorder{font-size:0.21rem;padding-left:2.65rem;}
+.search_reorder{font-size:0.21rem;padding-left:2.25rem;}
 .search_reorder a{color:#000000;}
 .search_reorder a{text-decoration:none;}
 .search_reorder a{ display:inline-block;}
@@ -47,7 +47,7 @@ body{height:100%;overflow:hidden;min-width:5rem;width: expression_r( document.bo
     float: left;
 }
 .log_contentt{width:4.8rem;height:6.7rem;font-size: 0.32rem;font-style:normal;border-radius:4px;}
-.log_conten{width: 5rem;height:8.6rem;font-size: 0.32rem;background-color: #cccccc;font-style:normal;}
+.log_conten{width: 5rem;height:9.7rem;font-size: 0.32rem;background-color: #cccccc;font-style:normal;}
 #page_navigation{margin-left:0.1rem;}
 /*分页*/
 .pages{ padding:20px 0 10px 0; text-align:right;}

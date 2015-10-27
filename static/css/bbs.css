@@ -32,7 +32,7 @@
 .pages a.after{border-radius:10px 15px 15px 10px;}
 .pages a.active,.pages a:hover{color:#c50512;}
 .mt10{margin-top:10ox;}
-
+.bbs_reply{height:100%;}
 /*分页结束*/
 .bbs_right{ width:220px; overflow:hidden; padding-top:30px;}
 .bbs_gg,.bbs_gg a,.bbs_gg a img{ display:inline-block; width:220px; height:160px;}
@@ -77,7 +77,7 @@
 .bbs_reply_list{ border-top:1px solid #ddd; padding:10px 0;}
 .bbs_reply_list dt,.bbs_reply_list dd{ float:left;}
 .bbs_reply_list dt,.bbs_reply_list dt a,.bbs_reply_list dt a img{ width:48px; height:48px; display:inline-block;}
-.bbs_reply_list dd{ margin-left:15px; width:680px;}
+.bbs_reply_list dd{ margin-left:15px; width:650px;}
 .bbs_reply_list dd p{ line-height:24px; height:24px; color:#999;}
 .bbs_username{ margin-right:20px;font-weight:bold; color:gray;}
 .bbs_username:hover{color:#385f8a;}
@@ -152,6 +152,7 @@ padding-right:10px;float: right;font-size:14px; width:110px;}
 
 @media (min-width: 768px) and (max-width:1200px){
 .bbs {width: 1000px;margin: 0px auto;}
-.bbs_left{ width:756px;margin-bottom:0px;}
+.bbs_left{ width:756px;margin-bottom:0px;min-height: 1100px;}
 .bbs_note dd {margin-left: 10px;width: 650px;height: 48px;float: left;position: relative;}
+.bbs_publish{margin-bottom:150px;}
 .bbs_right {width: 220px;overflow: hidden;padding-top: 30px;margin-right: 10px;}}
