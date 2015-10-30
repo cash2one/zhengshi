@@ -29,7 +29,7 @@ $(function(){
          var reg = /^[1-9]\d{0,8}$/;
          var r = str.match(reg);
 
-         if(r!=null){
+         if((r!=null)||(str =="")){
          $("#formPW").submit()
          }else{alert("请输入1-9位数字！");};
 	});
