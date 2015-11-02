@@ -39,7 +39,7 @@
 {% endif %}
     <div style="width:4.7rem;height:0.4rem; background:#cccccc;"></div>
 	<div class="log_contenttt">
-		<div style="overflow:hidden;width:4.5rem;height:0.6rem;padding-top:0.2rem;padding-left:0.2rem;">
+		<div style="overflow:hidden;width:4.7rem;height:0.6rem;padding-top:0.2rem;padding-left:0.2rem;">
 			<div style="font-size:0.25rem;float:left;">
 			   标的搜索结果
 			</div>
@@ -51,6 +51,13 @@
 		{% include "search_result_single_m.html" %}
 	</div>
 </div>
+<form id="formid" action="/m/search_listresult/" method="post">
+    <input id="params" name="params" value="" type="text"  style="display:none;"/>
+    <input id="amount" name="amount" value="" type="text"  style="display:none;"/>
+    <input id="page"  name="page" value="" type="text"  style="display:none;"/>
+    <input id="sorttype" name="sorttype" value="" type="text"  style="display:none;"/>
+    <input id="sortorder" name="sortorder" value="" type="text"  style="display:none;"/>
+</form>
 </body>
 <script>
     $(".choices a").on("click", function () {
@@ -92,21 +99,7 @@
         checkparam(page);
     });
 
-    function ShowMore() {
-	  
-	
-        var c = $('#check_log').text();
 
-        if (c != 1) {
-            alert('请先登陆');
-            location.href = "/login/"
-        }
-        else {
-            $('#onlinepic').hide();
-			$('.search_outside').show();
-            $('.showDetailInfo').hide();
-        }
-    }
     function CancelMore() {
 	    $('#onlinepic').show();
         $('.search_outside').hide();
@@ -126,15 +119,13 @@
 
     function takepage(n) {
         checkparam(n);
+
     }
 
     function checkparam(page) {
-        {# var a = getElementsByClassName('btn_blue_','choiceid'); #}
-        var a = [1,7,13,16,22,28,36];
         var amount = $(".lastinput").children("#id_searchWord").val();
         var sortorder = 0;
         var sorttype = 0;
-
         var aaa = getElementsByClassName('order_sx','sorttype');
         var bbb = getElementsByClassName('order_jx','sorttype');
         if(aaa != ''){
@@ -146,20 +137,29 @@
             sorttype = bbb[0];
         }
 
+        {% if params %}
+            document.getElementById("params").value= [{{params}}];
+            document.getElementById("amount").value= amount;
+            document.getElementById("page").value= page;
+            document.getElementById("sorttype").value= sorttype;
+            document.getElementById("sortorder").value= sortorder;
 
-
-        $.get("{% url 'search_result_m' %}",
-                {
-                    params: a,
-                    amount: amount,
-                    page: page,
-                    sorttype: sorttype,
-                    sortorder: sortorder
-                },
-                function (data) {
-                    $('#result_form').html(data.content_html);
-                }
-        );
+            $("#formid").submit();
+        {% else %}
+            var a = [1,7,13,16,22,28,36];
+            $.get("{% url 'search_result_m' %}",
+                    {
+                        params: a,
+                        amount: amount,
+                        page: page,
+                        sorttype: sorttype,
+                        sortorder: sortorder
+                    },
+                    function (data) {
+                        $('#result_form').html(data.content_html);
+                    }
+            );
+        {% endif %}
     }
 </script>
 <script type="text/javascript">

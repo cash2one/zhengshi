@@ -25,13 +25,8 @@
 <script type="text/javascript">
 $(function(){
     $('#submit_searchWord').click(function(){
-         var str = $("input[name=searchWord]").val();
-         var reg = /^[1-9]\d{0,8}$/;
-         var r = str.match(reg);
+         $("#formPW").submit();
 
-         if((r!=null)||(str =="")){
-         $("#formPW").submit()
-         }else{alert("请输入1-9位数字！");};
 	});
 });
 </script>

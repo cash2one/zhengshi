@@ -196,18 +196,16 @@
         $('.search_outside').hide();
     })
     function ShowMore() {
-        var c = $('#check_log').text();
-
-        if (c != 1) {
+        {% ifequal user.id None %}
             alert('请先登陆');
-            location.href = "/m/login/"
-        }
-        else {
-        $('#onlinepic').show();
-        $('.search_outside').show();
-        $('.showDetailInfo').hide();
-        }
+            location.href = "/m/login/?next=/m/detail_search"
+        {% else %}
+            $('#onlinepic').show();
+            $('.search_outside').show();
+            $('.showDetailInfo').hide();
+        {% endifequal%}
     }
+
     function CancelMore() {
         $('#onlinepic').hide();
         $('.search_outside').hide();
