@@ -14,12 +14,11 @@
 .seach_cheek:hover{ background:#d23c46; color:#fff;}
 .seach_cheekk:hover{ background:#d23c46; color:#fff;}
 body{height:100%;overflow:hidden;min-width:5rem;width: expression_r( document.body.clientWidth < 5.1 ? "5rem" : "auto" );}
-.search_reorder{font-size:0.21rem;padding-left:2.25rem;}
+.search_reorder{font-size:0.21rem;float:right;}
 .search_reorder a{color:#000000;}
 .search_reorder a{text-decoration:none;}
 .search_reorder a{ display:inline-block;}
 .search_reorder a:hover{color:#FF0000; border:1px solid #c50512;}
-.search_reorder a i{ padding-left:5px;}
 .search_reorder a.order_jx,.search_reorder a.order_sx{ background:#c50512; color:#fff; border:1px solid #c50512;}
 .search_reorder a.order_jx i{ background:url(../images/jiantou.png) no-repeat right center; padding-right:10px;}
 .search_reorder a.order_sx i{background:url(../images/jiantou1.png) no-repeat right center;padding-right:10px;}

@@ -1,0 +1,197 @@
+body,div,ol,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,p,form,fieldset,legend,input,button{ margin:0; padding:0; -webkit-tap-highlight-color:rgba(255,255,255,0); }
+html {  width: 100%; font-family: 'Heiti SC', 'Microsoft YaHei'; font-size: 100px; outline: 0; -webkit-text-size-adjust:none;}
+body {  width:100%; margin: 0; -webkit-user-select: none; position: relative; background-color:#fff;}
+a{text-decoration:none;color:rgb(240,52,89);}
+a,button,input,select,option{-webkit-tap-highlight-color: rgba(0,0,0,0);-webkit-user-modify: read-write-plaintext-only;}
+/*nav style                   */
+ul {
+    list-style-type: none;
+}
+/*article style*/
+#container{
+    position: relative;
+    width: 5rem;
+    height: 7.33rem;
+    font-size: 0.2rem;
+    background-color:#eeeef0;
+}
+.con_unify{
+    position:absolute;
+    margin:0.6rem 0 0 1.8rem;
+}/*内容的样式*/
+select,option {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.shou_text{
+    float: left;
+    margin:-0.5rem 0 0 -1.4rem;
+}
+.shou_div{
+    width: 2rem;
+    margin:0 auto;
+}
+.get-shouyitxt{
+    height: 0.45rem;
+    width: 2rem;
+    float: left;
+    margin:-0.64rem 0 0 0.7rem;
+    background-color:#ffffff;
+    font-size: 0.2rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    border-radius: 1rem;
+    padding-left:0.2rem;
+}
+.shou_more{
+    float:left;
+    font-size: 0.1rem;
+    margin:-0.2rem 0 0 2.2rem;
+}
+.shou_more a{
+    text-decoration: none;
+    color:rgb(240,52,89);
+}
+.qixian_text{
+    float: left;
+    margin:0.1rem 0 0 -1.4rem;
+}
+.get-qixiantxt{
+    height: 0.45rem;
+    width: 2rem;
+    padding-left:0.2rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    border-radius: 1rem;
+    float: left;
+    font-size: 0.2rem;
+    border: 1px solid black;
+    background-color:#ffffff;
+    margin:-0.02rem 0 0 0.7rem;
+}
+
+.showDetailInfo{
+    position: relative;
+    left: 0.3rem;
+    top: -0.1rem;
+    font-size: 0.2rem;
+}
+.search_outside{
+    margin:0.1rem 0 0 0.5rem;
+    font-size: 0.2rem;
+    min-height:0.7rem;
+}
+.kefou_text{
+    float: left;
+    margin:0.1rem 0 0 -1.4rem;
+}
+
+.get-kefoutxt{
+    height: 0.45rem;
+    width: 2rem;
+    padding-left:0.2rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    border-radius: 1rem;
+    float: left;
+    font-size: 0.2rem;
+    border: 1px solid black;
+    background-color:#ffffff;
+    margin:-0.01rem 0 0 0.7rem;
+}
+.sign_text{
+    float: left;
+    margin:0.05rem 0 0 -1.4rem;
+}
+.get-signtxt{
+    height: 0.45rem;
+    width:2rem;
+    padding-left:0.2rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    border-radius: 1rem;
+    float: left;
+    border: 1px solid black;
+    background-color:#ffffff;
+    font-size: 0.2rem;
+    margin:-0.05rem 0 0 0.7rem;
+}
+.sxtime_text{
+    float: left;
+    margin:0.06rem 0 0 -1.4rem;
+}
+
+.get-sxtimetxt{
+    height: 0.45rem;
+    width: 2rem;
+    padding-left:0.2rem;
+    font-size: 0.2rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    border-radius: 1rem;
+    float: left;
+    border: 1px solid black;
+    background-color:#ffffff;
+    margin:-0.05rem 0 0 0.7rem;
+}
+.type_text{
+    float: left;
+    margin:0.1rem 0 0 -1.4rem;
+}
+.get-typetxt{
+    height: 0.45rem;
+    width: 2rem;
+    padding-left:0.2rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    border-radius: 1rem;
+    float: left;
+    font-size: 0.2rem;
+    border: 1px solid black;
+    background-color:#ffffff;
+    margin:-0.01rem 0 0 0.7rem;
+}
+.comptype_text{
+    float: left;
+    margin:0.06rem 0 0 -1.4rem;
+}
+.get-comptxt{
+    height: 0.45rem;
+    width: 2rem;
+    padding-left:0.2rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    border-radius: 1rem;
+    float: left;
+    font-size: 0.2rem;
+    border: 1px solid black;
+    background-color:#ffffff;
+    margin:-0.05rem 0 0 0.7rem;
+}
+
+.confirm_inp{
+    position: absolute;
+    left: -1.6rem;
+    top: 5.95rem;
+}
+.confirm_inp input[type="button"]{
+    -webkit-appearance:none;
+    width:4.5rem;
+    height:0.6rem;
+    background-color:rgb(240,52,89);
+    font-size: 0.25rem;
+    color:#ffffff;
+    border-radius:0.1rem;
+    -webkit-border-radius: 0.1rem;
+    -moz-border-radius: 0.1rem;
+}
+.btn_blue {
+    background: #C50512 none repeat scroll 0% 0%;
+    border-radius: 1rem;
+    color: #FFFFF0;
+    text-decoration: none;
+}
+/* CSS Media Queries */
+/*-----------------------------------------------------------------------------------*/
+
+

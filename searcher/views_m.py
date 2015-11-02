@@ -1041,5 +1041,9 @@ def search(request):
 
 def result(request):
     return render_to_response('search_listresult_m.html',{}, context_instance=RequestContext(request))
+
+def detail_search(request):
+    return render_to_response('detail_search_m.html',{}, context_instance=RequestContext(request))
+
 def agreement(request):
     return render_to_response('agreement_m.html',{}, context_instance=RequestContext(request))
