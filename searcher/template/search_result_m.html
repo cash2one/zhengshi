@@ -39,7 +39,7 @@
 {% endif %}
     <div style="width:4.7rem;height:0.4rem; background:#cccccc;"></div>
 	<div class="log_contenttt">
-		<div style="overflow:hidden;width:4.7rem;height:0.6rem;padding-top:0.2rem;padding-left:0.2rem;">
+		<div style="overflow:hidden;width:4.5rem;height:0.6rem;padding-top:0.2rem;padding-left:0.2rem;">
 			<div style="font-size:0.25rem;float:left;">
 			   标的搜索结果
 			</div>
@@ -138,28 +138,22 @@
         }
 
         {% if params %}
-            document.getElementById("params").value= [{{params}}];
-            document.getElementById("amount").value= amount;
-            document.getElementById("page").value= page;
-            document.getElementById("sorttype").value= sorttype;
-            document.getElementById("sortorder").value= sortorder;
-
-            $("#formid").submit();
+            var a= [{{params}}];
         {% else %}
             var a = [1,7,13,16,22,28,36];
-            $.get("{% url 'search_result_m' %}",
-                    {
-                        params: a,
-                        amount: amount,
-                        page: page,
-                        sorttype: sorttype,
-                        sortorder: sortorder
-                    },
-                    function (data) {
-                        $('#result_form').html(data.content_html);
-                    }
-            );
         {% endif %}
+        $.get("{% url 'search_result_m' %}",
+                {
+                    params: a,
+                    amount: amount,
+                    page: page,
+                    sorttype: sorttype,
+                    sortorder: sortorder
+                },
+                function (data) {
+                    $('#result_form').html(data.content_html);
+                }
+        );
     }
 </script>
 <script type="text/javascript">
