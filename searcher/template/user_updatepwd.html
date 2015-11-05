@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>修改密码</title>
    	<link href="/static/css/base.css" rel="stylesheet" type="text/css"/>
@@ -54,7 +55,29 @@
 	.send_code input[type="text"]{width:100px;height:30px;}
 	.user_pwd{padding-left:20px;}
 	.user_box{ border:2px solid #ddd; border-radius:5px;overflow:hidden;}
-    </style>
+
+	
+    @media only screen and (min-device-width:240px) and (max-device-width:767px){
+	#content {
+    position: relative;
+    width: 100%;
+    }
+    #login_content {
+    width: 600px;
+    height: 620px;
+    background: #EEEEF0;
+    margin-top: -10px;
+    min-width: 1420px;
+    }
+   .login_mid {
+    padding: 20px 0px;
+    height: 500px;
+    width: 600px;
+    z-index: 999;
+    margin: 10px auto;
+    }
+    }
+</style>
 </head>
 
 <body>
@@ -100,6 +123,7 @@
 				</div>
 			</div>
 		</div>
+		{% include "footer.html" %}   
 	</div>
 </div>
 
@@ -149,7 +173,7 @@
 	});
 	  
 </script>
-{% include "footer.html" %}           
+        
 <!---安全中心 end-->
 </body>
 </html>

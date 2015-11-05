@@ -4,6 +4,7 @@
 {% load pagination_tags %}
 <html>
 <head lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>搜索结果</title>
     <script src="{% static 'js/jquery.min.js' %}"></script>
@@ -33,9 +34,7 @@
 {% endif %}
 
 <div id="middd">
-    <div class="user_con">
-        {% include "little_search.html" %}
-    </div>
+   
     <div class=" search_content mt10">
         <div id="search_norm" class="search_result_box">
             {% regroup dimensions by dimension  as choices_list %}

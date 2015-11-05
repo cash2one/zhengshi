@@ -6,6 +6,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>注册</title>
     <link href="/static/css/base.css" rel="stylesheet" type="text/css"/>
@@ -30,11 +31,12 @@
 <div id="header">
     <div class="top">
         <ul class="nav">
-        	<li style="margin-top:10px;"><img src="/static/images/logo_red.png" width="250" height="50"/></li>
+        	<li><img src="/static/images/logo_red.png" width="250" height="50"/></li>
             <li><a href="{% url 'searchindex' %}">首页</a></li>
             <!--<li><a href="{% url 'do_reminder' %}">提醒</a></li>-->
             <li><a href="{% url 'myfavorite' 4 %}">收藏</a></li>
             <li><a href="{% url 'bbsindex' %}">社区</a></li>
+            <li><a href="{% url 'activearea' %}">活动</a></li>
         </ul>
         <ul id="login_header">
         	<li><a class="#" href="{% url 'login' %}">登录</a>
@@ -118,7 +120,7 @@
                         <hr />
                     </li>		
                     <li>
-                        <div style=" margin-left:160px;">注册即视为同意天天搜贷<a href="/agreement/"><<服务条款>></a></div>
+                        <div style=" margin-left:160px;">注册即视为同天天搜贷<a href="/agreement/"><<服务条款>></a></div>
                     </li>
                     <li>
                         <hr />
@@ -130,7 +132,7 @@
                         <div style="margin-top:5px; margin-left:368px;font-size:12px;">已有天天搜贷账号,<a href="{% url 'login' %}">登录</a></div>
                         
                     </li>
-                    <li style="position:absolute;top: 703px;left: 789px;">
+                    <li class="reglitpic">
                         <img src="/static/images/smalllogo.png" />
                     </li>
                 </ul>

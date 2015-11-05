@@ -41,34 +41,7 @@ table a:hover { color: #FF0000; text-decoration: underline;}
 {% include "header.html" %}
 <div style=" background:#EEEEF0;">
 <div id="middd" style="display:inline" align="center" >
-<div class="user_con">
-    <div class="bbs_search" style="width: 750px;display:inline-block;">
-        <div class="bbs_logo fl"><a href="{% url 'searchindex' %}"><img src="/static/images/logo1.png"/></a></div>
-            <div class="bbs_hunt textbox">
-                <form action="{% url 'searchindex' %}" method="post">
-                    {% if form.searchWord %}
-                        {{ form.searchWord }}
-                    {% else %}
-                        <input class="fl" id="id_searchWord" name="searchWord" type="text" placeholder="请输入投资金额"/>
-                    {% endif %}
-                    <input type="submit" class="bbs_search_btn" value="">
-                </form>
-            </div>
-        <div class="lastinput" style="display: none">
-            {{ form.searchWord }}
-        </div>
-    </div>
-</div>
-<table width="895" height="10" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td></td>
-  </tr>
-</table>
-<table width="895" height="5" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td></td>
-  </tr>
-</table>
+  <div class="tablebig">
 <table width="895" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td width="247"><img src="/static/images/contact_about/nr_01bai.png" width="247" height="34" /></td>
@@ -139,7 +112,7 @@ table a:hover { color: #FF0000; text-decoration: underline;}
 <div style="height:40px;"></div>
 </div>
 
-<div style="padding-top:20px;"></div>
+</div>
 </div>
 {% include "footer.html" %}
 </div>

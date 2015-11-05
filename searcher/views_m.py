@@ -252,7 +252,6 @@ def checkuser(request):
 
 def checkuser_phone(request):
         response = HttpResponse()
-
         response['Content-Type'] = "text/javascript"
         u_ajax = request.POST.get('name', None)
         if u_ajax:
@@ -284,7 +283,6 @@ def register(request):
                 response.write('{"info": "用户可以使用","status": "y"}')
                 return response
         form = RegisterForm(request.POST)
-
 
         if form.is_valid():
             cd = form.cleaned_data
@@ -1039,8 +1037,6 @@ def search_listresult(request):
                                   context_instance=RequestContext(request))
 
 
-
-
 def search(request):
     form = SearchForm()
     t = get_template('search_m.html')
@@ -1053,11 +1049,7 @@ def search(request):
         }
     return HttpResponse(json.dumps(payload), content_type="application/json")
 
-def result(request):
-    return render_to_response('search_listresult_m.html',{}, context_instance=RequestContext(request))
-
 def detail_search(request):
     return render_to_response('detail_search_m.html',{}, context_instance=RequestContext(request))
-
 def agreement(request):
     return render_to_response('agreement_m.html',{}, context_instance=RequestContext(request))

@@ -5,18 +5,19 @@
 <!DOCTYPE html>
 <html xmlns:wb="http://open.weibo.com/wb">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>天天搜贷</title>
-    <script src="/static/js/yz.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="header">
 <div class="top">
 <ul class="nav">
-    <li style="margin-top:10px;"><img src="/static/images/logo_red.png" width="250" height="50"/></li>
+    <li><img src="/static/images/logo_red.png" width="250" height="50"/></li>
     <li><a href="{% url 'searchindex' %}">首页</a></li>
     <li><a href="{% url 'myfavorite' 4 %}" class="needlogin">收藏</a></li>
     <li><a href="{% url 'bbsindex' %}">社区</a></li>
+    <li><a href="{% url 'activearea' %}">活动</a></li>
 </ul>
 <div class="top_right">
 {% ifequal user.id None %}
@@ -56,141 +57,6 @@
             $("#login-li").hide();
         }
     });
-
-    $(function () {
-        //$(".registerform").Validform();  //就这一行代码！;
-
-        var demo = $(".registerform").Validform({
-            btnSubmit: "#btn_login",
-            tiptype: 3,
-            label: ".label",
-            showAllError: true,
-            datatype: {
-                "zh1-6": /^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
-            },
-            ajaxPost: true,
-            callback: function (data) {
-                if (data == 2) {
-                    alert('用户不存在或密码错误');
-                    $(".code_pic").trigger("click")
-                }
-                else if (data == 3) {
-                    alert('用户被锁定');
-                    $(".code_pic").trigger("click")
-                }
-                else if (data == 4) {
-                    alert('验证码输入错误');
-                    $(".code_pic").trigger("click")
-                }
-                else {
-                    if (window.location.pathname == '/') {
-                        location.reload();
-                    }
-                    else {
-                        $('#header').html(data.content_html);
-                    }
-                }
-            }
-        });
-{#        //通过$.Tipmsg扩展默认提示信息;#}
-{#        //$.Tipmsg.w["zh1-6"]="请输入1到6个字符！";#}
-{#        demo.tipmsg.w["zh1-6"] = "请输入1到6个字符！";#}
-
-        demo.addRule([
-            {
-                ele: ".inputxt:eq(0)",
-                datatype: "*1-200"
-            },
-            {
-                ele: ".inputxt:eq(1)",
-                datatype: "*1-20"
-            },
-            {
-                ele: ".inputxt:eq(2)",
-                datatype: "n4"
-            }
-        ]);
-        $.Hidemsg();
-
-    });
-
-    $(function () {
-        //$(".registerform").Validform();  //就这一行代码！;
-
-        var demo = $(".registerform1").Validform({
-            tiptype: 3,
-            label: ".label",
-            showAllError: true,
-            datatype: {
-                "zh1-6": /^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
-            },
-            ajaxPost: true
-        });
-
-        //通过$.Tipmsg扩展默认提示信息;
-        //$.Tipmsg.w["zh1-6"]="请输入1到6个字符！";
-        demo.tipmsg.w["zh1-6"] = "请输入1到6个字符！";
-
-        demo.addRule([
-            {
-                ele: ".inputxt:eq(0)",
-                datatype: "*6-16"
-            },
-            {
-                ele: ".inputxt:eq(1)",
-                datatype: "*6-20"
-            },
-
-            {
-                ele: ".inputxt:eq(2)",
-                datatype: "e"
-            },
-            {
-                ele: ".inputxt:eq(3)",
-                datatype: "*7-9"
-            },
-            {
-                ele: ".inputxt:eq(4)",
-                datatype: "n4"
-            }
-        ]);
-
-    });
-
-    function a_login() {
-        var username = $("input[name=log_un]").val();
-        var pwd = $("input[name=log_pwd]").val();
-        var code = $("input[name=log_code]").val();
-        $.post("{% url 'login' %}",
-                {
-                    log_un: username,
-                    log_pwd: pwd,
-                    log_code: code
-                },
-                function (data) {
-                    if (data == 2) {
-                        alert('用户不存在或密码错误');
-                        $(".code_pic").trigger("click")
-                    }
-                    else if (data == 3) {
-                        alert('用户被锁定');
-                        $(".code_pic").trigger("click")
-                    }
-                    else if (data == 4) {
-                        alert('验证码输入错误');
-                        $(".code_pic").trigger("click")
-                    }
-                    else {
-                        if (window.location.pathname == '/') {
-                            location.reload();
-                        }
-                        else {
-                            $('#header').html(data.content_html);
-                        }
-                    }
-                }
-        );
-    }
 
     //未登陆结束
     </script>

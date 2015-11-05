@@ -20,7 +20,7 @@ header {
 .txt_iframe input[type="text"] {
     height: 0.3rem;
     margin: -0.35rem 0 -0.45rem 1.5rem;
-    width: 2.62rem;
+    width: 2.63rem;
     -webkit-border-radius: 2%;
     -moz-border-radius: 2%;
     border-radius: 2%;
@@ -31,7 +31,7 @@ header {
 .hea_search input[type="button"]{
     width: 0.75rem;
     height: 0.32rem;
-    margin: -0.35rem 0 -0.45rem 4.13rem;
+    margin: -0.35rem 0 -0.45rem 4.14rem;
     float: left;
     color: #000;
     font-size: 0.2rem;

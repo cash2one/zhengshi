@@ -108,5 +108,18 @@ input.login_butt{display:inline-block;border:0}
 #print_ucon{margin-left:40px;margin-top:-20px;}
 #print_ucon{line-height:25px}
 #print_ucon .elul2 {margin-left:45px;}
-
-
+.zhankeng{
+    height: 50px;
+    background: #EEEEF0 none repeat scroll 0% 0%;
+    width: 100%;
+	min-width:1420px;
+}
+.xjt{position:absolute; top: 519px;left: 788px;}
+.reglitpic{position:absolute;top: 703px;left: 789px;}
+@media (min-width: 768px) and (max-width:1200px) {
+.reglitpic{position:absolute;top: 703px;left: 589px;}
+.xjt {
+    position: absolute;
+    top: 519px;
+    left: 588px;
+}}

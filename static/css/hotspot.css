@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding:0;
+}
+.hot_trans {
+    height: 400px;
+    background-color: #FFF;
+    width: 460px;
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+    z-index: 1;
+    position: absolute;
+    left: 960px;
+}
+
+.hot_content {
+    background: url('/static/images/zc_banner.png');
+    background-repeat: repeat-x;
+}
+.hot_conHeight{
+    height:600px;
+}
+.search {
+    height: 60px;
+    line-height: 60px;
+    margin:20px 0 0 0;
+    width: 420px;
+}
+.hot_com{
+    height: 60px;
+    line-height: 40px;
+    width: 420px;
+    margin-top:-30px;
+}
+.hot_comtitle h3{
+    background:url('/static/images/ico.png') no-repeat 0 center;
+    font-size:18px;
+    padding-left:25px;
+}
+.hot_comtitle{
+}
+.hot_comlist{
+    font-size:16px;
+}
+
+.hot{
+    padding-top: 10%;width: 420px;
+}
+.hot_comlink {
+    padding:10px 0 10px 0;
+    font-size:16px;
+}
+.hot_comlink a:hover{ color:#ff0000;}
+.hot_comlink a{color:#666;}
+.hot_comlist a:hover{color:#ff0000;}
+.hot_comlist a{color:#666;}
+.search input, .btn_search {
+    float: left;
+}
+
+.search input {
+    width: 320px;
+    line-height: 30px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    font-size: 18px;
+    color: #999;
+}
+
+.search input:hover {
+    border: 1px solid #c50512;
+}
+
+.search input.btn_search {
+    background: url('/static/images/search.png') no-repeat 0 0;
+    display: inline-block;
+    width: 47px;
+    height: 42px;
+    border: none;
+    cursor: pointer;
+}
+
+.search input.btn_search:hover {
+    border: none;
+}
+.hot_position{
+    position:absolute;
+    height:400px;
+    left:1000px;
+    z-index:2;
+}
+@media (min-width: 768px) and (max-width:1200px) {
+.hot_trans {
+    height: 400px;
+    background-color: #FFF;
+    width: 460px;
+    border: 1px solid #000;
+    opacity: 0.6;
+    z-index: 1;
+    position: absolute;
+    left: 560px;
+}
+.hot_position {
+    position: absolute;
+    height: 400px;
+    left: 620px;
+    z-index: 2;
+}}

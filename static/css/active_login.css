@@ -1,0 +1,56 @@
+﻿
+#log_ul1{margin-left: 20px;}
+
+.trans{height:400px; background-color:#FFF;width:460px;filter:alpha(opacity=60);opacity:0.6;z-index: 1;
+    position: absolute;left:962px;}
+/*登录*/
+.log_cons{}
+/*手机号码的文字和文本框*/
+#call_code input[type="text"]{width:245px;height:30px;margin-left:20px;}
+#call_code span{position:absolute;}
+.log_ucon{line-height:25px;margin-left:50px;}
+
+/*密码的文字和文本框*/
+.log_pwdcon{line-height:25px;margin-left:54px;}
+#user_pwd input[type="password"]{width:245px;height:30px;margin-left:45px;}
+#user_pwd span{position:absolute;}
+
+/*验证码的文字和文本框*/
+.log_codecon{line-height:25px;margin-left:54px;}
+#user_code input[type="text"]{width:140px;height:30px;margin-left:30px;}
+#user_code span{position:absolute;margin-left: 100px;}
+#user_code img{width:94px;height:30px;position:absolute}
+
+#login_header li{ float:left; position:relative; margin:0 5px;left:713px;}
+#login_header li a{color:#ccc;font-size:14px;}
+#login_header li a:hover{ color:#ff0000;}
+
+.display{display:none}
+/*.borbtom{border-bottom:1px solid #f40;}
+.borbtom2{border-bottom:1px solid #dedede;}*/
+#ul11 a{color:#000000;}
+#ul11 a:hover{color:#e1640d;}
+#warp{width:100%;height:800px;background:#EEEEF0;}
+#login_content{width:100%;height:620px;}
+.log_text{overflow:hidden;padding:6px;}
+
+.login_mid{ padding:10px 0 0 0;height:400px;z-index:999;position:absolute;left: 960px;width: 460px;}
+#quick_log ul{padding:16px 0px;}
+#quick_reg ul{padding:6px 0px;}
+@media (min-width: 768px) and (max-width:1200px) {
+.trans {
+    height: 400px;
+    background-color: #FFF;
+    width: 460px;
+    opacity: 0.6;
+    z-index: 1;
+    position: absolute;
+    left: 560px;
+}
+.login_mid {
+    padding: 20px 0px;
+    height: 380px;
+    z-index: 999;
+    position: absolute;
+    left: 550px;
+}}

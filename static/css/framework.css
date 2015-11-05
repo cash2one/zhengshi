@@ -1,0 +1,98 @@
+.zd-imgChange {
+    position: relative;
+    margin: auto;
+    padding: 0px;
+    min-width: 200px;
+    min-height: 100px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    cursor: pointer;
+    overflow: hidden;
+}
+.zd-imgChange-change {
+    cursor:pointer;
+    color:#fff;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    background: rgba(0,0,0,0);
+    width: 10%;
+    height: 100%;
+    text-align: center;
+    opacity: 0.1;
+    z-index: 1;
+    -moz-transition: opacity 0.4s;
+    -o-transition: opacity 0.4s;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+    border:none;
+}
+    .zd-imgChange-change:hover {
+        opacity: 1;
+    }
+.zd-imgChange-change-left {
+    float: left;
+}
+.zd-imgChange-change-right {
+    float: right;
+}
+.zd-imgChange-img {
+    z-index: 0;
+    padding: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: rgba(100,0,0,0.1);
+    width: 100%;
+    height: 100%;
+}
+.zd-imgChange-img-item {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border: none;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    -moz-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+    opacity: 1;
+    z-index: -1;
+}
+.zd-imgChange-img-item-temp{
+    z-index:0;
+}
+.zd-imgChange-img-item-sel {
+    z-index: 1;
+}
+.zd-imgChange-controll {
+    z-index: 2;
+    padding: 0px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 20%;
+    background: rgba(0,0,0,0);
+    text-align: center;
+    -moz-transition: background 0.4s;
+    -o-transition: background 0.4s;
+    -webkit-transition: background 0.4s;
+    transition: background 0.4s;
+    text-shadow: 0px 0px 5px #000;
+    opacity: 0.7;
+	display: none;
+}
+
+    .zd-imgChange-controll span {
+        -moz-transition: color 0.4s;
+        -o-transition: color 0.4s;
+        -webkit-transition: color 0.4s;
+        transition: color 0.4s;
+    }
+    .zd-imgChange-controll span:hover {
+        color: rgba(0,0,0,0.6);
+    }

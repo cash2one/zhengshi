@@ -1,0 +1,82 @@
+/*
+* 	Owl Carousel Owl Demo Theme 
+*	v1.24
+*/
+.title-slider-caption{
+	background-color:rgba(0,0,0,0.5);
+	color:#FFFFFF;
+	margin-top:-78px;
+	padding-top:9px;
+	padding-left:20px;
+	padding-right:20px;
+	padding-bottom:9px;
+	text-align:left;
+	text-trasnform:uppercase;
+	font-size:11px;
+}
+.slider-controls{
+	margin-bottom:-23px;
+}
+
+.next-slider{
+	background-image:url(../images/ui/next.png);
+	background-repeat:no-repeat;
+	width:27px;
+	height:27px;
+	background-size:27px;
+	height:27px;
+	position:absolute;
+	right:480px;
+	margin-top:20%;
+	z-index:999;
+}
+
+.prev-slider{
+	background-image:url(../images/ui/prev.png);
+	background-repeat:no-repeat;
+	width:27px;
+	height:27px;
+	background-size:27px;
+	height:27px;
+	position:absolute;
+	left:20px;
+	margin-top:20%;
+}
+
+.small-slider-caption{
+	background-color:rgba(0,0,0,0.5);
+	color:#FFFFFF;
+	margin-top:-54px;
+	padding-top:7px;
+	padding-bottom:7px;
+	text-align:center;
+	text-trasnform:uppercase;
+	font-size:11px;
+	opacity:0.7;
+}
+
+.title-slider-caption em{
+	font-style:normal;
+	opacity:0.7;
+}
+@media (min-width: 768px) and (max-width:1200px) {
+.prev-slider {
+    background-image: url("../images/ui/prev.png");
+    background-repeat: no-repeat;
+    width: 27px;
+    background-size: 27px auto;
+    height: 27px;
+    position: absolute;
+    left: 20px;
+    top: 5%;
+}
+.next-slider {
+    background-image: url("../images/ui/next.png");
+    background-repeat: no-repeat;
+    width: 27px;
+    background-size: 27px auto;
+    height: 27px;
+    position: absolute;
+    right: 480px;
+    top: 5%;
+}}

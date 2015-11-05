@@ -54,7 +54,7 @@
 
         {% if not results.has_next and results.has_previous %}
             &nbsp;<a href="javascript:void(0)" class="seach_cheekk1"
-               onclick="takepage({{ results.next_page_number }})">上一页</a>
+               onclick="takepage({{ results.previous_page_number }})">上一页</a>
         {% endif %}
 
 </div>

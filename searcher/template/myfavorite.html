@@ -12,16 +12,16 @@
             padding-top: 60px;
         }
     </style>
-    <!--[if lt IE 9]>
-    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <!--[if gte IE 8]>
+<script src="js/placeholder.min.js"></script>
+<![endif]-->
+
     {% bootstrap_javascript_tag %}
     {% block extra_head %}{% endblock %}
 </head>
 <body>
-<input type="button" id="bidbutton" value="bid" onclick="bid()"/>
-<input type="button" id="platformbutton" value="platform" onclick="platform()"/>
+<input type="button" id="bidbutton" value="bid" onClick="bid()"/>
+<input type="button" id="platformbutton" value="platform" onClick="platform()"/>
 <div class="navbar" id="bid" style="display: block">
     <div class="navbar-inner">
         {% for f in favoritebid %}

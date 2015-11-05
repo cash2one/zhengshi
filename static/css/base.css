@@ -14,6 +14,7 @@ body, button, input, select, textarea {font:12px tahoma, arial, Verdana, sans-se
 h1, h2, h3, h4, h5, h6 {font-size:12px;font-style:normal;}
 ol, ul, li, dl, dd, dt {list-style:none;}
 table {border-collapse:collapse;border-spacing:0;}
+.tablebig{width: 900px;padding-top:40px;padding-bottom:40px;margin: 0px auto;}
 .fl {float:left;}
 .fr {float:right;}
 .cb {clear:both;}
@@ -22,11 +23,12 @@ table {border-collapse:collapse;border-spacing:0;}
 b,i{ font-style:normal; font-weight:normal;}
 /*头部*/
 #header,#footer{ width:100%;margin:0px;padding:0px;background:#372c3A;}
-#header{height:60px; line-height:60px;min-width: 1420px;}
+#header{height:60px; line-height:60px;}
 .top{ padding:0px;}
 
 .nav{padding-left:5%;}
-.nav li{ float:left;}
+.nav li{ float:left;height: 60px;}
+.nav li img{padding-top:10px;}
 .nav li a{ margin:0 10px; color:#ccc; font-size:16px;}
 .nav li a:hover{color:#ff0000;}
 .top_right{ float:right; color:#ccc;padding-right:10%}
@@ -55,10 +57,10 @@ background: none repeat scroll 0% 0% #FFF; z-index:999; position:absolute; right
 .top_name li img{ margin-top:20px; float:left; margin-right:10px; width:24px; height:24px;}
 .mun{ background:#ff0000; width:10px; display:inline-block; height:10px; text-align:center; line-height:10px; position:absolute; color:#fff; top:2px; left:18px; font-size:10px; border-radius:5px;} 
 .top_name ul{ background:rgba(0,0,0,0.6)!important; width:100px!important; right:-30px!important;}
-.user_con{ width:1024px; margin:0 auto;}
+.user_con{ width:1024px; margin:0 auto;min-height: 485px;}
 
 
-#container {min-height:65%;height: auto; position: relative;background:#EEEEF0;min-width: 1420px;min-height: 520px;}
+
 /*底部*/
 #footer{ width:100%; clear:both;text-algin:center;min-width:1420px;}
 /*.footer {width:100%; color:#333; text-align:center;font-size:14px;}*/
@@ -84,7 +86,7 @@ background: none repeat scroll 0% 0% #FFF; z-index:999; position:absolute; right
 .footer_top a:hover{color:#ff0000}
 .footer_top a{ margin:0 10px; color:#fff; font-size:14px; }
 .cdjf{position:absolute;left:10%;padding-top:5px;}
-.footer_bottom a{color:#000000;width: 60px;padding-left:40px;}
+.footer_bottom a{color:#000000;width:90px;padding-left:30px;}
 .footer_bottom { background:#EEEEF0; height:30px;margin-bottom:0px;min-width: 1420px;position: absolute;}
 .footer_top ul{padding-left:10%;}
 .ful{margin-top:15px; margin-left:-50px;}
@@ -169,42 +171,95 @@ placeholder{
 
 /*验证*/
 .Validform_error{background-color: #ffe7e7;border: 1px solid #ccc;}
-.Validform_checktip{color: #999;font-size: 12px; height: 20px;line-height: 20px;overflow: hidden; }
-.Validform_wrong{color: red;padding-left: 20px;white-space: nowrap; background:url(../images/error.png) no-repeat 0 center;}
+.Validform_checktip{color: #999;font-size: 12px; height: 20px;line-height: 20px;/*overflow: hidden*/}
+.Validform_wrong{color: red;padding-left: 20px;/*white-space: nowrap;*/ background:url(../images/error.png) no-repeat 0 center;}
 .Validform_right{color: #71b83d;padding-left: 20px; background:url(../images/right.png) no-repeat 0 center;}
 #Validform_msg{ display:none;}
 .user_conter{height:100%;}
 #ttt{position: absolute; border: 0px solid rgb(255, 0, 0); width: 250px; height: 390px; z-index: 1; top: 15%; left: 75%;}
-.footer_boxImg{width:120px;height:120px;margin-left:50px;margin-top:20px;position: absolute;}
+.footer_boxImg{width:120px;height:120px;margin-left: 5px;margin-top:20px;position: absolute;}
 .dyhImg{margin-left: 33px;}
-.activedetail{position: absolute;top:728px;left:550px;width: 100px;height:30px;z-index: 1;}
-.fastreq{position: absolute;top:728px;left:700px;width: 100px;height:30px;z-index: 1;}
+.activedetail{position: absolute;top:763px;left:550px;width: 100px;height:30px;z-index: 1;}
+.fastreq{position: absolute;top:763px;left:700px;width: 100px;height:30px;z-index: 1;}
 .fastreq input{width: 100px;height:30px;-webkit-border-radius: 4px;;-moz-border-radius: 4px;;border-radius: 4px;background:#FF7F50}
 .activedetail input{width: 100px;height:30px;-webkit-border-radius: 4px;;-moz-border-radius: 4px;;border-radius: 4px;background:#FF7F50}
 .jecon{width: 100%; height: 100%;margin-left:-100px;position: absolute;}
 .contwid{width:430px;height:1px; background:#EEEEF0;margin-top:20px;matgin-left:20px;}
 .contwid1{width:430px;height:1px; background:#EEEEF0;margin-top:85px;matgin-left:20px;}
 .detail_conn{padding-left:60px;height:120px;width:460px;}
-#containerdetail{min-height:65%;height:65%; position: relative;background:#EEEEF0;min-width: 0px;}
+#containerdetail{min-height:65%;height:65%; position: relative;background:#EEEEF0;min-width: 1420px;}
 .neirongwide{width:80%;margin:0px auto;}
+.gjfhy{padding-top: 5px;position: absolute;left: 52%;}
+.bigdiv{background:#EEEEF0;height: 100%;margin: 0px auto;}
+@media (min-width: 1221px) and (max-width:1550px){
+.searchresullt{width:95%;margin:0px auto;}
+.searchleft{width:46%;float:left;}
+.searchright{width:46%;float:right;}
+#header{height:60px; line-height:60px;min-width:1420px;}}
+@media (min-width: 1551px){
+.searchresullt {
+    width: 90%;
+    margin: 0px auto;
+}
+.searchleft {
+    float: left;
+    width: 43.5%;
+}
+.searchright {
+    float: right;
+    width: 43.5%;
+}
+.footer_bottom {
+    background: #EEEEF0 none repeat scroll 0% 0%;
+    height: 30px;
+    margin-bottom: 0px;
+    min-width: 1580px;
+    position: absolute;
+}}
 @media (min-width: 768px) and (max-width:1200px) {
-#footer{ width:100%; clear:both;text-algin:center;min-width:0px;}
+.searchresullt {width: 100%; margin-left: 15px;}
+.searchright{width: 93%;left: 30px;position: absolute;top:940px;}
+.searchleft { width: 93%;float: left; margin-left: 15px;position: absolute;}
+.searchleft {float: left;margin-left: 15px;position: absolute;width: 93%;}
 #header{height:60px; line-height:60px;min-width: 0px;}
 #login_header{width:100px;margin-left: 100px;height: 20px;position: absolute;}
 #container {min-height:65%;height:80%; position: relative;background:#EEEEF0;min-width: 0px;}
-#middd {width: 100%;background: #EEEEF0 none repeat scroll 0% 0%;margin: 0px;padding: 0px;min-width: 0px;}
+#middd {width: 100%;background: #EEEEF0 none repeat scroll 0% 0%;margin: 0px;padding: 0px;min-width: 0px;min-height: 1110px;}
 .logo img{margin-left:0px;}
 #ttt{position: absolute;top: 15%;border: 0px solid #F00;width: 250px;height: 390px;z-index: 1;left: 75%;}
 .footer_boxImg {width: 120px;height: 120px;margin-top: 20px;margin-left: 0px;position: absolute;}
 .dyhImg{margin-left: 33px;}
 .footer_bottom {background: #EEEEF0 none repeat scroll 0% 0%;height: 30px;margin-bottom: 0px;min-width:0px;position: absolute;width: 100%;}
-.footer_bottom a {color: #000;width: 60px;padding-left: 20px;}
-.footer_main{color: #FFFFFF;}
+.footer_bottom a{color:#000000;padding-left:15px;width: 70px;}
+.footer_main{color: #FFFFFF;position: absolute;}
 .fastreq{position: absolute;top:750px;left:54%;width: 100px;height:30px;z-index: 1;}
 .activedetail{position: absolute;top:750px;left:35%;width: 100px;height:30px;z-index: 1;}
 .jecon{width: 100%; height: 100%;position: absolute;margin: 0px auto;}
-.detail_border {width:450px;height: 330px;background: #FFF none repeat scroll 0% 0%;float: right;margin: 40px 40px 20px 0px;}
 #container_detail {position: relative;background: #EEEEF0 none repeat scroll 0% 0%;min-width: 0px;min-height: 65%;height: 60%;}
+#containerdetail {
+    min-height: 65%;
+    height: 65%;
+    position: relative;
+    background: #EEEEF0 none repeat scroll 0% 0%;
+    min-width: 0px;
+}
+.gjfhy {
+    padding-top: 5px;
+    position: absolute;
+    left: 50%;
+}
+.bigdiv{
+    background: #EEEEF0 none repeat scroll 0% 0%;
+    height: 100%;
+    margin: 0px auto;
+    min-height: 950px;
+}
+.search_content {
+    width: 800px;
+    padding-top: 20px;
+    margin: 0px auto;
+}
+
 #midddt {width: 100%;overflow: hidden;background: #EEEEF0 none repeat scroll 0% 0%;margin: 0px 0px -130px;padding: 0px;min-width: 0px;}
 .xqtz {float: left;margin-left: 110px;}
 .gsjjcd{position:absolute;top:160px;left:300px; width:627px;}
@@ -212,20 +267,64 @@ placeholder{
 .detail_hdimg {height: 65px;width: 200px;margin: 0px auto;}
 .contwid{height: 1px;background: #EEEEF0 none repeat scroll 0% 0%;margin-top: 20px;width: 360px;margin-left: 10px;}
 .contwid1{height: 1px;background: #EEEEF0 none repeat scroll 0% 0%;margin-top: 85px;width: 360px;margin-left: 10px;}
-.detail_ty {font-size: 18px;float: left;padding: 15px 35px;text-align: center;}
-.btn_xq {float: left;padding-left: 70px;}
-.btn_tz {padding-left: 260px;}
-.detail_conn {height: 120px; width: 380px;margin-left: -30px;}
-.containerdetail{min-height: 65%;height: 60%;position: relative;background: #EEEEF0 none repeat scroll 0% 0%;min-width: 0px;}
 .neirongwide{width:98%;margin:0px auto;}
-.detail_img img {padding-top: 20px;width: 200px;height: 50px;margin-left: -270px;}
+.detail_img img {padding-top: 20px;width: 200px;height: 50px;margin-left: 10px;}
 .detail_img {width: 98%;height: 90px;background: #FFF none repeat scroll 0% 0%;border-radius: 5px;margin: 0px auto;}
 .detail_tit h3{ font-size:20px; font-weight:bold; line-height:70px; margin-left:20px;height:70px; width: 720px;overflow:hidden;}
-.detail_hdimg img {margin: 0px auto;height: 65px;width: 200px;}}
-
+}
 @media (max-width: 767px) {
-.footer_boxImg {width: 120px;height: 120px;margin-top: 20px;margin-left: -30px;position: absolute;}
-.footer_main {width: 980px;}
-#header {height: 60px;line-height: 60px;width: 113%;}
-#footer {clear: both;width: 113%;}
-.footer_bottom {background: #EEEEF0 none repeat scroll 0% 0%;height: 30px;margin-bottom: 0px;position: absolute;width: 113%;}}
+#header {
+height: 60px;
+line-height: 60px;
+min-width: 1420px;
+}
+.searchresullt {
+width: 100%;
+float: left;
+margin-left: 15px;
+}
+.searchleft {
+    margin-left: 15px;
+    width: 98%;
+}
+.searchright{width:98%;left: 10px;}
+.search_Tab tr td {
+    text-align: center;
+    color: #868686;
+    padding: 10px;
+}
+.footer_main {
+color: #FFFFFF;
+width: 950px;
+}
+.footer_boxImg {
+width: 100px;
+height: 120px;
+position: absolute;
+left: 1200px;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+width: 100%;
+}
+#footer {
+width: 100%;
+clear: both;
+min-width: 1420px;
+}
+#middd {
+width: 100%;
+background: #EEEEF0 none repeat scroll 0% 0%;
+margin: 0px;
+padding: 0px;
+height: 100%;
+min-height: 100px;
+}
+
+.gjfhy{
+    padding-top: 5px;
+    position: absolute;
+    left: 45%;
+}}
+

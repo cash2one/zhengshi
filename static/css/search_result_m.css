@@ -14,7 +14,7 @@
 .seach_cheek:hover{ background:#d23c46; color:#fff;}
 .seach_cheekk:hover{ background:#d23c46; color:#fff;}
 body{height:100%;overflow:hidden;min-width:5rem;width: expression_r( document.body.clientWidth < 5.1 ? "5rem" : "auto" );}
-.search_reorder{font-size:0.21rem;float:right;padding-right: 0.3rem;}
+.search_reorder{font-size:0.21rem;float:right;}
 .search_reorder a{color:#000000;}
 .search_reorder a{text-decoration:none;}
 .search_reorder a{ display:inline-block;}

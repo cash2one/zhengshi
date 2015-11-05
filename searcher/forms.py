@@ -80,7 +80,7 @@ class LoginForm(forms.Form):
     def valiatetype(self, a):
         global msg
         if a == 2:
-            msg = u"登录失败！"
+            msg = u"用户名和密码不匹配！"
             self._errors["username"] = self.error_class([msg])
         elif a == 3:
             msg = u"用户被锁定"

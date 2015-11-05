@@ -1,0 +1,44 @@
+﻿.search_Tab{margin-bottom:10px;margin-left: -15px;}
+.search_Tab tr td{ padding:10px 1px; text-align:center; color:#868686;}
+.search_Tab tr td.search_title{ font-size:14px; color:#333; font-weight:bold;}
+.search_Tab tr td img{ width:110px; height:30px;}
+.seach_cheek{ display:block; background:#c50512; color:#fff; text-align:center; line-height:30px; height:30px; font-size:14px; width:80px;}
+.seach_cheek:hover{ background:#d23c46; color:#fff;}
+.c_red{ font-size:14px; color:#ff0000; font-weight:bold;}
+.search_bd_no{ border:none; background:#FFFFFF;margin-bottom:30px;}
+#search_show{ display:none;}
+.search_reorder{ padding-top:10px;text-align:right; background:#FFFFFF;}
+.search_reorder a{ display:inline-block; padding:0 8px; margin-left:10px; height:24px; line-height:24px;}
+.search_reorder a:hover{ color:#c50512; border:1px solid #c50512;}
+.search_reorder a i{ padding-left:5px;}
+.search_reorder a.order_jx,.search_reorder a.order_sx{ background:#c50512; color:#fff; border:1px solid #c50512;}
+.search_reorder a.order_jx i{ background:url(../images/jiantou.png) no-repeat right center; padding-right:10px;}
+.search_reorder a.order_sx i{background:url(../images/jiantou1.png) no-repeat right center;padding-right:10px;}
+.onineRs{width:650px;height:1px; background:#eeeef0;padding-left:1%;}
+
+@media (min-width: 768px) and (max-width:1200px) {
+	.search_Tab {
+    margin-bottom: 10px;
+    width: 98%;
+}
+.onineRs{width:950px;height:1px; background:#eeeef0;padding-left:1%;}
+	.search_Tab tr td {
+    text-align: center;
+    color: #868686;
+    padding: 10px;
+}
+}
+@media (max-width: 767px) {
+<!---newindexsub--->
+.search_Tab {
+margin-bottom: 10px;
+margin-left: -20px;
+width:98%;
+}
+.onineRs {
+width: 98%;
+height: 1px;
+background: #eeeef0;
+padding-left: 1%;
+}
+}

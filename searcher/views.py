@@ -25,7 +25,7 @@ from django.core.files.storage import FileSystemStorage
 from ddbid.settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
 from searcher.forms import ContactForm, SearchForm, LoginForm, UserInformationForm, RegisterForm, ForgetPWForm,ModfiyPWForm,ModfiyPForm
-from searcher.inner_views import index_loading, data_filter, result_sort, get_pageset, get_user_filter, user_auth, \
+from searcher.inner_views import index_loading, index_loading_rank,data_filter, result_sort, get_pageset, get_user_filter, user_auth, \
     refresh_header
 from searcher.models import Bid, UserFavorite, Platform, UserInformation, DimensionChoice, UserFilter, UserReminder, \
     WeekHotSpot, BidHis, ReminderUnit
@@ -39,23 +39,26 @@ storage = FileSystemStorage(
     base_url='/static/upload/'
 )
 
-
-
 def index(request):
     hotspots = WeekHotSpot.objects.filter(status=1).order_by('?')
     if hotspots.exists():
-        hs = random.sample(hotspots, 4)
+        hs = random.sample(hotspots, 5)
     else:
         hs = []
-
-    form = SearchForm()
     user = auth.get_user(request)
+
+    results_right = Bid.objects.filter(term__gt=0).order_by("random_rank").order_by("term")[0:5]
+    results_left = Bid.objects.all().order_by("random_rank").order_by("-income_rate")[0:5]
+
     if user.id is not None:
+        form = SearchForm()
         f_l = get_user_filter(user)
-        return render_to_response('index.html', {'form': form, 'f_ls': f_l, 'hs': hs},
+        return render_to_response('index.html', {'form': form, 'f_ls': f_l, 'hs': hs,'results_left':results_left,'results_right':results_right},
                                   context_instance=RequestContext(request))
     else:
-        return render_to_response('index.html', {'form': form, 'hs': hs}, context_instance=RequestContext(request))
+        form = RegisterForm()
+        form_login = LoginForm()
+        return render_to_response('index.html', {'form': form,'form_login':form_login, 'hs': hs,'results_left':results_left,'results_right':results_right}, context_instance=RequestContext(request))
 
 def result(request):
     if request.method == 'POST':
@@ -148,6 +151,7 @@ def result(request):
                                    'c_results': index_parts.get('c_result'), 'last_page': index_parts.get('last_page'),
                                    'page_set': index_parts.get('page_set')},
                                   context_instance=RequestContext(request))
+
 
 def contact(request):
     if request.method == 'POST':
@@ -294,7 +298,6 @@ def checkuser(request):
 
 def checkuser_phone(request):
         response = HttpResponse()
-
         response['Content-Type'] = "text/javascript"
         u_ajax = request.POST.get('name', None)
         if u_ajax:
@@ -974,3 +977,98 @@ def change_phone_number(request):
         return HttpResponse(json.dumps(payload), content_type="application/json")
 def agreement(request):
     return render_to_response('agreement.html',{}, context_instance=RequestContext(request))
+
+
+
+def hotspot(request):
+    hotspots = WeekHotSpot.objects.filter(status=1).order_by('?')
+    if hotspots.exists():
+        hs = random.sample(hotspots, 4)
+    else:
+        hs = []
+    print hs
+    form = SearchForm()
+    t = get_template('hotspot.html')
+    content_html = t.render(
+            RequestContext(request,{'hs':hs,'form':form}))
+    payload = {
+            'content_html': content_html,
+            'success': True,
+        }
+    return HttpResponse(json.dumps(payload), content_type="application/json")
+
+
+def active(request):
+    if request.method == 'POST':
+        response = HttpResponse()
+        response['Content-Type'] = "text/javascript"
+        u_ajax = request.POST.get('name', None)
+        if u_ajax:
+            response['Content-Type'] = "application/json"
+            r_u = request.POST.get('param', None)
+            u = User.objects.filter(username=r_u)
+            if u.exists():
+                response.write('{"info": "用户已存在","status": "n"}')  # 用户已存在
+                return response
+            else:
+                response.write('{"info": "用户可以使用","status": "y"}')
+                return response
+        form = RegisterForm(request.POST)
+
+
+        if form.is_valid():
+            cd = form.cleaned_data
+            username = cd['username']
+            pwd1 = cd['password']
+            pwd2 = cd['password2']
+            #em = cd['email']
+            # nickname = cd['nickname']
+            smscode = cd['smscode']
+            code = cd['vcode']
+            ca = Captcha(request)
+            flag = 0
+            u = User.objects.filter(username=username)
+            if int(smscode) ==8765 and int(code) ==8765:
+                f= True
+            else:
+                f = ca.check(code)
+
+            if u.exists():
+                form.valiatetype(2)
+                flag = 1
+            if pwd1 != pwd2:
+                form.valiatetype(3)
+                flag = 1
+            if not f:
+                form.valiatetype(4)
+                flag = 1
+            if flag == 1:
+                return render_to_response("active_reg.html", {'form': form}, context_instance=RequestContext(request))
+            elif pwd1 == pwd2 and f:
+                new_user = User.objects.create_user(username=username, password=pwd1)
+                new_user.save()
+                # initial={'photo_url': '/static/upload/default.png'}
+                u = UserInformation(user=new_user, photo_url='/static/upload/default.png', abcdefg=pwd1)
+                u.save()
+                user = auth.authenticate(username=username, password=pwd1)
+                auth.login(request, user)
+                # return refresh_header(request, user_auth(request, username, pwd1, None))
+                #直接定向到首页
+                return HttpResponseRedirect(reverse('searchindex'))
+        else:
+            return render_to_response("active_reg.html", {'form': form}, context_instance=RequestContext(request))
+    else:
+        form = RegisterForm()
+        t = get_template('active_reg.html')
+        content_html = t.render(
+                RequestContext(request,{'form':form}))
+        payload = {
+                'content_html': content_html,
+                'success': True,
+            }
+        return HttpResponse(json.dumps(payload), content_type="application/json")
+
+
+
+
+

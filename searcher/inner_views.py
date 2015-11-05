@@ -242,6 +242,7 @@ def index_loading(amount, params, page):
                    'page_set': page_set}
     return index_parts
 
+
 def index_loading_rank(amount, params, page,rank):
     c_bs = combination_bid(amount, 1)
     c_wj = combination_bid(amount, 2)

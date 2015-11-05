@@ -1,0 +1,64 @@
+
+.reg_trans{height:600px; background-color:#FFF;width:460px;border: 1px solid black;filter:alpha(opacity=60);opacity:0.6;z-index: 1;
+    position: absolute;left:960px;}
+#signup_content{height:600px;}
+
+/*手机号码文字和文本框的样式*/
+.singup_call{margin-left:80px;line-height:20px;}
+#call_inp{margin-left:90px;}
+#call_inp input[type="text"]{width:245px;height:30px;margin-left:20px;}
+.call_lbl span{width:90px;height:20px;max-height:20px;max-width:90px;border:0px solid red;position: absolute}
+
+/*密码文字和文本框的样式*/
+#pwd_inp input[type="password"]{width:245px;height:30px;margin-left: 47px;}
+.signup_pwd{margin-left:175px;line-height:20px;}
+.pwd_lbl span{position:absolute;}
+
+/*确认密码文字和文本框的样式*/
+.signup_copwd{margin-left:140px;line-height:20px;}
+.signup_copwd span{position:absolute;}
+#copwd_inp input[type="password"]{width:245px;height:30px;margin-left: 18px;}
+
+/*验证码的文字和文本框的样式*/
+.signup_yzcode{margin-left:165px;line-height:20px;}
+.signup_yzcode span{position:absolute;margin-left: 95px;}
+#sms_inp input[type="text"]{width:150px;height:30px;margin-left: 30px;}
+#sms_inp img{width:85px;height:30px;}
+
+/*短信验证码的文字和文本框的样式*/
+.singup_smscode{margin-left:135px;line-height:20px;}
+.singup_smscode span{position:absolute;margin-left: 95px;}
+.singup_smscode li{padding:1px 0;}
+#yzcode_inp input[type="text"]{width:150px;height:30px;}
+
+.signup_mid{position:absolute;left:-175px;height:340px;width:615px;z-index: 2;overflow:hidden;}
+.reg_header{ background:url(../images/reg_bg.png) no-repeat 250px center;}
+.reg_btn{ width:178px;}
+.yzmcode img{color:#FFFFFF;}
+.registerform .need{ color: #b20202;width: 10px;}
+#Validform_msg{ display:none;}
+
+.signup_agree{font-size:12px;line-height:25px;margin-top:5px;}
+.signup_agree a{color:#000000;}
+.signup_agree a:hover{color:#e1640d;cursor:pointer;}
+.registerform #signup_ul1{margin-left:45px;}
+input.login_butt{display:inline-block;border:0}
+
+@media (min-width: 768px) and (max-width:1200px) {
+.trans {
+    height: 600px;
+    background-color: #FFF;
+    width: 460px;
+    opacity: 0.6;
+    z-index: 1;
+    position: absolute;
+    left: 560px;
+}
+.login_mid {
+    padding: 20px 0px;
+    height: 500px;
+    z-index: 999;
+    position: absolute;
+    left: 500px;
+}
+}
