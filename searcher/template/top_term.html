@@ -41,7 +41,7 @@
             var ob = $(this).attr('name');
             $.post("/bid_detail_p/",{"object_id":ob},function(data)
                 {
-                  if(data==1){ location.href = "/bid_detail/"+ob;}else{alert("该标的已过期，无法显示，敬请谅解！")};});
+                  if(data==1){ location.href = "/bid_detail/"+ob;}else{alert("该标的已过期，刷新后您可以继续查看其它标的！");location.reload();};});
        });
     });
 });
