@@ -332,3 +332,38 @@ def result_sort(data, sorttype, sortorder):
     if o_string:
         data = data.order_by(o_string)
     return data
+
+import re
+def send_flow_all(phone):
+    p = re.compile('^13[4-9][0-9]{8}|^15[0,1,2,7,8,9][0-9]{8}|^18[2,7,8][0-9]{8}|^147[0-9]{8}|^178[0-9]{8}')
+    if p.match(phone):
+        send_flow(phone, 70)
+        print phone ,'移动'
+    else:
+        send_flow(phone, 50)
+
+
+import urllib2,urllib,hashlib
+def send_flow(phone, package):
+    m = { 'account' : 'shcidajr', 'mobile' : phone,'package' : package,}
+    params = ''
+    for k in sorted(m.keys()):
+        if len(params) > 0:
+            params += "&"
+        params += (k + "=" + str(m[k]))
+    params = params + '&key=' +'fba13724adac4b0b862fab34b7dca288'
+    print params
+
+    m = hashlib.md5()
+    m.update(params)
+    cookies = urllib2.HTTPCookieProcessor()
+    opener = urllib2.build_opener(cookies)
+    url_charge = r'http://www.llt400.com:8080/api.aspx?action=charge&v=1.1&account=shcidajr&mobile=%s&package=%s&sign=%s'%(phone,package,m.hexdigest())
+
+    request = urllib2.Request(
+        url = url_charge,
+        headers= {'Content-Type':'text/xml'},
+        data = ''
+    )
+
+    print opener.open(request).read()

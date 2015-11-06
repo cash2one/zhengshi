@@ -3,6 +3,7 @@ from django.conf.urls import patterns, url
 urlpatterns = patterns('searcher.views',
     url(r'^contact/$', 'contact', name='contact'),
     url(r'^$', 'index', name='searchindex'),
+    url(r'^my/$', 'index', name='searchindex'),
     url(r'^active/$',  'active', name='active'),
     url(r'^hotspot/$',  'hotspot', name='hotspot'),
     url(r'^result/$',  'result', name='result'),

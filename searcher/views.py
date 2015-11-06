@@ -26,7 +26,7 @@ from ddbid.settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
 from searcher.forms import ContactForm, SearchForm, LoginForm, UserInformationForm, RegisterForm, ForgetPWForm,ModfiyPWForm,ModfiyPForm
 from searcher.inner_views import index_loading, index_loading_rank,data_filter, result_sort, get_pageset, get_user_filter, user_auth, \
-    refresh_header
+    refresh_header, send_flow_all
 from searcher.models import Bid, UserFavorite, Platform, UserInformation, DimensionChoice, UserFilter, UserReminder, \
     WeekHotSpot, BidHis, ReminderUnit
 from ddbid import conf
@@ -39,6 +39,7 @@ storage = FileSystemStorage(
     base_url='/static/upload/'
 )
 
+import re
 def index(request):
     hotspots = WeekHotSpot.objects.filter(status=1).order_by('?')
     if hotspots.exists():
@@ -49,6 +50,23 @@ def index(request):
 
     results_right = Bid.objects.filter(term__gt=0).order_by("random_rank").order_by("term")[0:5]
     results_left = Bid.objects.all().order_by("random_rank").order_by("-income_rate")[0:5]
+
+    if request.GET.get('register_success', None) is not None:
+        form = SearchForm()
+        f_l = get_user_filter(user)
+        print user,f_l,"xxxxxxxxxxxxxx",type(user.username)
+        p = re.compile('^13[4-9][0-9]{8}|^15[0,1,2,7,8,9][0-9]{8}|^18[2,7,8][0-9]{8}|^147[0-9]{8}|^178[0-9]{8}')
+        p1 = re.compile('^18[0,1,9][0-9]{8}|^133[0-9]{8}|^153[0-9]{8}|^177[0-9]{8}')
+        phone = user.username
+        if p.match(str(phone)):
+            flag1 = 1
+        elif p1.match(str(phone)):
+            flag1 = 2
+        else:
+            flag1 = 3
+
+        return render_to_response('index.html', {'flag1':flag1,'register_success':1,'form': form, 'f_ls': f_l, 'hs': hs,'results_left':results_left,'results_right':results_right},
+                                  context_instance=RequestContext(request))
 
     if user.id is not None:
         form = SearchForm()
@@ -336,8 +354,7 @@ def register(request):
             username = cd['username']
             pwd1 = cd['password']
             pwd2 = cd['password2']
-            #em = cd['email']
-            # nickname = cd['nickname']
+
             smscode = cd['smscode']
             code = cd['vcode']
             ca = Captcha(request)
@@ -363,9 +380,17 @@ def register(request):
                 u.save()
                 user = auth.authenticate(username=username, password=pwd1)
                 auth.login(request, user)
-                # return refresh_header(request, user_auth(request, username, pwd1, None))
-                #直接定向到首页
-                return HttpResponseRedirect(reverse('searchindex'))
+                send_flow_all(username)
+                p = re.compile('^13[4-9][0-9]{8}|^15[0,1,2,7,8,9][0-9]{8}|^18[2,7,8][0-9]{8}|^147[0-9]{8}|^178[0-9]{8}')
+                p1 = re.compile('^18[0,1,9][0-9]{8}|^133[0-9]{8}|^153[0-9]{8}|^177[0-9]{8}')
+                phone = username
+                if p.match(str(phone)):
+                    flag1 = 1
+                elif p1.match(str(phone)):
+                    flag1 = 2
+                else:
+                    flag1 = 3
+                return  render_to_response("reg_success.html", {'flag1':flag1}, context_instance=RequestContext(request))
         else:
             return render_to_response("reg.html", {'form': form}, context_instance=RequestContext(request))
     else:

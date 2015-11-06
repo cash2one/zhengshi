@@ -17,14 +17,66 @@
 
 	<script type="text/javascript" src="/static/js/jquery.js"></script>
     <script src="/static/js/yz.js" type="text/javascript"></script>
-	<script type="text/javascript" src="/static/js/owl.carousel.min.js"></script>
 
     <script type="text/javascript" src="/static/js/sendtime_index.js"></script>
     <link href="/static/css/active_reg.css" rel="stylesheet" type="text/css" media="all"/>
     <link rel="stylesheet" href="/static/css/hotspot.css" media="all">
     <link href="/static/css/active_login.css" rel="stylesheet" type="text/css" media="all"/>
 	<link href="/static/css/framework.css" rel="stylesheet" type="text/css" media="all"/>
+<script type="text/javascript">
+		$(function(){
+		/*四秒钟换一张*/
+		var a = 0;
 
+		$(".btn li").click(function(){	
+		 $(".btn li").removeClass("on");
+		 $(this).addClass("on");
+		 a=$(this).index();
+		 $(".banner li a").hide();
+		 $(".banner li a").eq(a).show();
+		});
+		function sroll(){
+			if(a<1){
+			a++;
+			}else{
+			a=0;
+			}
+		 on();	
+		}
+		var timer=setInterval(sroll,4000);
+		$(".banner,.prev,.next").mouseover(function(){
+		  clearInterval(timer);
+		}).mouseout(function(){
+		  timer=setInterval(sroll,4000);
+		})
+		$(".prev").click(function(){
+			if(a>0){
+				a--;
+			}else{
+				a=1;
+				}
+			on();
+			
+		})
+		$(".next").click(function(){
+			 
+			if(a<1){
+			a++;
+			}else{
+				a=0;
+			}
+		  on(); 
+
+		});
+	
+		function on(){
+		 $(".btn li").removeClass("on");
+		 $(".btn li").eq(a).addClass("on");
+		 $(".banner li a").hide();
+		 $(".banner li a").eq(a).show();
+		}	
+	})
+	</script>
     <script>
         $(function () {
             $("#logorreg").find("h2").click(function () {
@@ -47,36 +99,7 @@
             window.location.href="http://ddbid.com/activearea/";
         }
     </script>
-	 <script>
-            var a_imgs = new Array(//插入图片地址
-                '/static/images/jinrongpic.jpg',
-                '/static/images/jinrongpic.jpg',
-                '/static/images/jinrongpic.jpg',
-                '/static/images/jinrongpic.jpg'
-                ),
-                a_links = new Array(//点击图片跳转的网址
-                'www.baidu.com',
-                'www.qq.com',
-                'www.google.com',
-                'www.zol.com'
-                ),
-                a_tips = new Array(//鼠标停靠的提示
-                '百度',
-                '腾讯',
-                '谷歌',
-                '中关村'
-                );
-            $(function () {
-            $('#imgc').zoeDylan_ImageChange({//设置
-			    width: 1420,
-                height: 600,
-                imgs: a_imgs,
-                links: a_links,
-                tips: a_tips,
-                timers:2000
-            });
-            });
-    </script>
+
 </head>
 
 <body>
@@ -114,9 +137,6 @@
                                                 <li id="call_code">
                                                     <label style="font-size:15px;font-weight:bold;margin-left:-50px;"> 手机号码：</label>
                                                     <label>{{ form_login.username }}</label>
-                                                    <label>
-                                                        <div style="border:0px solid #000;width:90px;height:30px;margin-top:-33px;margin-left:300px;"></div>
-                                                    </label>
                                                 </li>
                                             </ul>
 
@@ -124,9 +144,6 @@
                                                 <li id="user_pwd">
                                                     <label style="font-size:15px;font-weight:bold;margin-left:-50px;">密码：</label>
                                                     <label>{{ form_login.password }}</label>
-                                                    <label>
-                                                        <div style="border:0px solid #000;width:90px;height:30px;margin-top:-33px;margin-left:296px;"></div>
-                                                    </label>
                                                 </li>
                                             </ul>
 
@@ -137,9 +154,7 @@
                                                     <label style="margin-left:5px;"><img
                                                             onclick="this.setAttribute('src',{% url 'verifycode' %} + '?nocache='+Math.random());"
                                                             src="{% url 'verifycode' %}"/></label>
-                                                    <label>
-                                                        <div style="border:0px solid #000;width:90px;height:30px;margin-top:-34px;margin-left:296px;"></div>
-                                                    </label>
+
                                                 </li>
                                             </ul>
 
@@ -174,7 +189,6 @@
                                                             <li id="call_inp">
                                                                 <label style="margin-left:-40px;font-size:15px;font-weight: bold"> 手机号码：</label>
                                                                 <label class="call_lbl" style="z-index:999">{{ form.username }}</label>
-                                                                <label><div style="border:0 solid #000;width:90px;height:43px;margin-top:-45px;margin-left:306px;"></div></label>
 
                                                                 {#              <input type="button" value="验证用户名是否存在？" name="un_valid" onClick="check_valid()">#}
                                                             </li>
@@ -184,8 +198,6 @@
                                                             <li id="pwd_inp">
                                                                 <label style="margin-left:-43px;font-size:15px;font-weight: bold"> 密码：</label>
                                                                 <label class="pwd_lbl" style="z-index:999">{{ form.password }}</label>
-                                                                <label><div style="border:0 solid #000;width:90px;height:43px;margin-top:-45px;margin-left:306px;"></div></label>
-
                                                             </li>
                                                             <li style="clear:both"></li>
                                                         </ul>
@@ -193,7 +205,6 @@
                                                             <li id="copwd_inp">
                                                                 <label style="margin-left:-8px;font-size:15px;font-weight: bold">确认密码：</label>
                                                                 <label>{{ form.password2 }}</label>
-                                                                <label><div style="border:0 solid #000;width:90px;height:43px;margin-top:-45px;margin-left:340px;"></div></label>
                                                             </li>
                                                             <li style="clear:both"></li>
                                                         </ul>
@@ -203,7 +214,6 @@
                                                                 <label>{{ form.vcode }}</label>
                                                                 <label style="position:absolute;margin-left:5px;"><img onClick="this.setAttribute('src',{% url 'verifycode' %} + '?nocache='+Math.random());"
                                                                                                                        src="{% url 'verifycode' %}"/></label>
-                                                                <label><div style="border:0 solid #000;width:90px;height:43px;margin-top:-45px;margin-left:320px"></div></label>
                                                             </li>
                                                         </ul>
                                                         <ul class="singup_smscode">
@@ -211,8 +221,6 @@
                                                                 <label style="font-size:15px;font-weight: bold">短信验证码：</label>
                                                                 <label >{{ form.smscode }}</label>
                                                                 <label><input type="button" id="rulesubmit" style="color:#FFFFFF; background-color:#4a3c70;border:1px solid #4a3c70; border-radius:10px;-webkit-border-radius:3px;z-index:1;width:85px;height:34px;left:100px;margin-left:5px;" value="发送验证码" /></label>
-                                                                <label><div style="border:0 solid #000;width:90px;height:43px;margin-top:-45px;margin-left:350px"></div></label>
-
                                                             </li>
                                                             <li style="clear:both"></li>
                                                         </ul>
@@ -298,8 +306,16 @@
         </div>
         {% endifequal %}
 		<!--图片切换--->
-	   <div id="imgc" style="display:none;"></div>
-	   <div><img style="cursor:pointer" src="/static/images/68.jpg" onClick="actions()" width="100%" height="400"/></div>
+	   <div class="box">
+		<ul class="banner">
+			<li><a style="display:block;"><img src="/static/images/68.jpg" width="100%"  height="400"></a></li>
+			<li><a href="http://42.96.131.5:8000/activearea/"><img src="/static/images/activepic.jpg" width="100%" height="400"></a></li>
+
+		</ul>
+		<a class="prev" href="javascript:void(0)"><</a>
+		<a class="next" href="javascript:void(0)">></a>
+
+	</div>
 		<!---查询结果---->
 	<div class="searchresullt">
         <!---左边内容---->
@@ -401,8 +417,18 @@
 </script>
 <script type="text/javascript">
     $(function () {
+        {% if register_success %}
+            {% ifequal  flag1 1 %}
+                alert("恭喜你，获得70M移动流量包！");
+            {% endifequal %}
+            {% ifequal  flag1 3 %}
+                alert("恭喜你，获得50M联通流量包！");
+            {% endifequal %}
+            {% ifequal  flag1 2 %}
+                alert("恭喜你，获得50M电信流量包！");
+            {% endifequal %}
 
-
+        {% endif %}
 
         //$(".registerform").Validform();  //就这一行代码！;
 
