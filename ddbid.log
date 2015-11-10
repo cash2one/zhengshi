@@ -1,0 +1,3 @@
+Mon, 09 Nov 2015 19:53:35 defaulttags.py[line:60] WARNING /usr/local/lib/python2.7/dist-packages/django/template/defaulttags.py:60: UserWarning: A {% csrf_token %} was used in a template, but the context did not provide the value.  This is usually caused by not using RequestContext.
+  warnings.warn("A {% csrf_token %} was used in a template, but the context did not provide the value.  This is usually caused by not using RequestContext.")
+

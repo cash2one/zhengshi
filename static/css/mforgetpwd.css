@@ -104,6 +104,7 @@ header {
     -webkit-border-radius: 0.03rem;
     -moz-border-radius: 0.03rem;
     border-radius: 0.03rem;
+    border:none;
 }
 .fgetpwd_sub input[type="submit"]{
     width:4.5rem;
@@ -112,4 +113,5 @@ header {
     margin:0.3rem 0 0 -0.8rem;
     font-size: 0.25rem;
     color:#ffffff;
+    border:none;
 }

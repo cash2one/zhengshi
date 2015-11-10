@@ -4,7 +4,7 @@ import MySQLdb
 import datetime
 from itertools import chain
 import json
-import os
+import os,re
 import random
 
 from django.core.serializers.json import DjangoJSONEncoder
@@ -26,7 +26,7 @@ from ddbid.settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
 from searcher.forms import ContactForm, SearchForm, LoginForm, UserInformationForm, RegisterForm, ForgetPWForm,ModfiyPWForm,ModfiyPForm
 from searcher.inner_views import index_loading, index_loading_m,data_filter, result_sort, get_pageset, get_user_filter, user_auth, \
-    refresh_header
+    refresh_header, send_flow_all
 from searcher.models import Bid, UserFavorite, Platform, UserInformation, DimensionChoice, UserFilter, UserReminder, \
     WeekHotSpot, BidHis, ReminderUnit
 from ddbid import conf
@@ -316,9 +316,17 @@ def register(request):
                 u.save()
                 user = auth.authenticate(username=username, password=pwd1)
                 auth.login(request, user)
-                # return refresh_header(request, user_auth(request, username, pwd1, None))
-                #直接定向到首页
-                return HttpResponseRedirect(reverse('search_result_m'))
+                send_flow_all(username)
+                p = re.compile('^13[4-9][0-9]{8}|^15[0,1,2,7,8,9][0-9]{8}|^18[2,7,8][0-9]{8}|^147[0-9]{8}|^178[0-9]{8}')
+                p1 = re.compile('^18[0,1,9][0-9]{8}|^133[0-9]{8}|^153[0-9]{8}|^177[0-9]{8}')
+                phone = username
+                if p.match(str(phone)):
+                    flag1 = 1
+                elif p1.match(str(phone)):
+                    flag1 = 2
+                else:
+                    flag1 = 3
+                return  render_to_response("reg_success_m.html", {'flag1':flag1}, context_instance=RequestContext(request))
         else:
             return render_to_response("reg_m.html", {'form': form}, context_instance=RequestContext(request))
     else:
