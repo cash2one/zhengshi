@@ -1,14 +1,14 @@
-﻿.user,.user_conter,.user_box,.user_list,.user_detail,.user_detail dd,.user_detail p{ overflow:hidden;}
-
-
-
+﻿#container{ background:#EEEEF0;max-width:1660px;min-width: 1050px;width:expression(document.body.clientWidth < 1050? "1050px": "auto" );}
+.user,.user_conter,.user_box,.user_list,.user_detail,.user_detail dd,.user_detail p{ overflow:hidden;}
+.user_conter {height: 100%;width: 98%; margin: 0px auto;}
 .user_left{ width:150px;}
 .user_box{ border:2px solid #ddd; border-radius:5px;}
 .user_list{ padding:20px 0;}
 .user_list li{ height:30px; line-height:30px;}
 .user_list li a{ font-size:14px; font-weight:bold; padding-left:20px; height:30px; line-height:30px; display:block;}
 .user_list li a.active,.user_list li a:hover{ background:#ffb2b2; color:#c95124;}
-.user_right{ width:846px;height:100%;margin-bottom:35px;}
+.user_right {width: 825px;height: 100%;margin-bottom: 35px;background: rgb(238, 238, 240) none repeat scroll 0% 0%;}
+#search_norm1 {border-radius: 5px;width: 800px;height: 360px;}
 .user_message{ padding:20px 40px;}
 .user_title{ font-size:18px; font-weight:bold; margin-bottom:20px;}
 .user_detail dt{ float:left;}
@@ -125,9 +125,3 @@ input[type="checkbox"], input[type="radio"]{box-sizing:border-box; padding:0;}
 	filter: alpha(opacity=0);
 	cursor: pointer
 }
-@media (min-width: 768px) and (max-width:1200px) {
-.user_right {
-    width: 820px;
-    height: 100%;
-    margin-bottom: 35px;
-}}

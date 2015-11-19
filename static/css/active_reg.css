@@ -29,7 +29,7 @@
 .singup_smscode{margin-left:135px;line-height:20px;}
 .singup_smscode span{position:absolute;margin-left: 95px;}
 .singup_smscode li{padding:1px 0;}
-#yzcode_inp input[type="text"]{width:150px;height:30px;}
+#yzcode_inp input[type="text"]{width:150px;height:30px;margin:0px;}
 
 .signup_mid{position:absolute;left:-175px;height:340px;width:615px;z-index: 2;overflow:hidden;}
 .reg_header{ background:url(../images/reg_bg.png) no-repeat 250px center;}
@@ -43,22 +43,3 @@
 .signup_agree a:hover{color:#e1640d;cursor:pointer;}
 .registerform #signup_ul1{margin-left:45px;}
 input.login_butt{display:inline-block;border:0}
-
-@media (min-width: 768px) and (max-width:1200px) {
-.trans {
-    height: 600px;
-    background-color: #FFF;
-    width: 460px;
-    opacity: 0.6;
-    z-index: 1;
-    position: absolute;
-    left: 560px;
-}
-.login_mid {
-    padding: 20px 0px;
-    height: 500px;
-    z-index: 999;
-    position: absolute;
-    left: 500px;
-}
-}

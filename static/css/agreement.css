@@ -1,6 +1,6 @@
 ﻿
 
-#div1{background-color:#eeeef0;height:730px;margin:0px auto;}
+#div1{background-color:#eeeef0;height:730px;margin:0px auto;max-width:1660px;min-width: 1050px;width:expression(document.body.clientWidth < 1050? "1050px": "auto" );}
 #div2{width:600px;height:600px;background-color:#FFFFFF;z-index:1;margin-top:50px;margin: 0px auto;}
 .sign_title{
 	padding: 20px 0;}

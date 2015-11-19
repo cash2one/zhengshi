@@ -42,13 +42,15 @@ input.input_butt{display:inline-block; border:0}
 #ul11 a{color:#000000;}
 #ul11 a:hover{color:#e1640d;}
 #warp{width:100%;height:800px;background:#EEEEF0;}
-#login_content{width:100%;height:620px;background:#EEEEF0;margin-top: -10px;}
+#login_content{width:100%;height:620px;background:#EEEEF0;margin-top: -10px;
+max-width:1660px;min-width: 1050px;width:expression(document.body.clientWidth < 1050? "1050px": "auto" );}
 .log_text li{margin:5px 0;}
 .log_ucon{line-height:25px;margin-left:50px;}
 .login_mid{ padding:20px 0px;height:500px; background-color:#FFF;width:600px; z-index:999;margin: 10px auto;}
 .login_mid ul{padding:10px 0px;}
 /*注册*/
-#signup_content{width:100%;height:800px;background:#EEEEF0;}
+#signup_content{width:100%;height:800px;background:#EEEEF0;
+max-width:1660px;min-width: 1050px;width:expression(document.body.clientWidth < 1050? "1050px": "auto" );}
 .singup_call{margin-left:50px;line-height:20px;}
 #call_inp input[type="text"]{width:400px;height:40px;}
 .call_lbl span{position:absolute;}
@@ -89,7 +91,7 @@ input.input_butt{display:inline-block; border:0}
 input.login_butt{display:inline-block;border:0}
 
 /*取回密码*/
-#forger_conent{width:100%;height:620px;background:#EEEEF0;}
+#forger_conent{width:100%;height:620px;background:#EEEEF0;max-width:1660px;min-width: 1050px;width:expression(document.body.clientWidth < 1050? "1050px": "auto" );}
 .login_retrieve{ padding:5px 10px; border:1px solid #ddd; border-radius:5px;}
 .login_retrieve:hover{ background:#f2f2f2; color:#4c4c4c;}
 .get_pwd{ padding:10px 0;height:440px; background-color:#FFF;width:600px; z-index:999;margin: 0px auto;}
@@ -99,27 +101,16 @@ input.login_butt{display:inline-block;border:0}
 #ul3 label{margin-left:160px;}
 #ul5{margin-top:10px; margin-left:50px;}
 
-.elul2 span{position:absolute;left:495px;top:270px;}
+.elul2 span{position:absolute;left:904px;top:380px;}
 #print_ucon .elul1 input[type="text"]{width:400px;height:40px;margin-left:45px;}
-.elul1 span{position:absolute;left:495px;top:200px;}
+.elul1 span{position:absolute;left:900px;top:310px;}
 #print_ucon .elul2 input[type="text"]{width:300px; height:40px;}
 #print_ucon .label1{margin-left:45px;}
 #print_ucon .label2{margin-left:-1px;}
 #print_ucon{margin-left:40px;margin-top:-20px;}
 #print_ucon{line-height:25px}
 #print_ucon .elul2 {margin-left:45px;}
-.zhankeng{
-    height: 50px;
-    background: #EEEEF0 none repeat scroll 0% 0%;
-    width: 100%;
-	min-width:1420px;
-}
+.zhankeng{height: 50px;background: #EEEEF0 none repeat scroll 0% 0%;width: 100%;
+max-width:1660px;min-width: 1050px;width:expression(document.body.clientWidth < 1050? "1050px": "auto" );}
 .xjt{position:absolute; top: 519px;left: 788px;}
-.reglitpic{position:absolute;top: 703px;left: 789px;}
-@media (min-width: 768px) and (max-width:1200px) {
-.reglitpic{position:absolute;top: 703px;left: 589px;}
-.xjt {
-    position: absolute;
-    top: 519px;
-    left: 588px;
-}}
+

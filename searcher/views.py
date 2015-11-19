@@ -49,7 +49,10 @@ def index(request):
     user = auth.get_user(request)
 
     results_right = Bid.objects.filter(term__gt=0).order_by("random_rank").order_by("term")[0:5]
+    results_right.query.group_by = ['platform_id']
+
     results_left = Bid.objects.all().order_by("random_rank").order_by("-income_rate")[0:5]
+    results_left.query.group_by = ['platform_id']
 
     if request.GET.get('register_success', None) is not None:
         form = SearchForm()

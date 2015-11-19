@@ -222,7 +222,7 @@
 		// friction will slow the particle down
 		this.friction = 0.95;
 		// gravity will be applied and pull the particle down
-		this.gravity = 1;
+		this.gravity = 5;
 		// set the hue to a random number +-50 of the overall hue variable
 		this.hue = random( hue - 50, hue + 50 );
 		this.brightness = random( 50, 80 );
@@ -310,8 +310,11 @@
 		if( timerTick >= timerTotal ) {
 			if( !mousedown ) {
 				// start the firework at the bottom middle of the screen, then set the random target coordinates, the random y coordinates will be set within the range of the top half of the screen
-				fireworks.push( new Firework( cw / 2, ch, random( 0, cw ), random( 0, ch / 2 ) ) );
-				timerTick = 0;
+				//Set the number of fireworks(设置产生烟花的个数)
+				for(var j=0;j<10;j++) {
+					fireworks.push(new Firework(cw / 2, ch, random(0, cw), random(0, ch / 2)));
+					timerTick = 0;
+				}
 			}
 		} else {
 			timerTick++;

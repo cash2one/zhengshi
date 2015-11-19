@@ -103,18 +103,25 @@
 </head>
 
 <body>
+<div class="wap_minwidth">
 {% include "header.html" %}
 <div id="content">
-  
+    <!--图片切换--->
+	<div class="box">
+		<ul class="banner">
+			<li><a style="display:block;"><img src="/static/images/68.jpg" width="100%"  height="400"></a></li>
+			<li><a href="http://ddbid.com/activearea/"><img src="/static/images/activepic.jpg" width="100%" height="400"></a></li>
 
+		</ul>
+		<a class="prev" href="javascript:void(0)"><</a>
+		<a class="next" href="javascript:void(0)">></a>
 
+        <!---登录注册--->
         {% ifequal user.id None %}
-		<div style="position:absolute">
-            <div class="trans">
-            </div>
-            <!---登录的内容--->
-            <div class="content">
+		<div class="allcontent">
+            <div class="trans"> </div>
                 <div id="login_content">
+				
                     <div class="login_mid">
                         <ul id="log_ul1">
                             <ul class="log_text">
@@ -247,10 +254,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+       
         {% else %}
         <!--热点查询-->
-        <div style="position: absolute;">
+        <div class="hot_Selec">
             <div class="hot_trans">
             </div>
             <div class="hot_content">
@@ -279,8 +286,8 @@
                                     {% for f_l in f_ls %}
                                     <li>
                                         <a choices="{{ f_l.choices }}"
-                                           href="{% url 'shortcut_request' f_l.id %}">{{ f_l.name }}</a>
-                                    </li>
+                                           href="{% url 'shortcut_request' f_l.id %}">{{ f_l.name }}</a
+                                    ></li>
                                     {% endfor %}
                                     {% else %}
                                     <a>您还未设置任何快捷查询</a>
@@ -301,28 +308,19 @@
                             <img src="/static/images/maopao.gif">
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>		
         </div>
         {% endifequal %}
-		<!--图片切换--->
-	   <div class="box">
-		<ul class="banner">
-			<li><a style="display:block;"><img src="/static/images/68.jpg" width="100%"  height="400"></a></li>
-			<li><a href="http://ddbid.com/activearea/"><img src="/static/images/activepic.jpg" width="100%" height="400"></a></li>
-
-		</ul>
-		<a class="prev" href="javascript:void(0)"><</a>
-		<a class="next" href="javascript:void(0)">></a>
-
-	</div>
-		<!---查询结果---->
+	</div>	
+	 </div>
+	<!---查询结果---->
 	<div class="searchresullt">
         <!---左边内容---->
 	  <div id="searchleft" class="searchleft">
           <div class="log_contentt" id="result_form">
-             <div style="margin-top:20px;margin-bottom:10px;margin-left:5px;font-size:20px;">收益最高&nbsp;TOP5
-			  <span style="float:right;line-height:24px;"><a href="/result/?rank=-income_rate" style="color:#FF0000;font-size:14px">更多详情</a></span>
+             <div class="res_topdiv">
+			  <span class="qxsydiv">高收益</span>
+			  <span class="res_gdxq"><a href="/result/?rank=-income_rate">更多详情</a></span>
 			 </div>
             {% if results_left %}
                {% for result in results_left %}
@@ -340,7 +338,7 @@
                                                            class="seach_cheek">查看详情</label></td>
                         </tr>
                         <tr>
-                            <td style="width:235px;text-align: left;">
+                            <td style="text-align: left;">
                             借款金额:<font class="c_red">{{ result.amount|floatformat:"0" }}</font>&nbsp;&nbsp;
                             每万元总收益：<font class="c_red">{{ result.ten_thousand_revenue|floatformat:"-2" }}元</font>
                             </td>
@@ -362,8 +360,9 @@
 	  <div id="searchright" class="searchright">
           <div class="log_contentt" id="result_form">
 
-           <div style="margin-top:20px;margin-bottom:10px;margin-left:5px;font-size:20px;">期限最短&nbsp;TOP5
-		   <span style="float:right;line-height:24px;"><a href="/result/?rank=term" style="color:#FF0000;font-size:14px">更多详情</a></span></div>
+           <div class="res_topdiv">
+		   <span  class="qxsydiv">短期限</span>
+		   <span class="res_gdxq"><a href="/result/?rank=term">更多详情</a></span></div>
          
             {% if results_right %}
                {% for result in results_right %}
@@ -381,7 +380,7 @@
                                                            class="seach_cheek">查看详情</label></td>
                         </tr>
                         <tr>
-                            <td style="width:235px;text-align: left;">
+                            <td style="text-align: left;">
                             借款金额:<font class="c_red">{{ result.amount|floatformat:"0" }}</font>&nbsp;&nbsp;
                             每万元总收益：<font class="c_red">{{ result.ten_thousand_revenue|floatformat:"-2" }}元</font>
                             </td>
@@ -402,6 +401,7 @@
 </div>
   
 {% include "footer.html" %}
+</div>
 </body>
 <script type="text/javascript">
  $(document).ready(function () {
