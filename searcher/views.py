@@ -48,16 +48,16 @@ def index(request):
         hs = []
     user = auth.get_user(request)
 
-    results_right = Bid.objects.filter(term__gt=0).order_by("random_rank").order_by("term")[0:5]
+    results_right = Bid.objects.filter(term__gt=0).order_by("random_rank").order_by("term")[0:4]
     results_right.query.group_by = ['platform_id']
 
-    results_left = Bid.objects.all().order_by("random_rank").order_by("-income_rate")[0:5]
+    results_left = Bid.objects.all().order_by("random_rank").order_by("-income_rate")[0:4]
     results_left.query.group_by = ['platform_id']
 
     if request.GET.get('register_success', None) is not None:
         form = SearchForm()
         f_l = get_user_filter(user)
-        print user,f_l,"xxxxxxxxxxxxxx",type(user.username)
+
         p = re.compile('^13[4-9][0-9]{8}|^15[0,1,2,7,8,9][0-9]{8}|^18[2,7,8][0-9]{8}|^147[0-9]{8}|^178[0-9]{8}')
         p1 = re.compile('^18[0,1,9][0-9]{8}|^133[0-9]{8}|^153[0-9]{8}|^177[0-9]{8}')
         phone = user.username
@@ -136,7 +136,7 @@ def result(request):
         results = data_filter(results, filters)
         if sorttype is not None and sortorder is not None:
             results = result_sort(results, sorttype, sortorder)
-        ppp = Paginator(results, 5)
+        ppp = Paginator(results, 6)
         try:
             page = int(request.GET.get('page', '1'))
         except ValueError:
@@ -1097,6 +1097,7 @@ def active(request):
         return HttpResponse(json.dumps(payload), content_type="application/json")
 
 
-
+def new_activearea(request):
+    return render_to_response('new_activearea.html',{}, context_instance=RequestContext(request))
 
 

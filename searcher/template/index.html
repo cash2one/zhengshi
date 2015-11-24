@@ -23,6 +23,11 @@
     <link rel="stylesheet" href="/static/css/hotspot.css" media="all">
     <link href="/static/css/active_login.css" rel="stylesheet" type="text/css" media="all"/>
 	<link href="/static/css/framework.css" rel="stylesheet" type="text/css" media="all"/>
+    <style>
+        .nb{
+            display: block;;
+        }
+    </style>
 <script type="text/javascript">
 		$(function(){
 		/*四秒钟换一张*/
@@ -32,6 +37,7 @@
 		 $(".btn li").removeClass("on");
 		 $(this).addClass("on");
 		 a=$(this).index();
+
 		 $(".banner li a").hide();
 		 $(".banner li a").eq(a).show();
 		});
@@ -49,6 +55,7 @@
 		}).mouseout(function(){
 		  timer=setInterval(sroll,4000);
 		})
+
 		$(".prev").click(function(){
 			if(a>0){
 				a--;
@@ -70,10 +77,12 @@
 		});
 	
 		function on(){
+
 		 $(".btn li").removeClass("on");
 		 $(".btn li").eq(a).addClass("on");
 		 $(".banner li a").hide();
 		 $(".banner li a").eq(a).show();
+
 		}	
 	})
 	</script>
@@ -104,13 +113,12 @@
 
 <body>
 <div class="wap_minwidth">
-{% include "header.html" %}
-<div id="content">
+{% include "header.html" %}<div id="content">
     <!--图片切换--->
 	<div class="box">
 		<ul class="banner">
 			<li><a style="display:block;"><img src="/static/images/68.jpg" width="100%"  height="400"></a></li>
-			<li><a href="http://ddbid.com/activearea/"><img src="/static/images/activepic.jpg" width="100%" height="400"></a></li>
+			<li><a href="http://ddbid.com/new_activearea/"><img src="/static/images/activepic.jpg" width="100%" height="400"></a></li>
 
 		</ul>
 		<a class="prev" href="javascript:void(0)"><</a>
@@ -316,36 +324,61 @@
 	<!---查询结果---->
 	<div class="searchresullt">
         <!---左边内容---->
-	  <div id="searchleft" class="searchleft">
+        <div id="searchleft" class="searchleft">
           <div class="log_contentt" id="result_form">
              <div class="res_topdiv">
-			  <span class="qxsydiv">高收益</span>
-			  <span class="res_gdxq"><a href="/result/?rank=-income_rate">更多详情</a></span>
+			  <h2 class="qxsydiv">高收益</h2>
+                 <span><a class="res_gdxq" href="/result/?rank=-income_rate">更多详情</a></span>
 			 </div>
             {% if results_left %}
                {% for result in results_left %}
-                    <table cellpadding="0" cellspacing="0" border="0" class="search_Tab">
-                    <tr><td colspan="5" style="padding-top: 0px;"><div class="onineRs"></div></td></tr>
+                    <table class="search_Tab">
                         <tr>
-                        <tr>
-                            <td rowspan="2" width="110" align="center" valign="middle">
-                            <img src="{{ result.platform.logo }}"/>
-                            </td>
-                            <td class="search_title" style="width:200px; text-align:left;">{{ result.name }}</td>
-                            <td width="50">期限</td>
-                            <td width="70">年化收益</td>
-                            <td rowspan="2" width="70"><label  target="_blank" id="check_is_exist_{{result.id}}" name="{{result.id}}"
-                                                           class="seach_cheek">查看详情</label></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left;">
-                            借款金额:<font class="c_red">{{ result.amount|floatformat:"0" }}</font>&nbsp;&nbsp;
-                            每万元总收益：<font class="c_red">{{ result.ten_thousand_revenue|floatformat:"-2" }}元</font>
+                            <td class="tab_logo" style="padding-left:1em"  width="110">
+                                <img src="{{ result.platform.logo }}"/>
                             </td>
                             <td>
-                                <font class="c_red">{{ result.term_name|floatformat:"-2" }}</font>{{ result.term_unit }}
+                                <img style="width:80px;height:80px;margin:-36px 0 0 30px;position:relative;left:2.55em" src="/static/images/hot_logos.png"/>
                             </td>
-                            <td><font class="c_red">{{ result.income_rate|floatformat:"-2" }}</font>%</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="search_title" style="width:200px;padding-left:1em; text-align:left;">{{ result.name |title_cut}}</td>
+                        </tr>
+                        <tr>
+                            <td class="first_percent" width="230" style="position:absolute;">
+                                <div style="width:100%;border:1px solid #868686;border-radius:10px;margin-left:1em">
+                                <em style="width:{{ result.process }}%;border-radius:10px;background:url(../static/images/jinduqiao.png)"></em></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="30" style="padding:0.5em"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;display:block;width:130px;padding-left:1em">
+                                <label style="font-size:1em;color:#868686">标的金额:</label><label class="f_red">{{ result.amount|floatformat:"0" }}</label>&nbsp;&nbsp;
+                            </td>
+                            <td style="padding-left:1em;" width="100">
+                                <label style="font-size:1em;color:#868686">已完成:</label><label class="f_red"><span>{{ result.process|floatformat:"0" }}%</span></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left:2em;font-size:1.4em;font-weight:bold;color:#000" width="50">年化率</td>
+                            <td style="padding-left:1em;font-size:1.4em;font-weight:bold;color:#000" width="20">期限</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left:3.5em;">
+                                <label class="c_red">&nbsp;{{ result.income_rate|floatformat:"-2" }}</label><label style="font-size:1.2em;font-weight:bold;color:#000">%</label>
+                            </td>
+                            <td style="padding-left:1em;">
+                                <label class="c_red">{{ result.term_name|floatformat:"-2" }}</label><label style="font-size:1.2em;font-weight:bold;color:#000">{{ result.term_unit }}</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="position:relative;" colspan="2" width="70"><label  target="_blank" id="check_is_exist_{{result.id}}" name="{{result.id}}"
+                                                               class="seach_cheek">查看详情</label></td>
+                            <td style="position:relative;top:-6em;left:-11em">
+                                <div style="width:1px;height:4.2em;background:#EEEEF0;"></div>
+                            </td>
                         </tr>
                     </table>
                 {% endfor %}
@@ -353,43 +386,66 @@
                 <a>无符合查询条件的纪录</a>
             {% endif %}
           </div>
-
-
       </div>
+        <div style="clear:both"></div>
         <!---右边内容---->
 	  <div id="searchright" class="searchright">
           <div class="log_contentt" id="result_form">
-
-           <div class="res_topdiv">
-		   <span  class="qxsydiv">短期限</span>
-		   <span class="res_gdxq"><a href="/result/?rank=term">更多详情</a></span></div>
-         
+              <div class="res_topdiv">
+                  <h2 class="qxsydiv">短期限</h2>
+                  <span><a class="res_gdxq" href="/result/?rank=-income_rate">更多详情</a></span>
+              </div>
             {% if results_right %}
                {% for result in results_right %}
-                    <table cellpadding="0" cellspacing="0" border="0" class="search_Tab">
-                    <tr><td colspan="5" style="padding-top: 0px;"><div class="onineRs"></div></td></tr>
-                        <tr>
-                        <tr>
-                            <td rowspan="2" width="120" align="center" valign="middle">
-                            <img src="{{ result.platform.logo }}"/>
-                            </td>
-                            <td width="200" class="search_title" style="text-align:left;">{{ result.name }}</td>
-                            <td width="50">期限</td>
-                            <td width="70">年化收益</td>
-                            <td rowspan="2" width="70"><label  target="_blank" id="check_is_exist_{{result.id}}" name="{{result.id}}"
-                                                           class="seach_cheek">查看详情</label></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left;">
-                            借款金额:<font class="c_red">{{ result.amount|floatformat:"0" }}</font>&nbsp;&nbsp;
-                            每万元总收益：<font class="c_red">{{ result.ten_thousand_revenue|floatformat:"-2" }}元</font>
-                            </td>
-                            <td>
-                                <font class="c_red">{{ result.term_name|floatformat:"-2" }}</font>{{ result.term_unit }}
-                            </td>
-                            <td><font class="c_red">{{ result.income_rate|floatformat:"-2" }}</font>%</td>
-                        </tr>
-                    </table>
+              <table class="search_Tab">
+                  <tr>
+                      <td style="padding-left:1em"  width="110">
+                          <img src="{{ result.platform.logo }}"/>
+                      </td>
+                      <td>
+                          <img style="width:80px;height:80px;margin:-36px 0 0 30px;position:relative;left:2.55em" src="/static/images/hot_logos.png"/>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td colspan="2" class="search_title" style="width:200px;padding-left:1em; text-align:left;">{{ result.name |title_cut}}</td>
+                  </tr>
+                  <tr>
+                      <td class="first_percent" width="230" style="position:absolute;">
+                          <div style="width:100%;border:1px solid #868686;border-radius:10px;margin-left:1em">
+                              <em style="width:{{ result.process }}%;border-radius:10px;background:url(../static/images/jinduqiao.png)"></em></div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td height="30" style="padding:0.5em"></td>
+                  </tr>
+                  <tr>
+                      <td style="text-align: left;display:block;width:130px;padding-left:1em">
+                          <label style="font-size:1em;color:#868686">标的金额:</label><label  class="f_red">{{ result.amount|floatformat:"0" }}</label>&nbsp;&nbsp;
+                      </td>
+                      <td style="padding-left:1em;" width="100">
+                          <label style="font-size:1em;color:#868686">已完成:</label><label class="f_red"><span>{{ result.process|floatformat:"0" }}%</span></label>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td style="padding-left:2em;font-size:1.4em;font-weight:bold;color:#000" width="50">年化率</td>
+                      <td style="padding-left:1em;font-size:1.4em;font-weight:bold;color:#000" width="20">期限</td>
+                  </tr>
+                  <tr>
+                          <td style="padding-left:3.5em;">
+                          <label class="c_red">&nbsp;{{ result.income_rate|floatformat:"-2" }}</label><label style="font-size:1.2em;font-weight:bold;color:#000">%</label>
+                      </td>
+                      <td style="padding-left:1em;">
+                          <label class="c_red">{{ result.term_name|floatformat:"-2" }}</label><label style="font-size:1.2em;font-weight:bold;color:#000">{{ result.term_unit }}</label>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td style="position:relative;" colspan="2" width="70"><label  target="_blank" id="check_is_exist_{{result.id}}" name="{{result.id}}"
+                                                                                    class="seach_cheek">查看详情</label></td>
+                      <td style="position:relative;top:-6em;left:-11em">
+                          <div style="width:1px;height:4.2em;background:#EEEEF0;"></div>
+                      </td>
+                  </tr>
+              </table>
                 {% endfor %}
             {% else %}
                 <a>无符合查询条件的纪录</a>
@@ -399,8 +455,9 @@
 	
 	</div>
 </div>
-  
+    <div style="width:100%;max-width:1660px;min-width:1350px;">
 {% include "footer.html" %}
+    </div>
 </div>
 </body>
 <script type="text/javascript">

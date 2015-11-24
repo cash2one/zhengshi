@@ -34,6 +34,7 @@ urlpatterns = patterns('searcher.views',
     url(r'^disclaimer/$',  'disclaimer', name='disclaimer'),
     url(r'^checkvcode/$',  'checkvcode', name='checkvcode'),
     url(r'^activearea/$',  'activearea', name='activearea'),
+    url(r'^new_activearea/$',  'new_activearea', name='new_activearea'),
     url(r'^agreement/$',  'agreement', name='agreement'),
 
      url(r'^checkuser/$',  'checkuser', name='checkuser'),

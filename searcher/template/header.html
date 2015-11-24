@@ -14,11 +14,11 @@
 <div id="header">
 <div class="top">
 <ul class="nav">
-    <li><img src="/static/images/logo_red.png" width="250" height="50"/></li>
+    <li><img src="/static/images/logo_red.png" width="250" height="60"/></li>
     <li><a href="{% url 'searchindex' %}">首页</a></li>
     <li><a href="{% url 'myfavorite' 4 %}" class="needlogin">收藏</a></li>
     <li><a href="{% url 'bbsindex' %}">社区</a></li>
-    <li><a href="{% url 'activearea' %}">活动</a></li>
+    <!--<li><a href="{% url 'activearea' %}">活动</a></li>-->
 </ul>
 <div class="top_right">
 {% ifequal user.id None %}

@@ -1,4 +1,4 @@
-﻿#container{ background:#EEEEF0;max-width:1660px;min-width: 1050px;width:expression(document.body.clientWidth < 1050? "1050px": "auto" );}
+﻿#container{ background:#EEEEF0;max-width:1660px;min-width: 1024px;width:expression(document.body.clientWidth < 1024? "1024px": "auto" );}
 .user,.user_conter,.user_box,.user_list,.user_detail,.user_detail dd,.user_detail p{ overflow:hidden;}
 .user_conter {height: 100%;width: 98%; margin: 0px auto;}
 .user_left{ width:150px;}

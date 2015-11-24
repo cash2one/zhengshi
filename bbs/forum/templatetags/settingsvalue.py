@@ -34,4 +34,7 @@ def multiplicative_page(page):
     return (int(page)-1)*18
 register.filter(multiplicative_page)
 
+def title_cut(title):
+    return title[0:12]
+register.filter(title_cut)
 

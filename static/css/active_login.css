@@ -2,7 +2,7 @@
 .allcontent{position:relative;height: 400px; width:460px;float:right;top:-403px;}
 
 /*登录*/
-.login_mid{ padding:10px 0 0 0;height:400px;z-index:999;position:absolute;width: 460px;}}
+.login_mid{ padding:10px 0 0 0;height:400px;z-index:999;position:absolute;width: 460px;font:12px tahoma, arial, Verdana, sans-serif}
 /*手机号码的文字和文本框*/
 #call_code input[type="text"]{width:245px;height:30px;margin-left:20px;}
 #call_code span{position:absolute;}

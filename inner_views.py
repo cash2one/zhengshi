@@ -235,7 +235,7 @@ def index_loading(amount, params, page):
         results = data_filter(results, filters)
     # random.shuffle(results)
     # results = results.order_by('?')
-    ppp = Paginator(results, 6)
+    ppp = Paginator(results, 5)
     last_page = ppp.page_range[len(ppp.page_range) - 1]
     try:
         results = ppp.page(page)

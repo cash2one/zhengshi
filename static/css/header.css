@@ -1,11 +1,10 @@
 ﻿/*头部*/
-#header {margin:0px;padding:0px;height: 60px;line-height: 60px;width: 100%;background-color:#372C3A;
-max-width:1660px;min-width: 1050px;width:expression(document.body.clientWidth < 1050? "1050px": "auto" );}
+#header {margin:0px;padding:0px;height: 60px;line-height: 58px;width: 100%;background-color:#372C3A;
+max-width:1660px;min-width: 1024px;width:expression(document.body.clientWidth < 1024? "1024px": "auto" );}
 .top{ padding:0px;}
 
 .nav{padding-left:5%;}
-.nav li{ float:left;height: 60px;}
-.nav li img{padding-top:10px;}
+.nav li{ float:left;height: 60px;padding:0 0.1em 0 1em}
 .nav li a{ margin:0 10px; color:#ccc; font-size:16px;}
 .nav li a:hover{color:#ff0000;}
 .top_right{ float:right; color:#ccc;padding-right:10%}

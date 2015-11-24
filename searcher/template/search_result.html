@@ -38,7 +38,7 @@
     <div class=" search_content mt10">
         <div id="search_norm">
             {% regroup dimensions by dimension  as choices_list %}
-			 <div style="height:70px;float:left;padding-left: 10px;width: 550px;">
+			 <div style="height:70px;float:left;padding-left: 10px;width: 680px;">
             {% for choices in choices_list %}
                 {% ifequal choices.grouper.type 1 %}
                     <div class="search_list">
@@ -99,12 +99,13 @@
             <div class="search_hd">
                 <h2>标的搜索结果</h2>
             </div>
-            <div class="search_reorder mt10" style="padding-bottom: 0px;">
+            <div class="search_reorder mt10">
                     <a href="javascript:void(0)" sorttype="1">收益<i></i></a>
                     <a href="javascript:void(0)" sorttype="2">投资期限<i></i></a>
             </div>
+		 </div>
         {% include "search_result_single.html" %}
-        </div>
+       
         {% include "search_result_comb.html" %}
         
     </div>
@@ -163,7 +164,6 @@
         }
         else {
 		   document.getElementById('search_norm').style.height="280px";
-		   document.getElementById('mid_search').style.minHeight="1280px";
 		   $('.serchImg').hide();
             $('#onlinepic').hide();
 			$('.search_outside').show();
@@ -171,8 +171,7 @@
         }
     }
     function CancelMore() {
-	  document.getElementById('search_norm').style.height="80px";
-	   document.getElementById('mid_search').style.minHeight="1080px";
+	  document.getElementById('search_norm').style.height="80px";	   
 	   $('.serchImg').show();
 	    $('#onlinepic').show();
         $('.search_outside').hide();

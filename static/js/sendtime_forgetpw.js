@@ -30,8 +30,12 @@ window.setTimeout("timer()",wait);
 } 
 $("#rulesubmit").click(function(){
       var username = $("input[name=username]").val();
+      var vcode = $("input[name=vcode]").val();
       if($('#id_username').hasClass('inputxt Validform_error') || !username){
         alert("请输入手机号！");
+      }
+      else if($('#id_vcode').hasClass('inputxt Validform_error') || !vcode){
+        alert("请输入正确的验证码！");
       }
       else{
         $.post("/send_smscode/", {"phoneNum":username}, function(){});

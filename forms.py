@@ -25,7 +25,7 @@ class ContactForm(forms.Form):
 
 class SearchForm(forms.Form):
     searchWord = forms.IntegerField(required=False, widget=forms.TextInput(
-        attrs={'type': 'text', 'placeholder': '请输入投资金额或者直接搜索'}))
+        attrs={'type': 'text', 'placeholder': '请输入投资金额'}))
 
 
 class LoginForm(forms.Form):
@@ -80,7 +80,7 @@ class LoginForm(forms.Form):
     def valiatetype(self, a):
         global msg
         if a == 2:
-            msg = u"用户名和密码不匹配！"
+            msg = u"登录失败！"
             self._errors["username"] = self.error_class([msg])
         elif a == 3:
             msg = u"用户被锁定"
@@ -468,21 +468,6 @@ class ForgetPWForm(forms.Form):
                 'name': 'smscode',
                 'class': 'inputxt',
                 'ajaxurl': '/checksmscode/'
-            }
-        ),
-    )
-
-    vcode = forms.CharField(
-        required=True,
-        label=u"验证码",
-        error_messages={'required': u'请输入验证码'},
-        widget=forms.TextInput(
-            attrs={
-                'placeholder': u"验证码",
-                'type': 'text',
-                'name': 'yzm',
-                'class': 'inputxt',
-                'ajaxurl': '/checkvcode/'
             }
         ),
     )

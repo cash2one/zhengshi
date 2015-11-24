@@ -1,38 +1,57 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load settingsvalue %}
 <html>
 <body>
 <div class="search_bd" id="result_form">
-    {% if results %}
-        {% for result in results.object_list %}
-            <table cellpadding="0" cellspacing="0" border="0" class="search_Tab" width="100%;">
-			<tr><td colspan="5" style="
-    padding-top: 0px;"><div style=" width:765px; height:1px; background:#eeeef0;padding-left:3%;"></div></td></tr>
-                <tr>
-                <tr>
-                    <td rowspan="2" width="130" align="center" valign="middle"><img
-                            src="{{ result.platform.logo }}"/>
-                    </td>
-                    <td class="search_title search_tl">{{ result.name }}</td>
-                    <td width="80">期限</td>
-                    <td width="100">年化收益</td>
-                    <td rowspan="2" width="100"><label  target="_blank" id="check_is_exist_{{result.id}}" name="{{result.id}}"
-                                                   class="seach_cheek">查看详情</label></td>
-                </tr>
-                <tr>
-                    <td class="search_tl">借款金额：<font
-                            class="c_red">{{ result.amount|floatformat:"0" }}</font>&nbsp;&nbsp;每万元总收益：<font
-                            class="c_red">{{ result.ten_thousand_revenue|floatformat:"-2" }}元</font>
-                    </td>
-                    <td><font class="c_red">
-                        {{ result.term_name|floatformat:"-2" }}
-                    </font>{{ result.term_unit }}
-                    </td>
-                    <td><font class="c_red">{{ result.income_rate|floatformat:"-2" }}</font>%</td>
-                </tr>
-            </table>
+
+	
+
+	  {% if results %}
+	
+        {% for result in results.object_list %} 
+		  <div style="width:285px;height:310px; background:#fff;padding-top:20px;float:left;margin-left:20px;margin-top:10px;">
+		  <div style="margin:0px auto;width:220px;height:240px;">
+		   <div class="tupianImg"><img src="{{ result.platform.logo }}"/></div>
+		   <div style="margin-top:20px;font-size:1.4em;font-weight:bold;">{{ result.name |title_cut}}</div>
+		   <div style="margin-top:20px; width:100%; border:1px solid #868686;border-radius:10px;">
+		   <em style="width:{{result.process}}%;border-radius:10px; background:url(../static/images/jinduqiao.png);height:20px;display:block;"></em></div>
+		   <div style="width:220px;margin-top:20px;">
+			  <div style="float:left;"><span class="font_col">标的金额:</span>
+			  <span class="c_red">{{ result.amount|floatformat:"0" }}</span></div>
+			  <div style="float:right;"><span class="font_col">已完成:</span>
+			  <span class="c_red">{{ result.process|floatformat:"0" }}</span><font class="font_col">%</font></div>
+		   </div>
+		   <div style="width:220px;height:50px;padding-top: 35px;">
+			   <div style="font-size:1.4em;color: black;">
+				   <ul style="float:left;padding-left:5%;">
+					   <li style="line-height:30px;"> <span>年利率</span></li>
+					   <li style="line-height:30px;"><font class="c_red">{{ result.income_rate|floatformat:"-2" }}</font><font class="font_coll">%</font></li>
+				   </ul>
+				   <ul class="shuxianstyle">							  	  
+					   <li><div style="width:1px; height:50px; background:#EEEEF0;"></div></li>
+				   </ul>
+				   <ul style="float:right;">
+					   <li style="line-height:30px;"><span>期限</span></li>
+					   <li style="line-height:30px;"><font>
+						 <font class="c_red">{{ result.term_name|floatformat:"-2" }}</font>
+						 <font class="font_coll">{{ result.term_unit }}</font>
+					   </li>
+				   </ul>
+			   </div>								 
+		   </div>
+		   <div style="margin-top:25px;">
+			   <label  target="_blank" id="check_is_exist_{{result.id}}" name="{{result.id}}"
+			   class="seach_cheek">查看详情</label>
+		   </div>
+	     </div> 
+		 </div>
         {% endfor %}
+			 
     {% else %}
+
+   
+		
         <a>无符合查询条件的纪录</a>
     {% endif %}
     <div class="pages">
