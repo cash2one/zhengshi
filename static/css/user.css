@@ -1,4 +1,4 @@
-﻿#container{ background:#EEEEF0;max-width:1660px;min-width: 1024px;width:expression(document.body.clientWidth < 1024? "1024px": "auto" );}
+﻿#container{ background:#EEEEF0;max-width:1660px;min-width: 1050px;width:expression(document.body.clientWidth < 1050? "1050px": "auto" );}
 .user,.user_conter,.user_box,.user_list,.user_detail,.user_detail dd,.user_detail p{ overflow:hidden;}
 .user_conter {height: 100%;width: 98%; margin: 0px auto;}
 .user_left{ width:150px;}
@@ -87,7 +87,6 @@ input[type="checkbox"], input[type="radio"]{box-sizing:border-box; padding:0;}
 .user_collection_list dt a { display:block;}
 .seach_cheek{ display:block; background:#008bdf; color:#fff; text-align:center; line-height:30px; height:30px; font-size:14px; width:80px;}
 .c_red{ font-size:14px; color:#ff0000; font-weight:bold;}
-.user_collection_list{ padding:10px;}
 .user_collection_list dt,.user_collection_list dd{ float:left;}
 .user_collection_list dd{ text-align:right; width:680px;}
 

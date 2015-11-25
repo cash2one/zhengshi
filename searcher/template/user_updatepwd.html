@@ -10,8 +10,11 @@
 	<title>修改密码</title>
    	<link href="/static/css/base.css" rel="stylesheet" type="text/css"/>
     <link href="/static/css/user.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/user_updatepwd.css" rel="stylesheet" type="text/css"/>
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script type="text/javascript" src="/static/js/timeplus.js"></script>
+    <script src="/static/js/yz.js" type="text/javascript"></script>
 
     <!--[if gte IE 8]>
 <script src="js/placeholder.min.js"></script>
@@ -24,60 +27,6 @@
             code.style.display = "none";
         }
     </script>
-	<script>
-		$(function(){
-            $.get("/safecenter/",function(data){ $('#safe_center').html(data.content_html);});
-		    $('#anquanzhongxin').find('li').click(function(){
-				var id =$(this).data('dd');			
-				if (id =='xgmm' )
-				{$.get("/safecenter/",function(data){ $('#safe_center').html(data.content_html);});}
-				else
-				{$.get("/change_phone_number/",function(data){ $('#safe_center').html(data.content_html);});};
-			});
-		});
-	</script>
-	<style>
-    *{list-style-type:none;}
-    .ProCenter1{width:750px; height:150px;}
-    .ProCenter1 a{text-decoration:none; color:#000000; margin:0px 20px;font-size:16px; font-weight:bold;}
-    .ProCenter1 a:link,a:visited{ border-bottom-style:solid; border-color:transparent; border-width:3px;}
-    .ProCenter1 a:hover{border-color:#e1604d;font-weight:bold; cursor:pointer}
-    .ProCenter1{margin-top:40px;}
-    .prosonPage2{width:750px; height:350px;}
-    .pwdpadding li{padding-bottom:10px}
-	.pwdpadding input[type="password"]{width:200px; height:30px;}
-	.new_call input[type="text"]{width:200px; height:30px;}
-	.message_yz input[type="text"]{width:100px; height:30px;}
-    .pwdpadding2 li{padding-bottom:10px}
-    .displays{display:none}
-    .resetpwd-btn{border:1px solid #4a3c70;background:#4a3c70;width:120px;color:#FFFFFF;height:40px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px; margin-left:-20px;}
-    .send-btn{color:#FFFFFF; background-color:#4a3c70;border:1px solid #4a3c70; border-radius:10px;-webkit-border-radius:3px;z-index:1;width:90px;height:30px;}
-	.send_code input[type="text"]{width:100px;height:30px;}
-	.user_pwd{padding-left:20px;}
-	.user_box{ border:2px solid #ddd; border-radius:5px;overflow:hidden;}
-
-	
-    @media only screen and (min-device-width:240px) and (max-device-width:767px){
-	#content {
-    position: relative;
-    width: 100%;
-    }
-    #login_content {
-    width: 600px;
-    height: 620px;
-    background: #EEEEF0;
-    margin-top: -10px;
-    min-width: 1420px;
-    }
-   .login_mid {
-    padding: 20px 0px;
-    height: 500px;
-    width: 600px;
-    z-index: 999;
-    margin: 10px auto;
-    }
-    }
-</style>
 </head>
 
 <body>
@@ -96,16 +45,18 @@
                                 <li style="margin-top:-20px; ">
                                     <label style="font-size:30px;">安全中心</label>
                                 </li>
-                                <li style="margin-top:30px; margin-left:-20px" data-dd="xgmm" style="float:left">
-                                    <a href="javascript:void(0)" id="removee">修改密码</a>
-									
+                                <li style="margin-top:30px; margin-left:-20px" data-dd="ghsj;float:left">
+                                    <a href="#t_1" id="removee" onclick="return false">更换手机</a>
+
                                 </li>
                                 <li style="float:left; margin-top:-20px; margin-left:75px;">
                                    <div style="width:1px;height:25px;margin-left:10px;background-color:#D5D5D5;overflow:hidden;"></div>
                                 </li>
-                                <li id="addd" style="margin-top:-22px; margin-left:90px" data-dd="ghsj" style="float:left">
-                                    <a href="javascript:void(0)"> 更换手机</a>
-									
+
+
+                                <li id="addd" style="margin-top:-22px; float:left" data-dd="xgmm">
+                                    <a href="#t_2" onclick="return false"> 修改密码</a>
+
                                 </li>
                                 <li style="margin-top:20px; margin-left:-5px;">
                                 <div style="width:835px; height:1px; background-color:#D5D5D5;overflow:hidden;"></div>
@@ -113,9 +64,52 @@
                             </ul>
                         </div>
                         <div style="margin-top:-15px;" class="prosonPage2">
-
                                 <div id="safe_center">
+                                    <div id="t_1">
+                                        <form id="formPH" class="modifyPform" action="" method="post" >
+                                            <ul class="pwdpadding">
+                                                <li class="self_newcall">
+                                                    <label style="font-size:14px;font-weight:bold;margin-left:14px;">新手机号:</label>
+                                                    <label class="new_call" style="margin-left:16px; ">{{form.username}}</label>
+                                                </li>
+                                                <li class="self_code">
+                                                    <label style="float:left;line-height:30px;font-size:14px;font-weight:bold;margin-left:27px;">验证码:</label>
+                                                    <label style="float:left;margin-left:20px;" class="new_call">{{ form.vcode }}</label>
+                                                    <label style="float:left;margin-left:5px;"><img onclick="this.setAttribute('src',{% url 'verifycode' %} + '?nocache='+Math.random());"
+                                                                               src="{% url 'verifycode' %}"/></label>
+                                                </li>
+                                                <li style="clear:both"></li>
+                                                <li class="self_mess">
+                                                    <label style="font-size:14px;font-weight:bold;">短信验证码:</label>
+                                                    <label class="new_call" style="margin-left:15px;">{{form.smscode}}</label>
+                                                    <input type="button" id="rulesubmit" style="color:#FFFFFF;background-color:#4a3c70;border:1px solid #4a3c70; border-radius:3px;-webkit-border-radius:3px;z-index:1;width:75px;height:33px;margin-left:2px;" value="发送验证码" />
+                                                </li>
+                                                <li style="margin-left:70px;">
+                                                    <label><input id ="submit_username" type="button" class="resetpwd-btn" value="确认修改"/></label>
+                                                </li>
+                                            </ul>
+                                    </form>
                                 </div>
+                                    <div id="t_2" style="display:none;">
+                                        <form id="formPW" class="modifyPWform" action="" method="post"  enctype="multipart/form-data" >
+                                            <ul class="pwdpadding">
+                                                <li>
+                                                    <label style="font-size:14px;font-weight:bold;margin-left:15px;">新密码:</label>
+                                                    <label style="margin-left:15px;">{{form1.password}}</label>
+                                                </li>
+                                                <li>
+                                                    <label style="font-size:14px;font-weight:bold;">确认密码:</label>
+                                                    <label style="margin-left:15px;">{{form1.password2}}</label>
+                                                </li>
+                                                <li style="margin-left:57px;">
+                                                    <label><input id ="submit_password" type="button" class="resetpwd-btn" value="确认修改"/></label>
+                                                </li>
+                                            </ul>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                <div id="t_3"></div>
 
 
                         </div>
@@ -127,53 +121,103 @@
 	</div>
 </div>
 
-<script>
-	$(function(){
-		  //$(".registerform").Validform();  //就这一行代码！;
-        var demo = $(".registerform").Validform({
-            tiptype: 3,
-            label: ".label",
-            showAllError: true,
-            datatype: {
-                "zh1-6": /^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
-            },
-            ajaxPost: false,
-            callback:function(data){
-                str = "success";
-        }
-        });
 
-        //通过$.Tipmsg扩展默认提示信息;
-        //$.Tipmsg.w["zh1-6"]="请输入1到6个字符！";
-        demo.tipmsg.w["zh1-6"] = "请输入1到6个字符！";
-
-        demo.addRule([
-            {
-                ele: "#id_username",
-                datatype: "m"
-            },
-            {
-                ele: "#id_password",
-                datatype: "*6-20"
-            },
-            {
-                ele: "#id_password2",
-                datatype: "*6-20",
-                recheck: "password"
-            },
-            {
-                ele: "#id_vcode",
-                datatype: "n4"
-            },
-            {
-                ele: "#id_smscode",
-                datatype: "n4"
-            }
-        ]);		   
-	});
-	  
-</script>
-        
 <!---安全中心 end-->
 </body>
+<script type="text/javascript">
+$(function(){
+    $('#submit_password').click(function(){
+             var password = $("input[name=password]").val();
+             var password2 = $("input[name=password2]").val();
+             if(password.length >5){
+                 if(password == password2){
+                     var formdata = $("#formPW").serialize();
+                     $.post("{% url 'safecenter' %}",
+                             formdata,
+                             function(data){
+                                $("#t_1").hide(); $("#t_2").hide();
+                                $('#t_3').html(data.content_html);}
+                             );
+                 }else{alert("两次输入的密码不一致！");};
+             }else{alert("密码至少6位");};
+	});
+});
+</script>
+<script type="text/javascript">
+$(function(){
+    var count =0;
+    $("#submit_username").click(function(){
+          if(count <1){
+              var username = $("input[name=username]").val();
+              var vcode = $("input[name=vcode]").val();
+              var smscode = $("input[name=smscode]").val();
+              if($('#id_username').hasClass('inputxt Validform_error') || !username ){
+                alert("请输入手机号！");
+              }
+              else if($('#id_vcode').hasClass('inputxt Validform_error') || !vcode){
+                alert("请输入正确的验证码！");
+              }
+              else if($('#id_smscode').hasClass('Validform_checktip Validform_wrong') || !smscode){
+                alert("请输入正确的短信验证码！");
+              }
+              else{
+                 var formdata = $("#formPH").serialize();
+                 $.post("{% url 'change_phone_number' %}",
+                         formdata,
+                         function(data){
+                         $("#t_1").hide(); $("#t_2").hide();
+                         $('#t_3').html(data.content_html);}
+                         );
+                 count = count + 1;
+              }
+          }
+          else{location.reload()};
+
+    });
+
+    var demo = $(".modifyPform").Validform({
+        tiptype: 3,
+        label: ".label",
+        showAllError: true,
+        datatype: {
+            "zh1-6": /^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
+        },
+        ajaxPost: false,
+        callback:function(data){
+            str = "success";
+        }
+    });
+
+    demo.tipmsg.w["zh1-6"] = "请输入1到6个字符！";
+
+    demo.addRule([
+        {
+            ele: "#id_username",
+            datatype: "m"
+        },
+        {
+            ele: "#id_smscode",
+            datatype: "n4"
+        },
+        {
+            ele: "#id_vcode",
+            datatype: "n4"
+        }
+    ]);
+
+});
+</script>
+<script>
+    $(function(){
+        $('#anquanzhongxin').find('li').click(function(){
+                $("#t_3").empty();
+                var id =$(this).data('dd');
+                if (id =='xgmm')
+                     {$("#t_1").hide(); $("#t_2").show();}
+                else
+                    {location.reload();};
+            });
+    });
+</script>
+
 </html>

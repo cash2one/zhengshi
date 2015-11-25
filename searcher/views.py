@@ -789,8 +789,9 @@ def phone_infoPage(request):
     return render_to_response('test_phone.html', context_instance=RequestContext(request))
 
 def user_updatepwd(request):
-    form = ModfiyPWForm()
-    return render_to_response('user_updatepwd.html',{'form':form}, context_instance=RequestContext(request))
+    form = ModfiyPForm()
+    form1 = ModfiyPWForm()
+    return render_to_response('user_updatepwd.html',{'form':form,"form1":form1}, context_instance=RequestContext(request))
 
 import urllib2, urllib, hashlib, random,re
 def send_smscode(request):

@@ -27,22 +27,27 @@ for (i = 1; i <= secs;i++){
 window.setTimeout("update(" + i + ")",i*1000); 
 } 
 window.setTimeout("timer()",wait); 
-} 
+}
+var count = 0;
 $("#rulesubmit").click(function(){
-      var username = $("input[name=username]").val();
-      var vcode = $("input[name=vcode]").val();
-      if($('#id_vcode').hasClass('inputxt Validform_error') || !vcode){
-          alert("请输入正确的验证码！");
-      }
-      else{
-          if($('#id_username').hasClass('inputxt Validform_error') || !username){
-            alert("请输入手机号！");
+      if(count<1){
+          var username = $("input[name=username]").val();
+          var vcode = $("input[name=vcode]").val();
+          if($('#id_vcode').hasClass('inputxt Validform_error') || !vcode){
+              alert("请输入正确的验证码！");
           }
           else{
-            $.post("/send_smscode/", {"phoneNum":username}, function(){});
-            getValidateCode();
+              if($('#id_username').hasClass('inputxt Validform_error') || !username){
+                alert("请输入手机号！");
+              }
+              else{
+                $.post("/send_smscode/", {"phoneNum":username}, function(){});
+                getValidateCode();
+              }
           }
       }
+      else{window.location.href="/register/"};
+      count = count + 1;
 }); 
 })();
 /*注意，我这里在测试的时候改成里匿名函数，其实不必这样做也可以实现 

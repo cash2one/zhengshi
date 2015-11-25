@@ -14,11 +14,11 @@
 <div id="header">
 <div class="top">
 <ul class="nav">
-    <li><img src="/static/images/logo_red.png" width="250" height="60"/></li>
+    <li><img style="padding-top:2%" src="/static/images/logo_red.png" width="250" height="50"/></li>
     <li><a href="{% url 'searchindex' %}">首页</a></li>
     <li><a href="{% url 'myfavorite' 4 %}" class="needlogin">收藏</a></li>
     <li><a href="{% url 'bbsindex' %}">社区</a></li>
-    <!--<li><a href="{% url 'activearea' %}">活动</a></li>-->
+    <li><a href="{% url 'new_activearea' %}">活动</a></li>
 </ul>
 <div class="top_right">
 {% ifequal user.id None %}
@@ -67,14 +67,14 @@
             <a id="check_log" style="display: none">1</a>
             {% if user.userinformation.realname %}
                 <li><a href="#"><img src="{{ user.userinformation.photo_url }}"/></a>{{ user.userinformation.realname}}
-                    <ul>
+                    <ul style="border:none">
                         <li><a href="{% url 'userinformation' %}">我的资料</a></li>
                         <li><a href="{% url 'logout' %}" onClick="T_Logout()">退出</a></li>
                     </ul>
                 </li>
             {% else %}
                 <li><a href="#"><img src="{{ user.userinformation.photo_url }}"/></a>{{ user.username |phone_cut}}
-                    <ul>
+                    <ul style="border:none">
                         <li><a href="{% url 'userinformation' %}">我的资料</a></li>
                         <li><a href="{% url 'logout' %}" onClick="T_Logout()">退出</a></li>
                     </ul>

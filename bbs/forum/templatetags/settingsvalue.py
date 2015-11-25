@@ -35,6 +35,6 @@ def multiplicative_page(page):
 register.filter(multiplicative_page)
 
 def title_cut(title):
-    return title[0:12]
+    return title[0:8]
 register.filter(title_cut)
 

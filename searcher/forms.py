@@ -528,6 +528,20 @@ class ModfiyPForm(forms.Form):
             }
         ),
     )
+    vcode = forms.CharField(
+        required=True,
+        label=u"验证码",
+        error_messages={'required': u'请输入验证码'},
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': u"验证码",
+                'type': 'text',
+                'name': 'yzm',
+                'class': 'inputxt',
+                'ajaxurl': '/checkvcode/'
+            }
+        ),
+    )
 
     def valiatetype(self, a):
         global msg

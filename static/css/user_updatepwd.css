@@ -1,0 +1,52 @@
+.ProCenter1{width:750px; height:150px;}
+.ProCenter1 a{text-decoration:none; color:#000000; margin:0px 20px;font-size:16px; font-weight:bold;}
+.ProCenter1 a:link,a:visited{ border-bottom-style:solid; border-color:transparent; border-width:3px;}
+.ProCenter1 a:hover{border-color:#e1604d;font-weight:bold; cursor:pointer}
+.ProCenter1{margin-top:40px;}
+.prosonPage2{width:750px; height:350px;}
+.pwdpadding li{padding-bottom:10px}
+.pwdpadding input[type="password"]{width:200px; height:30px;}
+.new_call input[type="text"]{width:200px; height:30px;}
+.message_yz input[type="text"]{width:100px; height:30px;}
+.pwdpadding2 li{padding-bottom:10px}
+.displays{display:none}
+.resetpwd-btn{border:1px solid #4a3c70;background:#4a3c70;width:120px;color:#FFFFFF;height:40px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px; margin-left:22px;}
+.send-btn{color:#FFFFFF; background-color:#4a3c70;border:1px solid #4a3c70; border-radius:10px;-webkit-border-radius:3px;z-index:1;width:90px;height:30px;}
+.send_code input[type="text"]{width:100px;height:30px;}
+.user_pwd{padding-left:20px;}
+.user_box{ border:2px solid #ddd; border-radius:5px;overflow:hidden;}
+.self_newcall span{
+    position: absolute;
+}
+.self_code span{
+    position: absolute;
+    margin-left:85px;
+}
+.self_code img{
+    width: 75px;
+    height: 33px;
+}
+.self_mess span{
+    position: absolute;
+    margin-left:85px;
+}
+@media only screen and (min-device-width:240px) and (max-device-width:767px){
+    #content {
+        position: relative;
+        width: 100%;
+    }
+    #login_content {
+        width: 600px;
+        height: 620px;
+        background: #EEEEF0;
+        margin-top: -10px;
+        min-width: 1420px;
+    }
+    .login_mid {
+        padding: 20px 0px;
+        height: 500px;
+        width: 600px;
+        z-index: 999;
+        margin: 10px auto;
+    }
+}
