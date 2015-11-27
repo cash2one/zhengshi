@@ -25,18 +25,18 @@
 		   <div class="detail_conn">
 			   <div class="contwid"></div>
 			   <div class="detail_ty">
-					 <div class="font_col">标的金额</div>
-					 <div style="margin-top:10px;"><font class="c_red">￥{{ r.amount|floatformat:"-2" }}</font></div>
+					 <div class="font_colc">标的金额</div>
+					 <div style="margin-top:10px;"><font style="font-size:1.4em;color: red;font-weight:bold;">￥{{ r.amount|floatformat:"-2" }}</font></div>
 				</div>
 				<div style="width:1px;height:60px; background:#EEEEF0;float:left;margin-top:10px;matgin-left:10px;"></div>
 				<div class="detail_ty">
-					 <div class="font_col">年利率</div>
-					 <div style="margin-top:10px;"><font class="c_red">{{ r.income_rate|floatformat:"-2" }}</font><font class="font_coll">%</font></div>
+					 <div class="font_colc">年利率</div>
+					 <div style="margin-top:10px;"><font style="font-size:1.4em;color: red;font-weight:bold;">{{ r.income_rate|floatformat:"-2" }}</font><font class="font_coll">%</font></div>
 				</div>
 				<div style="width:1px;height:60px; background:#EEEEF0;float:left;margin-top:10px;matgin-left:10px;"></div>
 				<div class="detail_ty">
-					 <div class="font_col">期限</div>
-					 <div style="margin-top:10px;"> <font class="c_red">{{ r.term }}</font><font class="font_coll">个月</font></div>
+					 <div class="font_colc">期限</div>
+					 <div style="margin-top:10px;"> <font style="font-size:1.4em;color: red;font-weight:bold;">{{ r.term }}</font><font class="font_coll">个月</font></div>
 				</div>    
 				<div class="contwid1"></div>					 
 		   </div>

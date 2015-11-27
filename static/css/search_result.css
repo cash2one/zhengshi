@@ -33,7 +33,6 @@ max-width:1660px;min-width: 1024px;width:expression(document.body.clientWidth < 
 .search_hd{width:120px;margin-top:10px;margin-left: 20px;float:left;}
 .search_hd h2{ font-size:16px;}
 .search_bd{background:#EEEEF0;width:920px; height:320;}
-.search_bd a{padding-left:20px;padding-top:10px;}
 .pages{clear: both;}
 .search_Tab{margin-bottom:10px;}
 .search_Tab tr td{ padding:10px 5px; text-align:center; color:#868686;}
@@ -63,23 +62,24 @@ max-width:1660px;min-width: 1024px;width:expression(document.body.clientWidth < 
 .search_tips{width:920px; overflow:hidden;}
 .search_tipss{width:930px; overflow:hidden;padding-bottom:30px;}
 .delithdiv{font-size:1.15em;}
+.font_colc{color:#868686;font-size:16px;}
 .font_coll{color: black;font-size:1.15em;}
 .delithdiv ul li{line-height:30px;}
 .detail_conn {height: 120px;width:97%;;margin:0px auto;}
 .contwid{width:250px;height:1px; background:#EEEEF0;margin-top:20px;margin-left: 10px;}
 .contwid1{width:250px;height:1px; background:#EEEEF0;margin-top:85px;margin-left: 10px;}
-.detail_ty {width:33%;font-size: 16px;float: left;padding: 15px 0px;text-align: center;}
-@media screen  and (min-width: 1350px) {.shuxianstyle{float:left;padding-left:21%;padding-top: 5px;}}
-@media screen  and (max-width: 1349px) {
+.detail_ty {width:33%;float: left;padding: 15px 0px;text-align: center;}
+@media screen  and (min-width: 1350px) {.shuxianstyle{float:left;padding-left:15px;}}
 #mid_search{ width:100%; padding-bottom:70px;background:#EEEEF0; margin:0;padding:0;
-max-width:1660px;min-width: 1024px;min-height: 1280px;width:expression(document.body.clientWidth < 1024? "1024px": "auto" );} 
-.search_content{ width: 920px;;padding-top: 20px;font-size:16px;margin: 0px auto;}
-.search_Tab tr td.search_title{ font-size:16px; color:#333; font-weight:bold;}
-.search_list h3{text-align:left; font-size:16px;}
-.search_term{ font-size:16px; width:650px;padding-left: 20px;}
-.font_col{color:#868686;font-size:0.8em;}
+max-width:1660px;min-width: 1024px;width:expression(document.body.clientWidth < 1024? "1024px": "auto" );} 
+.search_content{ width: 920px;padding-top: 20px;margin: 0px auto;}
+.search_Tab tr td.search_title{  color:#333; font-weight:bold;}
+.search_list h3{text-align:left;}
+.search_term{ width:650px;padding-left: 20px;}
+.font_col{color:#868686;font-size:1em;}
+.font_colc{color:#868686;font-size:16px;}
 .font_coll{color:black;font-size:1.15em;}
-.shuxianstyle{float:left;padding-left:13%;}
+.shuxianstyle{float:left;padding-left:15px;}
 }
 .pagination {
     display: inline-block;

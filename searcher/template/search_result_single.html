@@ -22,23 +22,25 @@
 			  <div style="float:right;"><span class="font_col">已完成:</span>
 			  <span class="c_red">{{ result.process|floatformat:"0" }}</span><font class="font_col">%</font></div>
 		   </div>
-		   <div style="width:220px;height:50px;padding-top: 35px;">
-			   <div style="font-size:1.4em;color: black;">
-				   <ul style="float:left;padding-left:5%;">
-					   <li style="line-height:30px;"> <span>年利率</span></li>
-					   <li style="line-height:30px;"><font class="c_red">{{ result.income_rate|floatformat:"-2" }}</font><font class="font_coll">%</font></li>
+		   
+		   <div style="width:200px;height:50px;padding-top: 35px;margin:0px auto;">
+			   
+				   <ul style="float:left;width:65px;font-weight:bold;padding-left: 20px;">
+					   <li style="line-height:30px;"> <span style="font-size:1.4em;color: black;">年利率</span></li>
+					   <li style="line-height:30px;"><font style="font-size:1.4em;color: red;" >{{ result.income_rate|floatformat:"-2" }}</font>
+					   <font class="font_coll">%</font></li>
 				   </ul>
 				   <ul class="shuxianstyle">							  	  
 					   <li><div style="width:1px; height:50px; background:#EEEEF0;"></div></li>
 				   </ul>
-				   <ul style="float:right;">
-					   <li style="line-height:30px;"><span>期限</span></li>
+				   <ul style="float:right;width:75px;">
+					   <li style="line-height:30px;font-weight:bold;font-size:1.4em;color: black;"><span>期限</span></li>
 					   <li style="line-height:30px;"><font>
-						 <font class="c_red">{{ result.term_name|floatformat:"-2" }}</font>
+						 <font style="font-size:1.4em;color: red; font-weight:bold;">{{ result.term_name|floatformat:"-2" }}</font>
 						 <font class="font_coll">{{ result.term_unit }}</font>
 					   </li>
 				   </ul>
-			   </div>								 
+			   								 
 		   </div>
 		   <div style="margin-top:25px;">
 			   <label  target="_blank" id="check_is_exist_{{result.id}}" name="{{result.id}}"
