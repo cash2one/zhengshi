@@ -11,6 +11,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from DjangoCaptcha import Captcha
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.core.urlresolvers import reverse
+from django.core.cache import cache
 from PIL import Image
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -26,7 +27,7 @@ from ddbid.settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
 from searcher.forms import ContactForm, SearchForm, LoginForm, UserInformationForm, RegisterForm, ForgetPWForm,ModfiyPWForm,ModfiyPForm
 from searcher.inner_views import index_loading, index_loading_rank,data_filter, result_sort, get_pageset, get_user_filter, user_auth, \
-    refresh_header, send_flow_all
+    refresh_header, send_flow_all,user_get_ip
 from searcher.models import Bid, UserFavorite, Platform, UserInformation, DimensionChoice, UserFilter, UserReminder, \
     WeekHotSpot, BidHis, ReminderUnit
 from ddbid import conf
@@ -210,6 +211,13 @@ def login(request):
                     if a:
                         return HttpResponseRedirect(a)
                     else:
+                        user = User.objects.get(username=username)
+                        login_times = user.userinformation.login_times
+                        if login_times:
+                            user.userinformation.login_times = int(login_times) +1
+                        else:
+                            user.userinformation.login_times  = 1
+                        user.userinformation.save()
                         return HttpResponseRedirect(reverse('searchindex'))
                 else:
                     form.valiatetype(i)
@@ -379,7 +387,7 @@ def register(request):
                 new_user = User.objects.create_user(username=username, password=pwd1)
                 new_user.save()
                 # initial={'photo_url': '/static/upload/default.png'}
-                u = UserInformation(user=new_user, photo_url='/static/upload/default.png', abcdefg=pwd1)
+                u = UserInformation(user=new_user, photo_url='/static/upload/default.png', abcdefg=pwd1,cellphone=username)
                 u.save()
                 user = auth.authenticate(username=username, password=pwd1)
                 auth.login(request, user)
@@ -793,8 +801,21 @@ def user_updatepwd(request):
     form1 = ModfiyPWForm()
     return render_to_response('user_updatepwd.html',{'form':form,"form1":form1}, context_instance=RequestContext(request))
 
+
 import urllib2, urllib, hashlib, random,re
 def send_smscode(request):
+    if request.user.is_authenticated():
+        key = "limit_visit:" + send_smscode.__name__ +':'+ str(request.user.id)
+    else:
+        key = "limit_visit:" + send_smscode.__name__ +':'+ str(user_get_ip(request))
+    failed_num = cache.get(key,0)
+    print "failed_num",failed_num
+    if failed_num >= 10:
+        return HttpResponse(u"您的短信次数超个10次，请24小时后再试！")
+
+    failed_num += 1
+    cache.set(key, failed_num, 24*60*60)
+
     phoneNum = request.POST.get('phoneNum', '')
     p=re.compile('^1200[0-9]{7}$')
     a=p.match(phoneNum)
@@ -832,6 +853,17 @@ def send_smscode(request):
 
 
 def send_smscode_modify(request):
+    if request.user.is_authenticated():
+        key = "limit_visit:" + send_smscode_modify.__name__ +':'+ str(request.user.id)
+    else:
+        key = "limit_visit:" + send_smscode_modify.__name__ +':'+ str(user_get_ip(request))
+    failed_num = cache.get(key,0)
+    if failed_num >= 2:
+        return HttpResponse(u"您修改账号次数超个2次，请30天后再试！")
+
+    failed_num += 1
+    cache.set(key, failed_num, 30*24*60*60)
+
     phoneNum = request.POST.get('phoneNum', '')
     p=re.compile('^1200[0-9]{7}$')
     a = p.match(phoneNum)

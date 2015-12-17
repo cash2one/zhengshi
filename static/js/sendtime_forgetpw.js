@@ -40,7 +40,7 @@ $("#rulesubmit").click(function(){
             alert("请输入正确的验证码！");
           }
           else{
-            $.post("/send_smscode/", {"phoneNum":username}, function(){});
+            $.post("/send_smscode/", {"phoneNum":username}, function(data){if (data){alert(data);}});
             getValidateCode();
           }
       }

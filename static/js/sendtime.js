@@ -41,7 +41,7 @@ $("#rulesubmit").click(function(){
                 alert("请输入手机号！");
               }
               else{
-                $.post("/send_smscode/", {"phoneNum":username}, function(){});
+                $.post("/send_smscode/", {"phoneNum":username}, function(data){if (data){alert(data);}});
                 getValidateCode();
               }
           }

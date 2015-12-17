@@ -193,6 +193,7 @@ class UserInformation(models.Model):
     abcdefg = models.CharField(max_length=50, blank=True, null=True)
     add_date = models.DateTimeField('添加时间', auto_now_add=True)
     modify_date = models.DateTimeField('编辑时间', auto_now=True)
+    login_times = models.IntegerField('登录次数', blank=True, null=True)
 
 
 class ThirdLogin(models.Model):

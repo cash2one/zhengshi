@@ -42,7 +42,7 @@ $("#rulesubmit").click(function(){
           }
           else{
              count = count + 1;
-             $.post("/send_smscode_modify/", {"phoneNum":username}, function(){});
+             $.post("/send_smscode_modify/", {"phoneNum":username}, function(data){if (data){alert(data);}});
             getValidateCode();
           }
       }

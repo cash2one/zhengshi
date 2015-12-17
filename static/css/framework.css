@@ -1,17 +1,19 @@
 *{margin:0;padding:0;}
 	li{list-style:none;}
 	a{text-decoration:none;}
-	images,div,input{border:0 none;}
-	.box{overflow:hidden;width:100%;height:auto;display:block;height: 400px;}
+	img,div,input{border:0 none;}
+	.box{overflow:hidden;width:100%;display:block;height: 400px;}
 	.box .banner{overflow:hidden;width:100%;height:auto;}
 	.box .banner li{width:100%;height:auto;}
 	.box .banner li a{display:none;width:100%;height:auto;}
 	.box .banner li a img{max-width: 100%;height: 400px;width: auto\9;/* ie8 */}
 	.box .banner li a img{width:100%;background-size: cover;}
-	.prev,.next{display:block;text-align:center;background:#666;position:absolute;color:#fff;opacity:0.5;}
-	.prev{top:197px;left:1%;}
+	.prev,.next{display:block;text-align:center;background:#666;position:absolute;color:#fff;opacity:0.01;z-index: 999}
+	.ho{opacity: 0.5;z-index: 999}
+	.ho1{opacity: 0.01;z-index: 999}
+.prev{top:197px;left:1%;}
 	.next{top:197px;right: 475px;z-index:999;}
-	.prev:hover,.next:hover{opacity:1;}
+	/*.prev:hover,.next:hover{opacity:1;}*/
 	.div{position:relative;width:100%;height:30px;bottom:0;left:0;background:#333;opacity:0.5;z-index:8;}
 	ul.btn{text-align:center;position:absolute;width:100%;bottom:7px;left:50%;margin-left:-50%;z-index:9;}
 	ul.btn li{width:15px;height:15px;background:#ccc;border-radius:8px;font:12px/15px 宋体;display:inline-block;cursor:pointer;}

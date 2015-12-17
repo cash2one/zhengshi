@@ -371,3 +371,6 @@ def send_flow(phone, package):
     )
 
     print opener.open(request).read()
+
+def user_get_ip(request):
+    return "%s" % request.META['REMOTE_ADDR'] or ""
