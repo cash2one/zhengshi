@@ -49,10 +49,10 @@ def index(request):
         hs = []
     user = auth.get_user(request)
 
-    results_right = Bid.objects.filter(term__gt=0).order_by("random_rank").order_by("term")[0:4]
+    results_right = Bid.objects.filter(process__lt=100).filter(term__gt=0).order_by("random_rank").order_by("term")[0:4]
     results_right.query.group_by = ['platform_id']
 
-    results_left = Bid.objects.all().order_by("random_rank").order_by("-income_rate")[0:4]
+    results_left = Bid.objects.filter(process__lt=100).order_by("random_rank").order_by("-income_rate")[0:4]
     results_left.query.group_by = ['platform_id']
 
     if request.GET.get('register_success', None) is not None:
@@ -90,27 +90,18 @@ def result(request):
         else:
             hs = []
         # print(request.POST.get('params', None))
+        try:
+            page = int(request.GET.get('page', '1'))
+        except ValueError:
+            page = 1
+
         form = SearchForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
             amount = cd['searchWord']
         else:
-            try:
-                page = int(request.GET.get('page', '1'))
-            except ValueError:
-                page = 1
-            index_parts = index_loading(0, None, page)
-            return render_to_response('search_result.html',
-                                      {'results': index_parts.get('results'), 'dimensions': index_parts.get('dimensions'),
-                                       'c_results': index_parts.get('c_result'), 'last_page': index_parts.get('last_page'),
-                                       'page_set': index_parts.get('page_set'), 'form': form},
-                                      context_instance=RequestContext(request))
+            amount = 0
 
-
-        try:
-            page = int(request.GET.get('page', '1'))
-        except ValueError:
-            page = 1
         index_parts = index_loading(amount, None, page)
         return render_to_response('search_result.html',
                                   {'results': index_parts.get('results'), 'dimensions': index_parts.get('dimensions'),
@@ -118,21 +109,20 @@ def result(request):
                                    'page_set': index_parts.get('page_set'), 'form': form},
                                   context_instance=RequestContext(request))
     elif request.GET.get('params[]', None) is not None:
-        print "oooooooooooooooooo"
         params = ','.join(request.GET.getlist('params[]'))
         a = params.split(',')
         sorttype = request.REQUEST.get('sorttype', None)
         sortorder = request.REQUEST.get('sortorder', None)
         amount = request.REQUEST.get('amount', None)
-        print "amount",amount
+
         if amount:
             try :
                 int(amount)
-                results = Bid.objects.filter(amount__gte=amount).order_by("random_rank")
+                results = Bid.objects.filter(process__lt=100).filter(amount__gte=amount).order_by("random_rank")
             except ValueError:
-                results = Bid.objects.all().order_by("random_rank")
+                results = Bid.objects.filter(process__lt=100).order_by("random_rank")
         else:
-            results = Bid.objects.all().order_by("random_rank")
+            results = Bid.objects.filter(process__lt=100).order_by("random_rank")
         filters = DimensionChoice.objects.filter(id__in=a)
         results = data_filter(results, filters)
         if sorttype is not None and sortorder is not None:

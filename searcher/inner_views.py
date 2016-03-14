@@ -254,15 +254,14 @@ def index_loading_rank(amount, params, page,rank):
     c_result = [c_bs, c_wj, c_jj]
     dimensions = DimensionChoice.objects.all()
     if None == amount:
-        results = Bid.objects.all().order_by("random_rank").order_by("%s"%rank)
+        results = Bid.objects.filter(process__lt=100).order_by("random_rank").order_by("%s"%rank)
     else:
-        results = Bid.objects.filter(amount__gte=amount).order_by("random_rank")
+        results = Bid.objects.filter(process__lt=100).filter(amount__gte=amount).order_by("random_rank")
     if params is not None:
         a = params.split(',')
         filters = DimensionChoice.objects.filter(id__in=a)
         results = data_filter(results, filters)
-    # random.shuffle(results)
-    # results = results.order_by('?')
+
     ppp = Paginator(results, 6)
     last_page = ppp.page_range[len(ppp.page_range) - 1]
     try:
