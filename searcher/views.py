@@ -48,7 +48,7 @@ def index(request):
     else:
         hs = []
     user = auth.get_user(request)
-
+    print "ttttttttttttttt"
     results_right = Bid.objects.filter(process__lt=100).filter(term__gt=0).order_by("random_rank").order_by("term")[0:4]
     results_right.query.group_by = ['platform_id']
 

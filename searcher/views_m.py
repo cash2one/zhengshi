@@ -42,68 +42,14 @@ storage = FileSystemStorage(
 
 
 def index(request):
-    if request.method == 'POST':
-        # print(request.POST.get('params', None))
-        form = SearchForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            amount = cd['searchWord']
-        else:
-            return render_to_response('index.html', {'form': form}, context_instance=RequestContext(request))
+    user = auth.get_user(request)
+    results_right = Bid.objects.filter(process__lt=100).filter(term__gt=0).order_by("random_rank").order_by("term")[0:4]
+    results_right.query.group_by = ['platform_id']
 
-        try:
-            page = int(request.GET.get('page', '1'))
-        except ValueError:
-            page = 1
-        index_parts = index_loading(amount, None, page)
-        return render_to_response('search_result_m.html',
-                                  {'results': index_parts.get('results'), 'dimensions': index_parts.get('dimensions'),
-                                   'c_results': index_parts.get('c_result'), 'last_page': index_parts.get('last_page'),
-                                   'page_set': index_parts.get('page_set')},
+    results_left = Bid.objects.filter(process__lt=100).order_by("random_rank").order_by("-income_rate")[0:4]
+    results_left.query.group_by = ['platform_id']
+    return render_to_response('index_m.html', {'results_left':results_left,'results_right':results_right},
                                   context_instance=RequestContext(request))
-    elif request.GET.get('params[]', None) is not None:
-        params = ','.join(request.GET.getlist('params[]'))
-        a = params.split(',')
-        sorttype = request.REQUEST.get('sorttype', None)
-        sortorder = request.REQUEST.get('sortorder', None)
-        amount = request.REQUEST.get('amount', None)
-        if amount:
-            results = Bid.objects.filter(amount__gte=amount).order_by("random_rank")
-        else:
-            results = Bid.objects.all().order_by("random_rank")
-        filters = DimensionChoice.objects.filter(id__in=a)
-        results = data_filter(results, filters)
-        if sorttype is not None and sortorder is not None:
-            results = result_sort(results, sorttype, sortorder)
-        ppp = Paginator(results, 5)
-        try:
-            page = int(request.GET.get('page', '1'))
-        except ValueError:
-            page = 1
-        try:
-            results = ppp.page(page)
-        except (EmptyPage, InvalidPage):
-            results = ppp.page(ppp.num_pages)
-        last_page = ppp.page_range[len(ppp.page_range) - 1]
-        page_set = get_pageset(last_page, page)
-        t = get_template('search_result_single_m.html')
-        content_html = t.render(
-            RequestContext(request, {'results': results, 'last_page': last_page, 'page_set': page_set}))
-        payload = {
-            'content_html': content_html,
-            'success': True
-        }
-        return HttpResponse(json.dumps(payload), content_type="application/json")
-    else:
-        form = SearchForm()
-        user = auth.get_user(request)
-        if user.id is not None:
-            f_l = get_user_filter(user)
-            return render_to_response('index.html', {'form': form, 'f_ls': f_l, 'hs': hs},
-                                      context_instance=RequestContext(request))
-        else:
-            return render_to_response('index.html', {'form': form, 'hs': hs}, context_instance=RequestContext(request))
-
 
 def contact(request):
     if request.method == 'POST':

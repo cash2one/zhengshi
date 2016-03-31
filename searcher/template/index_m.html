@@ -1,68 +1,109 @@
-{% load staticfiles %}
-{% load settingsvalue %}
-{% load url from future %}
-{% load i18n %}
 <!DOCTYPE html>
+{% load staticfiles %}
+{% load url from future %}
+{% load staticfiles %}
+{% load pagination_tags %}
 <html>
-<head>
+<head lang="en">
     <meta charset="UTF-8">
-    <title>天天搜贷</title>
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <link href="{% static 'css/base.css' %}" rel="stylesheet">
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <title>搜索结果</title>
+    <meta content="width=device-width, initial-scale=1.0,user-scalable=no" name="viewport" id="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <script src="/static/js/jquery.min.js"></script>
+ 	<link rel="stylesheet" href="/static/css/search_result_m.css">
+    <link rel="stylesheet" href="/static/css/login_m.css">
+    <script type="text/javascript" src="/static/js/public.js"></script>
 </head>
-
 <body>
-{% include "header.html" %}
-<div id="content">
-    <div class="middle">
-        <div class="middle_search">
-            <div class="logo">
-                <img src="{% static 'images/logo.png' %}"/></div>
-            <div class="search textbox">
-                <form action="" method="post">
-                    {% csrf_token %}
-                    {{ form.searchWord }}
-                    <input type="submit" class="btn_search" value="">
-                </form>
-                <br>
-                {% if form.errors %}
-                    <script type="application/javascript">
-                    $(function(){
-                        alert('请输入投资金额');
-                    });
-                    </script>
-                {% endif %}
-            </div>
-            {% ifnotequal user.id None %}
-                <div class="group">
-                    <div class="g_hd"><h3>我的组合搜索</h3></div>
-                    <div class="g_bd">
-                        <ul class="g_list">
-                            {% if f_ls %}
-                                {% for f_l in f_ls %}
-                                    <li>
-                                        <a choices="{{ f_l.choices }}"
-                                           href="{% url 'shortcut_request' f_l.id %}">{{ f_l.name }}</a>
-                                    </li>
-                                {% endfor %}
-                            {% else %}
-                                <a>您还未设置任何快捷查询</a>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </div>
-            {% endifnotequal %}
-            <div class="hot" style="padding-left: 7%;padding-top: 1%;">
-                <h3>本周热点：</h3>
-                {% for h in hs %}
-                    <a href="{{ h.url }}" target="_blank">{{ h.title }} </a>
-                {% endfor %}
+<div class="log_contentt" id="result_form">
+  	<div class="log_contenttt">
+		<div style="overflow:hidden;width:4.5rem;height:0.6rem;padding-top:0.2rem;padding-left:0.2rem;">
+			<div style="font-size:0.25rem;float:left;">
+			   筛选
+			</div>
+			<div class="search_reorder">
+					<a href="javascript:void(0)" onclick="show_right()"></span>高收益<i></i></a>
+					<a href="javascript:void(0)" onclick="show_left()">&nbsp;&nbsp;投资期限<i></i></a>
+                    <a href="/m/detail_search" sorttype="2">&nbsp;&nbsp;自定义<i></i></a>
+			</div>
+		 </div>
+
+    {% if results_right %}
+        {% for result in results_right %}
+		 <div id='content_right'>
+			<div style="padding-left:0.2rem;">
+				<div style="margin-bottom:0.2rem;margin-top:0.2rem;"><div style="width:4.4rem;height:0.02rem; background:#999999";></div></div>
+				<div style="overflow:hidden;width:100%;height:0.5rem;">
+					<div class="search_bd"><img src="{{ result.platform.logo }}"></div>
+					<div class="ckxq"><lable id="check_is_exist_{{result.id}}" name="{{result.id}}" target="_blank" class="seach_cheek">查看详情</lable></div>
+				</div>
+				<div><span class="search_title" >{{ result.name }}</span></div>	
 				
-            </div>
+				<div style="overflow:hidden">
+					<div class="neirong">
+					   <ul>
+						  <li>借款金额：<font class="c_red">{{ result.amount|floatformat:"0" }}</font></li>
+						  <li>每万元总收益：<font class="c_red">{{ result.ten_thousand_revenue|floatformat:"-2" }}元</font></li>
+					   </ul>
+					</div>		
+					<div class="neirong1"><div style="width:0.02rem;height:0.5rem; background:#999999"></div></div>	
+					<div class="neirong2">
+					   <ul>
+						  <li>期限:<font class="c_red">{{ result.term_name|floatformat:"-2" }}</font>{{ result.term_unit }}</li>
+						  <li>年化收益:<font class="c_red">{{ result.income_rate|floatformat:"-2" }}</font>%</li>
+					   </ul>
+					</div>	
+				</div>		
+			</div>
+		</div>
+		
+        {% endfor %}
+    {% endif %}
+    {% if results_left %}
+        {% for result in results_left %}
+		 <div id='content_left'>
+			<div style="padding-left:0.2rem;">
+				<div style="margin-bottom:0.2rem;margin-top:0.2rem;"><div style="width:4.4rem;height:0.02rem; background:#999999";></div></div>
+				<div style="overflow:hidden;width:100%;height:0.5rem;">
+					<div class="search_bd"><img src="{{ result.platform.logo }}"></div>
+					<div class="ckxq"><lable id="check_is_exist_{{result.id}}" name="{{result.id}}" target="_blank" class="seach_cheek">查看详情</lable></div>
+				</div>
+				<div><span class="search_title" >{{ result.name }}</span></div>
+
+				<div style="overflow:hidden">
+					<div class="neirong">
+					   <ul>
+						  <li>借款金额：<font class="c_red">{{ result.amount|floatformat:"0" }}</font></li>
+						  <li>每万元总收益：<font class="c_red">{{ result.ten_thousand_revenue|floatformat:"-2" }}元</font></li>
+					   </ul>
+					</div>
+					<div class="neirong1"><div style="width:0.02rem;height:0.5rem; background:#999999"></div></div>
+					<div class="neirong2">
+					   <ul>
+						  <li>期限:<font class="c_red">{{ result.term_name|floatformat:"-2" }}</font>{{ result.term_unit }}</li>
+						  <li>年化收益:<font class="c_red">{{ result.income_rate|floatformat:"-2" }}</font>%</li>
+					   </ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+        {% endfor %}
+    {% endif %}
         </div>
-    </div>
 </div>
-{% include "footer.html" %}
 </body>
+
+<script type="text/javascript">
+    function show_right(){
+        $("#content_right").show();
+        $("#content_left").hide();
+    }
+    function show_left(){
+        $("#content_left").show();
+        $("#content_right").hide();
+    }
+</script>
 </html>

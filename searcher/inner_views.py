@@ -53,18 +53,18 @@ def combination_bid(amount, ctype):
     global a
     if None == amount:
         if ctype == 1:
-            a = Bid.objects.filter(income_rate__lte=8)
+            a = Bid.objects.filter(income_rate__lte=5)
         elif ctype == 2:
-            a = Bid.objects.filter(income_rate__lte=15, income_rate__gte=8)
+            a = Bid.objects.filter(income_rate__lte=9, income_rate__gte=5)
         elif ctype == 3:
-            a = Bid.objects.filter(income_rate__gte=15)
+            a = Bid.objects.filter(income_rate__gte=9)
     else:
         if ctype == 1:
-            a = Bid.objects.filter(amount__lte=amount, income_rate__lte=8)
+            a = Bid.objects.filter(amount__lte=amount, income_rate__lte=5)
         elif ctype == 2:
-            a = Bid.objects.filter(amount__lte=amount, income_rate__lte=15, income_rate__gte=8)
+            a = Bid.objects.filter(amount__lte=amount, income_rate__lte=9, income_rate__gte=5)
         elif ctype == 3:
-            a = Bid.objects.filter(amount__lte=amount, income_rate__gte=15)
+            a = Bid.objects.filter(amount__lte=amount, income_rate__gte=9)
 
     if len(a) >= 2:
         aa = random.sample(a, 2)

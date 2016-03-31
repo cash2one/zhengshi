@@ -29,8 +29,10 @@ class Platform(models.Model):
         db_table = 't_platform'
 
 class BidManager(models.Manager):
+    print "55555555555555555"
     def comb_bid(self, amount):
         cursor = connection.cursor()
+        print "7777777777777777777777"
         cursor.execute("""
         SELECT a.id as ida,
 	    a.term as terma,
@@ -49,6 +51,7 @@ class BidManager(models.Manager):
         and a.process < 100
         order by a.amount * a.process + b.amount * b.process desc """, [amount])
         desc = cursor.description
+        print [dict(zip([col[0] for col in desc], row)) for row in cursor.fetchall()],"33333"
         return [dict(zip([col[0] for col in desc], row)) for row in cursor.fetchall()]
 
 

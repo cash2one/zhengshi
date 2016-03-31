@@ -32,70 +32,139 @@
         }
     </style>
 <script type="text/javascript">
+
 		$(function(){
+
 		/*四秒钟换一张*/
+
 		var a = 0;
 
+
+
 		$(".btn li").click(function(){	
+
 		 $(".btn li").removeClass("on");
+
 		 $(this).addClass("on");
+
 		 a=$(this).index();
 
+
+
 		 $(".banner li a").hide();
+
 		 $(".banner li a").eq(a).show();
+
 		});
+
 		function sroll(){
-			if(a<1){
-			a++;
+
+			if(a<2){
+
+			    a++;
+
+                $("#sp2").show();
+
+
 			}else{
-			a=0;
+
+			    a=0;
+
 			}
+
 		 on();	
+
 		}
+
 		var timer=setInterval(sroll,4000);
+
 		$(".banner,.prev,.next").mouseover(function(){
+
 		  clearInterval(timer);
+
 		}).mouseout(function(){
+
 		  timer=setInterval(sroll,4000);
+
 		})
+
+
 
         $('.box').mouseover(function(){
+
             $('.prev,.next').addClass('ho');
+
             $('.prev,.next').removeClass('ho1');
+
             }).mouseout(function(){
+
             $('.prev,.next').addClass('ho1');
+
             $('.prev,.next').removeClass('ho');
+
         })
 
+
+
 		$(".prev").click(function(){
+
 			if(a>0){
+
 				a--;
-			}else{
-				a=1;
-				}
-			on();
-			
-		})
-		$(".next").click(function(){
-			 
-			if(a<1){
-			a++;
-			}else{
-				a=0;
+
+                $("#sp2").show();
+
 			}
+
+			on();
+
+			
+
+		})
+
+		$(".next").click(function(){
+
+			 
+
+			if(a<2){
+
+			    a++;
+
+                $("#sp2").show();
+
+
+			}else{
+
+				a=0;
+
+			}
+
 		  on(); 
 
+
+
 		});
+
 	
+
 		function on(){
 
+
+
 		 $(".btn li").removeClass("on");
+
 		 $(".btn li").eq(a).addClass("on");
+
 		 $(".banner li a").hide();
+
 		 $(".banner li a").eq(a).show();
 
+
+
 		}	
+
 	})
+
 	</script>
     <script>
         $(function () {
@@ -128,8 +197,9 @@
     <!--图片切换--->
 	<div class="box">
 		<ul class="banner">
-			<li><a style="display:block;"><img src="/static/images/68.jpg" width="100%"  height="400"></a></li>
-			<li><a href="http://ddbid.com/new_activearea/"><img src="/static/images/activepic.jpg" width="100%" height="400"></a></li>
+			<li><a style="display:block;"><img src="/static/images/ThreeMActive.jpg" width="100%"  height="400"></a></li>
+			<li><a style="display:none;"><img src="/static/images/68.jpg 	" width="100%"  height="400"></a></li>
+			<li><a style="display:none;" href="http://ddbid.com/new_activearea/"><img src="/static/images/activepic.jpg" width="100%" height="400"></a></li>
 
 		</ul>
 		<a class="prev" href="javascript:void(0)"><</a>
