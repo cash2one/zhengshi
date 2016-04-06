@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load pagination_tags %}
+{% load settingsvalue %}
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -26,7 +27,7 @@
 			   <div class="contwid"></div>
 			   <div class="detail_ty">
 					 <div class="font_colc">标的金额</div>
-					 <div style="margin-top:10px;"><font style="font-size:1.4em;color: red;font-weight:bold;">￥{{ r.amount|floatformat:"0" }}</font></div>
+					 <div style="margin-top:10px;"><font style="font-size:1.4em;color: red;font-weight:bold;">￥{{ r.amount|data_display}}</font></div>
 				</div>
 				<div style="width:1px;height:60px; background:#EEEEF0;float:left;margin-top:10px;matgin-left:10px;"></div>
 				<div class="detail_ty">

@@ -18,7 +18,7 @@
 		   <em style="width:{{result.process}}%;border-radius:10px; background:url(../static/images/jinduqiao.png) no-repeat;height:20px;display:block;"></em></div>
 		   <div style="width:220px;margin-top:20px;">
 			  <div style="float:left;"><span class="font_col">标的金额:</span>
-			  <span class="c_red">{{ result.amount|floatformat:"0" }}</span></div>
+			  <span class="c_red">{{ result.amount|data_display }}</span></div>
 			  <div style="float:right;"><span class="font_col">已完成:</span>
 			  <span class="c_red">{{ result.process|floatformat:"0" }}</span><font class="font_col">%</font></div>
 		   </div>

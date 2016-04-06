@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 __author__ = 'TianShuo'
 from django import template
 from ddbid import settings
@@ -37,4 +38,11 @@ register.filter(multiplicative_page)
 def title_cut(title):
     return title[0:8]
 register.filter(title_cut)
+
+def data_display(data):
+    if(data>=10000):
+        return "%s万"%round(float(data)/10000,2)
+    else:
+        return int(data)
+register.filter(data_display)
 
