@@ -2,62 +2,78 @@
 {% load staticfiles %}
 <html>
 <body>
-<div class="log_contentt" id="result_form">
+<div id="result_form">
     {% if results %}
         {% for result in results.object_list %}
-		
-		 <div id='content'>
-			<div style="padding-left:0.2rem;">
-				<div style="margin-bottom:0.2rem;margin-top:0.2rem;"><div style="width:4.4rem;height:0.02rem; background:#999999";></div></div>
-				<div style="overflow:hidden;width:100%;height:0.5rem;">
-					<div class="search_bd"><img src="{{ result.platform.logo }}"></div>
-					<div class="ckxq"><lable id="check_is_exist_{{result.id}}" name="{{result.id}}" target="_blank" class="seach_cheek">查看详情</lable></div>
-				</div>
-				<div><span class="search_title" >{{ result.name }}</span></div>	
-				
-				<div style="overflow:hidden">
-					<div class="neirong">
-					   <ul>
-						  <li>借款金额：<font class="c_red">{{ result.amount|floatformat:"0" }}</font></li>
-						  <li>每万元总收益：<font class="c_red">{{ result.ten_thousand_revenue|floatformat:"-2" }}元</font></li>
-					   </ul>
-					</div>		
-					<div class="neirong1"><div style="width:0.02rem;height:0.5rem; background:#999999"></div></div>	
-					<div class="neirong2">
-					   <ul>
-						  <li>期限:<font class="c_red">{{ result.term_name|floatformat:"-2" }}</font>{{ result.term_unit }}</li>
-						  <li>年化收益:<font class="c_red">{{ result.income_rate|floatformat:"-2" }}</font>%</li>
-					   </ul>
-					</div>	
-				</div>		
-			</div>
-		</div>
-		
-        {% endfor %}
-    {% else %}
-        <a>无符合查询条件的纪录</a>
-    {% endif %}
-    <div style="clear: both"></div>
-   <div id="divv1">
-
+    <div class="weui-listItem">
+        <div class="weui-row weui-no-gutter">
+            <div class="weui-col-50">
+                <img src="{{ result.platform.logo }}" alt="" class="cover">
+            </div>
+            <div class="weui-col-50">
+                <a href="javascript:;" id="check_is_exist_{{result.id}}" name="{{result.id}}" target="_blank" class="weui_btn weui_btn_mini weui_btn_primary">查看详情</a>
+            </div>
+        </div>
+        <div class="weui-row weui-no-gutter">
+            <div class="weui-col-100">
+                {{ result.name }}
+            </div>
+        </div>
+        <div class="weui-row weui-no-gutter">
+            <div class="weui-col-45">
+                借款金额:<span>{{ result.amount|floatformat:"0" }}</span>
+            </div>
+            <div class="weui-col-5 cut"></div>
+            <div class="weui-col-45">
+                期限:<span >{{ result.term_name|floatformat:"-2" }}{{ result.term_unit }}</span>
+            </div>
+        </div>
+        <div class="weui-row weui-no-gutter weui-division">
+            <div class="weui-col-45">
+                万元收益:<span>{{ result.ten_thousand_revenue|floatformat:"-2" }}元</span>
+            </div>
+            <div class="weui-col-5"></div>
+            <div class="weui-col-45">
+                年化收益:<span>{{ result.income_rate|floatformat:"-2" }}</span>
+            </div>
+        </div>
+    </div>
+            {% endfor %}
+        {% else %}
+            <a>无符合查询条件的纪录</a>
+        {% endif %}
+    <div class="weui-btns">
         {% if results.has_previous and  results.has_next %}
-            <a href="javascript:void(0)" class="seach_cheek1"
-               onclick="takepage({{ results.previous_page_number }})">上一页</a>
+            <div class="weui-row weui-no-gutter" style="padding: 0 2px">
+                <div class="weui-col-100">
 
-            &nbsp;<a href="javascript:void(0)" class="seach_cheekk"
-               onclick="takepage({{ results.next_page_number }})">下一页</a>
-         {% endif %}
+                    <a href="javascript:void(0)" class="weui_btn weui_btn_warn"
+                       onclick="takepage({{ results.previous_page_number }})">上一页</a>
+                    <a href="javascript:void(0)" class="weui_btn weui_btn_warn"
+                       onclick="takepage({{ results.next_page_number }})">下一页</a>
+
+                </div>
+            </div>
+        {% endif %}
 
         {% if results.has_next and not results.has_previous %}
-            &nbsp;<a href="javascript:void(0)" class="seach_cheekk1"
-               onclick="takepage({{ results.next_page_number }})">下一页</a>
+            <div class="weui-row" style="padding: 0 2px">
+                <div class="weui-col-100">
+                    <a href="javascript:void(0)" class="weui_btn weui_btn_warn"
+                       onclick="takepage({{ results.next_page_number }})">下一页</a>
+                </div>
+            </div>
         {% endif %}
 
         {% if not results.has_next and results.has_previous %}
-            &nbsp;<a href="javascript:void(0)" class="seach_cheekk1"
-               onclick="takepage({{ results.next_page_number }})">上一页</a>
+            <div class="weui-row" style="padding: 0 2px">
+                <div class="weui-col-100">
+                    <a href="javascript:void(0)" class="weui_btn weui_btn_warn"
+                       onclick="takepage({{ results.next_page_number }})">上一页</a>
+                </div>
+            </div>
         {% endif %}
-
+        </div>
 </div>
 </body>
 <script>

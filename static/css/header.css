@@ -1,6 +1,6 @@
 ﻿/*头部*/
 #header {margin:0px;padding:0px;height: 60px;line-height: 58px;width: 100%;background-color:#372C3A;
-max-width:1660px;min-width: 1024px;width:expression(document.body.clientWidth < 1024? "1024px": "auto" );}
+max-width:1660px;min-width: 1440px;width:expression(document.body.clientWidth < 1024? "1024px": "auto" );}
 .top{ padding:0px;}
 
 .nav{padding-left:5%;}

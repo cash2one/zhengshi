@@ -42,15 +42,18 @@ input.input_butt{display:inline-block; border:0}
 #ul11 a{color:#000000;}
 #ul11 a:hover{color:#e1640d;}
 #warp{width:100%;height:800px;background:#EEEEF0;}
-#login_content{width:100%;height:620px;background:#EEEEF0;margin-top: -10px;
-max-width:1660px;min-width: 1024px;width:expression(document.body.clientWidth < 1050? "1050px": "auto" );}
+#login_content{width:100%;margin-top: -10px; }
 .log_text li{margin:5px 0;}
 .log_ucon{line-height:25px;margin-left:50px;}
 .login_mid{ padding:20px 0px;height:500px; background-color:#FFF;width:600px; z-index:999;margin: 10px auto;}
 .login_mid ul{padding:10px 0px;}
 /*注册*/
-#signup_content{width:100%;height:800px;background:#EEEEF0;
-max-width:1660px;min-width: 1024px;width:expression(document.body.clientWidth < 1050? "1050px": "auto" );}
+#signup_content{background-image: url('/static/images/operation-background.JPG');
+    background-repeat: no-repeat;
+    background-position: left top;
+    width: 100%;
+    background-size: 100% 100%;
+    overflow: hidden;max-width:1660px;min-width: 1440px;}
 .singup_call{margin-left:50px;line-height:20px;}
 #call_inp input[type="text"]{width:400px;height:40px;}
 .call_lbl span{position:absolute;}
@@ -75,7 +78,7 @@ max-width:1660px;min-width: 1024px;width:expression(document.body.clientWidth < 
 #yzcode_inp input[type="text"]{width:300px;height:40px;}
 
 
-.signup_mid{height:700px; background-color:#FFF;width:610px; z-index:999;margin: 0px auto;}
+.signup_mid{background-color:#FFF;width:610px; z-index:999;margin: 0px auto;}
 .signup_mid ul{padding:5px 0px;}
 .reg_header{ background:url(../images/reg_bg.png) no-repeat 250px center;}
 .reg_btn{ width:178px;}
@@ -91,10 +94,15 @@ max-width:1660px;min-width: 1024px;width:expression(document.body.clientWidth < 
 input.login_butt{display:inline-block;border:0}
 
 /*取回密码*/
-#forger_conent{width:100%;height:620px;background:#EEEEF0;max-width:1660px;min-width: 1024px;width:expression(document.body.clientWidth < 1050? "1050px": "auto" );}
+#forger_conent{background-image: url('/static/images/operation-background.JPG');
+    background-repeat: no-repeat;
+    background-position: left top;
+    width: 100%;
+    background-size: 100% 100%;
+    overflow: hidden;max-width:1660px;min-width: 1440px;}
 .login_retrieve{ padding:5px 10px; border:1px solid #ddd; border-radius:5px;}
 .login_retrieve:hover{ background:#f2f2f2; color:#4c4c4c;}
-.get_pwd{ padding:10px 0;height:500px; background-color:#FFF;width:600px; z-index:999;margin: 0px auto;}
+.get_pwd{ padding:20px 0;height:500px; background-color:#FFF;width:600px; z-index:999;margin: 0px auto;}
 .get_all{margin-top:40px;}
 #ul3{margin:30px 0;font-size:12px;}
 #ul3{line-height:45px;}
@@ -111,7 +119,6 @@ input.login_butt{display:inline-block;border:0}
 #print_ucon{margin-left:40px;margin-top:-20px;}
 #print_ucon{line-height:25px}
 #print_ucon .elul2 {margin-left:45px;}
-.zhankeng{height: 50px;background: #EEEEF0 none repeat scroll 0% 0%;width: 100%;
-max-width:1660px;min-width: 1024px;width:expression(document.body.clientWidth < 1050? "1050px": "auto" );}
+.zhankeng{height: 50px;max-width:1660px;min-width: 1024px;}
 .xjt{position:absolute; top: 519px;left: 788px;}
 

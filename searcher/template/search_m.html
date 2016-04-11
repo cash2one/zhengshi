@@ -10,10 +10,8 @@
             background-color: #372C3A;
         }
         .weui_search_logo img {
-            -webkit-box-flex: 0.2;
-            -webkit-flex: 0.2;
-            -ms-flex: 0.2;
-            flex: 0.2;
+            width: 4rem;
+            height: 1.64rem;
             vertical-align: middle;
         }
         .weui_search_outer {
@@ -31,8 +29,9 @@
         .weui_btn{
             padding-left: 10px;
             padding-right: 10px;
-            line-height: 1.6;
+            line-height: 2;
             border-radius: 0;
+            font-size: 16px;
         }
         .weui_btn:after{
             border-radius: 0;
@@ -42,8 +41,7 @@
 <body>
     <div class="weui_search_bar" id="search_bar">
         <div class="weui_search_logo">
-            <!--x描述符表示图像的设备像素比-->
-            <img srcset="/static/images/width-75px-logo.png 1.5x, /static/images/width-150px-logo.png 2x" src="/static/images/width-75px-logo.png">
+            <img src="/static/images/width-150px-logo.png">
         </div>
 
         <form action="{% url 'search_result_m' %}"  id="formPW" method="post" class="weui_search_outer">

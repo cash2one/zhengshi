@@ -1,6 +1,6 @@
 ﻿
  #footer{ width:100%; clear:both;text-algin:center;margin:0px;padding:0px;background-color:#372C3A;
- max-width:1660px;min-width: 1024px;width:expression(document.body.clientWidth < 1024? "1024px": "auto" );}
+ max-width:1660px;min-width: 1440px;width:expression(document.body.clientWidth < 1024? "1024px": "auto" );}
 .footer_top{width:100%;background-color:#372C3A;height:180px;clear:both;overflow:hidden;}
 .footer_top ul{ text-align:center;}
 .footer_top a:hover{color:#ff0000}

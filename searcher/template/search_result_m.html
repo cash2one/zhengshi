@@ -6,21 +6,101 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>搜索结果</title>
-    <meta content="width=device-width, initial-scale=1.0,user-scalable=no" name="viewport" id="viewport">
-    <meta content="yes" name="apple-mobile-web-app-capable">
-    <meta content="black" name="apple-mobile-web-app-status-bar-style">
-    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/0.4.0/weui.css">
- 	<link rel="stylesheet" href="/static/css/search_result_m.css">
-    <link rel="stylesheet" href="/static/css/login_m.css">
+    <link rel="stylesheet" href="/static/css/jquery-weui.css">
     <script src="/static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/public.js"></script>
+    <style>
+        body {
+            background-color: #d9d9d9;
+        }
+
+        .swiper-container img {
+            display: block;
+            width: 100%;
+        }
+
+        .weui-row {
+            margin-top: 10px;
+        }
+
+        [class*="weui-col-"] {
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .weui-row {
+            position: relative;
+        }
+        #weui-content {
+            background-color: #fff;
+            padding: 5px 0;
+            margin-top: 10px;
+        }
+        .weui-nav {
+            padding: 10px 0;
+        }
+        .weui-search a{color:#000000;}
+        .weui-search a{text-decoration:none;}
+        .weui-search a{ display:inline-block;padding: 0 10px;}
+        .weui-search a:hover{color:#FF0000; border:1px solid #c50512;}
+        .weui-search a.order_jx,.weui-search a.order_sx{ background:#c50512; color:#fff; border:1px solid #c50512;}
+        .weui-search a.order_jx i{ background:url(/static/images/jiantou.png) no-repeat right center; padding-right:10px;}
+        .weui-search a.order_sx i{background:url(/static/images/jiantou1.png) no-repeat right center;padding-right:10px;}
+
+        .cover {
+            width: 120px;
+            height: 30px;
+        }
+
+        .value {
+            font-weight: bold;
+            color: #ff0000;
+        }
+
+        .cut {
+            border-right: 1px solid #D9D9D9;
+            width: 1px;
+            height: 3.2em;
+            position: absolute;
+            left: 48%;
+            top: 30%;
+        }
+
+
+        .weui_btn {
+            font-size: 14px;
+            line-height: 2.2;
+        }
+
+
+        .weui-listItem{
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .weui-listItem:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            border-top: 1px solid #ccc;
+            width: 100%;
+            height: 1px;
+            color: #ccc;
+        }
+
+    </style>
 </head>
 <body>
-<div class="log_conten">
-<header>
-<div id="head_m"></div>
-</header>
+<div id="weui-content">
+    <header>
+        <div id="head_m"></div>
+    </header>
 {% if params %}
     <script>
         $(document).ready(function () {
@@ -38,18 +118,17 @@
         });
     </script>
 {% endif %}
-	<div class="log_contenttt">
-		<div style="overflow:hidden;width:4.5rem;height:0.6rem;padding-top:0.2rem;padding-left:0.2rem;">
-			<div style="font-size:0.25rem;float:left;">
-			   标的搜索结果
-			</div>
-			<div class="search_reorder">
-					<a href="javascript:void(0)" sorttype="1"></span>收益<i></i></a>
-					<a href="javascript:void(0)" sorttype="2">&nbsp;&nbsp;投资期限<i></i></a>
-			</div>	
-		 </div>
-		{% include "search_result_single_m.html" %}
-	</div>
+
+    <div class="weui-nav">
+        <div class="weui-row">
+            <div class="weui-col-40">标的搜索结果</div>
+            <div class="weui-col-60 weui-search">
+                <a href="javascript:void(0)" sorttype="1">收益<i></i></a>
+                <a href="javascript:void(0)" sorttype="2">投资期限<i></i></a>
+            </div>
+        </div>
+        {% include "search_result_single_m.html" %}
+    </div>
 </div>
 </body>
 <script>
@@ -75,7 +154,7 @@
         );
     });
 
-    $(".search_reorder a").click(function () {
+    $(".weui-search a").click(function () {
         $(this).siblings().removeClass("order_jx");
         $(this).siblings().removeClass("order_sx");
         if ($(this).hasClass("order_jx")) {

@@ -1,115 +1,38 @@
-body,div,ol,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,p,form,fieldset,legend,input,button{ margin:0; padding:0; -webkit-tap-highlight-color:rgba(255,255,255,0); }
-html {  width: 100%; font-family: 'Heiti SC', 'Microsoft YaHei'; font-size: 100px; outline: 0; -webkit-text-size-adjust:none;}
-body {  width:100%; margin: 0; -webkit-user-select: none; position: relative; background-color:#fff;}
-ul {
-    list-style-type: none;
+html,body{height: 100%}
+html{font-size: 10px;}
+*{margin:0;padding: 0;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-text-size-adjust: none;font-family: Arial,'Microsoft YaHei';}
+body{font-size:1.2em;background: #f5f5f5}
+a{text-decoration: none}
+li{list-style-type: none}
+input[type="text"], input[type="password"], input[type="search"], input[type="tel"], input[type="number"], input[type="email"], input[type="url"],input[type="submit"], textarea{cursor:pointer;-webkit-appearance:none;border-radius:0;}
+input:focus, select:focus, textarea:focus, button:focus{outline: none}
+[class^="icon-"],[class*=" icon-"]{font-family:'m-icons';speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.touchweb-com_header{position:relative;height: 44px;background-color:#fff;border-bottom: 1px solid #e5e5e5}
+.touchweb-com_header h1{height: 44px;line-height: 44px;font-size:1.7rem;padding:0 25%;text-align: center;color: #000;overflow: hidden;white-space: nowrap;font-weight: normal}
+.touchweb-page_fpwd .fpwd_box{margin-top:40px;border-top: 1px solid #dcdcdc;border-bottom: 1px solid #dcdcdc;background-color: #fff}
+.touchweb-page_fpwd .fpwd_box .form_item{display: -webkit-box;display:-webkit-flex;display: -ms-flexbox;display:flex;margin:0 auto;width: 320px;height: 44px}
+.touchweb-page_fpwd .fpwd_box .form_item label{display: block;width: 70px;height: 44px;text-align: center;font-size:1.4rem;color:#666;line-height: 44px;padding:0 10px}
+.touchweb-page_fpwd .fpwd_box .input_box{position: relative;flex: 1;-webkit-box-flex: 1;width: auto;height: 43px;border-bottom: 1px solid #e5e5e5}
+.touchweb-page_fpwd .fpwd_box .form_item .input_box input{width: 50%;height: 43px;line-height: 20px;padding: 12px 30px 11px 0;border:none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/*提示信息*/
+/*.Validform_error{background-color: #ffe7e7;}*/
+.touchweb-page_fpwd .fpwd_box .form_item span{position: absolute;}
+.Validform_checktip{color: #999;font-size: 12px; height: 20px;line-height: 20px;overflow: hidden; margin-left:10px;}
+.Validform_wrong{color: red;padding-left: 20px;white-space: nowrap; background:url(../images/error.png) no-repeat 0 center;}
+.Validform_right{color: #71b83d;padding-left: 20px; background:url(../images/right.png) no-repeat 0 center;}
+.touchweb-page_fpwd .fpwd_box .form_item:last-child .input_box1{border: none}
+.touchweb-page_fpwd .fpwd_box .input_box1{position: relative;flex: 1;-webkit-box-flex: 1;width: 50%;height: 43px;border-bottom: 1px solid #e5e5e5;overflow: hidden}
+.touchweb-page_fpwd .fpwd_box .form_item .input_box1 input{width: 30%;height: 43px;line-height: 20px;border:none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-header {
-    width:5rem;
-    height:0.6rem;
-    background-color: #555555;
-}
-.nav_img img{
-    margin: -0.02rem 0 -0.1rem -0.8rem;
-    width: 2.85rem;
-    height: 0.6rem;
-    float: left;
-}
-
-.seacher_inp input[type="text"] {
-    height: 0.3rem;
-    margin: -0.35rem 0 -0.45rem 1.3rem;
-    width: 3.2rem;
-    -webkit-border-radius: 2%;
-    -moz-border-radius: 2%;
-    border-radius: 2%;
-    float: left;
-}
-
-.nav_btnimg img{
-    width: 0.28rem;
-    height: 0.31rem;
-    margin: -0.35rem 0 -0.45rem 4.51rem;
-    float: left;
-}
-/*content style*/
-.Validform_error{background-color: #ffe7e7;}
-.Validform_checktip{color: #999;font-size: 0.12rem; height: 0.2rem;line-height: 0.2rem;overflow: hidden; margin-left:0.23rem;}
-.Validform_wrong{color: red;padding-left: 0.25rem;white-space: nowrap; background:url(../images/error.png) no-repeat 0 center;}
-.Validform_right{color: #71b83d;padding-left: 0.2rem; background:url(../images/right.png) no-repeat 0 center;}
-.forgetpwd_content{
-    width: 5rem;
-    height: 8.25rem;
-    font-size: 0.3rem;
-    background-color: #eeeef0;
-}
-.forgetpwd_message{
-    position:absolute;
-    margin:0.6rem 0 0 1rem;
-}
-.fgetpwd_text{
-    margin-left:1rem;
-    font-size: 0.36rem;
-}
-.forgetpwd_content input[type="text"]{
-    width: 2rem;
-    height: 0.3rem;
-}
-.forgetpwd_content input[type="password"]{
-    width: 2rem;
-    height: 0.3rem;
-}
-.fpwdcall_text{
-    font-size: 0.2rem;
-    float:left;
-    margin:0.3rem 0 0 -0.1rem;
-}
-.fpwdcall_inp input[type="text"]{
-    float:left;
-    margin:0.25rem 0 0 0.25rem;
-}
-.fpwdcall_inp span{
-    position:absolute;
-    left:2.5rem;
-    top:0.88rem;
-    font-size: 0.1rem;
-    z-index: 999;
-}
-.message_text{
-    font-size: 0.2rem;
-    float:left;
-    margin:0.3rem 0 0 -0.5rem;
-}
-.message_inp input[type="text"]{
-    float:left;
-    margin:0.25rem 0 0 0.25rem;
-    width:1rem;
-}
-.message_inp span{
-    position:absolute;
-    left:2.5rem;
-    top:1.45rem;
-    font-size: 0.1rem;
-    z-index: 999;
-}
-.message_btn input[type="button"]{
-    float:left;
-    width:0.9rem;
-    font-size: 0.15rem;
-    color:#ffffff;
-    height: 0.3rem;
-    margin:0.25rem 0 0 0.05rem;
-    background-color:rgb(73,56,122);
-    -webkit-border-radius: 0.03rem;
-    -moz-border-radius: 0.03rem;
-    border-radius: 0.03rem;
-}
-.fgetpwd_sub input[type="submit"]{
-    width:4.5rem;
-    height:0.6rem;
-    background-color:rgb(240,52,89);
-    margin:0.3rem 0 0 -0.8rem;
-    font-size: 0.25rem;
-    color:#ffffff;
-}
+.touchweb-page_fpwd .fwp_btn{max-width: 290px;margin:20px auto 0;}
+.touchweb-page_fpwd .fwp_btn input[type='submit']{display:block;width: 100%;height: 44px;border-radius: 5px;text-align: center;background-color:#ff3c3c;outline: none;color: #fff;border: none}
+.touchweb-page_fpwd .fwp_btn .btn:visited{color: #fff}
+.touchweb-page_fpwd .fwp_btn .btn:active{background-color: #e53636}

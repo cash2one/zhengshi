@@ -7,95 +7,188 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>搜索结果</title>
-    <meta content="width=device-width, initial-scale=1.0,user-scalable=no" name="viewport" id="viewport">
-    <meta content="yes" name="apple-mobile-web-app-capable">
-    <meta content="black" name="apple-mobile-web-app-status-bar-style">
-    <meta content="telephone=no" name="format-detection">
-    <script src="/static/js/jquery.min.js"></script>
- 	<link rel="stylesheet" href="/static/css/search_result_m.css">
-    <link rel="stylesheet" href="/static/css/login_m.css">
-    <script type="text/javascript" src="/static/js/public.js"></script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+	<link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/0.4.0/weui.css">
+	<link rel="stylesheet" href="/static/css/jquery-weui.css">
+	<style>
+		body{
+			background-color: #d9d9d9;
+		}
+		.swiper-container {
+			width: 100%;
+		}
+
+		.swiper-container img {
+			display: block;
+			width: 100%;
+		}
+		.weui-row {
+			margin-top: 10px;
+		}
+		[class*="weui-col-"] {
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+		}
+		.cover{
+			width: 120px;
+			height: 30px;
+		}
+		.title{
+			font-weight: 400;
+			font-size: 18px;
+		}
+		.value{
+			font-weight: bold;
+			color: #ff0000;
+		}
+		.weui-row{
+			position: relative;
+		}
+		.cut{
+			border-right: 1px solid #D9D9D9;
+			width: 1px;
+			height: 3.2em;
+			position: absolute;
+			left: 48%;
+			top: 30%;
+		}
+		.weui-nav,.weui-content{
+			background-color: #fff;
+			padding: 5px 0;
+			margin-top: 10px;
+		}
+		.weui_search_bar:after{
+			border-bottom: none;
+		}
+		.weui-col-25 img:active{
+			opacity:0.5;
+			filter:Alpha(opacity=50);
+		}
+	</style>
 </head>
 <body>
-<div class="log_contentt" id="result_form">
-  	<div class="log_contenttt">
-		<div style="overflow:hidden;width:4.5rem;height:0.6rem;padding-top:0.2rem;padding-left:0.2rem;">
-			<div style="font-size:0.25rem;float:left;">
-			   筛选
-			</div>
-			<div class="search_reorder">
-					<a href="javascript:void(0)" onclick="show_right()"></span>高收益<i></i></a>
-					<a href="javascript:void(0)" onclick="show_left()">&nbsp;&nbsp;投资期限<i></i></a>
-                    <a href="/m/detail_search" sorttype="2">&nbsp;&nbsp;自定义<i></i></a>
-			</div>
-		 </div>
-
+<header>
+	<div id="head_m"></div>
+</header>
+<div class="swiper-container">
+	<!-- Additional required wrapper -->
+	<div class="swiper-wrapper">
+		<!-- Slides -->
+		<div class="swiper-slide"><img src="/static/images/homepage-banner1.JPG" /></div>
+		<div class="swiper-slide"><img src="/static/images/homepage-banner2.JPG" /></div>
+		<div class="swiper-slide"><img src="/static/images/homepage-banner3.JPG" /></div>
+	</div>
+	<!-- If we need pagination -->
+	<div class="swiper-pagination"></div>
+</div>
+<div class="weui-nav">
+	<div class="weui-row">
+		<div class="weui-col-33">
+			<a href="javascript:void(0)" onclick="show_right()"><img src="/static/images/high-earnings.png"></a>
+		</div>
+		<div class="weui-col-33">
+			<a href="javascript:void(0)" onclick="show_left()"><img src="/static/images/low-deadline.png"></a>
+		</div>
+		<div class="weui-col-33">
+			<a href="/m/detail_search" sorttype="2"><img src="/static/images/custorm.png"></a>
+		</div>
+	</div>
+</div>
+<div class="weui-row weui-no-gutter">
+	<div class="weui-col-33" style="text-align: left">
+		<h3>最新标的</h3>
+	</div>
+	<div class="weui-col-33"></div>
+	<div class="weui-col-33" style="text-align: right">
+		<span class="value" style="font-size: 14px">更多</span>
+	</div>
+</div>
+<div id="container">
     {% if results_right %}
         {% for result in results_right %}
-		 <div id='content_right'>
-			<div style="padding-left:0.2rem;">
-				<div style="margin-bottom:0.2rem;margin-top:0.2rem;"><div style="width:4.4rem;height:0.02rem; background:#999999";></div></div>
-				<div style="overflow:hidden;width:100%;height:0.5rem;">
-					<div class="search_bd"><img src="{{ result.platform.logo }}"></div>
-					<div class="ckxq"><lable id="check_is_exist_{{result.id}}" name="{{result.id}}" target="_blank" class="seach_cheek">查看详情</lable></div>
-				</div>
-				<div><span class="search_title" >{{ result.name }}</span></div>	
-				
-				<div style="overflow:hidden">
-					<div class="neirong">
-					   <ul>
-						  <li>借款金额：<font class="c_red">{{ result.amount|floatformat:"0" }}</font></li>
-						  <li>每万元总收益：<font class="c_red">{{ result.ten_thousand_revenue|floatformat:"-2" }}元</font></li>
-					   </ul>
-					</div>		
-					<div class="neirong1"><div style="width:0.02rem;height:0.5rem; background:#999999"></div></div>	
-					<div class="neirong2">
-					   <ul>
-						  <li>期限:<font class="c_red">{{ result.term_name|floatformat:"-2" }}</font>{{ result.term_unit }}</li>
-						  <li>年化收益:<font class="c_red">{{ result.income_rate|floatformat:"-2" }}</font>%</li>
-					   </ul>
-					</div>	
-				</div>		
+	<div id='content_right' class="weui-content">
+		<div class="weui-row weui-no-gutter">
+			<div class="weui-col-50">
+				<img src="{{ result.platform.logo }}" alt="" class="cover">
+			</div>
+			<div class="weui-col-50">
+				<h3 class="title">浙江省湖州市项目</h3>
 			</div>
 		</div>
-		
+		<div class="weui-row weui-no-gutter">
+			<div class="weui-col-45">
+				总金额:<span class="value">￥{{ result.amount|floatformat:"0" }}</span>
+			</div>
+			<div class="weui-col-5 cut"></div>
+			<div class="weui-col-45">
+				完成:<span class="value">{{ result.process|floatformat:"0" }}%</span>
+			</div>
+		</div>
+		<div class="weui-row weui-no-gutter">
+			<div class="weui-col-45">
+				收益率:<span class="value">{{ result.income_rate|floatformat:"-2" }}%</span>
+			</div>
+			<div class="weui-col-5"></div>
+			<div class="weui-col-45">
+				期限:<span class="value">{{ result.term_name|floatformat:"-2" }}天</span>
+			</div>
+		</div>
+	</div>
         {% endfor %}
     {% endif %}
     {% if results_left %}
         {% for result in results_left %}
-		 <div id='content_left'>
-			<div style="padding-left:0.2rem;">
-				<div style="margin-bottom:0.2rem;margin-top:0.2rem;"><div style="width:4.4rem;height:0.02rem; background:#999999";></div></div>
-				<div style="overflow:hidden;width:100%;height:0.5rem;">
-					<div class="search_bd"><img src="{{ result.platform.logo }}"></div>
-					<div class="ckxq"><lable id="check_is_exist_{{result.id}}" name="{{result.id}}" target="_blank" class="seach_cheek">查看详情</lable></div>
-				</div>
-				<div><span class="search_title" >{{ result.name }}</span></div>
-
-				<div style="overflow:hidden">
-					<div class="neirong">
-					   <ul>
-						  <li>借款金额：<font class="c_red">{{ result.amount|floatformat:"0" }}</font></li>
-						  <li>每万元总收益：<font class="c_red">{{ result.ten_thousand_revenue|floatformat:"-2" }}元</font></li>
-					   </ul>
-					</div>
-					<div class="neirong1"><div style="width:0.02rem;height:0.5rem; background:#999999"></div></div>
-					<div class="neirong2">
-					   <ul>
-						  <li>期限:<font class="c_red">{{ result.term_name|floatformat:"-2" }}</font>{{ result.term_unit }}</li>
-						  <li>年化收益:<font class="c_red">{{ result.income_rate|floatformat:"-2" }}</font>%</li>
-					   </ul>
-					</div>
-				</div>
+	<div id='content_left' class="weui-content">
+		<div class="weui-row weui-no-gutter">
+			<div class="weui-col-50">
+				<img src="{{ result.platform.logo }}" alt="" class="cover">
+			</div>
+			<div class="weui-col-50">
+				<h3 class="title">浙江省湖州市项目</h3>
 			</div>
 		</div>
-
+		<div class="weui-row weui-no-gutter">
+			<div class="weui-col-45">
+				总金额:<span class="value">￥{{ result.amount|floatformat:"0" }}</span>
+			</div>
+			<div class="weui-col-5 cut"></div>
+			<div class="weui-col-45">
+				完成:<span class="value">{{ result.process|floatformat:"0" }}%</span>
+			</div>
+		</div>
+		<div class="weui-row weui-no-gutter">
+			<div class="weui-col-45">
+				收益率:<span class="value">{{ result.income_rate|floatformat:"-2" }}%</span>
+			</div>
+			<div class="weui-col-5"></div>
+			<div class="weui-col-45">
+				期限:<span class="value">{{ result.term_name|floatformat:"-2" }}天</span>
+			</div>
+		</div>
+	</div>
         {% endfor %}
     {% endif %}
-        </div>
 </div>
 </body>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/jquery-weui.js"></script>
 
+<script src="/static/js/swiper.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$.get("/m/search/",function(data){ $('#head_m').html(data.content_html);});
+	});
+</script>
+<script>
+	$(".swiper-container").swiper({
+		loop: true,
+		autoplay: 3000
+	});
+</script>
 <script type="text/javascript">
     function show_right(){
         $("#content_right").show();
@@ -106,4 +199,5 @@
         $("#content_right").hide();
     }
 </script>
+
 </html>
