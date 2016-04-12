@@ -3,6 +3,7 @@
 {% load url from future %}
 {% load staticfiles %}
 {% load pagination_tags %}
+{% load settingsvalue %}
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -88,13 +89,13 @@
 <div class="weui-nav">
 	<div class="weui-row">
 		<div class="weui-col-33">
-			<a href="javascript:void(0)" onclick="show_right()"><img src="/static/images/high-earnings.png"></a>
+			<a href="javascript:void(0)" onclick="show_right()"><img src="/static/images/high-earnings.png"/></a>
 		</div>
 		<div class="weui-col-33">
-			<a href="javascript:void(0)" onclick="show_left()"><img src="/static/images/low-deadline.png"></a>
+			<a href="javascript:void(0)" onclick="show_left()"><img src="/static/images/low-deadline.png"/></a>
 		</div>
 		<div class="weui-col-33">
-			<a href="/m/detail_search" sorttype="2"><img src="/static/images/custorm.png"></a>
+			<a href="/m/detail_search" sorttype="2"><img src="/static/images/custorm.png"/></a>
 		</div>
 	</div>
 </div>
@@ -104,74 +105,78 @@
 	</div>
 	<div class="weui-col-33"></div>
 	<div class="weui-col-33" style="text-align: right">
-		<span class="value" style="font-size: 14px">更多</span>
+		<a href="{% url 'search_listresult_m' %}"><span class="value" style="font-size: 14px">更多</span></a>
 	</div>
 </div>
 <div id="container">
+	<div id="right" style="display:none">
     {% if results_right %}
         {% for result in results_right %}
-	<div id='content_right' class="weui-content">
-		<div class="weui-row weui-no-gutter">
-			<div class="weui-col-50">
-				<img src="{{ result.platform.logo }}" alt="" class="cover">
+		<div id='content_right' class="weui-content" >
+			<div class="weui-row weui-no-gutter">
+				<div class="weui-col-50">
+					<img src="{{ result.platform.logo }}" alt="" class="cover">
+				</div>
+				<div class="weui-col-50">
+					<h3 class="title">{{result.name|title_cut}}</h3>
+				</div>
 			</div>
-			<div class="weui-col-50">
-				<h3 class="title">浙江省湖州市项目</h3>
+			<div class="weui-row weui-no-gutter">
+				<div class="weui-col-45">
+					总金额:<span class="value">￥{{ result.amount|data_display}}</span>
+				</div>
+				<div class="weui-col-5 cut"></div>
+				<div class="weui-col-45">
+					完成:<span class="value">{{ result.process|floatformat:"0" }}%</span>
+				</div>
+			</div>
+			<div class="weui-row weui-no-gutter">
+				<div class="weui-col-45">
+					收益率:<span class="value">{{ result.income_rate|floatformat:"-2" }}%</span>
+				</div>
+				<div class="weui-col-5"></div>
+				<div class="weui-col-45">
+					期限:<span class="value">{{ result.term_name|floatformat:"-2" }}{{ result.term_unit }}</span>
+				</div>
 			</div>
 		</div>
-		<div class="weui-row weui-no-gutter">
-			<div class="weui-col-45">
-				总金额:<span class="value">￥{{ result.amount|floatformat:"0" }}</span>
-			</div>
-			<div class="weui-col-5 cut"></div>
-			<div class="weui-col-45">
-				完成:<span class="value">{{ result.process|floatformat:"0" }}%</span>
-			</div>
-		</div>
-		<div class="weui-row weui-no-gutter">
-			<div class="weui-col-45">
-				收益率:<span class="value">{{ result.income_rate|floatformat:"-2" }}%</span>
-			</div>
-			<div class="weui-col-5"></div>
-			<div class="weui-col-45">
-				期限:<span class="value">{{ result.term_name|floatformat:"-2" }}天</span>
-			</div>
-		</div>
-	</div>
         {% endfor %}
     {% endif %}
+	</div>
+	<div id="left" >
     {% if results_left %}
         {% for result in results_left %}
-	<div id='content_left' class="weui-content">
-		<div class="weui-row weui-no-gutter">
-			<div class="weui-col-50">
-				<img src="{{ result.platform.logo }}" alt="" class="cover">
+		<div id='content_left' class="weui-content" >
+			<div class="weui-row weui-no-gutter">
+				<div class="weui-col-50">
+					<img src="{{ result.platform.logo }}" alt="" class="cover">
+				</div>
+				<div class="weui-col-50">
+					<h3 class="title">{{result.name|title_cut}}</h3>
+				</div>
 			</div>
-			<div class="weui-col-50">
-				<h3 class="title">浙江省湖州市项目</h3>
+			<div class="weui-row weui-no-gutter">
+				<div class="weui-col-45">
+					总金额:<span class="value">￥{{ result.amount|data_display }}</span>
+				</div>
+				<div class="weui-col-5 cut"></div>
+				<div class="weui-col-45">
+					完成:<span class="value">{{ result.process|floatformat:"0" }}%</span>
+				</div>
+			</div>
+			<div class="weui-row weui-no-gutter">
+				<div class="weui-col-45">
+					收益率:<span class="value">{{ result.income_rate|floatformat:"-2" }}%</span>
+				</div>
+				<div class="weui-col-5"></div>
+				<div class="weui-col-45">
+					期限:<span class="value">{{ result.term_name|floatformat:"-2" }}{{ result.term_unit }}</span>
+				</div>
 			</div>
 		</div>
-		<div class="weui-row weui-no-gutter">
-			<div class="weui-col-45">
-				总金额:<span class="value">￥{{ result.amount|floatformat:"0" }}</span>
-			</div>
-			<div class="weui-col-5 cut"></div>
-			<div class="weui-col-45">
-				完成:<span class="value">{{ result.process|floatformat:"0" }}%</span>
-			</div>
-		</div>
-		<div class="weui-row weui-no-gutter">
-			<div class="weui-col-45">
-				收益率:<span class="value">{{ result.income_rate|floatformat:"-2" }}%</span>
-			</div>
-			<div class="weui-col-5"></div>
-			<div class="weui-col-45">
-				期限:<span class="value">{{ result.term_name|floatformat:"-2" }}天</span>
-			</div>
-		</div>
-	</div>
         {% endfor %}
     {% endif %}
+	</div>
 </div>
 </body>
 <script src="/static/js/jquery.min.js"></script>
@@ -191,12 +196,12 @@
 </script>
 <script type="text/javascript">
     function show_right(){
-        $("#content_right").show();
-        $("#content_left").hide();
+        $("#left").show();
+        $("#right").hide();
     }
     function show_left(){
-        $("#content_left").show();
-        $("#content_right").hide();
+		 $("#right").show();
+		 $("#left").hide();
     }
 </script>
 

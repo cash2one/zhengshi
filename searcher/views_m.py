@@ -42,7 +42,7 @@ storage = FileSystemStorage(
 
 
 def index(request):
-    user = auth.get_user(request)
+
     results_right = Bid.objects.filter(process__lt=100).filter(term__gt=0).order_by("random_rank").order_by("term")[0:4]
     results_right.query.group_by = ['platform_id']
 
@@ -947,7 +947,7 @@ def search_listresult(request):
         sorttype = request.POST.get('sorttype', None)
         sortorder = request.POST.get('sortorder', None)
         amount = request.POST.get('amount', None)
-        print a,sortorder,sorttype,amount
+
         if amount:
             try :
                 int(amount)
@@ -972,19 +972,16 @@ def search_listresult(request):
             results = ppp.page(ppp.num_pages)
         last_page = ppp.page_range[len(ppp.page_range) - 1]
         page_set = get_pageset(last_page, page)
-        print "results is :",results, last_page,  page_set
         return render_to_response('search_result_m.html',{'params':request.POST.get('params'),'results': results, 'last_page': last_page, 'page_set': page_set},
                           context_instance=RequestContext(request))
 
     else:
+        print "ttttttttttttttttttttttttt"
         try:
             page = int(request.POST.get('page', '1'))
         except ValueError:
             page = 1
         index_parts = index_loading_m(0, None, page)
-        print 'page isxxxxxxxxxxxxx',index_parts
-        print  "index2",index_parts.get('results'),index_parts.get('last_page'),index_parts.get('page_set')
-
         return render_to_response('search_result_m.html',
                                   {'results': index_parts.get('results'), 'last_page': index_parts.get('last_page'),
                                    'page_set': index_parts.get('page_set')},

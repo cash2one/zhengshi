@@ -1,0 +1,33 @@
+{% load settingsvalue %}
+{% if results %}
+        {% for result in results %}
+	<div id='content_right' class="weui-content">
+		<div class="weui-row weui-no-gutter">
+			<div class="weui-col-50">
+				<img src="{{ result.platform.logo }}" alt="" class="cover">
+			</div>
+			<div class="weui-col-50">
+				<h3 class="title">{{result.name|title_cut}}</h3>
+			</div>
+		</div>
+		<div class="weui-row weui-no-gutter">
+			<div class="weui-col-45">
+				总金额:<span class="value">￥{{ result.amount|floatformat:"0" }}</span>
+			</div>
+			<div class="weui-col-5 cut"></div>
+			<div class="weui-col-45">
+				完成:<span class="value">{{ result.process|floatformat:"0" }}%</span>
+			</div>
+		</div>
+		<div class="weui-row weui-no-gutter">
+			<div class="weui-col-45">
+				收益率:<span class="value">{{ result.income_rate|floatformat:"-2" }}%</span>
+			</div>
+			<div class="weui-col-5"></div>
+			<div class="weui-col-45">
+				期限:<span class="value">{{ result.term_name|floatformat:"-2" }}天</span>
+			</div>
+		</div>
+	</div>
+        {% endfor %}
+    {% endif %}

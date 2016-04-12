@@ -2,16 +2,107 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1.0"/>
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>天天搜贷</title>
     <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/0.4.0/weui.css">
-    <link rel="stylesheet" href="/static/css/bid_detail_m.css">
+    <link rel="stylesheet" href="/static/css/jquery-weui.css">
     <script src="/static/js/jquery.min.js"></script>
-    <script src="/static/js/highcharts.js"></script>
-    <script src="/static/js/chart.js"></script>
-    <script src="/static/js/public.js"></script>
+    <style>
+        body {
+            background-color: #d9d9d9;
+        }
+
+        .swiper-container img {
+            display: block;
+            width: 100%;
+        }
+
+        .weui-row {
+            margin-top: 10px;
+        }
+
+        [class*="weui-col-"] {
+            text-align: center;
+        }
+
+        .cover {
+            width: 120px;
+            height: 30px;
+        }
+
+        .value {
+            font-weight: bold;
+            color: #ff0000;
+        }
+
+        .weui-row {
+            position: relative;
+        }
+
+        .cut {
+            border-right: 1px solid #D9D9D9;
+            width: 1px;
+            height: 3.2em;
+            position: absolute;
+            left: 30%;
+        }
+        .cut1 {
+            border-right: 1px solid #D9D9D9;
+            width: 1px;
+            height: 3.2em;
+            position: absolute;
+            left: 60%;
+        }
+        #weui-content {
+            background: #d9d9d9;
+            padding: 5px 0;
+            margin-top: 10px;
+        }
+
+        .weui-nav, .weui-listItem,.weui-icon{
+            padding: 10px 0;
+            background-color: #fff;
+            margin: 0 10px;
+        }
+        .weui-listItem{
+            margin-top: 10px;
+        }
+        .weui-icon{
+            margin-top: 10px;
+        }
+        .weui-listItem {
+            position: relative;
+        }
+
+        .weui-top-line:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            border-top: 1px solid #ccc;
+            width: 100%;
+            height: 1px;
+            color: #ccc;
+            margin: -5px 5px;
+        }
+        .weui-top-line:after {
+            content: '';
+            border-top: 1px solid #ccc;
+            width: 100%;
+            height: 1px;
+            color: #ccc;
+            margin: 10px 5px;
+        }
+        .centers{
+            padding: 0 10px;
+        }
+        #collect_li{
+            display: none;
+        }
+        #collect_li li{
+            list-style: none;
+        }
+    </style>
 
     <!--[if gte IE 8]>
     <script src="js/placeholder.min.js"></script>
@@ -26,12 +117,11 @@
     </script>
 </head>
 
-<body>
-<div class="container">
+<body ontouchstart>
+<div id="weui-content">
     <header>
         <div id="head_m"></div>
     </header>
-    <div class="content">
             <div>
                 <form>
                     <input type="hidden" value="{{ json_money }}" id="json_money">
@@ -39,112 +129,85 @@
                     <input type="hidden" value="{{ json_day }}" id="json_day">
                 </form>
             </div>
-            <div class="detail_content">
-                <div class="detail_img">
-                    <img class="dd" src="{{ bid.platform.logo }}"/>
-                </div>
-                <div class="detail_info">
-                    <ul>
-                        <li class="detail_date">
-                            {{ bid.name }}
-                        </li>
-                        <li>
-                            <div style="width: 4.2rem;height:  0.02rem;background:#999999;margin:0.13rem 0 0 0.1rem"></div>
-                        </li>
-                        <li class="detail_money">
-                            <label>标的金额</label>
-                        </li>
-                        <li class="detail_line">
-                            <div style="width: 0.02rem;height: 0.6rem;background:#999999;margin:0.1rem 0 0 0.1rem">
-                            </div>
-                        </li>
-                        <li class="detail_parities">
-                            <label>年利率</label>
-                        </li>
-                        <li class="detail_line">
-                            <div style="width: 0.02rem;height: 0.6rem;background:#999999;margin:0.1rem 0 0 0.1rem">
-                            </div>
-                        </li>
-                        <li class="detail_time">
-                            <label>期限</label>
-                        </li>
-                        <li style="clear: both;"></li>
-                        <li class="detail_number">
-                            <label>￥{{ bid.amount|floatformat:"0" }}</label>
-                        </li>
-                        <li class="detail_col">
-                            <label>{{ bid.income_rate|floatformat:"-2" }}<span>%</span></label>
-                        </li>
-                        <li class="detail_month">
-                            <label>{{ bid.term_name|floatformat:"-2" }}<span>{{ bid.term_unit }}</span></label>
-                        </li>
-                        <li style="clear: both;"></li>
-                        <li>
-                            <div style="width: 4.2rem;height:  0.02rem;background:#999999;margin:0.13rem 0 0 0.1rem"></div>
-                        </li>
-                    </ul>
-                    <ul class="detail_list">
-                        <li class="detail_ifmoney">
-                            <label>已融金额:</label>
-                            <label>￥{{ bid.finish_amount|floatformat:"0" }}</label>
 
-                        </li>
-                        <li class="detail_rate">
-                            <label>每月利率:</label>
-                            <label>{{ bid.month_rate|floatformat:"-2" }}%</label>
-                        </li>
-                        <li style="clear: both;"></li>
-                        <li class="detail_canmoney">
-                            <label>可投余额:</label>
-                            <label>￥{{ bid.allow_amount|floatformat:"0" }}</label>
-                        </li>
-                        <li class="detail_return">
-                            <label>最低可投:</label>
-                            <label>{% if bid.min_amount %} ￥{{ bid.min_amount }} {% else %}
-                                无 {% endif %}</label>
-                        </li>
-                        <li style="clear: both;"></li>
-                        <li class="detail_havemoney">
-                            <label>&nbsp;&nbsp;每万收益:</label>
-                            <label>￥{{ bid.ten_thousand_revenue|floatformat:"-2" }}</label>
-                            <!--<td>剩余时间 ：</td>-->
-                            <!--<td class="detail_double"><span class="detail_date">无</span></td>-->
-                        </li>
-                        <li class="detail_avgmoney">
-                            <label>投标进度:</label>
-                            <label class="detail_percent"><em style="width:{{ bid.process }}%"></em></label>
-                            <label class="detail_double"><span>{{ bid.process|floatformat:"0" }}%</span></label>
-                        </li>
-                        <li style="clear: both;"></li>
-                        <li class="detail_ifmoney">
-                            <label>还款方式:</label>
-                            <label>{{ bid.repay_type }}</label>
-                        </li>
-                    </ul>
+            <div class="weui-nav">
+                <div class="weui-row weui-no-gutter">
+                    <div class="weui-col-100 centers" style="text-align: left">
+                        <img src="{{ bid.platform.logo }}" alt="" class="cover">
+                    </div>
                 </div>
-                <div class="footer_content">
-
-                    <dl id="detail_a">
-                        <!--x描述符表示图像的设备像素比-->
-                        <dd class="collect_img"><a class="collect_a" href="#"><img srcset="/static/images/collection_width-90px.jpg 1.5x, /static/images/collection_width-180px.jpg 2x" src="/static/images/collection_width-90px.jpg"
-                                                               alt=""/></a>
-                            <ul id="collect_li">
-                                <li><a href="javascript:void(0)" style="font-size: 0.2rem;" class="addfavorite"
-                                       ftype="bid">收藏该标的</a></li>
-                                <li><a href="javascript:void(0)" style="font-size: 0.2rem;" class="addfavorite"
-                                       ftype="platform">收藏该平台</a></li>
-                            </ul>
-                        </dd>
+            </div>
+            <div class="weui-listItem">
+                <div class="weui-row weui-no-gutter">
+                    <div class="weui-col-100 centers" style="text-align: left">
+                        {{ bid.name }}
+                    </div>
+                </div>
+                <div class="weui-row weui-no-gutter weui-top-line">
+                    <div class="weui-col-33">
+                        <div><span>标的金额</span></div>
+                        <div><span class="value">￥{{ bid.amount|floatformat:"0" }}</span></div>
+                    </div>
+                    <div class="weui-col-5 cut"></div>
+                    <div class="weui-col-33">
+                        <div><span>年利率</span></div><div><span class="value">{{ bid.income_rate|floatformat:"-2" }}%</span></div>
+                    </div>
+                    <div class="weui-col-5 cut1"></div>
+                    <div class="weui-col-33">
+                        <div><span>期限</span></div><div><span class="value">{{ bid.term_name|floatformat:"-2" }}{{ bid.term_unit }}</span></div>
+                    </div>
+                </div>
+                <div class="weui-row weui-no-gutter centers">
+                    <div class="weui-col-50" style="text-align: left">
+                        <span>已融金额:</span><span>￥{{ bid.finish_amount|floatformat:"0" }}</span>
+                    </div>
+                    <div class="weui-col-50" style="text-align: center">
+                        <span>每月利率:</span><span>{{ bid.month_rate|floatformat:"-2" }}%</span>
+                    </div>
+                </div>
+                <div class="weui-row weui-no-gutter centers">
+                    <div class="weui-col-50" style="text-align: left">
+                        <span>可投金额:</span><span>￥{{ bid.allow_amount|floatformat:"0" }}</span>
+                    </div>
+                    <div class="weui-col-50" style="text-align: center">
+                        <span>最低可投:</span><span>{% if bid.min_amount %} ￥{{ bid.min_amount }} {% else %}
+                                无 {% endif %}</span>
+                    </div>
+                </div>
+                <div class="weui-row weui-no-gutter centers">
+                    <div class="weui-col-50" style="text-align: left">
+                        <span>每万收益:</span><span>￥{{ bid.ten_thousand_revenue|floatformat:"-2" }}</span>
+                    </div>
+                    <div class="weui-col-50" style="text-align: center">
+                        <span>投标进度:</span><span>{{ bid.process|floatformat:"0" }}%</span>
+                    </div>
+                </div>
+                <div class="weui-row weui-no-gutter centers">
+                    <div class="weui-col-100" style="text-align: left">
+                        <span>还款方式:</span><span>{{ bid.repay_type }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="weui-icon">
+                <div class="weui-row weui-no-gutter">
+                    <div class="weui-col-50">
+                        <a class="collect_a" href="#"><img src="/static/images/collection_width-90px.jpg" alt=""/></a>
+                        <ul id="collect_li">
+                            <li><a href="javascript:void(0)" class="addfavorite"
+                                   ftype="bid">收藏该标的</a></li>
+                            <li><a href="javascript:void(0)" class="addfavorite"
+                                   ftype="platform">收藏该平台</a></li>
+                        </ul>
+                    </div>
+                    <div class="weui-col-50">
                         {% if user.id %}
-                        <dd class="invest_img"><a class="invest_a" href="{{ bid.link }}"><img srcset="/static/images/invest-width-90px.jpg 1.5x, /static/images/invest-width-180px.jpg 2x" src="/static/images/invest-width-90px.jpg"
-                                                                           alt=""/></a></dd>
+                        <a class="invest_a" href="{{ bid.link }}"><img src="/static/images/invest-width-90px.jpg" alt=""/></a>
                         {% else %}
-                        <dd class="invest_img"><a class="invest_a" href="#" onclick="alert_login()"><img srcset="/static/images/invest-width-90px.jpg 1.5x, /static/images/invest-width-180px.jpg 2x" src="/static/images/invest-width-90px.jpg"
-                                                                                      alt=""/></a></dd>
+                        <a class="invest_a" href="#" onclick="alert_login()"><img src="/static/images/invest-width-90px.jpg" alt=""/></a>
                         {% endif %}
-                    </dl>
-
-
+                    </div>
+                </div>
+                </div>
                     <script type="application/javascript">
                         $(document).ready(function () {
                             $(".collect_a").click(function (e) {
@@ -213,15 +276,12 @@
                             $.get("/m/search/",function(data){ $('#head_m').html(data.content_html);});
                         });
                     </script>
-                    <script type="application/javascript">
+        <script type="application/javascript">
                         function alert_login(){
                             alert("请先登录");
                             location.href = "/m/login/?next=/m/bid_detail/{{ bid.id }}";
                         }
                     </script>
-                </div>
-            </div>
-    </div>
 </div>
 </body>
 </html>

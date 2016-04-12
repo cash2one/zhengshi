@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 <html>
-<body>
+<body ontouchstart>
 <div id="result_form">
     {% if results %}
         {% for result in results.object_list %}
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="weui-row weui-no-gutter">
-            <div class="weui-col-100">
+            <div class="weui-col-100" style="text-align: left;padding: 0 10px;">
                 {{ result.name }}
             </div>
         </div>
@@ -46,12 +46,10 @@
         {% if results.has_previous and  results.has_next %}
             <div class="weui-row weui-no-gutter" style="padding: 0 2px">
                 <div class="weui-col-100">
-
                     <a href="javascript:void(0)" class="weui_btn weui_btn_warn"
                        onclick="takepage({{ results.previous_page_number }})">上一页</a>
                     <a href="javascript:void(0)" class="weui_btn weui_btn_warn"
                        onclick="takepage({{ results.next_page_number }})">下一页</a>
-
                 </div>
             </div>
         {% endif %}
