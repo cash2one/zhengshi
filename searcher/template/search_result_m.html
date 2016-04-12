@@ -101,24 +101,6 @@
     <header>
         <div id="head_m"></div>
     </header>
-{% if params %}
-    <script>
-        $(document).ready(function () {
-            var a = [{{ params }}];
-            //var a = params.split(',');
-            $.each(a, function (key, value) {
-                $("a[choiceid= " + value + " ]").addClass("btn_blue_").siblings("a").removeClass("btn_blue_");
-            });
-        });
-    </script>
-{% else %}
-    <script>
-        $(document).ready(function () {
-            $(".choices a:first-child").addClass("btn_blue_");
-        });
-    </script>
-{% endif %}
-
     <div class="weui-nav">
         <div class="weui-row">
             <div class="weui-col-40">标的搜索结果</div>
@@ -140,20 +122,6 @@
         checkparam(1);
     });
 
-    $("#save_filter").on("click", function () {
-        var a = getElementsByClassName('btn_blue_','choiceid');
-        $.post("{% url 'save_filter' %}",
-                {
-                    params: a,
-                    processData: false,
-                    contentType: false
-                },
-                function (data) {
-                    alert(data);
-                }
-        );
-    });
-
     $(".weui-search a").click(function () {
         $(this).siblings().removeClass("order_jx");
         $(this).siblings().removeClass("order_sx");
@@ -171,26 +139,6 @@
         checkparam(page);
     });
 
-    function ShowMore() {
-	  
-	
-        var c = $('#check_log').text();
-
-        if (c != 1) {
-            alert('请先登陆');
-            location.href = "/login/"
-        }
-        else {
-            $('#onlinepic').hide();
-			$('.search_outside').show();
-            $('.showDetailInfo').hide();
-        }
-    }
-    function CancelMore() {
-	    $('#onlinepic').show();
-        $('.search_outside').hide();
-        $('.showDetailInfo').show();
-    }
 
     function getElementsByClassName(n,m) {
         var el = [],
@@ -224,8 +172,6 @@
             sortorder = 2;
             sorttype = bbb[0];
         }
-
-
 
         $.get("{% url 'search_result_m' %}",
                 {
