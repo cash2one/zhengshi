@@ -101,23 +101,7 @@
     <header>
         <div id="head_m"></div>
     </header>
-{% if params %}
-    <script>
-        $(document).ready(function () {
-            var a = [{{ params }}];
-            //var a = params.split(',');
-            $.each(a, function (key, value) {
-                $("a[choiceid= " + value + " ]").addClass("btn_blue_").siblings("a").removeClass("btn_blue_");
-            });
-        });
-    </script>
-{% else %}
-    <script>
-        $(document).ready(function () {
-            $(".choices a:first-child").addClass("btn_blue_");
-        });
-    </script>
-{% endif %}
+
 
     <div class="weui-nav">
         <div class="weui-row">
@@ -209,7 +193,7 @@
 
     function checkparam(page) {
         {# var a = getElementsByClassName('btn_blue_','choiceid'); #}
-        var a = [1,7,13,16,22,28,36];
+        var a = [{{ params }}];
         var amount = $(".lastinput").children("#id_searchWord").val();
         var sortorder = 0;
         var sorttype = 0;

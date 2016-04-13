@@ -105,7 +105,7 @@
 	</div>
 	<div class="weui-col-33"></div>
 	<div class="weui-col-33" style="text-align: right">
-		<a href="{% url 'search_listresult_m' %}"><span class="value" style="font-size: 14px">更多</span></a>
+		<a href="javascript:void(0)" onclick="more()"><span class="value" style="font-size: 14px">更多</span></a>
 	</div>
 </div>
 <div id="container">
@@ -178,6 +178,13 @@
     {% endif %}
 	</div>
 </div>
+<form id="formid" action="/m/detail_search/" method="post">
+    <input id="params" name="params" value="" type="text"  style="display:none;"/>
+    <input id="amount" name="amount" value="" type="text"  style="display:none;"/>
+    <input id="page"  name="page" value="" type="text"  style="display:none;"/>
+    <input id="sorttype" name="sorttype" value="" type="text"  style="display:none;"/>
+    <input id="sortorder" name="sortorder" value="" type="text"  style="display:none;"/>
+</form>
 </body>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/jquery-weui.js"></script>
@@ -203,6 +210,46 @@
 		 $("#right").show();
 		 $("#left").hide();
     }
+     function more(){
+           checkparam(1);
+        }
+
+        function getElementsByClassName(n,m) {
+            var el = [],
+                _el = document.getElementsByTagName('option');
+            for (var i = 0; i < _el.length; i++) {
+                if(_el[i].id==n){
+                    el[el.length] = _el[i].getAttribute(m);
+                }
+            }
+            return el;
+        }
+
+        function checkparam(page) {
+
+            var sortorder = 0;
+            var sorttype = 0;
+
+            var aaa = getElementsByClassName('order_sx','sorttype');
+            var bbb = getElementsByClassName('order_jx','sorttype');
+            if(aaa != ''){
+                sortorder = 1;
+                sorttype = aaa[0];
+            }
+            else if(bbb != ''){
+                sortorder = 2;
+                sorttype = bbb[0];
+            }
+
+           document.getElementById("params").value= [1,7,13,16,22,28,36];
+           document.getElementById("amount").value= 0;
+           document.getElementById("page").value= page;
+           document.getElementById("sorttype").value= sorttype;
+           document.getElementById("sortorder").value= sortorder;
+
+           $("#formid").submit();
+
+        }
 </script>
 
 </html>

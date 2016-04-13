@@ -137,7 +137,7 @@
         </div>
     </section>
 </article>
-<form id="formid" action="/m/search_listresult/" method="post">
+<form id="formid" action="/m/detail_search/" method="post">
     <input id="params" name="params" value="" type="text"  style="display:none;"/>
     <input id="amount" name="amount" value="" type="text"  style="display:none;"/>
     <input id="page"  name="page" value="" type="text"  style="display:none;"/>
@@ -151,23 +151,7 @@
         $.get("/m/search/",function(data){ $('#head_m').html(data.content_html);});
     });
 </script>
-<script>
-    $(function(){
-        $('#onlinepic').hide();
-        $('.search_outside').hide();
-    })
-    function ShowMore() {
-        {% ifequal user.id None %}
-            alert('请先登陆');
-            location.href = "/m/login/?next=/m/detail_search"
-        {% else %}
-            $('#onlinepic').show();
-            $('.search_outside').show();
-            $('.showDetailInfo').hide();
-        {% endifequal%}
-    }
 
-</script>
 <script type="text/javascript">
 
         function detail_search(){
@@ -198,7 +182,6 @@
 
         function checkparam(page) {
 
-            var amount = $(".lastinput").children("#id_searchWord").val();
             var sortorder = 0;
             var sorttype = 0;
 
