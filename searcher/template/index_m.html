@@ -73,7 +73,7 @@
 </head>
 <body>
 <header>
-	<div id="head_m"></div>
+	 <div id="head_m">{% include 'search_m.html' %}</div>
 </header>
 <div class="swiper-container">
 	<!-- Additional required wrapper -->
@@ -190,11 +190,7 @@
 <script src="/static/js/jquery-weui.js"></script>
 
 <script src="/static/js/swiper.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$.get("/m/search/",function(data){ $('#head_m').html(data.content_html);});
-	});
-</script>
+
 <script>
 	$(".swiper-container").swiper({
 		loop: true,

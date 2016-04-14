@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load url from future %}
+{% load staticfiles %}
+{% load pagination_tags %}
+{% load settingsvalue %}
 <html>
 <body ontouchstart>
 <div id="result_form">
     {% if results %}
         {% for result in results.object_list %}
-    <div class="weui-listItem">
+    <div id='content_right' class="weui-content" >
         <div class="weui-row weui-no-gutter">
             <div class="weui-col-50">
                 <img src="{{ result.platform.logo }}" alt="" class="cover">
             </div>
             <div class="weui-col-50">
-                <a href="javascript:;" id="check_is_exist_{{result.id}}" name="{{result.id}}" target="_blank" class="weui_btn weui_btn_mini weui_btn_primary">查看详情</a>
-            </div>
-        </div>
-        <div class="weui-row weui-no-gutter">
-            <div class="weui-col-100" style="text-align: left;padding: 0 10px;">
-                {{ result.name }}
+                <h3 class="title">{{result.name|title_cut}}</h3>
             </div>
         </div>
         <div class="weui-row weui-no-gutter">
             <div class="weui-col-45">
-                借款金额:<span>{{ result.amount|floatformat:"0" }}</span>
+                总金额:<span class="value">￥{{ result.amount|data_display}}</span>
             </div>
             <div class="weui-col-5 cut"></div>
             <div class="weui-col-45">
-                期限:<span >{{ result.term_name|floatformat:"-2" }}{{ result.term_unit }}</span>
+                完成:<span class="value">{{ result.process|floatformat:"0" }}%</span>
             </div>
         </div>
-        <div class="weui-row weui-no-gutter weui-division">
+        <div class="weui-row weui-no-gutter">
             <div class="weui-col-45">
-                万元收益:<span>{{ result.ten_thousand_revenue|floatformat:"-2" }}元</span>
+                收益率:<span class="value">{{ result.income_rate|floatformat:"-2" }}%</span>
             </div>
             <div class="weui-col-5"></div>
             <div class="weui-col-45">
-                年化收益:<span>{{ result.income_rate|floatformat:"-2" }}</span>
+                期限:<span class="value">{{ result.term_name|floatformat:"-2" }}{{ result.term_unit }}</span>
             </div>
         </div>
     </div>
@@ -45,10 +44,12 @@
     <div class="weui-btns">
         {% if results.has_previous and  results.has_next %}
             <div class="weui-row weui-no-gutter" style="padding: 0 2px">
-                <div class="weui-col-100">
-                    <a href="javascript:void(0)" class=""
+                <div class="weui-col-50" style="padding: 0 10px">
+                    <a href="javascript:void(0)" class="weui_btn weui_btn_warn"
                        onclick="takepage({{ results.previous_page_number }})">上一页</a>
-                    <a href="javascript:void(0)" class=""
+                </div>
+                <div class="weui-col-50" style="padding: 0 10px">
+                    <a href="javascript:void(0)" class="weui_btn weui_btn_warn"
                        onclick="takepage({{ results.next_page_number }})">下一页</a>
                 </div>
             </div>

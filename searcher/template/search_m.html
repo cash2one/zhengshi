@@ -4,7 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-
     <style type="text/css">
         .weui_search_bar{
             background-color: #372C3A;
@@ -53,26 +52,23 @@
 <body>
     <div class="weui_search_bar" id="search_bar">
         <div class="weui_search_logo">
-            <img src="/static/images/width-150px-logo.png">
+            <a href="{% url 'index_m' %}"><img src="/static/images/width-150px-logo.png"></a>
         </div>
 
-        <form action="{% url 'search_result_m' %}"  id="formPW" method="post" class="weui_search_outer">
+        <form action="{% url 'detail_search_m' %}"  id="formPW" method="post" class="weui_search_outer">
             {% csrf_token %}
             <div class="weui_search_inner">
                 <i class="weui_icon_search"></i>
                 {{ form.searchWord }}
                 <a href="javascript:" class="weui_icon_clear" id="search_clear"></a>
             </div>
-            <label for="id_searchWord" class="weui_search_text" id="search_text">
-                <i class="weui_icon_search"></i>
-                <span>搜索</span>
-            </label>
+
         </form>
         <a href="javascript:aclick();" class="weui_btn weui_btn_primary" name="del" id="submit_searchWord">搜索</a>
     </div>
 </body>
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="/static/js/search-bar.js"></script>
+
 <script type="text/javascript">
     function aclick(){
         var str = $("input[name=searchWord]").val();
@@ -80,9 +76,15 @@
         var r = str.match(reg);
 
         if((r!=null)||(str =="")){
+
             $("#formPW").submit()
         }else{alert("请输入1-9位数字！");};
     }
+    $(document).ready(function () {
+    {% if amount %}
+        document.getElementById('id_searchWord').value={{amount}};
+    {% endif %}
+    })
 </script>
 
 </html>

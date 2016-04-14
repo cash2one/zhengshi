@@ -37,10 +37,9 @@
         .weui-row {
             position: relative;
         }
-        #weui-content {
-            background-color: #fff;
+        .weui-searchs{
             padding: 5px 0;
-            margin-top: 10px;
+            background: #fff;
         }
         .weui-nav {
             padding: 10px 0;
@@ -52,7 +51,11 @@
         .weui-search a.order_jx,.weui-search a.order_sx{ background:#c50512; color:#fff; border:1px solid #c50512;}
         .weui-search a.order_jx i{ background:url(/static/images/jiantou.png) no-repeat right center; padding-right:10px;}
         .weui-search a.order_sx i{background:url(/static/images/jiantou1.png) no-repeat right center;padding-right:10px;}
-
+        .weui-content{
+            background-color: #fff;
+            padding: 5px 0;
+            margin-top: 10px;
+        }
         .cover {
             width: 120px;
             height: 30px;
@@ -71,14 +74,14 @@
             left: 48%;
             top: 30%;
         }
-
-
+        .title{
+            font-weight: 400;
+            font-size: 18px;
+        }
         .weui_btn {
             font-size: 14px;
             line-height: 2.2;
         }
-
-
         .weui-listItem{
             padding: 10px 0;
             position: relative;
@@ -99,12 +102,10 @@
 <body>
 <div id="weui-content">
     <header>
-        <div id="head_m"></div>
+        <div id="head_m">{% include 'search_m.html' %}</div>
     </header>
-
-
     <div class="weui-nav">
-        <div class="weui-row">
+        <div class="weui-row weui-searchs">
             <div class="weui-col-40">标的搜索结果</div>
             <div class="weui-col-60 weui-search">
                 <a href="javascript:void(0)" sorttype="1">收益<i></i></a>
@@ -115,6 +116,8 @@
     </div>
 </div>
 </body>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/jquery-weui.js"></script>
 <script>
     $(".choices a").on("click", function () {
         //给当前A标签添加class btn_blue_,当前dom元素兄弟姐级删除Class btn_blue_
@@ -122,20 +125,6 @@
         var a = getElementsByClassName('btn_blue_','choiceid');
         var amount = $(".lastinput").children("#id_searchWord").val();
         checkparam(1);
-    });
-
-    $("#save_filter").on("click", function () {
-        var a = getElementsByClassName('btn_blue_','choiceid');
-        $.post("{% url 'save_filter' %}",
-                {
-                    params: a,
-                    processData: false,
-                    contentType: false
-                },
-                function (data) {
-                    alert(data);
-                }
-        );
     });
 
     $(".weui-search a").click(function () {
@@ -155,26 +144,6 @@
         checkparam(page);
     });
 
-    function ShowMore() {
-	  
-	
-        var c = $('#check_log').text();
-
-        if (c != 1) {
-            alert('请先登陆');
-            location.href = "/login/"
-        }
-        else {
-            $('#onlinepic').hide();
-			$('.search_outside').show();
-            $('.showDetailInfo').hide();
-        }
-    }
-    function CancelMore() {
-	    $('#onlinepic').show();
-        $('.search_outside').hide();
-        $('.showDetailInfo').show();
-    }
 
     function getElementsByClassName(n,m) {
         var el = [],
@@ -209,8 +178,6 @@
             sorttype = bbb[0];
         }
 
-
-
         $.get("{% url 'search_result_m' %}",
                 {
                     params: a,
@@ -225,11 +192,5 @@
         );
     }
 </script>
-<script type="text/javascript">
-    $(function(){
-        $.get("/m/search/",function(data){ $('#head_m').html(data.content_html);});
-    });
-</script>
-
 
 </html>

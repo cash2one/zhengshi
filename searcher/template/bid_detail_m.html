@@ -63,7 +63,6 @@
         .weui-nav, .weui-listItem,.weui-icon{
             padding: 10px 0;
             background-color: #fff;
-            margin: 0 10px;
         }
         .weui-listItem{
             margin-top: 10px;
@@ -98,9 +97,22 @@
         }
         #collect_li{
             display: none;
+            width: 120px;
+            background: #ccc;
+            position: absolute;
+            left: 20%;
+
         }
         #collect_li li{
             list-style: none;
+            border-bottom: 1px solid #f2f2f2;
+        }
+        #collect_li li a{
+            color: #4c4c4c;
+            font-size: 14px;
+        }
+        #collect_li li a:hover{
+            color: #ff0000;
         }
     </style>
 
@@ -190,7 +202,7 @@
             </div>
             <div class="weui-icon">
                 <div class="weui-row weui-no-gutter">
-                    <div class="weui-col-50">
+                    <div class="weui-col-50" style="position: relative;">
                         <a class="collect_a" href="#"><img src="/static/images/collection_width-90px.jpg" alt=""/></a>
                         <ul id="collect_li">
                             <li><a href="javascript:void(0)" class="addfavorite"

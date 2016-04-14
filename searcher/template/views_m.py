@@ -49,7 +49,6 @@ def index(request):
     results_left = Bid.objects.filter(process__lt=100).order_by("random_rank").order_by("-income_rate")[0:4]
     results_left.query.group_by = ['platform_id']
     form = SearchForm()
-    print form
     return render_to_response('index_m.html', {'results_left':results_left,'results_right':results_right,'form':form},
                                   context_instance=RequestContext(request))
 
@@ -106,6 +105,7 @@ def login(request):
                                   context_instance=RequestContext(request))
 
 def forgetpw(request):
+    print "forgetpw xxxxxxx"
     if request.method == 'POST':
         form = ForgetPWForm(request.POST)
         if form.is_valid():
@@ -1037,12 +1037,10 @@ def detail_search(request):
         return render_to_response('search_result_m.html',{'form':form,'params':request.POST.get('params'),'results': results, 'last_page': last_page, 'page_set': page_set},
                           context_instance=RequestContext(request))
     elif request.method == 'POST':
-        print request
         form = SearchForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
             amount = cd['searchWord']
-            print "aaaaaaaaaaaaaaaaaaaaa",amount
             try:
                 page = int(request.GET.get('page', '1'))
             except ValueError:
@@ -1075,13 +1073,13 @@ def detail_search(request):
                 results = ppp.page(ppp.num_pages)
             last_page = ppp.page_range[len(ppp.page_range) - 1]
             page_set = get_pageset(last_page, page)
-            print "aaaaaaaaaaaaaaaaaaaaa",amount
+
             return render_to_response('search_result_m.html',
-                                      {'params':a,'amount':amount,'results': results, 'last_page': last_page,'page_set': page_set,'form':form},
+                                      {'params':a,'results': results, 'last_page': last_page,'page_set': page_set,'form':form},
                                       context_instance=RequestContext(request))
     else:
         form = SearchForm()
-        return render_to_response('detail_search_m.html',{'form':form}, context_instance=RequestContext(request))
+        return render_to_response('detail_search_m.html',{'form',form}, context_instance=RequestContext(request))
 
 def agreement(request):
     return render_to_response('agreement_m.html',{}, context_instance=RequestContext(request))
