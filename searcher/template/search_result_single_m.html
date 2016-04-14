@@ -9,35 +9,8 @@
 <div id="result_form">
     {% if results %}
         {% for result in results.object_list %}
-    <div id='content_right' class="weui-content" >
-        <div class="weui-row weui-no-gutter">
-            <div class="weui-col-50">
-                <img src="{{ result.platform.logo }}" alt="" class="cover">
-            </div>
-            <div class="weui-col-50">
-                <h3 class="title">{{result.name|title_cut}}</h3>
-            </div>
-        </div>
-        <div class="weui-row weui-no-gutter">
-            <div class="weui-col-45">
-                总金额:<span class="value">￥{{ result.amount|data_display}}</span>
-            </div>
-            <div class="weui-col-5 cut"></div>
-            <div class="weui-col-45">
-                完成:<span class="value">{{ result.process|floatformat:"0" }}%</span>
-            </div>
-        </div>
-        <div class="weui-row weui-no-gutter">
-            <div class="weui-col-45">
-                收益率:<span class="value">{{ result.income_rate|floatformat:"-2" }}%</span>
-            </div>
-            <div class="weui-col-5"></div>
-            <div class="weui-col-45">
-                期限:<span class="value">{{ result.term_name|floatformat:"-2" }}{{ result.term_unit }}</span>
-            </div>
-        </div>
-    </div>
-            {% endfor %}
+            {% include 'search_listresult_m.html' %}
+        {% endfor %}
         {% else %}
             <a>无符合查询条件的纪录</a>
         {% endif %}
@@ -92,24 +65,13 @@
         );
     });
 </script>
-<script type="text/javascript">
- $(document).ready(function () {
-    $("[id^='check_is_exist_']").each(function(){
-        $(this).click(function(){
-            var ob = $(this).attr('name');
-            $.post("/m/bid_detail_p/",{"object_id":ob},function(data)
-                {
-                  if(data==1){ location.href = "/m/bid_detail/"+ob;}else{alert("该标的已过期，无法显示，敬请谅解！")};});
-       });
-    });
-});
-</script>
+
 <script type="text/javascript">
     $(function(){
 		$('#divv2').find('a').click(function(){
 			 $('#divv2').hide();
 			 $('#divv1').show()
-		});						
+		});
     });
 </script>
 </html>
