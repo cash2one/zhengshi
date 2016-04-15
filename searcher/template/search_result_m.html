@@ -162,7 +162,7 @@
 
     function checkparam(page) {
         {# var a = getElementsByClassName('btn_blue_','choiceid'); #}
-        var a = [{{ params }}];
+        var a = {{ params }};
         var amount = $(".lastinput").children("#id_searchWord").val();
         var sortorder = 0;
         var sorttype = 0;
@@ -178,7 +178,7 @@
             sorttype = bbb[0];
         }
 
-        $.get("{% url 'search_result_m' %}",
+        $.get("{% url 'detail_search_m' %}",
                 {
                     params: a,
                     amount: amount,

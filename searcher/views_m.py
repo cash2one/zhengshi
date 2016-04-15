@@ -1002,19 +1002,16 @@ def search(request):
     return HttpResponse(json.dumps(payload), content_type="application/json")
 
 def detail_search(request):
-    if request.POST.get('params', None) is not None:
-        params = ','.join(request.POST.getlist('params'))
-        a = params.split(',')
-        sorttype = request.POST.get('sorttype', None)
-        sortorder = request.POST.get('sortorder', None)
-        amount = request.POST.get('amount', None)
 
+    if request.GET.get('page', None) is not None:
+
+        params = ','.join(request.GET.getlist('params[]'))
+        a = params.split(',')
+        sorttype = request.REQUEST.get('sorttype', None)
+        sortorder = request.REQUEST.get('sortorder', None)
+        amount = request.REQUEST.get('amount', None)
         if amount:
-            try :
-                int(amount)
-                results = Bid.objects.filter(amount__gte=amount).order_by("random_rank")
-            except ValueError:
-                results = Bid.objects.all().order_by("random_rank")
+            results = Bid.objects.filter(amount__gte=amount).order_by("random_rank")
         else:
             results = Bid.objects.all().order_by("random_rank")
         filters = DimensionChoice.objects.filter(id__in=a)
@@ -1022,9 +1019,8 @@ def detail_search(request):
         if sorttype is not None and sortorder is not None:
             results = result_sort(results, sorttype, sortorder)
         ppp = Paginator(results, 3)
-
         try:
-            page = int(request.POST.get('page', '1'))
+            page = int(request.GET.get('page', '1'))
         except ValueError:
             page = 1
         try:
@@ -1033,16 +1029,23 @@ def detail_search(request):
             results = ppp.page(ppp.num_pages)
         last_page = ppp.page_range[len(ppp.page_range) - 1]
         page_set = get_pageset(last_page, page)
+        t = get_template('search_result_single_m.html')
         form = SearchForm()
-        return render_to_response('search_result_m.html',{'form':form,'params':request.POST.get('params'),'results': results, 'last_page': last_page, 'page_set': page_set},
-                          context_instance=RequestContext(request))
+        content_html = t.render(
+            RequestContext(request, {'form':form,'results': results, 'last_page': last_page, 'page_set': page_set,'params':request.GET.get('params')}))
+        payload = {
+            'content_html': content_html,
+            'success': True
+        }
+        return HttpResponse(json.dumps(payload), content_type="application/json")
+
     elif request.method == 'POST':
         print request
         form = SearchForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
             amount = cd['searchWord']
-            print "aaaaaaaaaaaaaaaaaaaaa",amount
+
             try:
                 page = int(request.GET.get('page', '1'))
             except ValueError:
@@ -1075,7 +1078,7 @@ def detail_search(request):
                 results = ppp.page(ppp.num_pages)
             last_page = ppp.page_range[len(ppp.page_range) - 1]
             page_set = get_pageset(last_page, page)
-            print "aaaaaaaaaaaaaaaaaaaaa",amount
+ 
             return render_to_response('search_result_m.html',
                                       {'params':a,'amount':amount,'results': results, 'last_page': last_page,'page_set': page_set,'form':form},
                                       context_instance=RequestContext(request))
