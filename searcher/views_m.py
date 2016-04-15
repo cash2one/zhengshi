@@ -865,130 +865,6 @@ def change_phone_number(request):
             }
         return HttpResponse(json.dumps(payload), content_type="application/json")
 
-def search_result(request):
-    if request.method == 'POST':
-        form = SearchForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            amount = cd['searchWord']
-            try:
-                page = int(request.GET.get('page', '1'))
-            except ValueError:
-                page = 1
-            index_parts = index_loading_m(amount, None, page)
-            return render_to_response('search_result_m.html',
-                                      {'results': index_parts.get('results'), 'dimensions': index_parts.get('dimensions'),
-                                       'c_results': index_parts.get('c_result'), 'last_page': index_parts.get('last_page'),
-                                       'page_set': index_parts.get('page_set'), 'form': form},
-                                      context_instance=RequestContext(request))
-        else:
-            try:
-                page = int(request.GET.get('page', '1'))
-            except ValueError:
-                page = 1
-            index_parts = index_loading_m(0, None, page)
-            return render_to_response('search_result_m.html',
-                                      {'results': index_parts.get('results'), 'dimensions': index_parts.get('dimensions'),
-                                       'c_results': index_parts.get('c_result'), 'last_page': index_parts.get('last_page'),
-                                       'page_set': index_parts.get('page_set'), 'form': form},
-                                      context_instance=RequestContext(request))
-
-
-    elif request.GET.get('params[]', None) is not None:
-        params = ','.join(request.GET.getlist('params[]'))
-        a = params.split(',')
-        sorttype = request.REQUEST.get('sorttype', None)
-        sortorder = request.REQUEST.get('sortorder', None)
-        amount = request.REQUEST.get('amount', None)
-        if amount:
-            results = Bid.objects.filter(amount__gte=amount).order_by("random_rank")
-        else:
-            results = Bid.objects.all().order_by("random_rank")
-        filters = DimensionChoice.objects.filter(id__in=a)
-        results = data_filter(results, filters)
-        if sorttype is not None and sortorder is not None:
-            results = result_sort(results, sorttype, sortorder)
-        ppp = Paginator(results, 3)
-        try:
-            page = int(request.GET.get('page', '1'))
-        except ValueError:
-            page = 1
-        try:
-            results = ppp.page(page)
-        except (EmptyPage, InvalidPage):
-            results = ppp.page(ppp.num_pages)
-        last_page = ppp.page_range[len(ppp.page_range) - 1]
-        page_set = get_pageset(last_page, page)
-        t = get_template('search_result_single_m.html')
-        content_html = t.render(
-            RequestContext(request, {'results': results, 'last_page': last_page, 'page_set': page_set}))
-        payload = {
-            'content_html': content_html,
-            'success': True
-        }
-        return HttpResponse(json.dumps(payload), content_type="application/json")
-    else:
-        try:
-            page = int(request.GET.get('page', '1'))
-        except ValueError:
-            page = 1
-        index_parts = index_loading_m(0, None, page)
-        print 'page isxxxxxxxxxxxxx',page
-        #return render_to_response('searchResult_m.html', context_instance=RequestContext(request))
-        return render_to_response('search_result_m.html',
-                                  {'results': index_parts.get('results'), 'dimensions': index_parts.get('dimensions'),
-                                   'c_results': index_parts.get('c_result'), 'last_page': index_parts.get('last_page'),
-                                   'page_set': index_parts.get('page_set')},
-                                  context_instance=RequestContext(request))
-
-def search_listresult(request):
-    if request.POST.get('params', None) is not None:
-        params = ','.join(request.POST.getlist('params'))
-        a = params.split(',')
-        sorttype = request.POST.get('sorttype', None)
-        sortorder = request.POST.get('sortorder', None)
-        amount = request.POST.get('amount', None)
-
-        if amount:
-            try :
-                int(amount)
-                results = Bid.objects.filter(amount__gte=amount).order_by("random_rank")
-            except ValueError:
-                results = Bid.objects.all().order_by("random_rank")
-        else:
-            results = Bid.objects.all().order_by("random_rank")
-        filters = DimensionChoice.objects.filter(id__in=a)
-        results = data_filter(results, filters)
-        if sorttype is not None and sortorder is not None:
-            results = result_sort(results, sorttype, sortorder)
-        ppp = Paginator(results, 3)
-
-        try:
-            page = int(request.POST.get('page', '1'))
-        except ValueError:
-            page = 1
-        try:
-            results = ppp.page(page)
-        except (EmptyPage, InvalidPage):
-            results = ppp.page(ppp.num_pages)
-        last_page = ppp.page_range[len(ppp.page_range) - 1]
-        page_set = get_pageset(last_page, page)
-        return render_to_response('search_result_m.html',{'params':request.POST.get('params'),'results': results, 'last_page': last_page, 'page_set': page_set},
-                          context_instance=RequestContext(request))
-
-    else:
-        print "ttttttttttttttttttttttttt"
-        try:
-            page = int(request.POST.get('page', '1'))
-        except ValueError:
-            page = 1
-        index_parts = index_loading_m(0, None, page)
-        return render_to_response('search_result_m.html',
-                                  {'results': index_parts.get('results'), 'last_page': index_parts.get('last_page'),
-                                   'page_set': index_parts.get('page_set')},
-                                  context_instance=RequestContext(request))
-
-
 def search(request):
     form = SearchForm()
     t = get_template('search_m.html')
@@ -1004,14 +880,13 @@ def search(request):
 def detail_search(request):
 
     if request.GET.get('page', None) is not None:
-
         params = ','.join(request.GET.getlist('params[]'))
         a = params.split(',')
         sorttype = request.REQUEST.get('sorttype', None)
         sortorder = request.REQUEST.get('sortorder', None)
         amount = request.REQUEST.get('amount', None)
         if amount:
-            results = Bid.objects.filter(amount__gte=amount).order_by("random_rank")
+            results = Bid.objects.filter(amount__gte=amount).order_by("random_rank").order_by("amount")
         else:
             results = Bid.objects.all().order_by("random_rank")
         filters = DimensionChoice.objects.filter(id__in=a)
@@ -1040,7 +915,6 @@ def detail_search(request):
         return HttpResponse(json.dumps(payload), content_type="application/json")
 
     elif request.method == 'POST':
-        print request
         form = SearchForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
@@ -1057,11 +931,11 @@ def detail_search(request):
             if amount:
                 try :
                     int(amount)
-                    results = Bid.objects.filter(amount__gte=amount).order_by("random_rank")
+                    results = Bid.objects.filter(amount__gte=amount).order_by("random_rank").order_by("amount")
                 except ValueError:
-                    results = Bid.objects.all().order_by("random_rank")
+                    results = Bid.objects.all().order_by("random_rank").order_by("amount")
             else:
-                results = Bid.objects.all().order_by("random_rank")
+                results = Bid.objects.all().order_by("random_rank").order_by("amount")
             filters = DimensionChoice.objects.filter(id__in=a)
             results = data_filter(results, filters)
             if sorttype is not None and sortorder is not None:
@@ -1078,7 +952,7 @@ def detail_search(request):
                 results = ppp.page(ppp.num_pages)
             last_page = ppp.page_range[len(ppp.page_range) - 1]
             page_set = get_pageset(last_page, page)
- 
+
             return render_to_response('search_result_m.html',
                                       {'params':a,'amount':amount,'results': results, 'last_page': last_page,'page_set': page_set,'form':form},
                                       context_instance=RequestContext(request))

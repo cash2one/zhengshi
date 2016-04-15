@@ -51,7 +51,8 @@ input:focus, select:focus, textarea:focus, button:focus{outline: none}
 .touchweb_page-login .remember_login ul{display: -webkit-box;display:-webkit-flex;display: -ms-flexbox;display:flex;max-width: 290px;margin:20px auto 0;}
 .touchweb_page-login .remember_login ul li{text-align: center;}
 .touchweb_page-login .remember_login .register{font-size: 1.4rem;color: #e53636;display: -webkit-box;display:-webkit-flex;display: -ms-flexbox;display:flex;justify-content: flex-start;}
-.touchweb_page-login .remember_login .forger_password{font-size:1.4rem;color:#07a5ff;display: -webkit-box;display:-webkit-flex;display: -ms-flexbox;display:flex;justify-content: flex-end}
+.touchweb_page-login .remember_login .forger_password{font-size:1.4rem;color:#07a5ff;display: -webkit-box;display:-webkit-flex;display: -ms-flexbox;display:flex;
+	justify-content: flex-end;-webkit-justify-content: flex-end;}
 /*提示信息*/
 /*.Validform_error{background-color: #ffe7e7;}*/
 .Validform_checktip{color: #999;font-size: 12px; height: 20px;line-height: 20px;overflow: hidden; margin-left:10px;}
