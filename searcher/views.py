@@ -590,6 +590,29 @@ def platform(request):
     pfs = Platform.objects.all()
     return render_to_response("platform.html", {'platforms': pfs}, context_instance=RequestContext(request))
 
+def upload_photo(request):
+    print request
+    file = request.FILES.get("Filedata",None)
+    if file:
+        u = request.user.userinformation
+        im = Image.open(file)
+        im.thumbnail((120, 120))
+        name = 'photo' + storage.get_available_name(str(request.user.id)) + '.png'
+        im.save('%s/%s' % (storage.location, name), 'PNG')
+        url = storage.url(name)
+
+        u.photo_url = url
+        u.save()
+        new_img = request.user.userinformation.photo_url
+
+        t = get_template('upload_photo.html')
+        content_html = t.render(
+                RequestContext(request, {'new_img': new_img}))
+        payload = {
+                'content_html': content_html,
+                'success': True
+            }
+        return HttpResponse(json.dumps(payload), content_type="application/json")
 
 @login_required
 def userinformation(request):

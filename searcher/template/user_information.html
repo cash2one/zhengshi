@@ -11,10 +11,30 @@
     <link href="/static/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="/static/site_media/jquery.uploadify.js"></script>
     <!--[if gte IE 8]>
 <script src="js/placeholder.min.js"></script>
 <![endif]-->
+    <style>
+        .a-upload {margin-top:0px;margin-left:0px;}
+    </style>
     <script>
+    $(function(){
+          $('#upload_photo').uploadify({
+             'successTimeout' : 5,
+             'queueID'  : 'some_file_queue', //进度条
+            'buttonClass': 'a-upload',
+            'buttonText' : '上传图片',
+            'fileSizeLimit' : '10000KB',
+            'fileTypeDesc' : 'Image Files',
+            'fileTypeExts' : '*.gif; *.jpg; *.png',
+            'swf'      : '/static/site_media/uploadify.swf',
+            'uploader'  : '/upload_photo/',
+            'onUploadSuccess' : function(file, data, response) {
+                    if(data){location.reload();};
+                }
+          });
+    });
         function show() {
             code.style.display = "block";
         }
@@ -44,17 +64,17 @@
                 <div class="user_message user_box">
                     <div class="user_title">个人信息</div>
                     <dl class="user_detail">
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="" method="post" >
                             {% csrf_token %}
                             <dt>
-                            <p>
+                            <p style="margin-bottom:14px;">
 							 <img src="{{ user.userinformation.photo_url }}"/>
                
                             </p>
-							 <a href="javascript:;" class="a-upload" style="font-size:12px;">
-                                         <input type="file" name="file" >浏览
-                             </a>		
-							
+
+                                         <input type="file" name="upload_photo" id="upload_photo" >
+
+							 <div id="some_file_queue" style="z-index:10000;position: fixed;"></div>
                          
                             </dt>
                             <dd>
