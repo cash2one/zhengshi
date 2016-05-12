@@ -1,0 +1,23 @@
+.search-comb{position:relative;width: 100%;height:100%;min-width:1024px;background-color: #eeeef0;overflow: hidden;z-index: 100;padding-bottom:30px;}
+.search-comb .search-content{width: 1024px;margin-left: auto;margin-right: auto;z-index: 100;}
+.search-comb .search-title{width: 940px;margin: 0 10px;}
+.search-comb .search-title h2{font-size: 16px;}
+.fix{*zoom: 1;}
+.fix:after{content: 'clear;';display: block;height: 0;clear: both;visibility: hidden;font-size: 0;}
+.search-comb ul{list-style: none;}
+.search-comb a{text-decoration: none;}
+.search-comb .search-list{float: left;margin: 10px;width: 320px;background-color: #fff;padding: 0;box-shadow: 0 0 5px rgba(0,0,0,.1)}
+.search-comb .search-list li{padding: 10px;}
+.search-comb .search-list .list-logo img{width: 110px;height: 30px;}
+.search-comb .search-list .list-title h2{font-size: 1.4em;font-weight: bold;margin: 0;}
+.search-comb .col-1-1,.col-1-3{float: left;height: 100%}
+.search-comb .search-list  .col-1-3 div{margin: 5px 0;white-space: nowrap;}
+.search-comb .search-list .list-text-item{width:80px;text-align: center;}
+.search-comb .search-list .list-text-item .text{color: #868686;font-size: 1.4em;}
+.search-comb .search-list .list-text-item .count{color:#ff0000;font-size: 1.4em;font-weight: bold;}
+.search-comb .search-list .list-text-a,.list-text-b{border-right: 1px solid #eeeef0;}
+.search-comb .list-text,.search-comb .list-count{position: relative;}
+.search-comb .search-list .list-text:before,.search-comb .search-list .list-count:after {content: '';position: absolute;left: 5%;right:0;border-top: 1px solid #EEEEF0;padding: 0 10px;width: 80%;}
+.search-comb .search-list .list-link a{display: block;text-align: center;background-color: #c50512;color: #fff;padding: 5px 0;font-size: 1.2em;outline: 0;}
+.search-comb .search-list .list-link a:hover{opacity: 0.6;}
+.search-comb .search-list .list-link a:hover{outline: 0}

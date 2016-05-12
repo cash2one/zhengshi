@@ -1,35 +1,36 @@
-.ProCenter1{width:750px; height:150px;}
-.ProCenter1 a{text-decoration:none; color:#000000; margin:0px 20px;font-size:16px; font-weight:bold;}
-.ProCenter1 a:link,a:visited{ border-bottom-style:solid; border-color:transparent; border-width:3px;}
-.ProCenter1 a:hover{border-color:#e1604d;font-weight:bold; cursor:pointer}
-.ProCenter1{margin-top:40px;}
-.prosonPage2{width:750px; height:350px;}
-.pwdpadding li{padding-bottom:10px}
-.pwdpadding input[type="password"]{width:200px; height:30px;}
-.new_call input[type="text"]{width:200px; height:30px;}
-.message_yz input[type="text"]{width:100px; height:30px;}
-.pwdpadding2 li{padding-bottom:10px}
-.displays{display:none}
-.resetpwd-btn{border:1px solid #4a3c70;background:#4a3c70;width:120px;color:#FFFFFF;height:40px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px; margin-left:22px;}
-.send-btn{color:#FFFFFF; background-color:#4a3c70;border:1px solid #4a3c70; border-radius:10px;-webkit-border-radius:3px;z-index:1;width:90px;height:30px;}
-.send_code input[type="text"]{width:100px;height:30px;}
-.user_pwd{padding-left:20px;}
-.user_box{ border:2px solid #ddd; border-radius:5px;overflow:hidden;}
-.self_newcall span{
-    position: absolute;
-}
-.self_code span{
-    position: absolute;
-    margin-left:85px;
-}
-.self_code img{
-    width: 75px;
-    height: 33px;
-}
-.self_mess span{
-    position: absolute;
-    margin-left:85px;
-}
+.user_pwd{padding:20px;}
+.user_pwd_title{width:750px;}
+.user_pwd_title a{text-decoration:none; color:#000000; font-size:16px; font-weight:bold;}
+.user_pwd_title a:link,a:visited{ border-bottom-style:solid; border-color:transparent; border-width:3px;}
+.user_pwd_title a:hover{border-color:#e1604d;font-weight:bold; cursor:pointer}
+.user_pwd_title .title_list .list_self span{font-size:30px;}
+.user_pwd_title .title_list li{padding: 10px;}
+.user_pwd_title .title_list .list_cline div{width:1px;height:25px;background-color:#D5D5D5;overflow:hidden;}
+.user_pwd_title .title_list .list_bline div{width:835px; height:1px; background-color:#D5D5D5;overflow:hidden;}
+.fix{*zoom: 1;}
+.fix:before{display: block;content: 'clear';height: 0;clear: both;overflow: hidden;visibility: hidden;}
+.fix:after{display: block;content: 'clear';height: 0;clear: both;overflow: hidden;visibility: hidden;}
+.user_pwd_content{padding: 15px 0}
+.content_list--mobile{position: relative;}
+.content_list--mobile li{padding: 5px;}
+.content_list--mobile .list_mobile .mobile_txt{font-size:14px;font-weight:bold;margin-left:14px;}
+.content_list--mobile .list_mobile input[type="text"]{width:200px; height:30px;margin-left:16px;}
+.content_list--mobile .list_code .code_txt{line-height:30px;font-size:14px;font-weight:bold;margin-left:27px;}
+.content_list--mobile .list_code input[type="text"]{width:200px; height:30px;margin-left:16px;}
+.content_list--mobile .list_code .Validform_checktip{position: absolute;left: 50%;}
+.content_list--mobile .list_code img{ width: 75px; height: 33px;margin-left:5px;vertical-align: middle;}
+.content_list--mobile .list_smsCode .smsCode_txt{font-size:14px;font-weight:bold;}
+.content_list--mobile .list_smsCode .Validform_checktip{position: absolute;left: 50%;}
+.content_list--mobile .list_smsCode input[type="text"]{width:200px; height:30px;margin-left:16px;}
+.content_list--mobile .list_smsCode input[type="button"]{color:#FFFFFF;background-color:#4a3c70;border:1px solid #4a3c70; border-radius:3px;-webkit-border-radius:3px;z-index:1;padding:8px;margin-left:2px;}
+.content_list--mobile .list_button{margin-left:95px;}
+.content_list--mobile .list_button input[type="button"]{padding:8px 20px;border:1px solid #4a3c70;background:#4a3c70;color:#FFFFFF;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;}
+.content_list--pwd li{padding-bottom:10px}
+.content_list--pwd input[type="password"]{width:200px; height:30px;margin-left:15px;}
+.content_list--pwd .list_newPwd .newPwd_txt{font-size:14px;font-weight:bold;margin-left:15px;}
+.content_list--pwd .list_rePwd .rePwd_txt{font-size:14px;font-weight:bold;}
+.content_list--pwd .list_button{margin-left: 80px;}
+.content_list--pwd .list_button input[type="button"]{padding:8px 20px;color:#FFFFFF;background-color:#4a3c70;border:1px solid #4a3c70; border-radius:3px;-webkit-border-radius:3px;z-index:1;}
 @media only screen and (min-device-width:240px) and (max-device-width:767px){
     #content {
         position: relative;

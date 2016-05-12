@@ -3,106 +3,98 @@
 {% load url from future %}
 {% load i18n %}
 <!DOCTYPE html>
-<html xmlns:wb="http://open.weibo.com/wb">
+<html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<link href="{% static 'css/header.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/header.css' %}" rel="stylesheet"/>
     <title>天天搜贷</title>
 </head>
 <body>
 <div id="header">
-<div class="top">
-<ul class="nav">
-    <li><img style="padding-top:2%" src="/static/images/logo_red.png" width="250" height="50"/></li>
-    <li><a href="{% url 'searchindex' %}">首页</a></li>
-    <li><a href="{% url 'myfavorite' 4 %}" class="needlogin">收藏</a></li>
-    <li><a href="{% url 'bbsindex' %}">社区</a></li>
-    <li><a href="{% url 'new_activearea' %}">活动</a></li>
-</ul>
-<div class="top_right">
-{% ifequal user.id None %}
-    <ul id="top_r">
-        <li><a class="#" href="{% url 'login' %}">登录</a>
-
-        </li>
-        <li>/</li>
-        <li><a class="register_li" href="{% url 'register' %}">注册</a>
-        </li>
-    </ul>
-    <script type="text/javascript">
-    //未登录
-    $(".needlogin").click(function (e) {
-        alert('请先登录');
-    });
-
-    $(".signin").click(function (e) {
-        e.preventDefault();
-        $("#login-li").toggle();
-        $("#login-li").toggleClass("hov");
-
-        T_Logout();
-        WB_Login();
-        QQ_Login();
-
-
-    });
-
-    $("#login-li").mouseup(function () {
-        return false
-    });
-
-    $(document).mouseup(function (e) {
-        if ($(e.target).parent("a.signin").length == 0) {
-            $(".signin").removeClass("hov");
-            $("#login-li").hide();
-        }
-    });
-
-    //未登陆结束
-    </script>
-{% else %}
-    <ul id="top_r" class="top_name">
-        <div id="logged">
-            <a id="check_log" style="display: none">1</a>
-            {% if user.userinformation.realname %}
-                <li><a href="#"><img src="{{ user.userinformation.photo_url }}"/></a>{{ user.userinformation.realname}}
-                    <ul style="border:none">
-                        <li><a href="{% url 'userinformation' %}">我的资料</a></li>
-                        <li><a href="{% url 'logout' %}" onClick="T_Logout()">退出</a></li>
+    <div class="nav fix">
+        <ul class="nav_left">
+            <li class="nav-left-logo nav-width"><img src="/static/images/logo_red.png"/></li>
+            <li><a href="{% url 'searchindex' %}">首页</a></li>
+            <li><a href="{% url 'myfavorite' 4 %}" class="needlogin">收藏</a></li>
+            <li><a href="{% url 'bbsindex' %}">社区</a></li>
+            <li><a href="{% url 'new_activearea' %}">活动</a></li>
+        </ul>
+        <ul class="nav_right">
+                <li class="nav_right_content">
+                    {% ifequal user.id None %}
+                    <!--未登录 start top_r-->
+                    <ul class="nav_right_link">
+                        <li><a class="#" href="{% url 'login' %}">登录</a></li>
+                        <li>/</li>
+                        <li><a class="register_li" href="{% url 'register' %}">注册</a></li>
                     </ul>
-                </li>
-            {% else %}
-                <li><a href="#"><img src="{{ user.userinformation.photo_url }}"/></a>{{ user.username |phone_cut}}
-                    <ul style="border:none">
-                        <li><a href="{% url 'userinformation' %}">我的资料</a></li>
-                        <li><a href="{% url 'logout' %}" onClick="T_Logout()">退出</a></li>
+                    <!--end-->
+                    <script type="text/javascript">
+                        //未登录
+                        $(".needlogin").click(function (e) {
+                            alert('请先登录');
+                        });
+
+                        $(".signin").click(function (e) {
+                            e.preventDefault();
+                            $("#login-li").toggle();
+                            $("#login-li").toggleClass("hov");
+                            T_Logout();
+                            WB_Login();
+                            QQ_Login();
+                        });
+                        $("#login-li").mouseup(function () {
+                            return false
+                        });
+                        $(document).mouseup(function (e) {
+                            if ($(e.target).parent("a.signin").length == 0) {
+                                $(".signin").removeClass("hov");
+                                $("#login-li").hide();
+                            }
+                        });
+                        //未登陆结束
+                    </script>
+                    {% else %}
+                    <!--登录成功 start-->
+                    <ul id="logged" class="nva_right_slide">
+                        <a id="check_log" style="display: none">1</a>
+                        {% if user.userinformation.realname %}
+                        <li><a href="#"><img src="{{ user.userinformation.photo_url }}"/></a><a>{{user.userinformation.realname}}</a>
+                            <ul style="border:none">
+                                <li><a href="{% url 'userinformation' %}">我的资料</a></li>
+                                <li><a href="{% url 'logout' %}" onClick="T_Logout()">退出</a></li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li><a href="#"><img src="{{ user.userinformation.photo_url }}"/></a><a>{{ user.username|phone_cut}}</a>
+                            <ul style="border:none">
+                                <li><a href="{% url 'userinformation' %}">我的资料</a></li>
+                                <li><a href="{% url 'logout' %}" onClick="T_Logout()">退出</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
                     </ul>
+                    <!--end-->
+                    <script>
+                        //已登陆
+                        $(document).ready(function () {
+                            $('#logged li').hover(function () {
+                                $('ul', this).stop(true, false).slideDown(200);
+                                $(this).children('a:first').addClass("hov");
+                            }, function () {
+                                $('ul', this).stop(true, false).slideUp(100);
+                                $(this).children('a:first').removeClass("hov");
+                            });
+                        });
+                        //已登陆结束
+                    </script>
+                    {% endifequal %}
                 </li>
-            {% endif %}
-        </div>
-    </ul>
-    <script type="text/javascript">
-        //已登陆
-        $(document).ready(function () {
-            $('#logged li').hover(function () {
-                $('ul', this).stop(true,false).slideDown(200);
-                $(this).children('a:first').addClass("hov");
-            }, function () {
-                $('ul', this).stop(true,false).slideUp(100);
-                $(this).children('a:first').removeClass("hov");
-            });
-        });
-        //已登陆结束
-    </script>
-{% endifequal %}
-
+            </ul>
+    </div>
 </div>
-</div>
-</div>
-
-
-<script type="text/javascript">
+<script>
     window.onload = function () {
         var script = document.createElement('script');
         script.setAttribute('data-appid', '101181599');
@@ -130,7 +122,8 @@
                     btnId: "qqLoginBtn",
                     size: "C_S",
                     scope: "get_user_info",
-                    display: "pc"},
+                    display: "pc"
+                },
                 function (reqData, opts) {
                     if (QC.Login.check()) {
                         QC.Login.getMe(
@@ -140,7 +133,8 @@
                                                 openid: openId,
                                                 accessToken: accessToken,
                                                 nickname: reqData.nickname,
-                                                url: reqData.figureurl_qq_1},
+                                                url: reqData.figureurl_qq_1
+                                            },
                                             function (data) {
                                                 document.write(data);
                                                 document.close();
@@ -170,7 +164,8 @@
                                         {
                                             wbid: id,
                                             nickname: o.screen_name,
-                                            url: o.profile_image_url },
+                                            url: o.profile_image_url
+                                        },
                                         function (data) {
                                             document.write(data);
                                             document.close();
@@ -188,7 +183,8 @@
     function WB_Login2() {
         WB2.anyWhere(function (W) {
             W.widget.connectButton(
-                    {id: "wb_connect_btn",
+                    {
+                        id: "wb_connect_btn",
                         type: '3,2',
                         callback: {
                             login: function (o) {
@@ -203,10 +199,14 @@
     }
 
     function T_Login_Init_Button() {
-        {#        alert('qqT_Login_Init_Button');#}
-        {#        alert(document.getElementById("qqLoginBtn").getElementsByTagName('a')[0]);#}
-        {#        alert(document.getElementById("qqLoginBtn").getElementsByTagName('a')[0].getElementsByTagName('img')[0]);#}
-        {#        alert(document.getElementById("qqLoginBtn").getElementsByTagName('a')[0].getElementsByTagName('img')[0].src);#}
+        {#        alert('qqT_Login_Init_Button');#
+        }
+        {#        alert(document.getElementById("qqLoginBtn").getElementsByTagName('a')[0]);#
+        }
+        {#        alert(document.getElementById("qqLoginBtn").getElementsByTagName('a')[0].getElementsByTagName('img')[0]);#
+        }
+        {#        alert(document.getElementById("qqLoginBtn").getElementsByTagName('a')[0].getElementsByTagName('img')[0].src);#
+        }
 
 
         if (document.getElementById("qqLoginBtn").getElementsByTagName('a').length > 0) {
@@ -225,11 +225,16 @@
         }
 
 
-        {#        alert('wbqqT_Login_Init_Button');#}
-        {#        alert(document.getElementById('wb_connect_btn').getElementsByTagName('div')[0]);#}
-        {#        alert(document.getElementById('wb_connect_btn').getElementsByTagName('div')[0].getElementsByTagName('a')[0]);#}
-        {#        alert(document.getElementById('wb_connect_btn').getElementsByTagName('div')[0].getElementsByTagName('a')[0].getElementsByTagName('img')[0]);#}
-        {#        alert(document.getElementById('wb_connect_btn').getElementsByTagName('div')[0].getElementsByTagName('a')[0].getElementsByTagName('img')[0].src);#}
+        {#        alert('wbqqT_Login_Init_Button');#
+        }
+        {#        alert(document.getElementById('wb_connect_btn').getElementsByTagName('div')[0]);#
+        }
+        {#        alert(document.getElementById('wb_connect_btn').getElementsByTagName('div')[0].getElementsByTagName('a')[0]);#
+        }
+        {#        alert(document.getElementById('wb_connect_btn').getElementsByTagName('div')[0].getElementsByTagName('a')[0].getElementsByTagName('img')[0]);#
+        }
+        {#        alert(document.getElementById('wb_connect_btn').getElementsByTagName('div')[0].getElementsByTagName('a')[0].getElementsByTagName('img')[0].src);#
+        }
 
 
         $('#wb_connect_btn').bind("DOMNodeInserted", {}, function (event) {
@@ -241,7 +246,5 @@
         });
     }
 </script>
-
-
 </body>
 </html>

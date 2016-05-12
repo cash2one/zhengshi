@@ -127,7 +127,7 @@ def result(request):
         results = data_filter(results, filters)
         if sorttype is not None and sortorder is not None:
             results = result_sort(results, sorttype, sortorder)
-        ppp = Paginator(results, 6)
+        ppp = Paginator(results, 8)
         try:
             page = int(request.GET.get('page', '1'))
         except ValueError:

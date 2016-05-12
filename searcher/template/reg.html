@@ -29,99 +29,97 @@
 
 <body>
 {% include "header.html" %}
-<div id="signup_content">
-     <div style="height:40px; "></div>
-    <div class="signup_mid">
-      <form class="registerform" action="{% url 'register' %}" method="post" name="form1">
-          <ul id="signup_ul1">
-			 <ul class="log_text">
-                <li style="font-size:32px;margin-left:240px;margin-top:15px;">
-                  <label>注册</label>
-                </li>
-                <li style="border-top:1px solid #eeeef0;width:505px;height:1px;margin-left:4px;">
-                  <div></div>
-                </li>
-             </ul>
-             <ul class="singup_call">                    
-                <li>
-                    <label> 手机号码：</label>
-                </li>
-                <li id="call_inp">
-                    <label class="call_lbl" style="float:left;z-index:999">{{ form.username }}</label>
-                    <label style="float:left;"><div style="margin-left:-2px;border:0px solid #000;width:90px;height:52px;"></div></label>
-                {#              <input type="button" value="验证用户名是否存在？" name="un_valid" onclick="check_valid()">#}
-                </li>
-                <li style="clear:both"></li>
-              </ul>
-              <ul class="signup_pwd">
-                <li>
-                    <label> 密码：</label>                    
-                </li>
-                <li id="pwd_inp">
-                    <label class="pwd_lbl" style="float:left; z-index:999">{{ form.password }}</label>
-                    <label style="float:left"><div style="border:0px solid #000;width:90px;height:52px;"></div></label>                      
-                    
-                </li>
-               	<li style="clear:both"></li>
-              </ul>
-              <ul class="signup_copwd">
-                    <li>              
-                        <label>确认密码：</label>
+<div id="reg_content">
+     <div class="zhankeng"></div>
+    <div class="reg_wrapper">
+        <div class="reg_mid">
+        <form class="registerform" action="{% url 'register' %}" method="post" name="form1">
+          <ul class="reg_list">
+              <li class="rlist_item">
+                 <ul class="ritem_title">
+                    <li class="size">
+                      <label>注册</label>
                     </li>
-                    <li id="copwd_inp">
-                    	<label style="float:left;">{{ form.password2 }}</label>      
-                        <label style="float:left"><div style="border:0px solid #000;width:90px;height:52px;"></div></label>
+                    <li class="line">
+                      <div></div>
                     </li>
-                    <li style="clear:both"></li>
-              </ul>
-              <ul class="signup_yzcode">
-                  <li>
-                      <label class="label">验证码：</label>
-                  </li>
-                  <li id="sms_inp">
-                      <label style="float:left">{{ form.vcode }}</label>
-                      <label style="float:left;margin-left:5px;"><img onclick="this.setAttribute('src',{% url 'verifycode' %} + '?nocache='+Math.random());"
-                           src="{% url 'verifycode' %}"/></label>
-                      <label style="float:left"><div style="border:0px solid #000;width:90px;height:52px;"></div></label>
-                  </li>
-                  <li style="clear:both"></li>
-               </ul>  		     
-              <ul class="singup_smscode">
+                 </ul>
+              </li>
+              <li class="rlist_item">
+                 <ul class="ritem_mobile">
                     <li>
-                        <label class="label">短信验证码：</label>
+                        <label>手机号码:</label>
                     </li>
-                    <li id="yzcode_inp">
-                        <label style="float:left">{{ form.smscode }}</label>
-                        <label><input type="button" id="rulesubmit" style="float:left;color:#FFFFFF; background-color:#4a3c70;border:1px solid #4a3c70; border-radius:10px;-webkit-border-radius:3px;z-index:1;width:94px;height:50px;left:100px;margin-left:5px;" value="发送验证码" /></label>
-                        <label style="float:left"><div style="border:0px solid #000;width:90px;height:52px;"></div></label>                   
-                        
+                    <li class="field">
+                        <label>{{ form.username }}</label>
+                    {#              <input type="button" value="验证用户名是否存在？" name="un_valid" onclick="check_valid()">#}
                     </li>
-                    <li style="clear:both"></li>                                 
-              </ul>
-             
-          
-               <ul class="signup_agree">
+                  </ul>
+              </li>
+              <li class="rlist_item">
+                  <ul class="ritem_pwd">
                     <li>
-                        <hr />
-                    </li>		
-                    <li>
-                        <div style=" margin-left:160px;">注册即视为同意天天搜贷<a href="/agreement/"><<服务条款>></a></div>
+                        <label>密码:</label>
                     </li>
-                    <li>
-                        <hr />
+                    <li class="field">
+                        <label>{{ form.password }}</label>
                     </li>
+                  </ul>
+              </li>
+              <li class="rlist_item">
+                  <ul class="ritem_repwd">
                         <li>
-                        <input type="submit" class="login_butt" id="login" value=" " class="border:0 none;" style="background:url(/static/images/zhuce.png);background-repeat:no-repeat;color:white;margin-top:10px; margin-left:10px;width:512px; height:59px" />
-                    </li>
-                    <li style="width:520px;height:40px;postion:absolute;">
-					   <div style="float:left;padding-left:330px;">  <img src="/static/images/smalllogo.png" /></div>
-                       <div style="width:150px;margin-top:14px; float:right;font-size:12px;">已有天天搜贷账号,<a href="{% url 'login' %}">登录</a></div>                					
-                    </li>                   
-                </ul>
+                            <label>确认密码：</label>
+                        </li>
+                        <li class="field">
+                            <label>{{ form.password2 }}</label>
+                        </li>
+                  </ul>
+              </li>
+              <li class="rlist_item">
+                  <ul class="ritem_code">
+                      <li>
+                          <label class="label">验证码:</label>
+                      </li>
+                      <li class="field">
+                          <label style="float: left;">{{ form.vcode }}</label>
+                          <label style="float: left;"><img onclick="this.setAttribute('src',{% url 'verifycode' %} + '?nocache='+Math.random());"
+                               src="{% url 'verifycode' %}"/></label>
+                      </li>
+                   </ul>
+              </li>
+              <li class="rlist_item">
+                  <ul class="ritem_smscode">
+                        <li>
+                            <label>短信验证码:</label>
+                        </li>
+                        <li class="field">
+                            <label style="float: left;">{{ form.smscode }}</label>
+                            <label style="float: left;"><input type="button" id="rulesubmit" value="发送验证码" /></label>
+                        </li>
+                  </ul>
+              </li>
+              <li class="rlist_item">
+                   <ul class="ritem_button">
+                        <li class="line"></li>
+                        <li class="btn_top">
+                            <div>注册即视为同意天天搜贷<a href="/agreement/"><<服务条款>></a></div>
+                        </li>
+                        <li class="line"></li>
+                       <li class="btn_images">
+                            <input type="submit" id="login" value=" "/>
+                        </li>
+                        <li class="btn_bottom">
+                           <div class="icon"><img src="/static/images/smalllogo.png" /></div>
+                           <div class="log">已有天天搜贷账号,<a href="{% url 'login' %}">登录</a></div>
+                        </li>
+                    </ul>
+              </li>
           </ul>
       </form>
     </div>
-    <div style="height:40px; "></div>
+    </div>
+    <div class="zhankeng"></div>
 </div>	
 <script type="text/javascript">
     $(function () {

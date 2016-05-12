@@ -1,4 +1,4 @@
-﻿#content{ position:relative;}
+﻿#container{ position:relative;min-width: 1024px;}
 .middle_search{ padding-top:20px;}
 .middle{display:none;padding-bottom:30px;}
 .search{ height:60px; line-height:60px; margin-top:30px; padding-bottom:25px;width: 580px;margin: 0px auto;}
@@ -7,10 +7,6 @@
 .search input:hover{ border:1px solid #c50512;}
 .search input.btn_search{ background:url(../images/search.png) no-repeat 0 0; display:inline-block; width:47px; height:42px; border:none; cursor:pointer;}
 .search input.btn_search:hover{ border:none;}
-.hot{height:30px;  font-size:14px;width:700px;margin:0px auto;}
-.hot h3{ display:inline; font-size:16px;}
-.hot a{ color:#666; text-decoration:underline; margin:0 5px;}
-.hot a:hover{ color:#ff0000;}
 
 #top_r ul li.user, #top_r ul li.pwd,#top_r ul li.yzm,#reg-li li{ padding-bottom:25px;}
 /*#footer{position:fixed;bottom:0; left:0;}*/

@@ -262,7 +262,7 @@ def index_loading_rank(amount, params, page,rank):
         filters = DimensionChoice.objects.filter(id__in=a)
         results = data_filter(results, filters)
 
-    ppp = Paginator(results, 6)
+    ppp = Paginator(results, 8)
     last_page = ppp.page_range[len(ppp.page_range) - 1]
     try:
         results = ppp.page(page)
@@ -287,8 +287,7 @@ def index_loading_m(amount, params, page):
         a = params.split(',')
         filters = DimensionChoice.objects.filter(id__in=a)
         results = data_filter(results, filters)
-    # random.shuffle(results)
-    # results = results.order_by('?')
+
     ppp = Paginator(results, 3)
     last_page = ppp.page_range[len(ppp.page_range) - 1]
     try:

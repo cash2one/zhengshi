@@ -1,6 +1,5 @@
-﻿#midddt{width:100%; overflow:hidden; padding-bottom:70px; background:#EEEEF0; margin:0;padding:0;margin-bottom:-130px;
-max-width:1660px;min-width: 1024px;width:expression(document.body.clientWidth < 1024? "1024px": "auto" );}
-.bbs{ width:1024px; margin:0 auto;}
+﻿#midddt{width:100%; overflow:hidden; background:#EEEEF0; margin:0;padding:0;margin-bottom:-130px;min-width: 1024px;}
+.bbs{ width:1024px; margin:0 auto;overflow: hidden;}
 .bbs_left,.bbs_title,.bbs_note,.bbs_box,.bbs_hd,.bbs_bd,.bbs_hot_news,.bbs_href_list,.bbs_ideas,.bbs_article,.bbs_con_box,.bbs_reply_list{ overflow:hidden;}
 .bbs_left{ width:786px;margin-bottom:200px;}
 .bbs_con{ border:2px solid #ddd;border-radius:5px;-moz-border-radius: 5px;-webkit-border-radius:5px; padding:10px; background:#fff;}

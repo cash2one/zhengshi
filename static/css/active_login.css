@@ -1,38 +1,62 @@
-﻿
-.allcontent{position:relative;height: 400px; width:460px;float:right;top:-403px;}
-
+﻿.sidebar{position:relative;height: 400px; width:460px;float:right;top:-403px;}
+.side_wrap{ padding:10px 0 0 0;height:400px;z-index:999;position:absolute;width: 460px;margin-left: 10px;font:12px tahoma, arial, Verdana, sans-serif}
+.registerform .need{ color: #b20202;width: 10px;}
+#Validform_msg{ display:none;}
+.trans {width: 460px;height: 400px;background-color: #FFF;opacity: 0.6;z-index: 1;position: absolute;}
 /*登录*/
-.login_mid{ padding:10px 0 0 0;height:400px;z-index:999;position:absolute;width: 460px;font:12px tahoma, arial, Verdana, sans-serif}
-/*手机号码的文字和文本框*/
-#call_code input[type="text"]{width:245px;height:30px;margin-left:20px;}
-#call_code span{position:absolute;}
-.log_ucon{line-height:25px;margin-left:50px;}
-
-/*密码的文字和文本框*/
-.log_pwdcon{line-height:25px;margin-left:54px;}
-input[type="text"] {width: 245px;height: 30px;margin-left: 20px;}
-#user_pwd input[type="password"]{width:245px;height:30px;margin-left:45px;}
-#user_pwd span{position:absolute;}
-
-/*验证码的文字和文本框*/
-.log_codecon{line-height:25px;margin-left:54px;}
-#user_code input[type="text"]{width:140px;height:30px;margin-left:30px;}
-#user_code span{position:absolute;margin-left: 100px;}
-#user_code img{width:94px;height:30px;position:absolute}
-
+.l-number-field{line-height:25px;margin-left:50px;}
+.l-number-field input[type="text"]{width:245px;height:30px;margin-left:20px;}
+.l-pwd-field{line-height:25px;margin-left:54px;}
+.l-pwd-field input[type="password"]{width:245px;height:30px;margin-left:45px;}
+.l-code-field{line-height:25px;margin-left:54px;position: relative;}
+.l-code-field input[type="text"]{width:140px;height:30px;margin-left:36px;}
+.l-code-field span{position:absolute;margin-left: 105px;}
+.l-code-field img{width:94px;height:30px;position:absolute;}
 #login_header li{ float:left; position:relative; margin:0 5px;left:713px;}
 #login_header li a{color:#ccc;font-size:14px;}
 #login_header li a:hover{ color:#ff0000;}
-
 .display{display:none}
-/*.borbtom{border-bottom:1px solid #f40;}
-.borbtom2{border-bottom:1px solid #dedede;}*/
-#ul11 a{color:#000000;}
-#ul11 a:hover{color:#e1640d;}
-#warp{width:100%;height:800px;background:#EEEEF0;}
-#login_content{width:100%;height: 400px;}
-.log_text{overflow:hidden;padding:6px;}
-#quick_log ul{padding:16px 0px;}
-#quick_reg ul{padding:6px 0px;}
-#log_ul1{margin-left: 10px;}
-.trans {width: 460px;height: 400px;background-color: #FFF;opacity: 0.6;z-index: 1;position: absolute;}
+
+.login .log_block a{color:#000000;}
+.login .log_block a:hover{color:#e1640d;}
+.login .log_block .log_block_button input[type="submit"]{margin-top:20px; margin-left:60px;width:300px;height:50px;background-color: #b20202;color:white;font-size:16px;border-radius:10px;-webkit-border-radius:3px;}
+.login .log_block .log_block_right{font-size:12px;margin-top:15px;margin-left:325px;}
+.side_content{width:100%;height: 400px;}
+.side_quick--title{overflow:hidden;padding:6px;}
+.side_quick--title h2:first-child{cursor:pointer;color:#000;float:left;font-size:20px;margin-top:-5px;width:48%;padding-bottom:12px;display:block;text-align:center;border-bottom:1px solid #dedede;}
+.side_quick--title h2:last-child{cursor:pointer;color:#808080;float:left;font-size:20px;margin-top:-5px;width:48%;padding-bottom:12px;display:block;text-align:center;border-bottom:1px solid #dedede;}
+#quick_log{overflow: hidden;z-index: 2;}
+#quick_log li{padding:16px 0;}
+#quick_log .describe{font-size:15px;font-weight:bold;margin-left:-50px;}
+/*end*/
+
+/*注册*/
+#quick_reg li{padding:6px 0;}
+#quick_reg .describe{font-size:15px;font-weight: bold}
+#quick_reg .r-describe{margin-left:-8px;font-size:15px;font-weight: bold}
+#quick_reg .c-describe{margin-left:-30px;font-size:15px;font-weight: bold}
+.r-number-field{line-height:20px;}
+.r-number-field input[type="text"]{width:245px;height:30px;margin-left:30px;}
+.r-pwd-field{margin-left:5px;line-height:20px;}
+.r-pwd-field input[type="password"]{width:245px;height:30px;margin-left: 55px;}
+.r-verify-field{margin-left:10px;line-height:20px;}
+.r-verify-field span{width:90px;height:20px;line-height:20px;border:0;}
+.r-verify-field input[type="password"]{width:245px;height:30px;margin-left: 18px;}
+.r-code-field{margin-left:35px;line-height:20px;position: relative;}
+.r-code-field span{width:90px;height:20px;line-height:20px;border:0;margin-left: 95px;position: absolute;top: 10px;}
+.r-code-field input[type="text"]{width:150px;height:30px;margin-left: 30px;}
+.r-code-field img{width:85px;height:30px;position:absolute;margin-left:5px;}
+.r-ncode-field{margin-left:5px;line-height:20px;position: relative;}
+.r-ncode-field span{width:90px;height:20px;line-height:20px;border:0;margin-left: 95px;position: absolute;top: 10px;}
+.r-ncode-field li{padding:1px 0;}
+.r-ncode-field input[type="text"]{width:150px;height:30px;margin:0;}
+.r-ncode-field .sendCode{color:#FFFFFF; background-color:#4a3c70;border:1px solid #4a3c70; border-radius:10px;-webkit-border-radius:3px;z-index:1;width:85px;height:34px;left:100px;margin-left:5px;}
+.reg_header{ background:url(../images/reg_bg.png) no-repeat 250px center;}
+.register .reg_block{font-size:12px;line-height:25px;margin-top:5px;}
+.register .reg_block li{padding: 0}
+.register .reg_block a{color:#000000;}
+.register .reg_block a:hover{color:#e1640d;cursor:pointer;}
+.register .reg_block .reg_block_desc{margin:-10px 0 -20px 100px;font-weight:bold;}
+.register .reg_block .reg_block_button{margin-left:60px;margin-top:30px;width:300px;height:50px;background-color: #b20202;color:white;font-size:16px;border-radius:10px;-webkit-border-radius:3px;}
+.register .reg_block .reg_block_right{margin-left:300px;font-size:12px;}
+/*end*/

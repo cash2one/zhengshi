@@ -1,8 +1,4 @@
-* {
-    margin: 0;
-    padding:0;
-}
-.hot_Selec {
+.hot {
     width: 460px;
     height: 400px;
     float: right;
@@ -22,10 +18,7 @@
 }
 
 .hot_content {
-    background-repeat: repeat-x;
-}
-.hot_conHeight{
-    height: 400px;width: 460px;
+    position: relative;
 }
 .search {
     height: 60px;
@@ -33,70 +26,43 @@
     margin:20px 0 0 0;
     width: 420px;
 }
+.search input, .btn_search {float: left;}
+.search input { width: 320px;line-height: 30px;border: 1px solid #ddd;padding: 5px;font-size: 18px;color: #999;  }
+.search input:hover{border: 1px solid #c50512;}
+.search input.btn_search {background: url('/static/images/search.png') no-repeat 0 0; display: inline-block;width: 47px;height: 42px;border: none;cursor: pointer;}
+.search input.btn_search:hover {border: none;}
+.hot_position{position:absolute;height:400px;z-index:2;padding-left:8%;}
 .hot_com{
     height: 60px;
     line-height: 32px;
     width: 420px;
     margin-top:-30px;
 }
-.hot_comtitle h3{
+.hot_com_title h3{
     background:url('/static/images/ico.png') no-repeat 0 center;
     font-size:18px;
     padding-left:25px;
 }
 
-.hot_comlist{
+.hot_com_list{
     font-size:16px;
 }
-.hot_comlist li{
+.hot_com_list li{
     display:inline;
     padding:5px;
 }
 
-.hot{
+.hot_week{
     padding-top: 10%;width: 420px;
+    position: relative;
 }
-.hot_comlink {
-    padding:10px 0 10px 0;
-    font-size:16px;
-}
-.hot_comlink a:hover{ color:#ff0000;}
-.hot_comlink a{color:#666;}
-.hot_comlist a:hover{color:#ff0000;}
-.hot_comlist a{color:#666;}
-.search input, .btn_search {
-    float: left;
-}
+.hot_week{ font-size:14px;margin:0px auto;}
+.hot_week h3{ display:inline; font-size:16px;}
+.hot_week a{ color:#666; text-decoration:underline; margin:0 5px;}
+.hot_week a:hover{ color:#ff0000;}
+.hot_week_comlink {padding:10px 0 10px 0;font-size:16px;}
+.hot_week_comlink a:hover{ color:#ff0000;}
+.hot_week_comlink a{color:#666;}
+.hot_week_img img{position: absolute;top: 30px;left:-30px;}
 
-.search input {
-    width: 320px;
-    line-height: 30px;
-    border: 1px solid #ddd;
-    padding: 5px;
-    font-size: 18px;
-    color: #999;
-}
-
-.search input:hover {
-    border: 1px solid #c50512;
-}
-
-.search input.btn_search {
-    background: url('/static/images/search.png') no-repeat 0 0;
-    display: inline-block;
-    width: 47px;
-    height: 42px;
-    border: none;
-    cursor: pointer;
-}
-
-.search input.btn_search:hover {
-    border: none;
-}
-.hot_position{
-    position:absolute;
-    height:400px;
-    z-index:2;
-    padding-left:8%;
-}
 

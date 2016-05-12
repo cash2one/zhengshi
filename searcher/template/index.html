@@ -5,167 +5,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="renderer" content="webkit">
-<meta name="keywords" content="网贷搜索,辞达金融,网络贷款"/>
- <meta name="description" content="在资金安全的情况下进行风险识别、数据收集及分析的、智能、透明、客观、中立的第三方搜索平台" />
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="网贷搜索,辞达金融,网络贷款"/>
+    <meta name="description" content="在资金安全的情况下进行风险识别、数据收集及分析的、智能、透明、客观、中立的第三方搜索平台"/>
     <meta charset="UTF-8">
-    <meta name="baidu-site-verification" content="L1AiTNKmif" />
+    <meta name="baidu-site-verification" content="L1AiTNKmif"/>
     <title>天天搜贷</title>
     <script src="/static/js/jquery-1.8.3.min.js"></script>
-	<script type="text/javascript" src="/static/js/script.js"></script>
+    <script type="text/javascript" src="/static/js/script.js"></script>
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <link href="{% static 'css/base.css' %}" rel="stylesheet" media="all"/>
     <link href="{% static 'css/main.css' %}" rel="stylesheet" media="all"/>
-    <link href="{% static 'css/new_indexsub.css' %}" rel="stylesheet" type="text/css"  media="all"/>
-
-	<script type="text/javascript" src="/static/js/jquery.js"></script>
+    <link href="{% static 'css/new_indexsub.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
     <script src="/static/js/yz.js" type="text/javascript"></script>
-
     <script type="text/javascript" src="/static/js/sendtime_index.js"></script>
-    <link href="/static/css/active_reg.css" rel="stylesheet" type="text/css" media="all"/>
     <link rel="stylesheet" href="/static/css/hotspot.css" media="all">
     <link href="/static/css/active_login.css" rel="stylesheet" type="text/css" media="all"/>
-	<link href="/static/css/framework.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/static/css/framework.css" rel="stylesheet" type="text/css" media="all"/>
     <style>
-        .nb{
+        .nb {
             display: block;;
         }
     </style>
-<script type="text/javascript">
+    <script>
+        /*轮播图的切换 start*/
+        $(function () {
+            var a = 0;
+            $(".btn li").click(function () {
+                $(".btn li").removeClass("on");
+                $(this).addClass("on");
+                a = $(this).index();
+                $(".con-banner li a").hide();
+                $(".con-banner li a").eq(a).show();
+            });
+            function sroll() {
+                if (a < 2) {
+                    a++;
+                    $("#sp2").show();
+                } else {
+                    a = 0;
+                }
+                on();
+            }
 
-		$(function(){
+            var timer = setInterval(sroll, 4000);
+            $(".con-banner,.prev,.next").mouseover(function () {
+                clearInterval(timer);
+            }).mouseout(function () {
+                timer = setInterval(sroll, 4000);
+            })
+            $('.content').mouseover(function () {
+                $('.prev,.next').addClass('ho');
+                $('.prev,.next').removeClass('ho1');
+            }).mouseout(function () {
+                $('.prev,.next').addClass('ho1');
+                $('.prev,.next').removeClass('ho');
+            })
+            $(".prev").click(function () {
+                if (a > 0) {
+                    a--;
+                    $("#sp2").show();
+                }
+                on();
+            })
 
-		/*四秒钟换一张*/
-
-		var a = 0;
-
-
-
-		$(".btn li").click(function(){	
-
-		 $(".btn li").removeClass("on");
-
-		 $(this).addClass("on");
-
-		 a=$(this).index();
-
-
-
-		 $(".banner li a").hide();
-
-		 $(".banner li a").eq(a).show();
-
-		});
-
-		function sroll(){
-
-			if(a<2){
-
-			    a++;
-
-                $("#sp2").show();
-
-
-			}else{
-
-			    a=0;
-
-			}
-
-		 on();	
-
-		}
-
-		var timer=setInterval(sroll,4000);
-
-		$(".banner,.prev,.next").mouseover(function(){
-
-		  clearInterval(timer);
-
-		}).mouseout(function(){
-
-		  timer=setInterval(sroll,4000);
-
-		})
-
-
-
-        $('.box').mouseover(function(){
-
-            $('.prev,.next').addClass('ho');
-
-            $('.prev,.next').removeClass('ho1');
-
-            }).mouseout(function(){
-
-            $('.prev,.next').addClass('ho1');
-
-            $('.prev,.next').removeClass('ho');
-
+            $(".next").click(function () {
+                if (a < 2) {
+                    a++;
+                    $("#sp2").show();
+                } else {
+                    a = 0;
+                }
+                on();
+            });
+            function on() {
+                $(".btn li").removeClass("on");
+                $(".btn li").eq(a).addClass("on");
+                $(".con-banner li a").hide();
+                $(".con-banner li a").eq(a).show();
+            }
         })
-
-
-
-		$(".prev").click(function(){
-
-			if(a>0){
-
-				a--;
-
-                $("#sp2").show();
-
-			}
-
-			on();
-
-			
-
-		})
-
-		$(".next").click(function(){
-
-			 
-
-			if(a<2){
-
-			    a++;
-
-                $("#sp2").show();
-
-
-			}else{
-
-				a=0;
-
-			}
-
-		  on(); 
-
-
-
-		});
-
-	
-
-		function on(){
-
-
-
-		 $(".btn li").removeClass("on");
-
-		 $(".btn li").eq(a).addClass("on");
-
-		 $(".banner li a").hide();
-
-		 $(".banner li a").eq(a).show();
-
-
-
-		}	
-
-	})
-
-	</script>
+        /*轮播图的切换 end*/
+    </script>
     <script>
         $(function () {
             $("#logorreg").find("h2").click(function () {
@@ -173,184 +95,144 @@
                 $("#" + id).show().siblings().hide();
             });
 
-            $("#logorreg>h2").click(function(){
-                $("#logorreg h2").css("color","#808080");
+            $("#logorreg>h2").click(function () {
+                $("#logorreg h2").css("color", "#808080");
                 /*$(this).addClass('borbtom').siblings().removeClass('borbtom2');*/
-                $(this).css("color","#000");
+                $(this).css("color", "#000");
             });
         });
-
     </script>
-
     <script>
-        function actions(){
+        function actions() {
             var obj = document.getElementById('ttt');
-            window.location.href="http://ddbid.com/activearea/";
+            window.location.href = "http://ddbid.com/activearea/";
         }
     </script>
-
 </head>
-
 <body>
-<div class="wap_minwidth">
-{% include "header.html" %}<div id="content">
-    <!--图片切换--->
-	<div class="box">
-		<ul class="banner">
-			<li><a style="display:block;"><img src="/static/images/ThreeMActive.jpg" width="100%"  height="400"></a></li>
-			<li><a style="display:none;"><img src="/static/images/68.jpg 	" width="100%"  height="400"></a></li>
-			<li><a style="display:none;" href="http://ddbid.com/new_activearea/"><img src="/static/images/activepic.jpg" width="100%" height="400"></a></li>
-
-		</ul>
-		<a class="prev" href="javascript:void(0)"><</a>
-		<a class="next" href="javascript:void(0)">></a>
-
-        <!---登录注册--->
-        {% ifequal user.id None %}
-		<div class="allcontent">
-            <div class="trans"> </div>
-                <div id="login_content">
-				
-                    <div class="login_mid">
-                        <ul id="log_ul1">
-                            <ul class="log_text">
-                                <div id="logorreg">
-                                    <h2 data-aa="quick_log" style="cursor:pointer;color:#000;float:left;font-size:20px;margin-top:-5px;width:48%;padding-bottom:12px;display:block;text-align:center;border-bottom:1px solid #dedede;">
-                                        快速登录
-                                    </h2>
-                                    <h2 data-aa="quick_reg" style="cursor:pointer;color:#808080;float:left;font-size:20px;margin-top:-5px;width:48%;padding-bottom:12px;display:block;text-align:center;border-bottom:1px solid #dedede;">
-                                        快速注册
-                                    </h2>
-                                    <li style="clear:both"></li>
+<div id="box">
+    {% include "header.html" %}
+    <div id="container">
+        <!--图片切换 start--->
+        <div class="content">
+            <ul class="con-banner">
+                <li><a style="display:block;"><img src="/static/images/ThreeMActive.jpg" width="100%" height="400"></a></li>
+                <li><a style="display:none;"><img src="/static/images/68.jpg 	" width="100%" height="400"></a></li>
+                <li><a style="display:none;" href="http://ddbid.com/new_activearea/"><img src="/static/images/activepic.jpg" width="100%" height="400"></a></li>
+            </ul>
+            <a class="prev" href="javascript:void(0)"><</a>
+            <a class="next" href="javascript:void(0)">></a>
+            <!--图片切换 end-->
+            <!---登录注册--->
+            {% ifequal user.id None %}
+            <div class="sidebar">
+                <div class="trans"></div>
+                <div class="side_content">
+                    <div class="side_wrap">
+                        <ul class="side_ul">
+                            <li class="side_quick--title" id="logorreg">
+                                <h2 data-aa="quick_log">快速登录</h2>
+                                <h2 data-aa="quick_reg">快速注册</h2>
+                            </li>
+                            <li class="side_quick--cons">
+                                <div id="quick_log">
+                                    <form class="registerform" id="login_form" action="/login/" method="post">
+                                        {% csrf_token %}
+                                        <ul>
+                                            <li class="l-number-field">
+                                                <label class="describe">
+                                                    手机号码:</label>
+                                                <label>{{ form_login.username }}</label>
+                                            </li>
+                                            <li class="l-pwd-field">
+                                                <label class="describe">密码:</label>
+                                                <label>{{ form_login.password }}</label>
+                                            </li>
+                                            <li class="l-code-field">
+                                                <label class="describe">验证码</label>
+                                                <label>{{ form_login.vcode }}</label>
+                                                <label style="margin-left:5px;"><img
+                                                        onclick="this.setAttribute('src',{% url 'verifycode' %} + '?nocache='+Math.random());"
+                                                        src="{% url 'verifycode' %}"/></label>
+                                            </li>
+                                            <li class="login">
+                                                <ul class="log_block">
+                                                    <li style="padding: 0" class="log_block_button">
+                                                        {% if next %}
+                                                        <input type="hidden" name="next" value="{{ next }}"/>
+                                                        {% endif %}
+                                                        <input type="submit" alt=" " value="登录"/>
+                                                    </li>
+                                                    <li style="padding: 0" class="log_block_right">
+                                                        <a href="{% url 'forgetpw' %}">忘记密码?</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </form>
                                 </div>
-                            </ul>
-
-                                <div class="log_cons">
-                                    <div id="quick_log">
-                                        <form class="registerform" id="login_form" action="/login/" method="post">
-                                           {% csrf_token %}
-                                            <ul class="log_ucon">
-                                                <li id="call_code">
-                                                    <label style="font-size:15px;font-weight:bold;margin-left:-50px;"> 手机号码：</label>
-                                                    <label>{{ form_login.username }}</label>
-                                                </li>
-                                            </ul>
-
-                                            <ul class="log_pwdcon">
-                                                <li id="user_pwd">
-                                                    <label style="font-size:15px;font-weight:bold;margin-left:-50px;">密码：</label>
-                                                    <label>{{ form_login.password }}</label>
-                                                </li>
-                                            </ul>
-
-                                            <ul class="log_codecon">
-                                                <li id="user_code">
-                                                    <label style="font-size:15px;font-weight:bold;margin-left:-50px;"> 验证码：</label>
-                                                    <label>{{ form_login.vcode }}</label>
-                                                    <label style="margin-left:5px;"><img
-                                                            onclick="this.setAttribute('src',{% url 'verifycode' %} + '?nocache='+Math.random());"
-                                                            src="{% url 'verifycode' %}"/></label>
-
-                                                </li>
-                                            </ul>
-
-                                            <ul id="ul11">
-                                                <li>
-                                                    {% if next %}
-                                                    <input type="hidden" name="next" value="{{ next }}"/>
-                                                    {% endif %}
-                                                    <input type="submit" class="input_butt" alt=" " value="登录"
-                                                           style="margin-top:20px; margin-left:60px;width:300px;height:50px;background-color: #b20202;color:white;font-size:16px;border-radius:10px;-webkit-border-radius:3px;"/>
-                                                </li>
-                                                <li>
-                                                    <div style="font-size:12px;margin-top:15px;margin-left:325px;"><a
-                                                            href="{% url 'forgetpw' %}">忘记密码?</a></div>
-                                                </li>
-                                            </ul>
-                                        </form>
-                                    </div>
-                                    <div id="quick_reg" style="position:absolute" class="display">
-
-                                        <!---注册的内容--->
-                                        <div id="signup_content">
-                                            <div class="signup_mid">
-                                                <form class="registerform" id="register_form" action="{% url 'register' %}" method="post" name="form1">
-                                                    <ul id="signup_ul1">
-                                                       <!-- <ul class="log_text">
-                                                            <li style="font-size:32px;color:blue;margin-left:180px;margin-top:15px;font-style:oblique">
-                                                                <label>快速注册,轻松搜索</label>
-                                                            </li>
-                                                        </ul>-->
-                                                        <ul class="singup_call">
-                                                            <li id="call_inp">
-                                                                <label style="margin-left:-100px;font-size:15px;font-weight: bold"> 手机号码：</label>
-                                                                <label class="call_lbl" style="z-index:999">{{ form.username }}</label>
-
-                                                                {#              <input type="button" value="验证用户名是否存在？" name="un_valid" onClick="check_valid()">#}
-                                                            </li>
-                                                            <li style="clear:both"></li>
-                                                        </ul>
-                                                        <ul class="signup_pwd">
-                                                            <li id="pwd_inp">
-                                                                <label style="margin-left:-43px;font-size:15px;font-weight: bold"> 密码：</label>
-                                                                <label class="pwd_lbl" style="z-index:999">{{ form.password }}</label>
-                                                            </li>
-                                                            <li style="clear:both"></li>
-                                                        </ul>
-                                                        <ul class="signup_copwd">
-                                                            <li id="copwd_inp">
-                                                                <label style="margin-left:-8px;font-size:15px;font-weight: bold">确认密码：</label>
-                                                                <label>{{ form.password2 }}</label>
-                                                            </li>
-                                                            <li style="clear:both"></li>
-                                                        </ul>
-                                                        <ul class="signup_yzcode">
-                                                            <li id="sms_inp">
-                                                                <label style="margin-left:-30px;font-size:15px;font-weight: bold">验证码：</label>
-                                                                <label>{{ form.vcode }}</label>
-                                                                <label style="position:absolute;margin-left:5px;"><img onClick="this.setAttribute('src',{% url 'verifycode' %} + '?nocache='+Math.random());"
-                                                                                                                       src="{% url 'verifycode' %}"/></label>
-                                                            </li>
-                                                        </ul>
-                                                        <ul class="singup_smscode">
-                                                            <li id="yzcode_inp">
-                                                                <label style="font-size:15px;font-weight: bold">短信验证码：</label>
-                                                                <label >{{ form.smscode }}</label>
-                                                                <label><input type="button" id="rulesubmit" style="color:#FFFFFF; background-color:#4a3c70;border:1px solid #4a3c70; border-radius:10px;-webkit-border-radius:3px;z-index:1;width:85px;height:34px;left:100px;margin-left:5px;" value="发送验证码" /></label>
-                                                            </li>
-                                                            <li style="clear:both"></li>
-                                                        </ul>
-
-                                                        <ul class="signup_agree">
-                                                            <li>
-                                                                <div style=" margin:-10px 0 -20px 100px;font-weight:bold;">注册即视为同意天天搜贷<a href="/agreement/"><<服务条款>></a></div>
-                                                            </li>
-                                                            <li>
-                                                                <input type="submit" class="login_butt" id="login" value="注册有礼" style="margin-left:60px;margin-top:30px;width:300px;height:50px;background-color: #b20202;color:white;font-size:16px;border-radius:10px;-webkit-border-radius:3px;" />
-                                                            </li>
-                                                            <li>
-                                                                <div style=" margin-left:300px;font-size:12px;">已有天天搜贷账号,<a href="{% url 'login' %}">登录</a></div>
-                                                            </li>
-                                                        </ul>
-                                                    </ul>
-                                                </form>
-                                            </div>
-                                        </div>
+                                <div id="quick_reg" style="position:absolute" class="display">
+                                    <!---注册的内容--->
+                                    <form class="registerform" id="register_form"
+                                          action="{% url 'register' %}" method="post" name="form1">
+                                        <ul>
+                                            <li class="r-number-field">
+                                                <label class="describe">手机号码:</label>
+                                                <label style="z-index:999">{{form.username}}</label>
+                                                {# <input type="button" value="验证用户名是否存在？" name="un_valid" onClick="check_valid()">#}
+                                            </li>
+                                            <li class="r-pwd-field">
+                                                <label class="describe">密码:</label>
+                                                <label style="z-index:999">{{form.password}}</label>
+                                            </li>
+                                            <li class="r-verify-field">
+                                                <label class="r-describe">确认密码：</label>
+                                                <label>{{ form.password2 }}</label>
+                                            </li>
+                                            <li class="r-code-field">
+                                                <label class="c-describe">验证码：</label>
+                                                <label>{{ form.vcode }}</label>
+                                                <label><img
+                                                        onClick="this.setAttribute('src',{% url 'verifycode' %} + '?nocache='+Math.random());"
+                                                        src="{% url 'verifycode' %}"/></label>
+                                            </li>
+                                            <li class="r-ncode-field">
+                                                <label class="describe">短信验证码：</label>
+                                                <label>{{ form.smscode }}</label>
+                                                <label><input type="button" class="sendCode" id="rulesubmit"
+                                                              value="发送验证码"/></label>
+                                            </li>
+                                            <li class="register">
+                                                <ul class="reg_block">
+                                                    <li style="padding: 0">
+                                                        <div class="reg_block_desc">注册即视为同意天天搜贷<a href="/agreement/"><
+                                                            <服务条款>>
+                                                        </a></div>
+                                                    </li>
+                                                    <li style="padding: 0">
+                                                        <input type="submit" id="login" class="reg_block_button"
+                                                               value="注册有礼"/>
+                                                    </li>
+                                                    <li style="padding: 0">
+                                                        <div class="reg_block_right">已有天天搜贷账号,<a
+                                                                href="{% url 'login' %}">登录</a></div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </form>
                                 </div>
-                                </div>
+                            </li>
                         </ul>
-
                     </div>
                 </div>
             </div>
-       
-        {% else %}
-        <!--热点查询-->
-        <div class="hot_Selec">
-            <div class="hot_trans">
-            </div>
-            <div class="hot_content">
-                <div class="hot_conHeight">
+            {% else %}
+            <!--热点查询-->
+            <div class="hot">
+                <div class="hot_trans">
+                </div>
+                <div class="hot_content">
                     <div class="hot_position">
                         <div class="search textbox">
                             <form action="/result/" method="post">
@@ -366,17 +248,16 @@
                             </script>
                             {% endif %}
                         </div>
-
                         <div class="hot_com">
-                            <div class="hot_comtitle"><h3>我的组合搜索</h3></div>
-                            <div class="hot_comlist">
+                            <div class="hot_com_title"><h3>我的组合搜索</h3></div>
+                            <div class="hot_com_list">
                                 <ul>
                                     {% if f_ls %}
                                     {% for f_l in f_ls %}
                                     <li>
                                         <a choices="{{ f_l.choices }}"
                                            href="{% url 'shortcut_request' f_l.id %}">{{ f_l.name }}</a
-                                    ></li>
+                                                ></li>
                                     {% endfor %}
                                     {% else %}
                                     <a>您还未设置任何快捷查询</a>
@@ -384,227 +265,200 @@
                                 </ul>
                             </div>
                         </div>
-
-                        <div class="hot">
+                        <div class="hot_week">
                             <h3>本周热点：</h3>
                             {% for h in hs %}
-                            <div class="hot_comlink">
+                            <div class="hot_week_comlink">
                                 <a href="{{ h.url }}" target="_blank">{{ h.title }} </a><br>
                             </div>
                             {% endfor %}
-                        </div>
-                        <div style="position: relative;top:-40px;left:-30px;">
-                            <img src="/static/images/maopao.gif">
+                            <div class="hot_week_img">
+                                <img src="/static/images/maopao.gif">
+                            </div>
                         </div>
                     </div>
-                </div>		
+                </div>
+                {% endifequal %}
+            </div>
         </div>
-        {% endifequal %}
-	</div>	
-	 </div>
-	<!---查询结果---->
-	<div class="searchresullt">
-        <!---左边内容---->
-        <div id="searchleft" class="searchleft">
-          <div class="log_contentt" id="result_form">
-             <div class="res_topdiv">
-			  <h2 class="qxsydiv">高收益</h2>
-                 <span><a class="res_gdxq" href="/result/?rank=-income_rate">更多详情</a></span>
-			 </div>
-            {% if results_left %}
-               {% for result in results_left %}
-                    <table class="search_Tab">
-                        <tr>
-                            <td class="tab_logo" style="padding-left:1em"  width="110">
-                                <img src="{{ result.platform.logo }}"/>
-                            </td>
-                            <td>
-                                <img style="width:80px;height:80px;margin:-36px 0 0 30px;position:relative;left:2.55em" src="/static/images/hot_logos.png"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" class="search_title" style="width:200px;padding-left:1em; text-align:left;">{{ result.name |title_cut}}</td>
-                        </tr>
-                        <tr>
-                            <td class="first_percent" width="230" style="position:absolute;">
-                                <div style="width:100%;border:1px solid #868686;border-radius:10px;margin-left:1em">
-                                <em style="width:{{ result.process }}%;border-radius:10px;background:url(../static/images/jinduqiao.png) no-repeat;"></em></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td height="30" style="padding:0.5em"></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left;display:block;width:130px;padding-left:1em">
-                                <label style="font-size:1em;color:#868686">标的金额:</label><label class="f_red">{{ result.amount|data_display}}</label>&nbsp;&nbsp;
-                            </td>
-                            <td style="padding-left:1em;" width="100">
-                                <label style="font-size:1em;color:#868686">已完成:</label><label class="f_red"><span>{{ result.process|floatformat:"0" }}%</span></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding-left:2em;font-size:1.4em;font-weight:bold;color:#000" width="50">年化率</td>
-                            <td style="padding-left:1em;font-size:1.4em;font-weight:bold;color:#000" width="20">期限</td>
-                        </tr>
-                        <tr>
-                            <td style="padding-left:3.5em;">
-                                <label class="c_red">&nbsp;{{ result.income_rate|floatformat:"-2" }}</label><label style="font-size:1.2em;font-weight:bold;color:#000">%</label>
-                            </td>
-                            <td style="padding-left:1em;">
-                                <label class="c_red">{{ result.term_name|floatformat:"-2" }}</label><label style="font-size:1.2em;font-weight:bold;color:#000">{{ result.term_unit }}</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="position:relative;" colspan="2" width="70"><label  target="_blank" id="check_is_exist_{{result.id}}" name="{{result.id}}"
-                                                               class="seach_cheek">查看详情</label></td>
-                            <td style="position:relative;top:-6em;left:-11em">
-                                <div style="width:1px;height:4.2em;background:#EEEEF0;"></div>
-                            </td>
-                        </tr>
-                    </table>
+        <!---查询结果---->
+        <div id="checkResult">
+            <!---左边内容---->
+        <div class="sit-search">
+            <div class="search_container">
+                <div class="search_title fix">
+                    <h2>高收益</h2>
+                    <span><a href="/result/?rank=-income_rate">更多详情</a></span>
+                </div>
+                {% if results_left %}
+                {% for result in results_left %}
+                <div class="search_content fix">
+                    <ul class="item">
+                        <li class="img--fixed"><img src="/static/images/hot_logos.png" width="60" height="60"> </li>
+                        <li class="item_img"><img src="{{ result.platform.logo }}" width="110"></li>
+                        <li class="item_title">{{ result.name |title_cut}}</li>
+                        <li class="item_bar"><div><em style="width:{{ result.process }}%;"></em></div></li>
+                        <li class="item_wrap" style="padding: 0 5px;">
+                            <ul class="item_wrap_filed one fix">
+                                <li><span class="text">标的金额:</span><span class="count">{{result.amount|data_display}}</span></li>
+                                <li><span class="text">已完成:</span><span class="count">{{ result.process|floatformat:"0" }}%</span></li>
+                            </ul>
+                        </li>
+                        <li class="item_wrap" style="padding:0 5px;">
+                            <ul class="item_wrap_filed item-filed-width two fix">
+                                <li>
+                                    <div>
+                                        <span class="text">年利率</span>
+                                    </div>
+                                    <div>
+                                        <span class="count">{{ result.income_rate|floatformat:"-2" }}</span><span class="text">%</span>
+                                    </div>
+                                </li>
+                                <li class="li-right-line"></li>
+                                <li>
+                                    <div>
+                                        <span class="text">期限</span>
+                                    </div>
+                                    <div>
+                                        <span class="count">{{ result.term_name|floatformat:"-2" }}</span><span class="text">{{ result.term_unit }}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="search-check"><a name="{{result.id}}" id="check_is_exist_{{result.id}}" class="search-check_link">查看详情</a></li>
+                    </ul>
+                </div>
                 {% endfor %}
-            {% else %}
+                {% else %}
                 <a>无符合查询条件的纪录</a>
-            {% endif %}
-          </div>
-      </div>
-        <div style="clear:both"></div>
-        <!---右边内容---->
-	  <div id="searchright" class="searchright">
-          <div class="log_contentt" id="result_form">
-              <div class="res_topdiv">
-                  <h2 class="qxsydiv">短期限</h2>
-                  <span><a class="res_gdxq" href="/result/?rank=-income_rate">更多详情</a></span>
-              </div>
-            {% if results_right %}
-               {% for result in results_right %}
-              <table class="search_Tab">
-                  <tr>
-                      <td style="padding-left:1em"  width="110">
-                          <img src="{{ result.platform.logo }}"/>
-                      </td>
-                      <td>
-                          <img style="width:80px;height:80px;margin:-36px 0 0 30px;position:relative;left:2.55em" src="/static/images/hot_logos.png"/>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td colspan="2" class="search_title" style="width:200px;padding-left:1em; text-align:left;">{{ result.name |title_cut}}</td>
-                  </tr>
-                  <tr>
-                      <td class="first_percent" width="230" style="position:absolute;">
-                          <div style="width:100%;border:1px solid #868686;border-radius:10px;margin-left:1em">
-                              <em style="width:{{ result.process }}%;border-radius:10px;background:url(../static/images/jinduqiao.png) no-repeat;"></em></div>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td height="30" style="padding:0.5em"></td>
-                  </tr>
-                  <tr>
-                      <td style="text-align: left;display:block;width:130px;padding-left:1em">
-                          <label style="font-size:1em;color:#868686">标的金额:</label><label  class="f_red">{{ result.amount|data_display}}</label>&nbsp;&nbsp;
-                      </td>
-                      <td style="padding-left:1em;" width="100">
-                          <label style="font-size:1em;color:#868686">已完成:</label><label class="f_red"><span>{{ result.process|floatformat:"0" }}%</span></label>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td style="padding-left:2em;font-size:1.4em;font-weight:bold;color:#000" width="50">年化率</td>
-                      <td style="padding-left:1em;font-size:1.4em;font-weight:bold;color:#000" width="20">期限</td>
-                  </tr>
-                  <tr>
-                          <td style="padding-left:3.5em;">
-                          <label class="c_red">&nbsp;{{ result.income_rate|floatformat:"-2" }}</label><label style="font-size:1.2em;font-weight:bold;color:#000">%</label>
-                      </td>
-                      <td style="padding-left:1em;">
-                          <label class="c_red">{{ result.term_name|floatformat:"-2" }}</label><label style="font-size:1.2em;font-weight:bold;color:#000">{{ result.term_unit }}</label>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td style="position:relative;" colspan="2" width="70"><label  target="_blank" id="check_is_exist_{{result.id}}" name="{{result.id}}"
-                                                                                    class="seach_cheek">查看详情</label></td>
-                      <td style="position:relative;top:-6em;left:-11em">
-                          <div style="width:1px;height:4.2em;background:#EEEEF0;"></div>
-                      </td>
-                  </tr>
-              </table>
-                {% endfor %}
-            {% else %}
-                <a>无符合查询条件的纪录</a>
-            {% endif %}
+                {% endif %}
+            </div>
         </div>
-      </div>
-	
-	</div>
-</div>
-    <div style="width:100%;max-width:1660px;min-width:1350px;">
-{% include "footer.html" %}
+            <!---右边内容---->
+        <div class="sit-search">
+            <div class="search_container">
+                <div class="search_title fix">
+                    <h2>短期限</h2>
+                    <span><a href="/result/?rank=-income_rate">更多详情</a></span>
+                </div>
+                {% if results_right %}
+                {% for result in results_right %}
+                <div class="search_content fix">
+                    <ul class="item">
+                        <li class="img--fixed"><img src="/static/images/hot_logos.png" width="60" height="60"> </li>
+                        <li class="item_img"><img src="{{ result.platform.logo }}" width="110" ></li>
+                        <li class="item_title">{{ result.name |title_cut}}</li>
+                        <li class="item_bar"><div><em style="width:{{ result.process }}%;"></em></div></li>
+                        <li class="item_wrap" style="padding: 0 5px;">
+                            <ul class="item_wrap_filed one fix">
+                                <li><span class="text">标的金额:</span><span class="count">{{result.amount|data_display}}</span></li>
+                                <li><span class="text">已完成:</span><span class="count">{{ result.process|floatformat:"0" }}%</span></li>
+                            </ul>
+                        </li>
+                        <li class="item_wrap" style="padding:0 5px;">
+                            <ul class="item_wrap_filed item-filed-width two fix">
+                                <li>
+                                    <div>
+                                        <span class="text">年利率</span>
+                                    </div>
+                                    <div>
+                                        <span class="count">{{ result.income_rate|floatformat:"-2" }}</span><span class="text">%</span>
+                                    </div>
+                                </li>
+                                <li class="li-right-line"></li>
+                                <li>
+                                    <div>
+                                        <span class="text">期限</span>
+                                    </div>
+                                    <div>
+                                        <span class="count">{{ result.term_name|floatformat:"-2" }}</span><span class="text">{{ result.term_unit }}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="search-check"><a name="{{result.id}}" id="check_is_exist_{{result.id}}" class="search-check_link">查看详情</a></li>
+                    </ul>
+                </div>
+                {% endfor %}
+                {% else %}
+                <a>无符合查询条件的纪录</a>
+                {% endif %}
+            </div>
+        </div>
+        </div>
     </div>
+    <div style="height: 60px;background-color: #eeeef0;min-width: 1024px;"></div>
+    <!--尾部-->
+        {% include "footer.html" %}
 </div>
 </body>
-<script type="text/javascript">
- $(document).ready(function () {
-    $("[id^='check_is_exist_']").each(function(){
-        $(this).click(function(){
-            var ob = $(this).attr('name');
-            $.post("/bid_detail_p/",{"object_id":ob},function(data)
-                {
-                  if(data==1){ location.href = "/bid_detail/"+ob;}else{alert("该标的已过期，刷新后您可以继续查看其它标的！");location.reload();};});
-       });
+<script>
+    $(document).ready(function () {
+        $("[id^='check_is_exist_']").each(function () {
+            $(this).click(function () {
+                var ob = $(this).attr('name');
+                $.post("/bid_detail_p/", {"object_id": ob}, function (data) {
+                    if (data == 1) {
+                        location.href = "/bid_detail/" + ob;
+                    } else {
+                        alert("该标的已过期，刷新后您可以继续查看其它标的！");
+                        location.reload();
+                    }
+                    ;
+                });
+            });
+        });
     });
-});
 </script>
-<script type="text/javascript">
+<script>
     $(function () {
         {% if register_success %}
             {% ifequal  flag1 1 %}
-                alert("恭喜你，获得70M移动流量包！");
+            alert("恭喜你，获得70M移动流量包！");
             {% endifequal %}
             {% ifequal  flag1 3 %}
-                alert("恭喜你，获得50M联通流量包！");
+            alert("恭喜你，获得50M联通流量包！");
             {% endifequal %}
             {% ifequal  flag1 2 %}
-                alert("恭喜你，获得50M电信流量包！");
+            alert("恭喜你，获得50M电信流量包！");
             {% endifequal %}
 
-        {% endif %}
+            {% endif %}
 
-        //$(".registerform").Validform();  //就这一行代码！;
+            //$(".registerform").Validform();  //就这一行代码！;
 
-        var demo = $("#login_form").Validform({
-            tiptype: 3,
-            label: ".label",
-            showAllError: true,
-            datatype: {
-                "zh1-6": /^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
-            },
-            ajaxPost: false
-        });
+            var demo = $("#login_form").Validform({
+                tiptype: 3,
+                label: ".label",
+                showAllError: true,
+                datatype: {
+                    "zh1-6": /^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
+                },
+                ajaxPost: false
+            });
 
-        //通过$.Tipmsg扩展默认提示信息;
-        //$.Tipmsg.w["zh1-6"]="请输入1到6个字符！";
-        demo.tipmsg.w["zh1-6"] = "请输入1到6个字符！";
+            //通过$.Tipmsg扩展默认提示信息;
+            //$.Tipmsg.w["zh1-6"]="请输入1到6个字符！";
+            demo.tipmsg.w["zh1-6"] = "请输入1到6个字符！";
 
-        demo.addRule([
-            {
-                ele: ".inputxt:eq(0)",
-                datatype: "m"
-            },
-            {
-                ele: ".inputxt:eq(1)",
-                datatype: "*1-20"
-            },
-            {
-                ele: ".inputxt:eq(2)",
-                datatype: "n4"
-            }
-        ]);
-
-    })
+            demo.addRule([
+                {
+                    ele: ".inputxt:eq(0)",
+                    datatype: "m"
+                },
+                {
+                    ele: ".inputxt:eq(1)",
+                    datatype: "*1-20"
+                },
+                {
+                    ele: ".inputxt:eq(2)",
+                    datatype: "n4"
+                }
+            ]);
+        })
 </script>
-<script type="text/javascript">
+<script>
     $(function () {
-
-
         //$(".registerform").Validform();  //就这一行代码！;
         var demo = $("#register_form").Validform({
             tiptype: 3,
@@ -614,15 +468,14 @@
                 "zh1-6": /^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
             },
             ajaxPost: false,
-            callback:function(data){
+            callback: function (data) {
                 str = "success";
-        }
+            }
         });
 
         //通过$.Tipmsg扩展默认提示信息;
         //$.Tipmsg.w["zh1-6"]="请输入1到6个字符！";
         demo.tipmsg.w["zh1-6"] = "请输入1到6个字符！";
-
         demo.addRule([
             {
                 ele: "#id_username",
@@ -648,6 +501,4 @@
         ]);
     });
 </script>
-
-
 </html>

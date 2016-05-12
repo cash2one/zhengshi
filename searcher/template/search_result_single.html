@@ -2,80 +2,77 @@
 {% load staticfiles %}
 {% load settingsvalue %}
 <html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
 <body>
-<div class="search_bd" id="result_form">
-
-	
-
-	  {% if results %}
-	
-        {% for result in results.object_list %} 
-		  <div style="width:285px;height:310px; background:#fff;padding-top:20px;float:left;margin-left:20px;margin-top:10px;">
-		  <div style="margin:0px auto;width:220px;height:240px;">
-		   <div class="tupianImg"><img src="{{ result.platform.logo }}"/></div>
-		   <div style="margin-top:20px;font-size:1.4em;font-weight:bold;">{{ result.name |title_cut}}</div>
-		   <div style="margin-top:20px; width:100%; border:1px solid #868686;border-radius:10px;">
-		   <em style="width:{{result.process}}%;border-radius:10px; background:url(../static/images/jinduqiao.png) no-repeat;height:20px;display:block;"></em></div>
-		   <div style="width:220px;margin-top:20px;">
-			  <div style="float:left;"><span class="font_col">标的金额:</span>
-			  <span class="c_red">{{ result.amount|data_display }}</span></div>
-			  <div style="float:right;"><span class="font_col">已完成:</span>
-			  <span class="c_red">{{ result.process|floatformat:"0" }}</span><font class="font_col">%</font></div>
-		   </div>
-		   
-		   <div style="height:50px;padding-top: 35px;margin:0 auto;">
-			   
-				   <ul style="float:left;font-weight:bold;padding-left: 20px;">
-					   <li style="line-height:30px;"> <span style="font-size:1.4em;color: black;">年利率</span></li>
-					   <li style="line-height:30px;"><font style="font-size:1.4em;color: red;" >{{ result.income_rate|floatformat:"-2" }}</font>
-					   <font class="font_coll">%</font></li>
-				   </ul>
-				   <ul class="shuxianstyle">							  	  
-					   <li><div style="width:1px; height:50px; background:#EEEEF0;"></div></li>
-				   </ul>
-				   <ul style="float:left;padding-left: 10px;">
-					   <li style="line-height:30px;font-weight:bold;font-size:1.4em;color: black;"><span>期限</span></li>
-					   <li style="line-height:30px;">
-						 <font style="font-size:1.4em;color: red; font-weight:bold;">{{ result.term_name|floatformat:"-2" }}</font>
-						 <font class="font_coll">{{ result.term_unit }}</font>
-					   </li>
-				   </ul>
-			   								 
-		   </div>
-		   <div style="margin-top:25px;">
-			   <label  target="_blank" id="check_is_exist_{{result.id}}" name="{{result.id}}"
-			   class="seach_cheek">查看详情</label>
-		   </div>
-	     </div> 
-		 </div>
-        {% endfor %}
-			 
-    {% else %}
-
-   
-		
-        <a>无符合查询条件的纪录</a>
-    {% endif %}
-    <div class="pages">
-        <a href="javascript:void(0)" class="before"
-           onclick="takepage(1)">《</a>
-        {% if results.has_previous %}
-            <a href="javascript:void(0)"
-               onclick="takepage({{ results.previous_page_number }})">〈</a>
-        {% endif %}
-        {% for page in page_set %}
-            <a href="javascript:void(0)" {% ifequal page results.number %}
-               class="currentpage" {% endifequal %}
-               onclick="takepage({{ page }})">{{ page }} </a>
-        {% endfor %}
-        {% if results.has_next %}
-            <a href="javascript:void(0)"
-               onclick="takepage({{ results.next_page_number }})">〉</a>
-        {% endif %}
-        <a href="javascript:void(0)" class="after"
-           onclick="takepage({{ last_page }})">》</a>
+<div class="sit-search">
+    <div id="result_form" class="search_container">
+            {% if results %}
+            {% for result in results.object_list %}
+            <div class="search_content fix">
+                <ul class="item">
+                    <li class="img--fixed"><img src="/static/images/hot_logos.png" width="60" height="60"> </li>
+                    <li class="item_img"><img src="{{ result.platform.logo }}" width="110"></li>
+                    <li class="item_title">{{ result.name |title_cut}}</li>
+                    <li class="item_bar"><div><em style="width:{{ result.process }}%;"></em></div></li>
+                    <li class="item_wrap" style="padding: 0 5px;">
+                        <ul class="item_wrap_filed one fix">
+                            <li><span class="text">标的金额:</span><span class="count">{{result.amount|data_display}}</span></li>
+                            <li><span class="text">已完成:</span><span class="count">{{ result.process|floatformat:"0" }}%</span></li>
+                        </ul>
+                    </li>
+                    <li class="item_wrap" style="padding:0 5px;">
+                        <ul class="item_wrap_filed item-filed-width two fix">
+                            <li>
+                                <div>
+                                    <span class="text">年利率</span>
+                                </div>
+                                <div>
+                                    <span class="count">{{ result.income_rate|floatformat:"-2" }}</span><span class="text">%</span>
+                                </div>
+                            </li>
+                            <li class="li-right-line"></li>
+                            <li>
+                                <div>
+                                    <span class="text">期限</span>
+                                </div>
+                                <div>
+                                    <span class="count">{{ result.term_name|floatformat:"-2" }}</span><span class="text">{{ result.term_unit }}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="search-check"><a id="check_is_exist_{{result.id}}" name="{{result.id}}" class="search-check_link">查看详情</a></li>
+                </ul>
+            </div>
+            {% endfor %}
+            {% else %}
+            <a>无符合查询条件的纪录</a>
+            {% endif %}
+            <div class="pages">
+                <a href="javascript:void(0)" class="before"
+                   onclick="takepage(1)">《</a>
+                {% if results.has_previous %}
+                <a href="javascript:void(0)"
+                   onclick="takepage({{ results.previous_page_number }})">〈</a>
+                {% endif %}
+                {% for page in page_set %}
+                <a href="javascript:void(0)" {% ifequal page results.number %}
+                   class="currentpage" {% endifequal %}
+                   onclick="takepage({{ page }})">{{ page }} </a>
+                {% endfor %}
+                {% if results.has_next %}
+                <a href="javascript:void(0)"
+                   onclick="takepage({{ results.next_page_number }})">〉</a>
+                {% endif %}
+                <a href="javascript:void(0)" class="after"
+                   onclick="takepage({{ last_page }})">》</a>
+            </div>
+        </div>
     </div>
-</div>
 </body>
 <script>
     $(".rm a").on("click", function () {
@@ -93,19 +90,17 @@
                 }
         );
     });
-
-
 </script>
-<script type="text/javascript">
- $(document).ready(function () {
-    $("[id^='check_is_exist_']").each(function(){
-        $(this).click(function(){
-            var ob = $(this).attr('name');
-            $.post("/bid_detail_p/",{"object_id":ob},function(data)
+<script>
+    $(document).ready(function () {
+        $("[id^='check_is_exist_']").each(function(){
+            $(this).click(function(){
+                var ob = $(this).attr('name');
+                $.post("/bid_detail_p/",{"object_id":ob},function(data)
                 {
-                  if(data==1){ location.href = "/bid_detail/"+ob;}else{alert("该标的已过期，无法显示，敬请谅解！")};});
-       });
+                    if(data==1){ location.href = "/bid_detail/"+ob;}else{alert("该标的已过期，无法显示，敬请谅解！")};});
+            });
+        });
     });
-});
 </script>
 </html>

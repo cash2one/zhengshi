@@ -14,76 +14,46 @@
         .active{
             -webkit-box-sizing: border-box;
             -moz-box-sizing: border-box;
-            box-sizing: border-box;}
-        .content{
-            position:relative;
-            left:42%;
-            border:0 solid black;
-            width:380px;
-            height:35px;
-            top:-130px;
+            box-sizing: border-box;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-width: 1024px;
+            min-height: 1000px;
+        }
+        .active .active_bg_images{
         }
         .register{
-            position:relative;
+            position:absolute;
             left:15%;
             border:0 solid black;
-            width:95px;
+            width:6%;
             height:30px;
-            top:-270px;
+            top:76%;
         }
-        @media screen and (min-width:1350px){
-            .register{
-                top:-240px;
-                width:85px;
-            }
-            .content{
-                top:-110px;
-            }
+        .content{
+            position:absolute;
+            left:42%;
+            border:0 solid black;
+            width:27%;
+            height:42px;
+            top:92%;
         }
-        @media screen and (max-width:1350px){
-            .register{
-                top:-190px;
-                width:80px;
-            }
-            .content{
-                top:-100px;
-            }
-        }
-        @media screen and (min-width: 1200px) and (max-width:1350px){
-            .register{
-                top:-215px;
-            }
-            .content{
-                top:-110px;
-            }
-        }
-        @media screen and (min-width: 300px) and (max-width: 1280px){
-            .register{
-                top:-240px;
-            }
-            .content{
-                top:-110px;
-                width:320px;
-            }
-        }
-
     </style>
 </head>
 <body>
-<div>
     {% include "header.html" %}
+<div class="active">
+    <div class="active_bg_images">
+        <img style="background:no-repeat;width:100%;height: 1000px;" src="/static/images/logost.jpg ">
+        <a style="cursor: pointer" href="http://ddbid.com/register/">
+            <div class="register"></div>
+        </a>
+        <a style="cursor: pointer" href="http://ddbid.com/bbs/topic/21/">
+            <div class="content"></div>
+        </a>
+    </div>
 </div>
-<div class="active" style="min-width:1024px;max-width:1660px;max-height:1000px;">
-    <img style="background:no-repeat;width:100%;height: 1000px;" src="/static/images/logost.jpg ">
-    <a style="cursor: pointer" href="http://ddbid.com/register/">
-        <div class="register"></div>
-    </a>
-    <a style="cursor: pointer" href="http://ddbid.com/bbs/topic/21/">
-        <div class="content"></div>
-    </a>
-</div>
-<div>
     {% include "footer.html" %}
-</div>
 </body>
 </html>
